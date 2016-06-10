@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:property-placeholder location="classpath:config/jdbc.properties" />
+
+	<!-- 1. DataSource 빈 등록 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${JDBC.Driver}" />
+		<property name="url" value="${JDBC.ConnectionURL}" />
+		<property name="username" value="${JDBC.Username}" />
+		<property name="password" value="${JDBC.Password}" />
+	</bean>
+
+	<!-- 2. MyBatis Framework 빈 등록 :: SqlSessionFactory, SqlSession -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 체크 :: MyBatis 핵심문서 -->
+		<property name="configLocation" value="classpath:config/SqlMapConfig.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
+	</bean>
+
+	<!-- 3. DAO -->
+	<bean id="memberDao" class="dao.MemberDaoImpl" p:sqlSession-ref="sqlSessionTemplate"/>
+	<bean id="dreamDao" class="dao.DreamDaoImpl" p:sqlSession-ref="sqlSessionTemplate"/>
+	
+	
+	<!-- 4. Service -->
+	<bean id="memberService" class="dao.MemberServiceImpl" p:memberDao-ref="memberDao"/>
+	<bean id="dreamService" class="dao.DreamServiceImpl" p:dreamDao-ref="dreamDao" />
+	
+	
+	
+	<bean id="methodNameResolver" 
+	class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver" 
+	p:paramName="command"/>
+	
+	<!-- FileUpload :: MultipartFile 빈 등록 -->
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="defaultEncoding" value="euc-kr" />
+      <property name="maxUploadSize" value="-1" />
+   </bean>
+   
+	<!-- controller -->
+	<bean name="/member.do" class="controller.MemberController" 
+	p:memberService-ref="memberService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\member\\"/>
+	
+	<bean name="/dream.do" class="controller.DreamController" 
+	p:dreamService-ref="dreamService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\dream\\"/>
+	
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="beanNameResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+
+	<!-- 5. Controller -->
+	<!-- MultiActionController을 사용하면 정의해야 하는 것이있다. -->
+	
+	
+	
+	
+	 <!-- JsonView 추가... -->
+	<bean name="JsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+
+</beans>
