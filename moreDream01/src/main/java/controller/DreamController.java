@@ -18,7 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import dao.DreamService;
-
+/*
+ * dream controller
+ */
 public class DreamController extends MultiActionController{
 	
 	private DreamService dreamService;
