@@ -96,29 +96,7 @@
 </div>
 
 
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center bottom-separator">
-					<img src="images/home/under.png" class="img-responsive inline"
-						alt="">
-				</div>
-				<div class="col-md-4 col-sm-6"></div>
-				<div class="col-md-3 col-sm-6"></div>
-				<div class="col-md-4 col-sm-12">
-					<div class="contact-form bottom"></div>
-				</div>
-				<div class="col-sm-12">
-					<div class="copyright-text text-center">
-						<p>&copy; Your Company 2014. All Rights Reserved.</p>
-						<p>
-							Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 
 
