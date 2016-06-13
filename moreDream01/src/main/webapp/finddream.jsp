@@ -77,7 +77,7 @@
 											</div>
 											<div class="portfolio-view">
 												<ul class="nav nav-pills">
-													<li><a href="dreamdetails.html"><i
+													<li><a href="dreamdetails.jsp"><i
 															class="fa fa-link"></i></a></li>
 													<li><a href="images/logo/logo.jpg"
 														data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
