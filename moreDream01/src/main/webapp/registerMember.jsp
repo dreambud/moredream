@@ -71,16 +71,7 @@
 			}//if
 		}//if
 	}//callback
-	
-	var xhr;
-	var password, passswordCheckView;
-	
-	function passCheck() {
-		password = document.getElementById("password");
-		passswordCheckView = document.getElementById("passswordCheckView");
-				
 		
-	}
 </script>
 </head>
 
@@ -128,7 +119,7 @@
 			    	    		 아래 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
 			    	    	</label>
 			    	    </div>
-			    		<button type="button" onclick="check	Reg()" class="btn btn-lg btn-success btn-block">회원가입</button>
+			    		<button type="button" onclick="checkReg()" class="btn btn-lg btn-success btn-block">회원가입</button>
 			    	</fieldset>
 			      	</form>
 			    </div>
