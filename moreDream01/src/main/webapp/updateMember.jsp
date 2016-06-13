@@ -86,18 +86,18 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="inputPasswordCheck" class="col-sm-2 control-label">이름</label>
-					<div class="col-sm-6">
-						<input type="text" class="form-control" name="passwordCheck"
-							placeholder="이름을 입력해주세요" value="${sessionScope.mvo.name}">
-					</div>
-				</div>
-				
-				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">주소</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="passwordCheck"
 							placeholder="주소를 입력해주세요" value="${sessionScope.mvo.address}">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="inputPasswordCheck" class="col-sm-2 control-label">이름</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="passwordCheck"
+							placeholder="이름을 입력해주세요" value="${sessionScope.mvo.name}">
 					</div>
 				</div>
 
