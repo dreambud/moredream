@@ -100,8 +100,11 @@ public class DreamController extends MultiActionController{
 	//꿈 목록
 	public ModelAndView getAllListDream(HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-				
-				List<DreamVO> dreamList = dreamService.getAllListDream();
+				String num = request.getParameter("filter");
+				if(num==null){
+					num = "1";
+				}
+				List<DreamVO> dreamList = dreamService.getListDream(num);
 				System.out.println(dreamList);
 				return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
