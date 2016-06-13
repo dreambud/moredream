@@ -11,4 +11,5 @@ public interface MemberDao {
 	int	updateMember(MemberVO pmvo);
 	int deleteMember(int memberId);
 	ArrayList<MemberVO> getMemberList();
+	int deleteFileMember(String member_newFilename2);
 }

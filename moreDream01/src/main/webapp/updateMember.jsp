@@ -38,6 +38,26 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
+	
+<!-- 프로필 사진삭제  -->
+<script type="text/javascript">
+	var xhr;
+	function startRequest(){
+		alert("${sessionScope.mvo.member_newFilename}");
+		xhr=  new XMLHttpRequest();
+		xhr.onreadystatechange = callback;
+		xhr.open("get", "member.do?command=deleteFileMember&&member_newFilename=${mvo.member_newFilename}", true);
+		xhr.send(null);
+	}
+	function callback(){
+		if(xhr.readyState==4){
+			if(xhr.status==200){
+				document.getElementById("uploadView").innerHTML = 
+					"<input type='file' name='multipartFile'>";
+			}
+		}
+	}
+</script>
 </head>
 <!--/head-->
 
@@ -64,14 +84,14 @@
 	<div class="contentwrap">
 		<article class="container">
 			<div class="page-header"></div>
-			<form class="form-horizontal" action="member.do">
+			<form class="form-horizontal" action="member.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="updateMember">
 			<input type="hidden" name="memberId" value="${sessionScope.mvo.memberId}">
 				
 				<div class="form-group">
 					<label for="inputId" class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-6">
-						<input type="text" name="cid" class="form-control"
+						<input type="text" name="email" class="form-control"
 							readonly="readonly" value="${sessionScope.mvo.email}">
 					</div>
 					<div class="col-sm-4"></div>
@@ -88,7 +108,7 @@
 				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">주소</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="passwordCheck"
+						<input type="text" class="form-control" name=address
 							placeholder="주소를 입력해주세요" value="${sessionScope.mvo.address}">
 					</div>
 				</div>
@@ -96,7 +116,7 @@
 				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">이름</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="passwordCheck"
+						<input type="text" class="form-control" name="name"
 							placeholder="이름을 입력해주세요" value="${sessionScope.mvo.name}">
 					</div>
 				</div>
@@ -104,10 +124,27 @@
 				<div class="form-group">
 					<label for="inputPhoneNumber" class="col-sm-2 control-label">전화번호</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" name="telnumber"
+						<input type="text" class="form-control" name="phoneNumber"
 							placeholder="전화번호를 입력해주세요" value="${sessionScope.mvo.phoneNumber}">
 					</div>
+					<c:choose>
+					<c:when test="${sessionScope.mvo.member_newFilename==null||sessionScope.mvo.member_newFilename=='-'}">
+				    <br><br><input type="file" name="multipartFile">
+					<br><br>
+					</c:when>
+					<c:otherwise>
+					<br><br>
+					<span id="uploadView">
+					<c:if test="${sessionScope.mvo.member_newFilename!=null||sessionScope.mvo.member_newFilename!='-'}">
+					<img src="./upload/member/${sessionScope.mvo.member_newFilename}"><br>
+					<input type="button" value="프로필 사진 삭제" onclick="startRequest()">
+					</c:if>
+					</span>
+					</c:otherwise>
+					</c:choose>
 					
+				
+				
 				</div>
 				<p align="center"><button type="submit" class="btn btn-lg btn-success">회원정보수정</button></p>
 			</form>

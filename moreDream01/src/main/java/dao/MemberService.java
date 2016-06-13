@@ -11,4 +11,5 @@ public interface MemberService {
 	void updateMember(MemberVO pmvo);
 	void deleteMember(int memberId);
 	ArrayList<MemberVO> getMemberList();
+	void deleteFileMember(String member_newFilename1, String member_newFilename2);
 }

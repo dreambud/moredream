@@ -61,4 +61,10 @@ public class MemberDaoImpl implements MemberDao {
 		return (ArrayList<MemberVO>) list ;
 	}
 
+	@Override
+	public int deleteFileMember(String member_newFilename2) {
+	String member_newFilename = member_newFilename2;
+		return sqlSession.update("memberSql.deleteFileMember", member_newFilename);
+	}
+
 }

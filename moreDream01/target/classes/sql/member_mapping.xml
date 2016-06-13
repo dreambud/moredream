@@ -69,6 +69,15 @@
 		FROM member
 	</select>
 	
+	
+	<!-- 파일삭제 -->
+	<update id="deleteFileMember" parameterType="string">
+	UPDATE member set
+	member_newFilename='-', 
+	member_orgFilename='-' 
+	where member_newFilename=#{value}
+	</update>
+	
 </mapper>	
 
  

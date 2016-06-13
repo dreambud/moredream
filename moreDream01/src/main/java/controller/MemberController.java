@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import model.MemberVO;
 
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -75,13 +78,30 @@ public class MemberController extends MultiActionController {
 	//HttpSession을 인자값으로 넣지 않고 진행하자....
 	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response
 			, MemberVO pmvo)
-		throws SQLException{
+		throws SQLException, IllegalStateException, IOException{
+		MultipartFile file = pmvo.getMultipartFile();//업로드한 파일
+		if(!file.isEmpty()){//파일이 있다.
+			/*
+			 * orgfilename 받아와서 bvo에 주입
+			 * newfilename 방아와서 bvo에 주입
+			 */
+			pmvo.setMember_orgFilename(file.getOriginalFilename());
+			pmvo.setMember_newFilename(System.currentTimeMillis()+"_"+file.getOriginalFilename());
+		
+			File desFile = new File(path+System.currentTimeMillis()+"_"+file.getOriginalFilename());
+			file.transferTo(desFile);
+		}
+		
 		request.getParameter("password");
 		System.out.println(pmvo);
 		memberService.updateMember(pmvo);//이 부분에서 디비의 mvo내용이 pmvo로 수정이 일어났다.
 		//그걸 다시 세션에 반드시 바인딩 해야한다.
 		request.getSession().setAttribute("mvo", pmvo);
-		return new ModelAndView("WEB-INF/result/updateMember_result");//바인딩은 이미 위에서 했다.
+		//return new ModelAndView("redirect:/updateMember.jsp");
+		return new ModelAndView("WEB-INF/result/updateMember_result");
+		
+		
+		//바인딩은 이미 위에서 했다.
 		
 	}	
 	
@@ -129,5 +149,21 @@ public class MemberController extends MultiActionController {
 			return new ModelAndView("WEB-INF/result/getMemberList_result","list",list);//바인딩은 이미 위에서 했다.
 			
 		}
+	
+	public ModelAndView deleteFileMember(HttpServletRequest request, HttpServletResponse response)
+	throws NumberFormatException, Exception{
+	String member_newFilename = request.getParameter("member_newFilename");
+
+		System.out.println("아작스 뚜뚜뚜뚜 콜~ ");
+
+	String member_newFilename1 = path+member_newFilename; // 디렉토리에 있는 파일 지울꺼
+	System.out.println(member_newFilename1);
+	String member_newFilename2 = member_newFilename; // db테이블에 있는 파일 지울꺼
+		memberService.deleteFileMember(member_newFilename1, member_newFilename2);
+	
+	return new ModelAndView("JsonView");
+	}
+	
+	
 	
 }

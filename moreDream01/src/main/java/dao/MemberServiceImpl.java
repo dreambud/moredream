@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import model.MemberVO;
@@ -38,8 +39,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void updateMember(MemberVO pmvo) {
+		if(pmvo.getMember_newFilename()==null||pmvo.getMember_newFilename()=="-")
+		{
 		pmvo.setMember_newFilename("-");
 		pmvo.setMember_orgFilename("-");
+		}
 		pmvo.setMemberCode("U");
 		memberDao.updateMember(pmvo);
 		
@@ -54,6 +58,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ArrayList<MemberVO> getMemberList() {
 		return memberDao.getMemberList();
+	}
+
+	@Override
+	public void deleteFileMember(String member_newFilename1,String member_newFilename2) {
+		File f = new File(member_newFilename1);
+		f.delete();// 이게 안돼. 
+		memberDao.deleteFileMember(member_newFilename2);
 	}
 
 }
