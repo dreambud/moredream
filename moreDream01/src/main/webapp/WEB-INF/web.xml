@@ -14,7 +14,7 @@
 
 		<context-param>
 			<param-name>root</param-name>
-			<param-value>/moreDream02/</param-value>
+			<param-value>/moreDream01/</param-value>
 		</context-param>
 
 		<filter>
