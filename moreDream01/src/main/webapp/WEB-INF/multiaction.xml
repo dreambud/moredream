@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id="methodNameResolver" 
+	class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver" 
+	p:paramName="command"/>
+	
+	<!-- FileUpload :: MultipartFile 빈 등록 -->
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="defaultEncoding" value="euc-kr" />
+      <property name="maxUploadSize" value="-1" />
+   </bean>
+   
+	<!-- Controller -->
+	<bean name="/member.do" class="controller.MemberController" 
+	p:memberService-ref="memberService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\member\\"/>
+	
+	<bean name="/dream.do" class="controller.DreamController" 
+	p:dreamService-ref="dreamService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\dream\\"/>
+	
+	
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="beanNameResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+
+	
+	<!-- MultiActionController을 사용하면 정의해야 하는 것이있다. -->
+	
+	
+	 <!-- JsonView 추가... -->
+	<bean name="JsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+
+</beans>
