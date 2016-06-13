@@ -72,6 +72,7 @@
 			 	</div>
 			  	<div class="panel-body">
 			    	<form action="member.do" method="post">
+			    	<input type="hidden" name="command" value="login">
                     <fieldset>
 			    	  	<div class="form-group"><label>이메일</label>
 			    		    <input class="form-control" placeholder="이메일 주소 입력" name="email" type="text">
