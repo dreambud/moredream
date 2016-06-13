@@ -28,13 +28,37 @@
 	<!-- 3. DAO -->
 	<bean id="memberDao" class="dao.MemberDaoImpl" p:sqlSession-ref="sqlSessionTemplate"/>
 	<bean id="dreamDao" class="dao.DreamDaoImpl" p:sqlSession-ref="sqlSessionTemplate"/>
-
-
+	
+	
 	<!-- 4. Service -->
 	<bean id="memberService" class="dao.MemberServiceImpl" p:memberDao-ref="memberDao"/>
-	<bean id="dreamService" class="dao.DreamServiceImpl" p:dreamDao-ref="dreamDao"/>
-
-
+	<bean id="dreamService" class="dao.DreamServiceImpl" p:dreamDao-ref="dreamDao" />
+	
+	
+	
+	<bean id="methodNameResolver" 
+	class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver" 
+	p:paramName="command"/>
+	
+	<!-- FileUpload :: MultipartFile 빈 등록 -->
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="defaultEncoding" value="euc-kr" />
+      <property name="maxUploadSize" value="-1" />
+   </bean>
+   
+	<!-- controller -->
+	<bean name="/member.do" class="controller.MemberController" 
+	p:memberService-ref="memberService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\member\\"/>
+	
+	<bean name="/dream.do" class="controller.DreamController" 
+	p:dreamService-ref="dreamService" 
+	p:methodNameResolver-ref="methodNameResolver" 
+	p:path="C:\\EFI\\kbm\\FinalProject\\eclipse\\workspace\\moreDream01\\src\\main\\webapp\\upload\\dream\\"/>
+	
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/" />
@@ -53,6 +77,7 @@
 	
 	
 	
-	<!-- JstlView -->
-	
+	 <!-- JsonView 추가... -->
+	<bean name="JsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
+
 </beans>
