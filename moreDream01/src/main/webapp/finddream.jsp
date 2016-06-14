@@ -83,7 +83,7 @@
 												</div>
 												<div class="portfolio-view">
 													<ul class="nav nav-pills">
-														<li><a href="dreamdetails.jsp"><i
+														<li><a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId }"><i
 																class="fa fa-link"></i></a></li>
 														<li><a
 															href="./upload/dream/${dream.dream_newFilename}"
