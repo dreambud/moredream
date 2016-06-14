@@ -111,13 +111,13 @@
 											<td>
 												<c:choose>
 													<c:when test="${dream.confirmRequestDream=='Y'}">
-														<font color="blue" size="2"><b>승인완료</b></font><br>
+														<button type="button" class="btn btn-xs btn-success">승인완료</button><br>
 													</c:when>
 													<c:when test="${dream.confirmRequestDream=='N'}">
-														<font color="red" size="2"><b>승인거절</b></font>
+														<button type="button" class="btn btn-xs btn-danger">승인거절</button><br>
 													</c:when>
 													<c:otherwise>
-														<font color="red" size="2"><b>신청중</b></font>
+														<button type="button" class="btn btn-xs btn-primary">승인중</button><br>
 													</c:otherwise>
 												</c:choose>
 											</td>
