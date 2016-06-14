@@ -5,17 +5,26 @@ import java.util.List;
 import java.util.Map;
 
 import model.DreamVO;
+import model.MemberVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
 import model.UpdateDreamVO;
 
 public interface DreamService {
-	
+
+	//추가 160614
+	// :: updateDreamFindByDreamId 업데이트 정보 찾기
+	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId) throws IOException;
+	// :: getMemberByDream 상세보기 할때 꿈을 신청한 사용자 정보 가져오기
+	public MemberVO getMemberByDream(int dreamId) throws IOException;
+	//추가 :: readComment 리플 드림아이디로 읽기
+	public List<ReplyVO> readComment(int dreamId) throws IOException;
+
 	////추가
 	public List<DreamVO> getAllListDreamForAdmin()throws IOException;//관리자 신청된 꿈 목록
-	
-	
+
+
 	public void requestDream(DreamVO vo) throws IOException;//꿈신청
 	public void deleteDream(int dreamId) throws IOException; // 꿈삭제
 
@@ -28,7 +37,7 @@ public interface DreamService {
 	public List<DreamVO> selectByCategory(String category) throws IOException;//카테고리별 조회
 	public DreamVO getDetailDreamByDreamId(int dreamId) throws IOException;//꿈 상세보기
 	public List<DreamVO> selectByKeyWord(String keyword) throws IOException;//키워드 검색
-//	public List<DreamVO> getAllListDream() throws IOException;//꿈 전체 가져오기
+	//	public List<DreamVO> getAllListDream() throws IOException;//꿈 전체 가져오기
 
 	public List<PaymentVO> getPaymentHistoryByMemberId(int memberId) throws IOException;//결제내역 가져오기
 	public List<DreamVO> cheerUpList(int memberId) throws IOException;//응원 리스트
@@ -43,14 +52,14 @@ public interface DreamService {
 	public List<DreamVO> requestStateDream(int memberId) throws IOException;//내꿈 신청 현황 보기
 
 	public void updateDream(UpdateDreamVO vo) throws IOException;//내꿈 수정하기(업데이트 작성)
-	
-	
-	
+
+
+
 	//댓글 작성, 삭제, 알람받기
 	public void writeComment(ReplyVO vo)throws IOException;
 	public int deleteComment(int memberId)throws IOException;
 	public List<UpdateDreamVO> alarm(int memberId)throws IOException;
-	   
+
 	//꿈 리스트 가져오기(필터,전체리스트)
 	public List<DreamVO> getListDream(String num) throws IOException;
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.DreamVO;
+import model.MemberVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
@@ -20,15 +21,32 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 
+	// 추가 160614/////////////////////////////////////////////////////////////
+	@Override
+	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
+			throws IOException {
+		return dreamDao.updateDreamFindByDreamId(dreamId);
+	}
+	@Override
+	public MemberVO getMemberByDream(int dreamId) throws IOException {
+		MemberVO vo = dreamDao.getMemberByDream(dreamId);
+		return vo;
+	}
+	@Override
+	public List<ReplyVO> readComment(int dreamId) throws IOException {
+		return dreamDao.readComment(dreamId);
+	}
+	//////////////////////////////////////////////////////////////////////////
+
 	////추가
 	@Override
 	public List<DreamVO> getAllListDreamForAdmin() throws IOException {
 		List<DreamVO> list = dreamDao.getAllListDreamForAdmin();
 		return list;
 	}
-	
-	
-	
+
+
+
 	@Override
 	public void requestDream(DreamVO vo) throws IOException {
 		dreamDao.requestDream(vo);
@@ -80,9 +98,9 @@ public class DreamServiceImpl implements DreamService {
 			Date nowDate = new Date(year,month,day);
 			long nowTime = nowDate.getTime();
 			System.out.println("현재시간 : "+nowTime);*/
-			
+
 			rlist=dreamDao.getAllListDreamOrderByEndDate();
-			
+
 		}else if(num.equals("3")){//최다 후원
 			rlist = dreamDao.getAllListDreamOrderByManyPeople();
 			List<DreamVO> rlist2 = dreamDao.getAllListDream();
@@ -171,9 +189,9 @@ public class DreamServiceImpl implements DreamService {
 		dreamDao.updateDream(vo);
 	}
 
-	
-	
-	
+
+
+
 	// ///////////////댓글 작성, 알림받기/////////////////////////
 	@Override
 	public void writeComment(ReplyVO vo) throws IOException {

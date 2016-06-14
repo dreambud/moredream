@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import model.DreamVO;
+import model.MemberVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
@@ -19,6 +20,26 @@ public class DreamDaoImpl implements DreamDao {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	// 추가 160614//////////////////////////
+		@Override
+		public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
+				throws IOException {
+			
+			List<UpdateDreamVO> list = sqlSession.selectList("dreamSql.updateDreamFindByDreamId",dreamId);
+			return list;
+		}
+		@Override
+		public MemberVO getMemberByDream(int dreamId) throws IOException {
+			MemberVO vo = sqlSession.selectOne("dreamSql.getMemberByDream", dreamId);
+			return vo;
+		}
+		@Override
+		public List<ReplyVO> readComment(int dreamId) throws IOException {
+			List<ReplyVO> list = sqlSession.selectList("dreamSql.readComment", dreamId);
+			return list;
+		}
+		////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/////추가
 	@Override

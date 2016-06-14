@@ -9,12 +9,24 @@ public class UpdateDreamVO {
 	private String update_detailDream;
 	private String update_orgFilename;
 	private String update_newFilename;
-	
+
 	private MultipartFile multipartFile;
 
-	
+
 	public UpdateDreamVO() {	} //디폴트 생성자
-	
+
+	///////////////////////////////////////////////////////////////////////
+	/////////////////      20160613 생성자 추가        ///////////////////////////
+	public UpdateDreamVO(DreamVO dreamVO, String update_detailDream,
+			String update_orgFilename, String update_newFilename) {
+		super();
+		this.dreamVO = dreamVO;
+		this.update_detailDream = update_detailDream;
+		this.update_orgFilename = update_orgFilename;
+		this.update_newFilename = update_newFilename;
+	}
+	/////////////////////////////////////////////////////////////////////////
+
 	//전체 생성자
 	public UpdateDreamVO(DreamVO dreamVO, String update_detailDream) {
 		this.dreamVO = dreamVO;
@@ -53,7 +65,7 @@ public class UpdateDreamVO {
 		this.update_newFilename = update_newFilename;
 	}
 
-	
+
 	public MultipartFile getMultipartFile() {
 		return multipartFile;
 	}
@@ -70,7 +82,7 @@ public class UpdateDreamVO {
 				+ update_newFilename + ", multipartFile=" + multipartFile + "]";
 	}
 
-	
-	
+
+
 
 }

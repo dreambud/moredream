@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import model.DreamVO;
 import model.MemberVO;
+import model.ReplyVO;
 import model.RewardVO;
+import model.UpdateDreamVO;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,20 +24,20 @@ import dao.DreamService;
  * DreamController 주석 추가
  */
 public class DreamController extends MultiActionController{
-	
+
 	private DreamService dreamService;
 	private String path;
 
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 	public void setDreamService(DreamService dreamService) {
 		this.dreamService = dreamService;
 	}
-	
+
 	//꿈 신청
-	   public ModelAndView requestDream(HttpServletRequest request,HttpServletResponse response, HttpSession session, DreamVO pvo)
+	public ModelAndView requestDream(HttpServletRequest request,HttpServletResponse response, HttpSession session, DreamVO pvo)
 			throws Exception{
 		System.out.println("requestDream GO!!");
 
@@ -65,83 +67,109 @@ public class DreamController extends MultiActionController{
 		}
 
 		System.out.println("꿈 신청 Go");
-		
+
 		MemberVO rmvo =   (MemberVO) session.getAttribute("mvo");
 		pvo.setMemberVO(rmvo);//세션 값 주입
-		
+
 		System.out.println("1"+pvo);
 		dreamService.requestDream(pvo);
 		System.out.println("2"+pvo);
-		
-		
+
+
 		return new ModelAndView("registerReward", "dreamId", pvo.getDreamId());
 	}
-	
+
 	//보상 등록
 	public ModelAndView registerReward(HttpServletRequest request,HttpServletResponse response, RewardVO pvo)
 			throws Exception{
 		System.out.println("registerReward GO!!");
 		System.out.println("RewardVO :: "+pvo);
-		
+
 		DreamVO dreamVO = new DreamVO();
-		
-		
+
+
 		dreamVO.setDreamId(Integer.parseInt(request.getParameter("dreamId")));
-		
+
 		pvo.setDreamVO(dreamVO);
-		
+
 		dreamService.registerReward(pvo);
-		
+
 		return new ModelAndView("index");
 	}
-	
-	
-	
+
+
+
 	//꿈 목록
 	public ModelAndView getAllListDream(HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-				String num = request.getParameter("filter");
-				if(num==null){
-					num = "1";
-				}
-				List<DreamVO> dreamList = dreamService.getListDream(num);
-				System.out.println(dreamList);
-				return new ModelAndView("./finddream", "dreamList", dreamList);
+		String num = request.getParameter("filter");
+		if(num==null){
+			num = "1";
+		}
+		List<DreamVO> dreamList = dreamService.getListDream(num);
+		System.out.println(dreamList);
+		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
-	
+
 	//관리자 꿈 목록 보기
 	public ModelAndView getAllListDreamForAdmin(HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-					
-			List<DreamVO> adminDreamList = dreamService.getAllListDreamForAdmin();
-			
-			System.out.println(adminDreamList);
-			return new ModelAndView("./admindreampage", "adminDreamList", adminDreamList);
+
+		List<DreamVO> adminDreamList = dreamService.getAllListDreamForAdmin();
+
+		System.out.println(adminDreamList);
+		return new ModelAndView("./admindreampage", "adminDreamList", adminDreamList);
 	}
-	
+
 	//카테고리 검색
 	public ModelAndView selectByCategory(HttpServletRequest request,HttpServletResponse response)
-	throws Exception{
+			throws Exception{
 		String category = request.getParameter("category");
 		System.out.println(category);
 		List<DreamVO> list = dreamService.selectByCategory(category);
 		System.out.println(list);
 		return new ModelAndView("./test/selectByCategory", "list", list);
 	}
-	
+
 	// Admin 꿈 승인하기
 	public ModelAndView confirmRequestDream(HttpServletRequest request,HttpServletResponse response)
 			throws Exception{
-				int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-				String confirmRequestDream = request.getParameter("confirmRequestDream");
-				System.out.println("confirmRequestDream() :: "+dreamId + " "+confirmRequestDream);
-				
-				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("dreamId", dreamId);
-				map.put("confirm", confirmRequestDream);
-				
-				dreamService.confirmRequestDream(map);
-				
-				return new ModelAndView("redirect:/dream.do?command=getAllListDreamForAdmin");
-			}
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		String confirmRequestDream = request.getParameter("confirmRequestDream");
+		System.out.println("confirmRequestDream() :: "+dreamId + " "+confirmRequestDream);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dreamId", dreamId);
+		map.put("confirm", confirmRequestDream);
+
+		dreamService.confirmRequestDream(map);
+
+		return new ModelAndView("redirect:/dream.do?command=getAllListDreamForAdmin");
+	}
+	//추가 160614
+	// :: getDetailDreamByDreamId - 꿈 상세보기
+	public ModelAndView getDetailDreamByDreamId(HttpServletRequest request, HttpServletResponse response)
+			throws Exception{
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		System.out.println("상세보기에서 dreamId ::"+dreamId);
+		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
+		MemberVO memberVO = dreamService.getMemberByDream(dreamId);
+		dreamVO.setMemberVO(memberVO);
+
+		System.out.println("dreamVO :: "+dreamVO);
+
+		////////////////////////////////////////////////////////////////////////////////
+		System.out.println("AA");
+		List<UpdateDreamVO> updateDreamList = dreamService.updateDreamFindByDreamId(dreamId);
+		System.out.println(updateDreamList);
+		request.setAttribute("updateDreamList", updateDreamList);
+
+		///////////////////////////////////////////////////////////////////////////////////
+		System.out.println("BB");
+		List<ReplyVO> replyList = dreamService.readComment(dreamId);
+		System.out.println(replyList);
+		request.setAttribute("reply", replyList);
+
+		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
+	}
 }
