@@ -38,50 +38,61 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
-	
+
 <!-- 프로필 사진삭제  -->
 <script type="text/javascript">
 	var xhr;
-	function startRequest(){
+	function startRequest() {
 		alert("${sessionScope.mvo.member_newFilename}");
-		xhr=  new XMLHttpRequest();
+		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = callback;
-		xhr.open("get", "member.do?command=deleteFileMember&&member_newFilename=${mvo.member_newFilename}", true);
+		xhr
+				.open(
+						"get",
+						"member.do?command=deleteFileMember&&member_newFilename=${mvo.member_newFilename}",
+						true);
 		xhr.send(null);
 	}
-	function callback(){
-		if(xhr.readyState==4){
-			if(xhr.status==200){
-				document.getElementById("uploadView").innerHTML = 
-					"<input type='file' name='multipartFile'>";
+	function callback() {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				document.getElementById("uploadView").innerHTML = "<input type='file' name='multipartFile'>";
 			}
 		}
 	}
-$(document).ready(function(){
-	$('#rePassword').keyup(function(){
+	$(document)
+			.ready(
+					function() {
+						$('#rePassword')
+								.keyup(
+										function() {
 
-	if($(this).val()!=$('#password').val()){
-	$('#passwordEqul').html("<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
-	}else{
-	$('#passwordEqul').html("<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")	
-	};
-	});//keyup
-	});//ready
-	
-function frmsubmit() {
-	if(document.frm.password.value != document.frm.rePassword.value){
-		alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
-	}else{
-    	document.frm.submit();
-	}//else
-}//submit
-	
-	
-	
-function memberdelete() {
-	if(confirm("정말 탈퇴 하시겠습니까?"))
-	location.href="member.do?command=deleteMember";
-}
+											if ($(this).val() != $('#password')
+													.val()) {
+												$('#passwordEqul')
+														.html(
+																"<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
+											} else {
+												$('#passwordEqul')
+														.html(
+																"<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")
+											}
+											;
+										});//keyup
+					});//ready
+
+	function frmsubmit() {
+		if (document.frm.password.value != document.frm.rePassword.value) {
+			alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
+		} else {
+			document.frm.submit();
+		}//else
+	}//submit
+
+	function memberdelete() {
+		if (confirm("정말 탈퇴 하시겠습니까?"))
+			location.href = "member.do?command=deleteMember";
+	}
 </script>
 </head>
 <!--/head-->
@@ -108,11 +119,19 @@ function memberdelete() {
 
 	<div class="contentwrap">
 		<article class="container">
-			<div class="page-header"></div>
-			<form class="form-horizontal" name="frm" action="member.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="command" value="updateMember">
-			<input type="hidden" name="memberId" value="${sessionScope.mvo.memberId}">
-				
+			<div class="page-header">
+				<div class="container-fluid bg-1 text-center">
+					<img src="./upload/member/${sessionScope.mvo.member_newFilename}" class="img-circle">
+					<h3>${sessionScope.mvo.name}</h3>
+				</div>
+			</div>
+			<form class="form-horizontal" name="frm" action="member.do"
+				method="post" enctype="multipart/form-data">
+				<input type="hidden" name="command" value="updateMember"> <input
+					type="hidden" name="memberId" value="${sessionScope.mvo.memberId}">
+				<p align="right">
+							<button type="button" onclick="memberdelete()"
+						class="btn btn-sm btn-danger">회원탈퇴</button></p>
 				<div class="form-group">
 					<label for="inputId" class="col-sm-2 control-label">아이디</label>
 					<div class="col-sm-6">
@@ -121,24 +140,26 @@ function memberdelete() {
 					</div>
 					<div class="col-sm-4"></div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="password" name="password"
-							placeholder="변경할 비밀번호를 입력해주세요" value="${sessionScope.mvo.password}">
+						<input type="password" class="form-control" id="password"
+							name="password" placeholder="변경할 비밀번호를 입력해주세요"
+							value="${sessionScope.mvo.password}">
 					</div>
 				</div>
-				
-					<div class="form-group">
-					<label for="reInputPassword" class="col-sm-2 control-label">비밀번호 확인</label>
+
+				<div class="form-group">
+					<label for="reInputPassword" class="col-sm-2 control-label">비밀번호
+						확인</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" id="rePassword" name="rePassword"
-							placeholder="변경할 비밀번호를  한번 더 입력해주세요" value="">
-					<span id="passwordEqul"></span> 
+						<input type="password" class="form-control" id="rePassword"
+							name="rePassword" placeholder="변경할 비밀번호를  한번 더 입력해주세요" value="">
+						<span id="passwordEqul"></span>
 					</div>
-				    </div>
-				
+				</div>
+
 				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">주소</label>
 					<div class="col-sm-6">
@@ -146,7 +167,7 @@ function memberdelete() {
 							placeholder="주소를 입력해주세요" value="${sessionScope.mvo.address}">
 					</div>
 				</div>
-				
+
 				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">이름</label>
 					<div class="col-sm-6">
@@ -159,29 +180,43 @@ function memberdelete() {
 					<label for="inputPhoneNumber" class="col-sm-2 control-label">전화번호</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="phoneNumber"
-							placeholder="전화번호를 입력해주세요" value="${sessionScope.mvo.phoneNumber}">
+							placeholder="전화번호를 입력해주세요"
+							value="${sessionScope.mvo.phoneNumber}">
 					</div>
-					<c:choose>
-					<c:when test="${sessionScope.mvo.member_newFilename==null||sessionScope.mvo.member_newFilename=='-'}">
-				    <br><br><input type="file" name="multipartFile">
-					<br><br>
-					</c:when>
-					<c:otherwise>
-					<br><br>
-					<span id="uploadView">
-					<c:if test="${sessionScope.mvo.member_newFilename!=null||sessionScope.mvo.member_newFilename!='-'}">
-					<img src="./upload/member/${sessionScope.mvo.member_newFilename}"><br>
-					<input type="button" value="프로필 사진 삭제" onclick="startRequest()">
-					</c:if>
-					</span>
-					</c:otherwise>
-					</c:choose>
-					
-				
-				
 				</div>
-				<p align="center"><button type="button" onclick="frmsubmit()" class="btn btn-lg btn-success">회원정보수정</button>
-				<button type="button" onclick="memberdelete()" class="btn btn-lg btn-success">회원탈퇴</button>
+
+				<div class="form-group">
+					<label for="inputPhoneNumber" class="col-sm-2 control-label">프로필
+						사진</label>
+					<div class="col-sm-6">
+						<c:choose>
+							<c:when
+								test="${sessionScope.mvo.member_newFilename==null||sessionScope.mvo.member_newFilename=='-'}">
+								<input type="file" name="multipartFile" class="form-control">
+
+							</c:when>
+							<c:otherwise>
+
+								<span id="uploadView"> <c:if
+										test="${sessionScope.mvo.member_newFilename!=null||sessionScope.mvo.member_newFilename!='-'}">
+										<img
+											src="./upload/member/${sessionScope.mvo.member_newFilename}">
+										<br>
+										<input type="button" value="프로필 사진 삭제"
+											onclick="startRequest()">
+									</c:if>
+								</span>
+							</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+
+				<p align="center">
+					<button type="button" onclick="frmsubmit()"
+						class="btn btn-lg btn-success">회원정보수정</button>
+				</p>
+				<p align="right">
+					
 				</p>
 			</form>
 		</article>
@@ -190,29 +225,7 @@ function memberdelete() {
 
 
 
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center bottom-separator">
-					<img src="images/home/under.png" class="img-responsive inline"
-						alt="">
-				</div>
-				<div class="col-md-4 col-sm-6"></div>
-				<div class="col-md-3 col-sm-6"></div>
-				<div class="col-md-4 col-sm-12">
-					<div class="contact-form bottom"></div>
-				</div>
-				<div class="col-sm-12">
-					<div class="copyright-text text-center">
-						<p>&copy; Your Company 2014. All Rights Reserved.</p>
-						<p>
-							Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 
 
