@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <title>More Dream</title>
 <script type="text/javascript">
 	function checkReg() {
@@ -20,9 +22,12 @@
 			email.value = "";
 			email.focus();
 			return;
-		}
+		}else if(document.regForm.password.value != document.regForm.rePassword.value){
+			alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
+		}else{
 		//자바스크립트에서 바로 폼으로 입력된 값을 url로 전송하는 기능..
 		f.submit();
+		}
 	}
 
 	var xhr;
@@ -72,6 +77,23 @@
 		}//if
 	}//callback
 		
+	$(document).ready(function(){
+		$('#rePassword').keyup(function(){
+
+		if($(this).val()!=$('#password').val()){
+		$('#passwordEqul').html("<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
+		}else{
+		$('#passwordEqul').html("<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")	
+		};
+		});//keyup
+		});//ready
+		
+	
+		
+	
+	
+	
+	
 </script>
 </head>
 
@@ -111,9 +133,18 @@
 			    		    <span id="emailCheckView"></span>
 			    		</div>
 			    		<div class="form-group"><label>비밀번호</label>
-			    			<input class="form-control" placeholder="비밀번호 입력" name="password" onkeyup="passCheck()" type="password">
+			    			<input class="form-control" placeholder="비밀번호 입력" name="password" id="password" type="password">
 			    			<span id="passswordCheckView"></span>
 			    		</div>
+			    		
+			    	<div class="form-group"><label>비밀번호 확인</label>
+							<input type="password" class="form-control" id="rePassword" name="rePassword"
+							placeholder="비밀번호를  한번 더 입력해주세요" value="">
+					<span id="passwordEqul"></span> 
+					</div>
+				    </div>
+			    		
+			    		
 			    		<div class="checkbox">
 			    	    	<label>
 			    	    		 아래 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	

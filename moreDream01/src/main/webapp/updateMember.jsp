@@ -57,6 +57,31 @@
 			}
 		}
 	}
+$(document).ready(function(){
+	$('#rePassword').keyup(function(){
+
+	if($(this).val()!=$('#password').val()){
+	$('#passwordEqul').html("<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
+	}else{
+	$('#passwordEqul').html("<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")	
+	};
+	});//keyup
+	});//ready
+	
+function frmsubmit() {
+	if(document.frm.password.value != document.frm.rePassword.value){
+		alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
+	}else{
+    	document.frm.submit();
+	}//else
+}//submit
+	
+	
+	
+function memberdelete() {
+	if(confirm("정말 탈퇴 하시겠습니까?"))
+	location.href="member.do?command=deleteMember";
+}
 </script>
 </head>
 <!--/head-->
@@ -84,7 +109,7 @@
 	<div class="contentwrap">
 		<article class="container">
 			<div class="page-header"></div>
-			<form class="form-horizontal" action="member.do" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" name="frm" action="member.do" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="updateMember">
 			<input type="hidden" name="memberId" value="${sessionScope.mvo.memberId}">
 				
@@ -100,10 +125,19 @@
 				<div class="form-group">
 					<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 					<div class="col-sm-6">
-						<input type="password" class="form-control" name="password"
+						<input type="password" class="form-control" id="password" name="password"
 							placeholder="변경할 비밀번호를 입력해주세요" value="${sessionScope.mvo.password}">
 					</div>
 				</div>
+				
+					<div class="form-group">
+					<label for="reInputPassword" class="col-sm-2 control-label">비밀번호 확인</label>
+					<div class="col-sm-6">
+						<input type="password" class="form-control" id="rePassword" name="rePassword"
+							placeholder="변경할 비밀번호를  한번 더 입력해주세요" value="">
+					<span id="passwordEqul"></span> 
+					</div>
+				    </div>
 				
 				<div class="form-group">
 					<label for="inputPasswordCheck" class="col-sm-2 control-label">주소</label>
@@ -146,7 +180,9 @@
 				
 				
 				</div>
-				<p align="center"><button type="submit" class="btn btn-lg btn-success">회원정보수정</button></p>
+				<p align="center"><button type="button" onclick="frmsubmit()" class="btn btn-lg btn-success">회원정보수정</button>
+				<button type="button" onclick="memberdelete()" class="btn btn-lg btn-success">회원탈퇴</button>
+				</p>
 			</form>
 		</article>
 	</div>

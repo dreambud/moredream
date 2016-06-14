@@ -82,7 +82,7 @@
 			    		</div>
 			    		<div class="checkbox">
 			    	    	<label>
-			    	    		 계정이 없으신가요? <font color="blue">새 계정 만들기</font><p>	
+			    	    		 계정이 없으신가요? <a href="registerMember.jsp"><font color="blue">새 계정 만들기</font><p></a>	
 			    	    	</label>
 			    	    </div>
 			    	    
