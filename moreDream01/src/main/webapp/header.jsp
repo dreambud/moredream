@@ -29,6 +29,14 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
+
+<script type="text/javascript">
+	function logout() {
+		var f = confirm("로그아웃 하시겠습니까?");
+		if (f)
+			location.href = "./member.do?command=logout"; //Controller에서 기능으로 연결..
+	}
+</script>
 </head>
 <!--/head-->
 
