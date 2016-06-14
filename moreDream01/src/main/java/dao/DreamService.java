@@ -14,6 +14,8 @@ import model.UpdateDreamVO;
 public interface DreamService {
 
 	//추가 160614
+	// :: getPaymentMemeberByDreamId 후원자 정보 가져오기
+	public List<MemberVO> getPaymentMemeberByDreamId(int dreamId) throws IOException;
 	// :: updateDreamFindByDreamId 업데이트 정보 찾기
 	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId) throws IOException;
 	// :: getMemberByDream 상세보기 할때 꿈을 신청한 사용자 정보 가져오기

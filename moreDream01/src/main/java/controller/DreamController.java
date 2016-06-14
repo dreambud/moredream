@@ -196,6 +196,14 @@ public class DreamController extends MultiActionController{
 		List<ReplyVO> replyList = dreamService.readComment(dreamId);
 		System.out.println(replyList);
 		request.setAttribute("reply", replyList);
+		
+		////////////////////////////////////////////////////////////////////////
+		//후원자 가져오기 :: getPaymentMemeberByDreamId
+		System.out.println("getPaymentMemeberByDreamId");
+		List<MemberVO> memberList = dreamService.getPaymentMemeberByDreamId(dreamId);
+		System.out.println("후원자 :: "+memberList);
+		request.setAttribute("memberList", memberList);
+
 
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}

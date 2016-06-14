@@ -22,6 +22,18 @@ public class DreamServiceImpl implements DreamService {
 	}
 
 	// 추가 160614/////////////////////////////////////////////////////////////
+	//후원자 정보 가져오기
+		@Override
+		public List<MemberVO> getPaymentMemeberByDreamId(int dreamId) throws IOException {
+			List<Integer> paymentList = dreamDao.getPaymentMemeberByDreamId(dreamId);
+			List<MemberVO> memberList = null;
+			for(Integer memberId : paymentList){
+					memberList = dreamDao.getMemberByMemberId(memberId);
+			}
+			
+			return memberList;
+		}
+	
 	@Override
 	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
 			throws IOException {

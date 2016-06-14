@@ -22,6 +22,20 @@ public class DreamDaoImpl implements DreamDao {
 	}
 	
 	// 추가 160614//////////////////////////
+	@Override
+	public List<MemberVO> getMemberByMemberId(int memberId) throws IOException {
+		List<MemberVO> list = sqlSession.selectList("dreamSql.getMemberByMemberId", memberId);
+		return list;
+	}
+	
+	@Override
+	public List<Integer> getPaymentMemeberByDreamId(int dreamId) throws IOException {
+		List<Integer> list = sqlSession.selectList("dreamSql.getPaymentMemeberByDreamId", dreamId);
+		
+		return list;
+	}
+		
+	
 		@Override
 		public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
 				throws IOException {

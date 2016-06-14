@@ -14,6 +14,15 @@ import model.UpdateDreamVO;
 public interface DreamDao {
 
 	//160614
+	//추가 :: getPaymentMemeberByDreamId
+	//해당 꿈에 대한 결제 내역의 rewardId, memberId 가져오기(후원자/댓글 적용시 사용)
+	public List<Integer> getPaymentMemeberByDreamId(int dreamId) throws IOException;
+		
+	//추가 :: getMemberByMemberId
+	//한명에 대한 member정보 가져오기
+	public List<MemberVO> getMemberByMemberId(int memberId) throws IOException;
+	
+	
 	//추가 :: updateDreamFindByDreamId 업데이트 정보 찾기
 	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId) throws IOException;
 

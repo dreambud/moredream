@@ -72,7 +72,8 @@
 						<div class="col-md-12 col-sm-12">
 							<div class="single-blog blog-details two-column">
 								<div class="post-thumb">
-									<img src="./upload/dream/${dreamVO.dream_newFilename}" class="img-responsive" alt="">
+									<img src="./upload/dream/${dreamVO.dream_newFilename}"
+										class="img-responsive" alt="">
 								</div>
 								<div class="post-content overflow">
 									<h2 class="post-title bold">${dreamVO.titleDream}</h2>
@@ -122,66 +123,101 @@
 											<div class="tab-pane fade active in" id="tab1-item1">
 												<div class="col-sm-12 col-md-12">
 													<div class="single-blog single-column">
-													<c:if test="${updateDreamList!=null }">
-														<c:forEach items="${updateDreamList}" var="updateDream">
-															<div class="post-thumb">
-																<img
-																	src="./upload/dream/${updateDream.update_newFilename}"
-																	alt="">
-															</div>
-															<div class="post-content overflow">
-																<p>${updateDream.update_detailDream}</p>
-															</div>
-														</c:forEach>
-													</c:if>
-														<h3>업데이트 내용이 없습니다.</h3>
+														<c:choose>
+															<c:when test="${updateDreamList!=null }">
+																<c:forEach items="${updateDreamList}" var="updateDream">
+																	<div class="post-thumb">
+																		<img
+																			src="./upload/dream/${updateDream.update_newFilename}"
+																			alt="">
+																	</div>
+																	<div class="post-content overflow">
+																		<p>${updateDream.update_detailDream}</p>
+																	</div>
+																</c:forEach>
+															</c:when>
+															<c:otherwise>
+																<h3>업데이트 내용이 없습니다.</h3>
+															</c:otherwise>
+														</c:choose>
 													</div>
 												</div>
 											</div>
 
 											<!-- 댓글 -->
 											<div class="tab-pane fade" id="tab1-item2">
+												이름 : <input type="text" name="name" value="${mvo.name }"
+													disabled="disabled"><br>
+												<br>
+												<div align="center">
+													<form action="dream.do">
+														<input type="hidden" name="command" value="writeComment">
+														<textarea rows="5" cols=125 name="content">
+														
+														</textarea>
+														<input type="submit" value="입력하기">
+														<br>
+														<br>
+													</form>
+												</div>
 												<div class="response-area">
 													<ul class="media-list">
-													<c:if test="${reply!=null }">
-														<c:forEach items="${reply}" var="re">
-															<li class="media">
-																<div class="post-comment">
-																	<a class="pull-left" href="#"> <img
-																		class="media-object" src="images/blogdetails/2.png"
-																		alt="">
-																	</a>
-																	<div class="media-body">
-																		<span><i class="fa fa-user"></i>Posted by <a
-																			href="#">Endure</a></span>
-																		<p>${re.content}</p>
-																		<ul class="nav navbar-nav post-nav">
-																			<li><a href="#"><i class="fa fa-clock-o"></i>${re.writeDate}</a></li>
-																			<li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-																		</ul>
-																	</div>
-																</div>
+														<c:choose>
+															<c:when test="${reply!=null }">
+																<c:forEach items="${reply}" var="re">
+																	<li class="media">
+																		<div class="post-comment">
+																			<a class="pull-left" href="#"> <img
+																				class="media-object" src="images/blogdetails/2.png"
+																				alt="">
+																			</a>
+																			<div class="media-body">
+																				<span><i class="fa fa-user"></i>Posted by <a
+																					href="#">Endure</a></span>
+																				<p>${re.content}</p>
+																				<ul class="nav navbar-nav post-nav">
+																					<li><a href="#"><i class="fa fa-clock-o"></i>${re.writeDate}</a></li>
+																					<li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+																				</ul>
+																			</div>
+																		</div>
 
-															</li>
-														</c:forEach>
-													</c:if>
-													<h3>댓글이 없습니다.</h3>
-														
+																	</li>
+																</c:forEach>
+															</c:when>
+															<c:otherwise>
+																<h3>댓글이 없습니다.</h3>
+															</c:otherwise>
+														</c:choose>
 													</ul>
 												</div>
 												<!--/Response-area-->
 											</div>
-											
+
 											<!-- 후원자 -->
 											<div class="tab-pane fade" id="tab1-item3">
 												<div class="post-comment">
-													<a class="pull-left" href="#"> <img
-														class="media-object" src="images/blogdetails/4.png" alt="">
-													</a>
-													<div class="media-body">
-														<span><i class="fa fa-user"></i> <a href="#">person1</a></span>
-														<p>person1님이 응원 합니다 !</p>
-													</div>
+													<c:choose>
+														<c:when test="${memberList!=null }">
+															<c:forEach items="${memberList }" var="member">
+																<div class="pull-left">
+																	<img class="media-object"
+																		src="./upload/member/${member.member_newFilename }"
+																		alt="">
+																</div>
+																<div class="media-body">
+																	<span><i class="fa fa-user"></i> ${member.name}</span>
+																	<p>
+																		<b>${member.name}</b>님이 응원 합니다 !
+																	</p>
+																</div>
+															</c:forEach>
+														</c:when>
+														<c:otherwise>
+															<h3>첫번째 후원자가 되어주세요!!</h3>
+														</c:otherwise>
+													</c:choose>
+
 												</div>
 											</div>
 										</div>

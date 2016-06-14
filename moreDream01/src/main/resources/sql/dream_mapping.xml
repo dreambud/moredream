@@ -356,6 +356,22 @@
 		WHERE m.memberId = d.memberId AND dreamId = #{value}
 	</select>
 	<!-- ////////////////////////////////////////////////////////////////////////////////// -->
+
+	<!-- 추가 160614 -->
+	<!-- dreamId로 후원자 가져오기 -->
+	<select id="getPaymentMemeberByDreamId" parameterType="int" resultType="int">
+		SELECT memberId
+		FROM (SELECT rewardId FROM reward WHERE dreamId= #{value}) r,
+		(SELECT * FROM payment WHERE paymentState='Y') p
+		WHERE p.rewardId=r.rewardId
+	</select>
+	<!-- memberId로 member 한명의 정보를 조회 -->
+	<select id="getMemberByMemberId" parameterType="int" resultType="member">
+		SELECT memberId, email, memberCode, address, name, phoneNumber, member_newFilename
+		FROM member
+		WHERE memberId = #{value}
+	</select>
+
 </mapper>	
 
  
