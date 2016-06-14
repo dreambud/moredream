@@ -10,13 +10,14 @@ public class ReplyVO {
 	private DreamVO dreamVO;//dreamId(fk)
 	private MemberVO memberVO;//댓글 작성자
 	private String content;
-	private Date writeDate;
+	//20160614 date type >> String type
+	private String writeDate;
 	
 	
 	public ReplyVO() {	}//디폴트 생성자
 	
 	//전체 생성자
-	public ReplyVO(int replyId, DreamVO dreamVO, MemberVO memberVO, String content, Date writeDate) {
+	public ReplyVO(int replyId, DreamVO dreamVO, MemberVO memberVO, String content, String writeDate) {
 		this.replyId = replyId;
 		this.dreamVO = dreamVO;
 		this.memberVO = memberVO;
@@ -51,10 +52,10 @@ public class ReplyVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getWriteDate() {
+	public String getWriteDate() {
 		return writeDate;
 	}
-	public void setWriteDate(Date writeDate) {
+	public void setWriteDate(String writeDate) {
 		this.writeDate = writeDate;
 	}
 

@@ -211,24 +211,36 @@
 	
 	
 	
-	
+	<!-- //////////////////////////// 20160614 수정 ///////////////////////////// -->
 	<!-- 댓글 작성하기 -->
-   <insert id="writeComment" parameterType="reply">
-   		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
+	<insert id="writeComment" parameterType="reply">
+		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
 			SELECT reply_seq.nextVal FROM dual
 		</selectKey>
-   
-     INSERT
-     INTO reply(replyId, dreamId,content,writeDate,memberId)
-     VALUES(#{replyId}, #{dreamVO.dreamId},#{content},#{writeDate},#{memberVO.memberId})
-   </insert>
-	
+
+		INSERT
+		INTO reply(replyId, dreamId,memberId,content,writeDate)
+		VALUES(#{replyId},
+		#{dreamVO.dreamId},#{memberVO.memberId},#{content},sysdate)
+	</insert>
+
+
+	<!-- 댓글 DreamId로 찾아와서 읽기 -->
+	<select id="readComment" parameterType="int" resultType="reply">
+		SELECT
+		r.dreamId, r.content, r.writeDate, r.memberId
+		FROM reply r, dream d
+		WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId
+	</select>
+
 	<!-- 댓글 삭제하기 :: deleteComment -->
-     <delete id="deleteComment" parameterType="int">
-       DELETE 
-       FROM reply
-       WHERE replyId = #{value}
-     </delete>
+	<delete id="deleteComment" parameterType="int">
+		DELETE
+		FROM reply
+		WHERE
+		replyId = #{value}
+	</delete>
+	<!-- ////////////////////////////////////////////////////////////////////////////////// -->
      
      <!-- updateDreamListRM -->
      <resultMap type="updateDream" id="updateDreamListRM">
@@ -264,6 +276,40 @@
      	from member m, (select * from dream order by requestdate desc) d 
      	where m.memberid=d.memberid 
      	order by confirmrequestdream asc
+     </select>
+     
+     <!-- 한천 : 필터 Query 추가 -->
+     <!-- 최고금액 순 :: getAllListDreamOrderByMoney -->
+     <select id="getAllListDreamOrderByMoney" resultMap="dreamRM">
+     	SELECT d.dreamId, memberId AS "memberVO.memberId", category,
+		dream_newFilename, confirmRequestDream,
+		titleDream, detailDream,
+		requestDate, targetFund,
+		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
+		TO_char(endDate, 'yyyy-MM-dd') AS endDate from 
+     	(select dreamid from (select r.dreamid,sum(money) as currmoney from 
+     	payment p,reward r group by dreamid order by currmoney desc)) p ,
+     	dream d where p.dreamid = d.dreamid and d.confirmrequestdream ='Y'
+     </select>
+     <!-- 최다 후원자 순 :: getAllListDreamOrderByManyPeople -->
+     <select id="getAllListDreamOrderByManyPeople" resultMap="dreamRM">
+     	select d.dreamId, memberId AS "memberVO.memberId", category,
+		dream_newFilename, confirmRequestDream,
+		titleDream, detailDream,
+		requestDate, targetFund,
+		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
+		TO_char(endDate, 'yyyy-MM-dd') AS endDate 
+		from (select r.dreamid,sum(count) as count from 
+		reward r,(select rewardid, count(-1) as count from 
+		payment where paymentstate='Y' group by rewardid) p 
+		where r.rewardid=p.rewardid group by dreamid order by count desc) p 
+		,dream d where p.dreamid = d.dreamid and d.confirmrequestdream='Y'
+     </select>
+     <!-- 마감 일순 :: getAllListDreamOrderByEndDate -->
+     <select id="getAllListDreamOrderByEndDate" resultMap="dreamRM">
+     <include refid="select_dreams" />
+     where confirmrequestdream ='Y' and enddate>=(select to_char(sysdate,'yy/MM/dd') from dual) 
+     order by enddate asc
      </select>
 </mapper>	
 

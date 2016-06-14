@@ -211,24 +211,36 @@
 	
 	
 	
-	
+	<!-- //////////////////////////// 20160614 수정 ///////////////////////////// -->
 	<!-- 댓글 작성하기 -->
-   <insert id="writeComment" parameterType="reply">
-   		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
+	<insert id="writeComment" parameterType="reply">
+		<selectKey keyProperty="replyId" resultType="int" order="BEFORE">
 			SELECT reply_seq.nextVal FROM dual
 		</selectKey>
-   
-     INSERT
-     INTO reply(replyId, dreamId,content,writeDate,memberId)
-     VALUES(#{replyId}, #{dreamVO.dreamId},#{content},#{writeDate},#{memberVO.memberId})
-   </insert>
-	
+
+		INSERT
+		INTO reply(replyId, dreamId,memberId,content,writeDate)
+		VALUES(#{replyId},
+		#{dreamVO.dreamId},#{memberVO.memberId},#{content},sysdate)
+	</insert>
+
+
+	<!-- 댓글 DreamId로 찾아와서 읽기 -->
+	<select id="readComment" parameterType="int" resultType="reply">
+		SELECT
+		r.dreamId, r.content, r.writeDate, r.memberId
+		FROM reply r, dream d
+		WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId
+	</select>
+
 	<!-- 댓글 삭제하기 :: deleteComment -->
-     <delete id="deleteComment" parameterType="int">
-       DELETE 
-       FROM reply
-       WHERE replyId = #{value}
-     </delete>
+	<delete id="deleteComment" parameterType="int">
+		DELETE
+		FROM reply
+		WHERE
+		replyId = #{value}
+	</delete>
+	<!-- ////////////////////////////////////////////////////////////////////////////////// -->
      
      <!-- updateDreamListRM -->
      <resultMap type="updateDream" id="updateDreamListRM">

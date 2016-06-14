@@ -63,7 +63,7 @@ public class MoreDreamAppTest1 {
 		for(DreamVO vo : list){
 			System.out.println(vo);
 		}*/
-		
+
 		//관리자 수락/거절 처리 :: confirmRequestDream
 		/*Map<String, Object> map = new HashMap<String, Object>();
 		map.put("confirm", "Y");
@@ -125,36 +125,44 @@ public class MoreDreamAppTest1 {
 		for(DreamVO i : list){
 			System.out.println(i);
 		}*/
-		
+
 		//내꿈 수정하기(업데이트 작성) :: updateDream
 		/*vo2.setDreamId(2);
 		UpdateDreamVO dreamVO = new UpdateDreamVO(vo2, "안녕?", " ", " ");
 		sqlSession.insert("dreamSql.updateDream", dreamVO);
 		sqlSession.commit();*/
 
-		
-		
+
+
 		//댓글 작성하기 :: writeComment 
-	    /*  sqlSession.insert("dreamSql.writeComment", new ReplyVO(0, new DreamVO(1, member, "경제", " ", " ", " ", "후원", " ", " ", 800000, "2016-06-09", "2016-06-29"), member, "함께 프로젝트를 하게 되어서 좋아요!!",new Date(2016-6-9)));
+		/*  sqlSession.insert("dreamSql.writeComment", new ReplyVO(0, new DreamVO(1, member, "경제", " ", " ", " ", "후원", " ", " ", 800000, "2016-06-09", "2016-06-29"), member, "함께 프로젝트를 하게 되어서 좋아요!!",new Date(2016-6-9)));
 	      System.out.println("reply 추가!!");
 	      sqlSession.commit();*/
-	      
-	      //댓글 삭제하기
-	      /*sqlSession.delete("dreamSql.deleteComment", 1);
+
+		//댓글 삭제하기
+		/*sqlSession.delete("dreamSql.deleteComment", 1);
 	      sqlSession.commit();
 	      System.out.println("댓글 삭제!!!");*/
-	      
-	      //updateDream 내용 입력 내가 임의로 했어
-	      /*UpdateDreamVO updatevo = new UpdateDreamVO(vo1, "잘 되고 있어!!! ", " ", " ");
+
+		//updateDream 내용 입력 내가 임의로 했어
+		/*UpdateDreamVO updatevo = new UpdateDreamVO(vo1, "잘 되고 있어!!! ", " ", " ");
 	      vo1.setDreamId(1);
 	      sqlSession.insert("dreamSql.updateDream", updatevo);
 	      sqlSession.commit();
 	      System.out.println("updateDream 추가");*/
-	      
-	      //알림받기
+
+		/* //알림받기
 	      List<UpdateDreamVO> list = sqlSession.selectList("dreamSql.alarm", 1);
 	      for(UpdateDreamVO v : list){
 	         System.out.println(v);
-	      }
+	      }*/
+		///////////////////////////////////////////////////////////////////////////////////
+		//////////////////             댓글 입력 20160614        /////////////////////////////
+		/*ReplyVO replyVO = new ReplyVO(0, vo1, member, "오늘도 집에가고싶어욧 !", " ");
+		sqlSession.insert("dreamSql.writeComment",replyVO);
+		sqlSession.commit();
+		List<ReplyVO> list = sqlSession.selectList("dreamSql.readComment", 3012);
+		System.out.println(list);*/
+		///////////////////////////////////////////////////////////////////////////////////
 	}	
 }
