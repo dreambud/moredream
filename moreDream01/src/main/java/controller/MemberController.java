@@ -79,7 +79,11 @@ public class MemberController extends MultiActionController {
 	public ModelAndView updateMember(HttpServletRequest request, HttpServletResponse response
 			, MemberVO pmvo)
 		throws SQLException, IllegalStateException, IOException{
+		
+		if(pmvo.getMultipartFile()!=null){
 		MultipartFile file = pmvo.getMultipartFile();//업로드한 파일
+		System.out.println("업로드된 뉴파일 명 : "+pmvo.getMember_newFilename());
+		System.out.println("pmvo.getMultipartFile() ::"+pmvo.getMultipartFile());
 		if(!file.isEmpty()){//파일이 있다.
 			/*
 			 * orgfilename 받아와서 bvo에 주입
@@ -90,8 +94,8 @@ public class MemberController extends MultiActionController {
 		
 			File desFile = new File(path+System.currentTimeMillis()+"_"+file.getOriginalFilename());
 			file.transferTo(desFile);
+			}
 		}
-		
 		request.getParameter("password");
 		System.out.println(pmvo);
 		memberService.updateMember(pmvo);//이 부분에서 디비의 mvo내용이 pmvo로 수정이 일어났다.

@@ -43,7 +43,7 @@
 <script type="text/javascript">
 	var xhr;
 	function startRequest() {
-		alert("${sessionScope.mvo.member_newFilename}");
+		if(confirm("${sessionScope.mvo.member_newFilename} 사진을 정말 삭제 하시겠습니까?")){
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = callback;
 		xhr
@@ -52,14 +52,16 @@
 						"member.do?command=deleteFileMember&&member_newFilename=${mvo.member_newFilename}",
 						true);
 		xhr.send(null);
+		}//if
 	}
 	function callback() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
-				document.getElementById("uploadView").innerHTML = "<input type='file' name='multipartFile'>";
+				document.getElementById("uploadView").innerHTML = "<input type='file' name='multipartFile' class='form-control'>";
 			}
 		}
 	}
+
 	$(document)
 			.ready(
 					function() {
@@ -121,8 +123,20 @@
 		<article class="container">
 			<div class="page-header">
 				<div class="container-fluid bg-1 text-center">
+				<c:choose>
+				<c:when test="${sessionScope.mvo.member_newFilename!=null&&sessionScope.mvo.member_newFilename!='-'}">
 					<img src="./upload/member/${sessionScope.mvo.member_newFilename}" class="img-circle">
+					<c:if test="${sessionScope.mvo.name!='-'}">
 					<h3>${sessionScope.mvo.name}</h3>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+				<img src="./upload/member/member_df.jpg">
+					<c:if test="${sessionScope.mvo.name!='-'}">
+					<h3>${sessionScope.mvo.name}</h3>
+					</c:if>
+				</c:otherwise>
+				</c:choose>
 				</div>
 			</div>
 			<form class="form-horizontal" name="frm" action="member.do"
@@ -198,16 +212,19 @@
 							<c:otherwise>
 
 								<span id="uploadView"> <c:if
-										test="${sessionScope.mvo.member_newFilename!=null||sessionScope.mvo.member_newFilename!='-'}">
+										test="${sessionScope.mvo.member_newFilename!=null&&sessionScope.mvo.member_newFilename!='-'}">
 										<img
 											src="./upload/member/${sessionScope.mvo.member_newFilename}">
-										<br>
+										<br><br>
 										<input type="button" value="프로필 사진 삭제"
-											onclick="startRequest()">
+											onclick="startRequest()" class="btn btn-lg btn-danger">
+										<input type="hidden" name="member_newFilename" value="${sessionScope.mvo.member_newFilename}">
+									    <input type="hidden" name="member_orgFilename" value="${sessionScope.mvo.member_orgFilename}">
 									</c:if>
 								</span>
 							</c:otherwise>
 						</c:choose>
+						
 					</div>
 				</div>
 
