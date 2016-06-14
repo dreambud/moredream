@@ -122,6 +122,7 @@
 											<div class="tab-pane fade active in" id="tab1-item1">
 												<div class="col-sm-12 col-md-12">
 													<div class="single-blog single-column">
+													<c:if test="${updateDreamList!=null }">
 														<c:forEach items="${updateDreamList}" var="updateDream">
 															<div class="post-thumb">
 																<img
@@ -132,6 +133,8 @@
 																<p>${updateDream.update_detailDream}</p>
 															</div>
 														</c:forEach>
+													</c:if>
+														<h3>업데이트 내용이 없습니다.</h3>
 													</div>
 												</div>
 											</div>
@@ -140,6 +143,7 @@
 											<div class="tab-pane fade" id="tab1-item2">
 												<div class="response-area">
 													<ul class="media-list">
+													<c:if test="${reply!=null }">
 														<c:forEach items="${reply}" var="re">
 															<li class="media">
 																<div class="post-comment">
@@ -160,6 +164,9 @@
 
 															</li>
 														</c:forEach>
+													</c:if>
+													<h3>댓글이 없습니다.</h3>
+														
 													</ul>
 												</div>
 												<!--/Response-area-->
