@@ -28,7 +28,7 @@
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->
-    
+
 <link rel="shortcut icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
@@ -42,250 +42,164 @@
 <!--/head-->
 
 <body>
-	<header id="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 overflow">
-					<div class="social-icons pull-right">
-						<ul class="nav nav-pills">
-							<li><a href=""><i class="fa fa-facebook"></i></a></li>
-							<li><a href=""><i class="fa fa-twitter"></i></a></li>
-							<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="navbar navbar-inverse" role="banner">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-
-					<a class="navbar-brand" href="index.jsp">
-						<h1>MORE DREAM</h1>
-					</a>
-
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="finddream.jsp ">꿈 찾기</a></li>
-						<li><a href="createdream.jsp ">꿈 꾸기</a></li>
-						<li><a href="# ">도움말</a></li>
-						<li><a href="# ">로그인</a></li>
-						<li><a href="# ">회원 가입</a></li>
-						<li><a href="# ">로그아웃</a></li>
-						<li><a href="# ">내 정보</a></li>
-					</ul>
-				</div>
-				<div class="search">
-					<form role="form">
-						<i class="fa fa-search"></i>
-						<div class="field-toggle">
-							<input type="text" class="search-form" autocomplete="off"
-								placeholder="	꿈 검색하기">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</header>
+	<jsp:include page="./header.jsp" />
 	<!--/#header-->
 
-<section id="page-breadcrumb">
+	<section id="page-breadcrumb">
 		<div class="vertical-center sun">
 			<div class="container">
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<p align="center">사진</p>
-							<h1 class="title" align="center">이름</h1>
-							<h4 class="title" align="center">함께 꾸는 꿈 *개</h4>
+							<div class="container-fluid bg-1 text-center">
+								<c:choose>
+									<c:when
+										test="${sessionScope.mvo.member_newFilename!=null&&sessionScope.mvo.member_newFilename!='-'}">
+										<img
+											src="./upload/member/${sessionScope.mvo.member_newFilename}"
+											class="img-circle">
+										<c:if test="${sessionScope.mvo.name!='-'}">
+											<h3>${sessionScope.mvo.name}</h3>
+										</c:if>
+									</c:when>
+									<c:otherwise>
+										<img src="./upload/member/member_df.jpg">
+										<c:if test="${sessionScope.mvo.name!='-'}">
+											<h3>${sessionScope.mvo.name}</h3>
+										</c:if>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	
-		
+
+
 	<section id="shortcodes">
 		<div class="container">
 			<div id="feature-container">
 				<div class="row">
 					<div class="col-md-12">
-					<h2 class="page-header">내 꿈 목록</h2>
-					<table class="table table-striped table-bordered table-hover">
-					
-        <caption></caption>
-        
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>꿈 제목</th>
-                <th>마감일</th>
-                <th>응원 현황</th>
-                <th>결제 상태</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td><a href="#">꿈 제목</a></td>
-                <td>마감일</td>
-                <td>응원 금액</td>
-               	<td><button type="button" class="btn btn-xs btn-success">결제완료</button><button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
-            </tr>
-           
-        </tbody>
-        
-        <tbody>
-            <tr>
-                <td>2</td>
-                <td><a href="#">꿈 제목</a></td>
-                <td>마감일</td>
-                <td>응원 금액</td>
-               	<td><button type="button" class="btn btn-xs btn-success">결제완료</button><button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
-            </tr>
-           
-        </tbody>
-        
-        <tbody>
-            <tr>
-                <td>3</td>
-                <td><a href="#">꿈 제목</a></td>
-                <td>마감일</td>
-                <td>응원 금액</td>
-               	<td><button type="button" class="btn btn-xs btn-success">결제완료</button><button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
-            </tr>
-           
-        </tbody>
-    </table>
+						<h2 class="page-header">내 꿈 목록</h2>
+						<table class="table table-striped table-bordered table-hover">
+
+							<caption></caption>
+
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>꿈 제목</th>
+									<th>마감일</th>
+									<th>응원 현황</th>
+									<th>결제 상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td><a href="#">꿈 제목</a></td>
+									<td>마감일</td>
+									<td>응원 금액</td>
+									<td><button type="button" class="btn btn-xs btn-success">결제완료</button>
+										<button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
+								</tr>
+
+							</tbody>
+
+							<tbody>
+								<tr>
+									<td>2</td>
+									<td><a href="#">꿈 제목</a></td>
+									<td>마감일</td>
+									<td>응원 금액</td>
+									<td><button type="button" class="btn btn-xs btn-success">결제완료</button>
+										<button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
+								</tr>
+
+							</tbody>
+
+							<tbody>
+								<tr>
+									<td>3</td>
+									<td><a href="#">꿈 제목</a></td>
+									<td>마감일</td>
+									<td>응원 금액</td>
+									<td><button type="button" class="btn btn-xs btn-success">결제완료</button>
+										<button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
+								</tr>
+
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-		
-	    <section id="blog" class="padding-top" >
-	    
-        <div class="container">
-       <h2 class="page-header">함께 꾸는 꿈</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="row" >
-                    
-                    
-                         <div class="col-md-4 col-sm-12 blog-padding-right">
-                            <div class="single-blog two-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="images/blog/timeline/1.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav nav-justified post-nav">
-                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-12 blog-padding-right">
-                            <div class="single-blog two-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="images/blog/timeline/1.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav nav-justified post-nav">
-                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-4 col-sm-12 blog-padding-right">
-                            <div class="single-blog two-column">
-                                <div class="post-thumb">
-                                    <a href="blogdetails.html"><img src="images/blog/timeline/1.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav nav-justified post-nav">
-                                            <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
-                                            <li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-					</div>
-				</div>
-			</div>
-		</div>
-</section>
-	
-	
-	
-	
 
-	<footer id="footer">
+	<section id="blog" class="padding-top">
+
 		<div class="container">
+			<h2 class="page-header">함께 꾸는 꿈</h2>
 			<div class="row">
-				<div class="col-sm-12 text-center bottom-separator">
-					<img src="images/home/under.png" class="img-responsive inline"
-						alt="">
-				</div>
-				<div class="col-md-4 col-sm-6"></div>
-				<div class="col-md-3 col-sm-6"></div>
-				<div class="col-md-4 col-sm-12">
-					<div class="contact-form bottom"></div>
-				</div>
-				<div class="col-sm-12">
-					<div class="copyright-text text-center">
-						<p>&copy; Your Company 2014. All Rights Reserved.</p>
-						<p>
-							Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a>
-						</p>
+				<div class="col-md-12">
+					<div class="row">
+
+
+						<div class="col-md-4 col-sm-12 blog-padding-right">
+							<div class="single-blog two-column">
+								<div class="post-thumb">
+									<a href="blogdetails.html"><img
+										src="images/blog/timeline/1.jpg" class="img-responsive" alt=""></a>
+									<div class="post-overlay">
+										<span class="uppercase"><a href="#">14 <br> <small>Feb</small></a></span>
+									</div>
+								</div>
+								<div class="post-content overflow">
+									<h2 class="post-title bold">
+										<a href="blogdetails.html">Advanced business cards design</a>
+									</h2>
+									<h3 class="post-author">
+										<a href="#">Posted by micron News</a>
+									</h3>
+									<p>Duis autem vel eum iriure dolor in hendrerit in
+										vulputate velit esse molestie consequat, vel illum dolore eu
+										feugiat nulla facilisis at vero eros et accumsan et iusto odio
+										dignissim qui blandit praesent luptatum zzril delenit augue
+										duis dolore te feugait nulla facilisi. Nam liber [...]</p>
+									<div class="progress">
+										<div class="progress-bar progress-bar-striped active"
+											role="progressbar" aria-valuenow="40" aria-valuemin="0"
+											aria-valuemax="100" style="width: 80%">80%</div>
+									</div>
+									<div class="post-bottom overflow">
+										<ul class="nav navbar-nav post-nav">
+											<li><a href="#"><i class="fa fa-tag"></i>모인 금액
+													12,000,000</a></li>
+											<br>
+											<li><a href="#"><i class="fa fa-heart"></i> 후원자 123</a></li>
+											<br>
+											<li><a href="#"><i class="fa fa-comments"></i> 앞으로
+													13일</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</footer>
+	</section>
+
+
+
+
+
+	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 
 
