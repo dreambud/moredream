@@ -16,6 +16,13 @@
 <link href="css/main.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
 
+<style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+ 
+body, table, div, p {font-family:'Nanum Gothic';}
+/* 나눔글꼴 */
+</style>
+
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
