@@ -63,7 +63,7 @@
 										</c:if>
 									</c:when>
 									<c:otherwise>
-										<img src="./upload/member/member_df.jpg">
+										<img src="./upload/member/member_df.jpg" class="img-circle">
 										<c:if test="${sessionScope.mvo.name!='-'}">
 											<h3>${sessionScope.mvo.name}</h3>
 										</c:if>
