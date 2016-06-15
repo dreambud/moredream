@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.DreamVO;
 import model.MemberVO;
+import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
 import model.UpdateDreamVO;
@@ -273,4 +274,37 @@ public class DreamController extends MultiActionController {
 			return new ModelAndView(
 					"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
 		}
+		
+	//추가160615
+		// 응원하기 클릭 후 선택할 보상 리스트 가져오기
+		public ModelAndView getRewardByDreamId(HttpServletRequest request, HttpServletResponse response)
+				throws Exception{
+			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+			System.out.println("getRewardByDreamId ::"+dreamId);
+			List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
+			
+			return new ModelAndView("payment", "rewardList", rewardList);
+		}
+		
+
+		// 결제하기
+		public ModelAndView payment(HttpServletRequest request, HttpServletResponse response, 
+				HttpSession session)
+				throws Exception{
+			
+			String[] rId  = request.getParameter("rewardId").split("_");
+			int rewardId = Integer.parseInt(rId[0]);
+			int money = Integer.parseInt(request.getParameter("money"));
+			RewardVO rvo = new RewardVO();
+			rvo.setRewardId(rewardId);
+			session.getAttribute("mvo");
+			PaymentVO ppvo = new PaymentVO(0, rvo, ((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y", money);
+			
+			dreamService.payment(ppvo);
+			
+			
+			return new ModelAndView("WEB-INF/result/payment_result");
+		}
+		
+		
 }
