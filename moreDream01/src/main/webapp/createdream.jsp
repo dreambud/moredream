@@ -168,11 +168,11 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<h2 class="page-header">꿈 선택</h2>
+							<h2 class="page-header" align="left"><b>WHAT ?</b> <small> - 어떤 꿈을 꾸시는가요 ? </small></h2>
 
 
 							카테고리 선택 <select class="form-control" name="category">
-								<option value="">======선택해주세요=======</option>
+								<option value="">======선택해주세요======</option>
 								<option value="영화">영화</option>
 								<option value="출판">출판</option>
 								<option value="음악">음악</option>
@@ -181,28 +181,27 @@
 
 						<div class="col-md-12">
 							<div align="center">
-								<h2 class="page-header" align="left">꿈 제목</h2>
+								<h2 class="page-header" align="left"><small>꿈에 대한 타이틀을 정해주세요 !</small></h2>
 								<textarea class="form-control" rows="2" name="titleDream"></textarea>
 
-								<h2 class="page-header" align="left">꿈 내용</h2>
+								<h2 class="page-header" align="left"><b>HOW ?</b> <small> - 꿈은 어떻게 진행되는가요 ?  </small></h2>
 								<textarea class="form-control" rows="5" name="detailDream"></textarea>
 
-								<h2 class="page-header" align="left">첨부 파일</h2>
+								<h3 class="page-header" align="left"><b>첨부 파일</b>  <small> - 꿈에 대한 사진을 올려주세요 !</small></h3>
 								<div align="left">
 									<input type="file" name="multipartFile">
 								</div>
 							</div>
-							<h2 class="page-header">목표 금액</h2>
+							<h3 class="page-header"><b>목표 금액</b>  <small> - 꿈이 진행되는데 필요한 목표 금액을 적어주세요 !  </small></h3>
 							&nbsp;
 							<div class="input-group">
-								<span class="input-group-addon">$</span> <input type="text"
-									class="form-control"
-									aria-label="Amount (to the nearest dollar)" name="targetFund" placeholder="10만원 이상의 금액을 입력하세요.">
-								<span class="input-group-addon">원</span>
+								<input type="text" class="form-control"
+									aria-label="Amount (to the nearest dollar)" name="targetFund" placeholder="">
+								<span class="input-group-addon">￦</span>
 							</div>
 							&nbsp;
 							<!-- 보상정보 추가 -->
-							<h2 class="page-header">보상 정보 등록</h2>
+							<h2 class="page-header"><b>For Sponsor !</b> <small>- 보상 정보를 등록해주세요 !</small></h2>
 							<div class="col-md-12">
 	
 								<div class="col-md-4" style='margin-top:10px'>
@@ -218,7 +217,7 @@
 								&nbsp;
 							</div>
 							&nbsp;
-							<h2 class="page-header">꿈 기한</h2>
+							<h2 class="page-header"><b>WHEN ?</b> <small>- 진행 과정 및 기한은 어떻게 되나요 ? </small></h2>
 							&nbsp;
 							<div class="col-md-12">
 
@@ -226,7 +225,6 @@
 									<input id="datePicker1" name="startDate" type="text"
 										class="form-control" placeholder="시작일을 선택해주세요">
 								</div>
-
 
 
 								<div class="col-md-6">
@@ -257,36 +255,7 @@
 		</section>
 	</form>
 
-
-
-
-
-	<footer id="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center bottom-separator">
-					<img src="images/home/under.png" class="img-responsive inline"
-						alt="">
-				</div>
-				<div class="col-md-4 col-sm-6"></div>
-				<div class="col-md-3 col-sm-6"></div>
-				<div class="col-md-4 col-sm-12">
-					<div class="contact-form bottom"></div>
-				</div>
-				<div class="col-sm-12">
-					<div class="copyright-text text-center">
-						<p>&copy; Your Company 2014. All Rights Reserved.</p>
-						<p>
-							Designed by <a target="_blank" href="http://www.themeum.com">Themeum</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
-
-
-
 </body>
 </html>
