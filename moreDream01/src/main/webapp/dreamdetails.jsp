@@ -300,7 +300,7 @@
 							</div>
 						</div>
 						<p align="center">
-							<button type="button" class="btn btn-primary btn-lg">응원하기</button>
+							<a href="dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button type="button" class="btn btn-primary btn-lg">응원하기</button></a>
 						</p>
 						<hr>
 						<p>
