@@ -71,7 +71,7 @@
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
 							<div class="single-blog blog-details two-column">
-								<div class="post-thumb">
+								<div class="post-thumb" align="center">
 									<img src="./upload/dream/${dreamVO.dream_newFilename}"
 										class="img-responsive" alt="">
 								</div>
@@ -99,7 +99,16 @@
 									<div class="author-profile padding">
 										<div class="row">
 											<div class="col-sm-2">
-												<img src="images/blogdetails/1.png" alt="">
+													<!-- 수정 160614 -->
+												<c:choose>
+													<c:when test="${dreamVO.memberVO.member_newFilename==' ' }">
+														<img src="./upload/member/member_df.jpg" alt="">
+													</c:when>
+													<c:otherwise>
+														<img alt=""
+															src="./upload/member/${dreamVO.memberVO.member_newFilename }">
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div class="col-sm-10">
 												<h3>EMAIL : ${dreamVO.memberVO.email}</h3>
