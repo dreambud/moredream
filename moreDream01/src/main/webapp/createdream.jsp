@@ -51,8 +51,8 @@
 			alert('목표금액을 설정해주세요 ');
 			document.frm.targetFund.focus();
 			return false;
-		}else if(document.frm.targetFund.value<100000){
-			alert('목표금액이 10만원 보다 작습니다. 10만원 이상의 목표금액을 입력하세요.');
+		}else if(document.frm.targetFund.value<1000){
+			alert('목표금액이 1000원 보다 작습니다. 1000원 이상의 목표금액을 입력하세요.');
 			document.frm.targetFund.focus();
 			return false;
 		}else if(document.frm.startDate.value==""){
@@ -99,6 +99,31 @@
 			}
 		}
 	}
+	function number_chk(ev){		//숫자만 입력가능하게 제어하는 함수
+		var frm = document.reg_frm;
+		if (window.event) // IE코드
+	        var code = window.event.keyCode;
+	    else // 타브라우저
+	        var code = ev.which;
+		// 숫자허용 PASS항목
+		if( ( code >=  48 && code <=  57 ) ||   // 숫자열 0 ~ 9 : 48 ~ 57  
+			      ( code >=  96 && code <= 105 ) ||   //키패드 0 ~ 9 : 96 ~ 105
+			        code <=  32 ||    //BackSpace
+			        code ==  46 ||    //Delete
+			        code ==  37 ||    //좌 화살표
+			        code ==  39 ||    //우 화살표
+			        code ==  35 ||    //End 키
+			        code ==  36       //Home 키
+				){
+				window.event.returnValue = true;
+				
+		        return;
+				}
+		if (window.event)
+	        window.event.returnValue = false;
+	    else
+	        Ev.preventDefault(); 
+	}
 	$(function() {
 		$('#datePicker1').datepicker(
 				{
@@ -118,9 +143,24 @@
 				});
 	});
 	$(document).ready(function(){
+		$('#enableBtn').hide();
+		$('#rewardDefaultDiv').hide();
+		
+		$('#enableBtn').click(function(){
+			$('#disableBtn').show();
+			$('#enableBtn').hide();
+			$('#plusBtnDiv').show();
+			$('#rewardInputDiv').html("<div class='col-md-3' style='margin: 10px 1px 1px 6px;background: #f1f0f0;padding: 10px 6px 6px 10px;'>	<textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo'></textarea><br>		<input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide' onkeydown='number_chk(event);' style='IME-MODE: disabled'><br>	<input type='text' class='form-control' placeholder='재고' name='stock' onkeydown='number_chk(event);' style='IME-MODE: disabled'></div>");
+		});
+		$('#disableBtn').click(function(){
+			$('#enableBtn').show();
+			$('#disableBtn').hide();
+			$('#plusBtnDiv').hide();
+			$('#rewardInputDiv').html("<div class='col-md-3' style='margin-top:10px'>	<textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo' readonly='readonly'>-</textarea><br>		<input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide' readonly='readonly' value='0'><br>	<input type='text' class='form-control' placeholder='재고' name='stock' readonly='readonly' value='0'></div>");
+		});
 		$('#plusBtn').click(function(){
-			$(this).before(
-					"<div class='col-md-4' style='margin-top:10px'><textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo'></textarea><br><input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide'><br>	<input type='text' class='form-control' placeholder='재고' name='stock'></div>");
+			$('#rewardInputDiv').append(
+					"<div class='col-md-3' style='margin: 10px 1px 1px 6px;background: #f1f0f0;padding: 10px 6px 6px 10px;'><textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo' ></textarea><br><input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide' onkeydown='number_chk(event);' style='IME-MODE: disabled'><br>	<input type='text' class='form-control' placeholder='재고' name='stock' onkeydown='number_chk(event);' style='IME-MODE: disabled'></div>");
 		});
 	});
 </script>
@@ -196,26 +236,27 @@
 							&nbsp;
 							<div class="input-group">
 								<input type="text" class="form-control"
-									aria-label="Amount (to the nearest dollar)" name="targetFund" placeholder="">
+									aria-label="Amount (to the nearest dollar)" name="targetFund" placeholder="" onkeydown="number_chk(event);" style='IME-MODE: disabled'>
 								<span class="input-group-addon">￦</span>
 							</div>
 							&nbsp;
 							<!-- 보상정보 추가 -->
-							<h2 class="page-header"><b>For Sponsor !</b> <small>- 보상 정보를 등록해주세요 !</small></h2>
-							<div class="col-md-12">
-	
-								<div class="col-md-4" style='margin-top:10px'>
+							<h2 class="page-header"><b>For Sponsor !</b> <small>- 보상 정보를 등록해주세요 !</small>
+								<span class="label label-danger" id="disableBtn">등록안함</span>
+								<span class="label label-info" id="enableBtn">등록함</span>
+							</h2>
+							<div class="col-md-12" id="rewardInputDiv">
+								<div class="col-md-3" style='margin: 10px 1px 1px 6px;background: #f1f0f0;padding: 10px 6px 6px 10px;'>
 									<textarea class="form-control" rows="5" placeholder="보상 정보" name="rewardInfo"></textarea><br>
-									<input type="text" class="form-control" placeholder="금액 기준" name="rewardGuide"><br>
-									<input type="text" class="form-control" placeholder="재고" name="stock">
+									<input type="text" class="form-control" placeholder="금액 기준" name="rewardGuide" onkeydown="number_chk(event);" style='IME-MODE: disabled'><br>
+									<input type="text" class="form-control" placeholder="재고" name="stock" onkeydown="number_chk(event);" style='IME-MODE: disabled'>
 								</div>
-								
-								<button type="button" class="btn btn-default btn-lg" id="plusBtn">
-									<span class="glyphicon glyphicon-plus" aria-hidden="true" style="width:20px;height:20px"></span>
-								</button>
-								
-								&nbsp;
 							</div>
+							<span class="col-md-12" id="plusBtnDiv">
+									<button type="button" class="btn btn-default btn-lg" id="plusBtn">
+										<span class="glyphicon glyphicon-plus" aria-hidden="true" style="width:20px;height:20px"></span>
+									</button>
+								</span>
 							&nbsp;
 							<h2 class="page-header"><b>WHEN ?</b> <small>- 진행 과정 및 기한은 어떻게 되나요 ? </small></h2>
 							&nbsp;

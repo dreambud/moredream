@@ -39,7 +39,7 @@ public class DreamController extends MultiActionController {
 	}
 
 	// 꿈 신청
-	// 160614(한천)
+	// 160615(한천)
 	public ModelAndView requestDream(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session, DreamVO pvo)
 			throws Exception {
@@ -94,8 +94,12 @@ public class DreamController extends MultiActionController {
 		for (String stock : stockArr)
 			System.out.println("stock :: " + stock);
 		List<RewardVO> rewardList = new ArrayList<RewardVO>();
-
+		RewardVO defaultReward = new RewardVO(0, pvo, "보상없이 후원하겠습니다.", 0, 50000);
+		rewardList.add(defaultReward);
 		for (int i = 0; i < rewardInfoArr.length; i++) {
+			if((rewardInfoArr.length==1)&&(Integer.parseInt(rewardGuideArr[i])==0)){
+				break;
+			}
 			RewardVO rpvo = new RewardVO();
 			rpvo.setRewardId(0);
 			rpvo.setDreamVO(pvo);
@@ -104,6 +108,7 @@ public class DreamController extends MultiActionController {
 			rpvo.setStock(Integer.parseInt(stockArr[i]));
 			rewardList.add(rpvo);
 		}
+		
 		for (RewardVO rvo : rewardList) {
 			dreamService.registerReward(rvo);
 		}
