@@ -183,7 +183,7 @@ public class DreamController extends MultiActionController {
 	// 추가 160614
 	// :: getDetailDreamByDreamId - 꿈 상세보기
 	public ModelAndView getDetailDreamByDreamId(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response, HttpSession session) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		System.out.println("상세보기에서 dreamId ::" + dreamId);
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
@@ -203,7 +203,7 @@ public class DreamController extends MultiActionController {
 		System.out.println("댓글");
 		List<ReplyVO> replyList = dreamService.readComment(dreamId);
 		System.out.println(replyList);
-		request.setAttribute("reply", replyList);
+		request.setAttribute("replyList", replyList);
 
 		// //////////////////////////////////////////////////////////////////////
 		// 후원자 가져오기 :: getPaymentMemeberByDreamId
@@ -213,6 +213,59 @@ public class DreamController extends MultiActionController {
 		System.out.println("후원자 :: " + memberList);
 		request.setAttribute("memberList", memberList);
 
+		
+		// 댓글 작성 160615
+				// 후원자 여부 체크
+
+				MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
+																			// 가져옴
+
+				if (member != null) { // 로그인 상태
+					System.out.println("MVO : " + member.getMemberId());
+
+					boolean is_dreamMaker;
+					for (MemberVO vo : memberList) {
+
+						System.out.println("vo.memberId() : " + vo.getMemberId());
+						if (member.getMemberId() == vo.getMemberId()) {
+
+							is_dreamMaker = true;// 후원자 맞음
+							request.setAttribute("is_dreamMaker", is_dreamMaker);// 후원자
+																					// 여부
+																					// 플래그
+																					// 바인딩
+							break;
+						} else {
+							is_dreamMaker = false;// 후원자가 아님
+						}
+						System.out.println(is_dreamMaker);
+					}
+				}
+				
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
+	
+	// 추가160615
+		// /댓글 작성 :: writeComment
+
+		public ModelAndView writeComment(HttpServletRequest request,
+				HttpServletResponse response, HttpSession session) throws Exception {
+
+			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+			String content = request.getParameter("content");
+			System.out.println("댓글 작성 dreamId : " + dreamId);
+			System.out.println("컨텐츠 작성 : " + content);
+
+			DreamVO dreamVO = new DreamVO();
+			dreamVO.setDreamId(dreamId);// dreamVO.dreamId
+
+			MemberVO memberVO = (MemberVO) session.getAttribute("mvo");// memberVO.memberId
+
+			ReplyVO replyVO = new ReplyVO(0, dreamVO, memberVO, content, null);
+
+			dreamService.writeComment(replyVO);// 댓글 작성
+
+			return new ModelAndView(
+					"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
+		}
 }

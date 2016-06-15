@@ -155,37 +155,83 @@
 
 											<!-- 댓글 -->
 											<div class="tab-pane fade" id="tab1-item2">
-												이름 : <input type="text" name="name" value="${mvo.name }"
-													disabled="disabled"><br>
+												<div>
+													<c:choose>
+														<c:when test="${mvo.member_newFilename==null}">
+															<img src="./upload/member/member_df.jpg" alt=""
+																width="50" height="50">
+														</c:when>
+														<c:otherwise>
+															<img alt=""
+																src="./upload/member/${mvo.member_newFilename }"
+																width="50" height="50">
+														</c:otherwise>
+													</c:choose>
+													&nbsp;&nbsp;&nbsp;&nbsp; 이름 : <input type="text"
+														name="name" value="${mvo.name }" disabled="disabled">
+												</div>
 												<br>
 												<div align="center">
 													<form action="dream.do">
-														<input type="hidden" name="command" value="writeComment">
-														<textarea rows="5" cols=125 name="content">
-														
-														</textarea>
-														<input type="submit" value="입력하기">
-														<br>
-														<br>
+														<input type="hidden" name="command"
+															value="writeComment">
+														<input type="hidden" name="dreamId"
+															value="${dreamVO.dreamId }">
+														<c:choose>
+															<c:when test="${is_dreamMaker==true }">
+																<textarea rows="5" cols=125 name="content"></textarea>
+																<div align="right">
+																	<input type="submit" class="btn btn-lm btn-Info"
+																		value="입력하기">
+																</div>
+																<br>
+																<br>
+															</c:when>
+															<c:otherwise>
+																<textarea rows="5" cols=125 name="content"
+																	disabled="disabled">후원자만 입력가능합니다.</textarea>
+																<div align="right">
+																	<input type="submit"
+																		class="btn btn-lm btn-Info disabled" value="입력하기">
+																</div>
+																<br>
+																<br>
+															</c:otherwise>
+														</c:choose>
 													</form>
 												</div>
+
+												<!-- 댓글 보여주기 -->
 												<div class="response-area">
 													<ul class="media-list">
 														<c:choose>
-															<c:when test="${reply!=null }">
-																<c:forEach items="${reply}" var="re">
+															<c:when test="${replyList!=null }">
+																<c:forEach items="${replyList}" var="reply">
 																	<li class="media">
 																		<div class="post-comment">
-																			<a class="pull-left" href="#"> <img
-																				class="media-object" src="images/blogdetails/2.png"
-																				alt="">
-																			</a>
+																		<div class="pull-left">
+																			<c:choose>
+																				<c:when test="${reply.memberVO.member_newFilename==null }">
+																					<img
+																				class="media-object" src="./upload/member/member_df.jpg"
+																				alt="" width="80" height="80">
+																				</c:when>
+																				<c:otherwise>
+																					<img
+																				class="media-object" src="./upload/member/${reply.memberVO.member_newFilename}"
+																				alt="" width="80" height="80">
+																				</c:otherwise>
+																			</c:choose>
+																			
+																		</div>
+																			
+																			
 																			<div class="media-body">
 																				<span><i class="fa fa-user"></i>Posted by <a
-																					href="#">Endure</a></span>
-																				<p>${re.content}</p>
+																					href="#">${reply.memberVO.name}</a></span>
+																				<p>${reply.content}</p>
 																				<ul class="nav navbar-nav post-nav">
-																					<li><a href="#"><i class="fa fa-clock-o"></i>${re.writeDate}</a></li>
+																					<li><a href="#"><i class="fa fa-clock-o"></i>${reply.writeDate}</a></li>
 																					<li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
 																				</ul>
 																			</div>
