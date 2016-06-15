@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,20 +106,45 @@
 												<h2>${dream.titleDream }</h2>
 												&nbsp;
 												<div class="progress">
-													<div class="progress-bar progress-bar-striped active"
+												<c:choose>
+												<c:when test="${dream.statVO.totalMoney!=0}">
+													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
+														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 80%">80%</div>
-												</div>
+														aria-valuemax="100" style="width: 100%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
+														<div class="progress-bar progress-bar-striped active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 50%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
+														<div class="progress-bar progress-bar-striped active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 30%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+												</c:when>
+												<c:otherwise>
+													<div class="progress-bar progress-bar-warning active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 100%">0%</div>
+													</div>
+												</c:otherwise>
+												</c:choose>
+												
 												<div class="post-bottom overflow">
 													<ul class="nav navbar-nav post-nav">
 														<li><a href="#"><i class="fa fa-tag"></i>모인 금액
-																12,000,000</a></li>
+																${dream.statVO.totalMoneyView}</a></li>
 														<br>
 														<li><a href="#"><i class="fa fa-heart"></i> 후원자
-																123</a></li>
+																${dream.statVO.supporterCnt }</a></li>
 														<br>
 														<li><a href="#"><i class="fa fa-comments"></i>
-																앞으로 13일</a></li>
+																앞으로 ${dream.statVO.endDay}일</a></li>
 													</ul>
 												</div>
 											</div>

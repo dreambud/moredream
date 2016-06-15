@@ -14,7 +14,7 @@ import model.UpdateDreamVO;
 public interface DreamDao {
 
 	//160614
-	//추가 :: getPaymentMemeberByDreamId
+	//추가 :: getPaymentMemberByDreamId
 	//해당 꿈에 대한 결제 내역의 rewardId, memberId 가져오기(후원자/댓글 적용시 사용)
 	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException;
 	
@@ -38,7 +38,10 @@ public interface DreamDao {
 
 	public int confirmRequestDream(Map<String, Object> map) throws IOException;//confirmRequestDream를 Y로 업데이트 
 
-
+	//160615 추가 :getCountPaymentByDreamId
+	public int getCountPaymentByDreamId(int dreamId) throws IOException;//꿈 후원자수 보기
+	
+	
 	//////////////////////////SELECT//////////////////////////
 	public List<DreamVO> selectByCategory(String category) throws IOException;//카테고리별 조회
 	public DreamVO getDetailDreamByDreamId(int dreamId) throws IOException;//꿈 상세보기

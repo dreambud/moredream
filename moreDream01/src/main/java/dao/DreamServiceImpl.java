@@ -11,6 +11,7 @@ import model.MemberVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
+import model.StatVO;
 import model.UpdateDreamVO;
 
 public class DreamServiceImpl implements DreamService {
@@ -99,14 +100,7 @@ public class DreamServiceImpl implements DreamService {
 		if(num.equals("1")){//새로운 꿈(최근순)
 			rlist = dreamDao.getAllListDream();
 		}else if(num.equals("2")){//마감임박
-			//현재시간 구하기
-			/*String stringNowDate = dreamDao.showNowDate();
-			int year = Integer.parseInt(stringNowDate.substring(0, 4));
-			int month = Integer.parseInt(stringNowDate.substring(5, 7));
-			int day = Integer.parseInt(stringNowDate.substring(8, 10));
-			Date nowDate = new Date(year,month,day);
-			long nowTime = nowDate.getTime();
-			System.out.println("현재시간 : "+nowTime);*/
+			
 
 			rlist=dreamDao.getAllListDreamOrderByEndDate();
 
@@ -134,6 +128,38 @@ public class DreamServiceImpl implements DreamService {
 			}
 		}else if(num.equals("4")){//최고 후원
 			rlist= dreamDao.getAllListDreamOrderByMoney();
+			//결재 내역이 없는 꿈을 추가함
+			List<DreamVO> rlist2 = dreamDao.getAllListDream();
+			List<DreamVO> tempList = new ArrayList<DreamVO>();
+			for(int i=0;i<rlist2.size();i++){
+				for(int j=0;j<rlist.size();j++){
+					if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
+						System.out.println(rlist.get(j).getDreamId());
+						break;
+					}
+					System.out.println("j: "+j);
+					System.out.println("rlist.size "+rlist.size());
+					if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
+						tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
+					}
+				}
+			}
+		}
+		
+		//현재시간 구하기
+		long nowTime = convert(dreamDao.showNowDate());
+		
+		// 추가 :: 160615 꿈 리스트에 후원자수,후원금액,남은기간를 담는 VO 추가
+		for(DreamVO dvo : rlist){
+			int dreamId = dvo.getDreamId();
+			StatVO statVO = new StatVO();
+			statVO.setSupporterCnt(this.getCountPaymentByDreamId(dreamId));	//해당 꿈 후원자수 받아와서 setter주입
+			statVO.setTotalMoney(this.getMoneyByDreamId(dreamId));//해당꿈 모인금액 받아와서 setter주입
+			
+			long endTime = convert(dvo.getEndDate());
+			int endDay = (int)((endTime-nowTime)/(60*60*24*1000));
+			statVO.setEndDay(endDay);
+			dvo.setStatVO(statVO);
 		}
 		return rlist;
 	}
@@ -153,12 +179,12 @@ public class DreamServiceImpl implements DreamService {
 
 	@Override
 	public int getMoneyByDreamId(int dreamId) throws IOException {
+		int totalMoney =  0;
 		List<Integer> list = dreamDao.getMoneyByDreamId(dreamId);
-		int sum = 0;
 		for (int i = 0; i < list.size(); i++) {
-			sum += list.get(i);
+			totalMoney += list.get(i);
 		}
-		return sum;
+		return totalMoney;
 	}
 
 	@Override
@@ -218,5 +244,19 @@ public class DreamServiceImpl implements DreamService {
 	public List<UpdateDreamVO> alarm(int memberId) throws IOException {
 
 		return dreamDao.alarm(memberId);
+	}
+
+	@Override
+	public int getCountPaymentByDreamId(int dreamId) throws IOException {
+		return dreamDao.getCountPaymentByDreamId(dreamId);
+	}
+	
+	public long convert(String stringDate){
+		int year = Integer.parseInt(stringDate.substring(0, 4));
+		int month = Integer.parseInt(stringDate.substring(5, 7));
+		int day = Integer.parseInt(stringDate.substring(8, 10));
+		Date date = new Date(year,month,day);
+		long time = date.getTime();
+		return time;
 	}
 }

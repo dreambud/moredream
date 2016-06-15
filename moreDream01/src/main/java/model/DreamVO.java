@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +18,12 @@ public class DreamVO {
 	private String endDate;
 
 	private MultipartFile multipartFile;
-
 	
-	public DreamVO() {	}//디폴트 생성자
+	private StatVO statVO;
+	
+	
+
+	public DreamVO(){	}//디폴트 생성자
 
 	//전체 생성자
 	public DreamVO(int dreamId, MemberVO memberVO, String category, String confirmRequestDream, 
@@ -145,7 +146,14 @@ public class DreamVO {
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
 	}
+	public StatVO getStatVO() {
+		return statVO;
+	}
 
+	public void setStatVO(StatVO statVO) {
+		this.statVO = statVO;
+	}
+	
 	@Override
 	public String toString() {
 		return "DreamVO [dreamId=" + dreamId + ", memberVO=" + memberVO

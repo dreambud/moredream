@@ -151,7 +151,7 @@
 		reward r
 		WHERE r.rewardId = p.rewardId AND p.memberId = #{value})
 	</select>
-
+	<!-- 160615 수정 -->
 	<!-- dreamId로 후원금 확인 -->
 	<select id="getMoneyByDreamId" parameterType="int" resultType="int">
 		SELECT money
@@ -161,6 +161,7 @@
 		r.dreamId = #{value}
 	</select>
 
+	
 	<!-- 후원금 전체 가져오기 :: 통계시 사용 -->
 	<select id="getAllMoney" resultType="int">
 		SELECT money FROM payment
@@ -269,7 +270,7 @@
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate from
 		(select dreamid from
 		(select r.dreamid,sum(money) as currmoney from
-		payment p,reward r group
+		payment p,reward r where p.rewardid=r.rewardid and p.paymentstate='Y' group
 		by dreamid order by currmoney desc)) p ,
 		dream d where p.dreamid =
 		d.dreamid and d.confirmrequestdream ='Y'
@@ -369,7 +370,14 @@
 		(SELECT * FROM payment WHERE paymentState='Y') p WHERE p.rewardId=r.rewardId) r 
 		where r.memberid = m.memberid
 	</select>
-
+	<!-- 추가 160615 -->
+	<!-- dreamid로 결재 후원자수 가져오기 -->
+	<select id="getCountPaymentByDreamId" parameterType="int" resultType="int">
+		select count(-1) from 
+		(select rewardid from reward where dreamid=#{value}) r,payment p 
+		where p.rewardid = r.rewardid and p.paymentstate='Y'
+	</select>
+	
 </mapper>	
 
  

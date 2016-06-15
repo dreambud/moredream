@@ -251,30 +251,6 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
 	
-	// 추가160615
-		// /댓글 작성 :: writeComment
-
-		public ModelAndView writeComment(HttpServletRequest request,
-				HttpServletResponse response, HttpSession session) throws Exception {
-
-			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-			String content = request.getParameter("content");
-			System.out.println("댓글 작성 dreamId : " + dreamId);
-			System.out.println("컨텐츠 작성 : " + content);
-
-			DreamVO dreamVO = new DreamVO();
-			dreamVO.setDreamId(dreamId);// dreamVO.dreamId
-
-			MemberVO memberVO = (MemberVO) session.getAttribute("mvo");// memberVO.memberId
-
-			ReplyVO replyVO = new ReplyVO(0, dreamVO, memberVO, content, null);
-
-			dreamService.writeComment(replyVO);// 댓글 작성
-
-			return new ModelAndView(
-					"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
-		}
-		
 	//추가160615
 		// 응원하기 클릭 후 선택할 보상 리스트 가져오기
 		public ModelAndView getRewardByDreamId(HttpServletRequest request, HttpServletResponse response)
@@ -305,6 +281,4 @@ public class DreamController extends MultiActionController {
 			
 			return new ModelAndView("WEB-INF/result/payment_result");
 		}
-		
-		
 }

@@ -219,5 +219,13 @@ public class DreamDaoImpl implements DreamDao {
 		return list;
 	}
 	
+	//추가 160615 
+	//꿈 후원자 수 보기
+	@Override
+	public int getCountPaymentByDreamId(int dreamId) throws IOException {
+		int count = sqlSession.selectOne("dreamSql.getCountPaymentByDreamId",dreamId);
+		return count;
+	}
+	
 
 }

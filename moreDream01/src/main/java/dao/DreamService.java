@@ -43,7 +43,8 @@ public interface DreamService {
 
 	public List<PaymentVO> getPaymentHistoryByMemberId(int memberId) throws IOException;//결제내역 가져오기
 	public List<DreamVO> cheerUpList(int memberId) throws IOException;//응원 리스트
-
+	
+	public int getCountPaymentByDreamId(int dreamId) throws IOException;//dreamId로 후원자수 확인 
 	public int getMoneyByDreamId(int dreamId) throws IOException;//dreamId로 후원금 확인 
 	public int getAllMoney() throws IOException;//후원금 전체 가져오기 :: 통계시 사용
 
