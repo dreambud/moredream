@@ -21,6 +21,34 @@ public class DreamServiceImpl implements DreamService {
 	public void setDreamDao(DreamDao dreamDao) {
 		this.dreamDao = dreamDao;
 	}
+	
+	
+	// 160616
+		// 댓글 갯수 가져오기
+		@Override
+		public int getCountReplyByDreamId(int dreamId) throws IOException {
+			int replyCount = dreamDao.getCountReplyByDreamId(dreamId);
+			return replyCount;
+		}
+		// 업데이트 갯수 가져오기
+		@Override
+		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
+			int updateDreamCount = dreamDao.getCountUpdateDreamByDreamId(dreamId);
+			return updateDreamCount;
+		}
+		
+		
+		// 재고 업데이트
+			@Override
+			public void updatePlusStockByRewardId(int rewardId) throws IOException {
+				dreamDao.updatePlusStockByRewardId(rewardId);
+			}
+			@Override
+			public void updateMynusStockByRewardId(int rewardId) throws IOException {
+				dreamDao.updateMynusStockByRewardId(rewardId);
+			}
+			
+			
 
 	// 추가 160614/////////////////////////////////////////////////////////////
 	//후원자 정보 가져오기

@@ -13,6 +13,18 @@ import model.UpdateDreamVO;
 
 public interface DreamService {
 
+	//추가 160616
+		//꿈에 대한 댓글 갯수 카운트
+		public int getCountReplyByDreamId(int dreamId) throws IOException;
+		//꿈에 대한 업데이트 갯수 카운트
+		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
+
+		// 보상 재고 업데이트
+		public void updatePlusStockByRewardId(int rewardId) throws IOException;
+		public void updateMynusStockByRewardId(int rewardId) throws IOException;
+	
+	
+	
 	//수정 160615 :: 이름 오타
 	// :: getPaymentMemeberByDreamId 후원자 정보 가져오기
 	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException;
