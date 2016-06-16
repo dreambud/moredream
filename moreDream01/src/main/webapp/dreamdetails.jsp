@@ -82,14 +82,14 @@
 										<p>${dreamVO.detailDream}</p>
 									</h3>
 
-									<div class="post-bottom overflow">
+									<!-- <div class="post-bottom overflow">
 										<ul class="nav navbar-nav post-nav">
 											<li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
 											<li><a href="#"><i class="fa fa-heart"></i>32 Love</a></li>
 											<li><a href="#"><i class="fa fa-comments"></i>3
 													Comments</a></li>
 										</ul>
-									</div>
+									</div> -->
 									<div class="blog-share">
 										<span class='st_facebook_hcount'></span> <span
 											class='st_twitter_hcount'></span> <span
@@ -123,9 +123,9 @@
 									<div class="col-md-12">
 										<ul id="tab1" class="nav nav-tabs">
 											<li class="active"><a href="#tab1-item1"
-												data-toggle="tab">업데이트</a></li>
-											<li><a href="#tab1-item2" data-toggle="tab">댓글</a></li>
-											<li><a href="#tab1-item3" data-toggle="tab">후원자</a></li>
+												data-toggle="tab">업데이트(${updateDreamCount })</a></li>
+											<li><a href="#tab1-item2" data-toggle="tab">댓글(${replyCount })</a></li>
+											<li><a href="#tab1-item3" data-toggle="tab">후원자(${dreamMakerCount })</a></li>
 										</ul>
 
 										<!-- 업데이트 -->
