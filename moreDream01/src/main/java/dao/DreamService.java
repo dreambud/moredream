@@ -77,4 +77,8 @@ public interface DreamService {
 
 	//꿈 리스트 가져오기(필터,전체리스트)
 	public List<DreamVO> getListDream(String num) throws IOException;
+	
+	//160616 추가(카테고리 갯수 가져오기)
+		public int getCategoryCountByCategory(String category) throws IOException;
+		public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
 }

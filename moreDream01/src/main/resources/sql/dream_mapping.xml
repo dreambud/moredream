@@ -69,10 +69,10 @@
 		SELECT sysdate FROM dual
 	</select>
 
-	<!-- 카테고리별 검색 -->
+	<!-- 카테고리별 검색 --><!-- 160616 조건문 추가 -->
 	<select id="selectByCategory" parameterType="string" resultMap="dreamListRM">
 		<include refid="select_dreams" />
-		WHERE category = #{value}
+		WHERE category = #{value} AND confirmrequestdream='Y'
 	</select>
 
 	<!-- dream 상세보기 -->
@@ -377,35 +377,29 @@
 		(select rewardid from reward where dreamid=#{value}) r,payment p 
 		where p.rewardid = r.rewardid and p.paymentstate='Y'
 	</select>
-	
-	
-	
 	<!-- 160616 -->
-	<!-- 해당 꿈에 대한 댓글 갯수 카운트 -->
-	<select id="getCountReplyByDreamId" parameterType="int"
-		resultType="int">
-		SELECT count(-1)
-		from reply
-		WHERE dreamId = #{value}
-	</select>
-
-	<!-- 해당 꿈에 대한 업데이트 갯수 카운트 -->
-	<select id="getCountUpdateDreamByDreamId" parameterType="int"
-		resultType="int">
-		select count(-1)
-		from updateDream
-		WHERE dreamId = #{value}
-	</select>
-
-	<!-- 160616 -->
-	<!-- 보상 재고 업데이트 -->
-	<update id="updatePlusStockByRewardId" parameterType="int">
-		Update reward set stock =stock+1 WHERE rewardId = #{value}
-	</update>
-	<update id="updateMynusStockByRewardId" parameterType="int">
-		Update reward set stock =stock-1 WHERE rewardId = #{value}
-	</update>
-	
+    <!-- 해당 꿈에 대한 댓글 갯수 카운트 -->
+    <select id="getCountReplyByDreamId" parameterType="int" resultType="int">
+          SELECT count(-1)
+          from reply
+          WHERE dreamId = #{value}
+      </select>
+  
+      <!-- 해당 꿈에 대한 업데이트 갯수 카운트 -->
+      <select id="getCountUpdateDreamByDreamId" parameterType="int" resultType="int">
+          select count(-1)
+          from updateDream
+          WHERE dreamId = #{value}
+      </select>
+  
+      <!-- 160616 -->
+      <!-- 보상 재고 업데이트 -->
+      <update id="updatePlusStockByRewardId" parameterType="int">
+          Update reward set stock =stock+1 WHERE rewardId = #{value}
+      </update>
+      <update id="updateMynusStockByRewardId" parameterType="int">
+          Update reward set stock =stock-1 WHERE rewardId = #{value}
+      </update>
 </mapper>	
 
  

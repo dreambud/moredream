@@ -148,6 +148,24 @@ public class DreamController extends MultiActionController {
 		List<DreamVO> popularProjects = dreamService.getListDream("3");
 		request.setAttribute("popularProjects", popularProjects);
 		System.out.println(dreamList);
+		request.setAttribute("totalCnt", dreamList.size());
+		
+		String category = request.getParameter("category");
+		System.out.println(category);
+		if(category!=null&&!(category.equals(""))&&!(category.equals("none"))){
+			System.out.println("getListFilterByCategory()");
+			dreamList = dreamService.getListFilterByCategory(dreamList,category.trim());
+			
+		}
+		request.setAttribute("designCnt", dreamService.getCategoryCountByCategory("디자인"));
+		request.setAttribute("fashionCnt", dreamService.getCategoryCountByCategory("패션"));
+		request.setAttribute("publishCnt", dreamService.getCategoryCountByCategory("출판"));
+		request.setAttribute("cookingCnt", dreamService.getCategoryCountByCategory("요리"));
+		request.setAttribute("concertCnt", dreamService.getCategoryCountByCategory("공연"));
+		request.setAttribute("movieCnt", dreamService.getCategoryCountByCategory("영화"));
+		request.setAttribute("musicCnt", dreamService.getCategoryCountByCategory("음악"));
+		request.setAttribute("category", category);
+		
 		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
 
@@ -251,46 +269,17 @@ public class DreamController extends MultiActionController {
 				System.out.println(is_dreamMaker);
 			}
 		}
-		
-		//160616
-				// 댓글 갯수 카운트
-				int replyCount = dreamService.getCountReplyByDreamId(dreamId);
-				request.setAttribute("replyCount", replyCount);
-				
-				// 후원자 카운트
-				int dreamMakerCount = dreamService.getCountPaymentByDreamId(dreamId);
-				request.setAttribute("dreamMakerCount", dreamMakerCount);
-				
-				// 업데이트 카운트
-				int updateDreamCount = dreamService.getCountUpdateDreamByDreamId(dreamId);
-				request.setAttribute("updateDreamCount", updateDreamCount);
-		
-		
 
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
-	}//상세보기
+	}
 
 	// 추가160615
 	// 응원하기 클릭 후 선택할 보상 리스트 가져오기
 	public ModelAndView getRewardByDreamId(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
+			HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		System.out.println("getRewardByDreamId ::" + dreamId);
-		
-		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");
-		
-		List<MemberVO> memberList = dreamService.getPaymentMemberByDreamId(dreamId);//후원자 가져오기
-		
-		List<RewardVO> rewardList = null;
-		for(MemberVO retRemberVO : memberList){
-			if(retRemberVO.getMemberId()==memberVO.getMemberId()){//결제 했었음.. 결제 불가..상세페이지로 다시 보내줌..
-				System.out.println("이미 후원함");
-				return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
-				
-			}else{//첫 결제라면 보상페이지를 보여줌..
-				rewardList = dreamService.getRewardByDreamId(dreamId);
-			}
-		}
+		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 
 		return new ModelAndView("payment", "rewardList", rewardList);
 	}
@@ -308,20 +297,13 @@ public class DreamController extends MultiActionController {
 		PaymentVO ppvo = new PaymentVO(0, rvo,
 				((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y",
 				money);
-		//System.out.println("TEST : "+rewardId);
-		//dreamService.updateMynusStockByRewardId(rewardId);
+
 		dreamService.payment(ppvo);
 
 		return new ModelAndView("WEB-INF/result/payment_result");
 	}
 
 	// 160616
-	
-	
-	
-	
-	
-	
 	// /댓글 작성 :: writeComment
 
 	public ModelAndView writeComment(HttpServletRequest request,

@@ -43,7 +43,15 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<h1 class="title">꿈 찾기</h1>
+							<h1 class="title">
+							꿈 찾기
+							<c:choose>
+							<c:when test="${(category==null)||(category=='none')||(category=='')}">(전체)</c:when>
+							<c:otherwise>
+								(${category})
+							</c:otherwise>
+							</c:choose>
+							</h1>
 							<p></p>
 						</div>
 					</div>
@@ -64,7 +72,7 @@
      				</div>
 						<ul class="portfolio-filter text-center">
 						<li>
-							<select onchange="searchFilter()" id="filter"
+							<select onchange="searchFilter('${category}')" id="filter"
 								class="form-control" class="span3">
 									<option value="0">필터</option>
 									<option value="1">새로운 꿈</option>
@@ -73,10 +81,12 @@
 									<option value="4">최고 후원</option>
 							</select>
 						</li>
-						<li><div class="inner-addon left-addon">
-    <i class="glyphicon glyphicon-search"></i>
-    <input type="text" class="form-control" />
-</div></li>
+						<li>
+							<div class="inner-addon left-addon">
+							    <i class="glyphicon glyphicon-search"></i>
+							    <input type="text" class="form-control" />
+							</div>
+						</li>
 						</ul>
 						<!--/#dream-filter-->
 						<c:forEach items="${dreamList}" var="dream">
@@ -144,7 +154,15 @@
 																${dream.statVO.supporterCnt }</a></li>
 														<br>
 														<li><a href="#"><i class="fa fa-comments"></i>
-																앞으로 ${dream.statVO.endDay}일</a></li>
+																<c:if test="${dream.statVO.endDay==0}">
+																	<font color='red'><b>오늘 마감!!!</b></font>
+																</c:if>
+																<c:if test="${dream.statVO.endDay>0}">
+																	앞으로 ${dream.statVO.endDay}일</a></li>
+																</c:if>
+																<c:if test="${dream.statVO.endDay<0}">
+																	<font color='red'><b>마감!!!</b></font></a></li>
+																</c:if>
 													</ul>
 												</div>
 											</div>
@@ -153,8 +171,14 @@
 								</div>
 							</c:if>
 						</c:forEach>
-
+						
+					</div>
 						<div class="portfolio-pagination">
+							<c:choose>
+							<c:when test="${dreamList[0]==null}">
+								등록된 자료가 없습니다.
+							</c:when>
+							<c:otherwise>
 							<ul class="pagination">
 								<li><a href="#">left</a></li>
 								<li><a href="#">1</a></li>
@@ -168,18 +192,80 @@
 								<li><a href="#">9</a></li>
 								<li><a href="#">right</a></li>
 							</ul>
+							</c:otherwise>
+							</c:choose>
 						</div>
-					</div>
 				</div>
 				<div class="col-md-3 col-sm-4 padding-top">
 					<div class="sidebar portfolio-sidebar">
 						<div class="sidebar-item categories">
 							<h3>Project Categories</h3>
+							<input type="hidden" name="category" id="category" value="${requestScope.category}">
 							<ul class="nav navbar-stacked">
-								<li class="active"><a href="#">Total<span class="pull-right">(1)</span></a></li>
-								<li><a href="#">Movie<span class="pull-right">(8)</span></a></li>
-								<li><a href="#">Publish<span class="pull-right">(4)</span></a></li>
-								<li><a href="#">Music<span class="pull-right">(9)</span></a></li>
+								<c:choose>
+									<c:when test="${(category==null)||(category=='none')||(category=='')}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('none')">Total<span class="pull-right">(${totalCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${(category=='디자인')}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('디자인')">디자인<span class="pull-right">(${designCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${(category=='패션')}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('패션')">패션<span class="pull-right">(${fashionCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${(category=='출판')}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('출판')">출판<span class="pull-right">(${publishCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${category=='요리'}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('요리')">요리<span class="pull-right">(${cookingCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${category=='음악'}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('음악')">음악<span class="pull-right">(${musicCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${category=='공연'}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('공연')">공연<span class="pull-right">(${concertCnt})</span></a></li>
+								<c:choose>
+									<c:when test="${category=='영화'}">
+									<li class="active">
+									</c:when>
+									<c:otherwise>
+									<li>
+									</c:otherwise>
+								</c:choose><a href="javascript:searchFilter('영화')">영화<span class="pull-right">(${movieCnt})</span></a></li>
 								</ul>
 						</div>
 						<div class="sidebar-item  recent">
@@ -218,10 +304,12 @@
 	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 	<script type="text/javascript">
-		function searchFilter() {
+		function searchFilter(category) {
+			document.getElementById('category').value = category;			
 			var filter = document.getElementById('filter').value;
+			
 			location.href = "dream.do?command=getAllListDream&&filter="
-					+ filter;
+					+ filter+"&&category="+category;
 		}
 		
 	</script>

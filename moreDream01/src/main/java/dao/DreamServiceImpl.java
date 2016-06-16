@@ -22,43 +22,41 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 	
-	
 	// 160616
-		// 댓글 갯수 가져오기
+	// 댓글 갯수 가져오기
+	@Override
+	public int getCountReplyByDreamId(int dreamId) throws IOException {
+		int replyCount = dreamDao.getCountReplyByDreamId(dreamId);
+		return replyCount;
+	}
+	// 업데이트 갯수 가져오기
+	@Override
+	public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
+		int updateDreamCount = dreamDao.getCountUpdateDreamByDreamId(dreamId);
+		return updateDreamCount;
+	}
+	
+	
+	// 재고 업데이트
 		@Override
-		public int getCountReplyByDreamId(int dreamId) throws IOException {
-			int replyCount = dreamDao.getCountReplyByDreamId(dreamId);
-			return replyCount;
+		public void updatePlusStockByRewardId(int rewardId) throws IOException {
+			dreamDao.updatePlusStockByRewardId(rewardId);
 		}
-		// 업데이트 갯수 가져오기
 		@Override
-		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
-			int updateDreamCount = dreamDao.getCountUpdateDreamByDreamId(dreamId);
-			return updateDreamCount;
+		public void updateMynusStockByRewardId(int rewardId) throws IOException {
+			dreamDao.updateMynusStockByRewardId(rewardId);
 		}
-		
-		
-		// 재고 업데이트
-			@Override
-			public void updatePlusStockByRewardId(int rewardId) throws IOException {
-				dreamDao.updatePlusStockByRewardId(rewardId);
-			}
-			@Override
-			public void updateMynusStockByRewardId(int rewardId) throws IOException {
-				dreamDao.updateMynusStockByRewardId(rewardId);
-			}
 			
 			
-
 	// 추가 160614/////////////////////////////////////////////////////////////
 	//후원자 정보 가져오기
-		//수정 160615
-			@Override
-			public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException {
-				List<MemberVO> memberList = dreamDao.getPaymentMemberByDreamId(dreamId);
-				
-				return memberList;
-			}
+	//수정 160615
+	@Override
+	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException {
+		List<MemberVO> memberList = dreamDao.getPaymentMemberByDreamId(dreamId);
+		
+		return memberList;
+	}
 	
 	@Override
 	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
@@ -129,14 +127,12 @@ public class DreamServiceImpl implements DreamService {
 		List<DreamVO> list = dreamDao.selectByKeyWord(keyword);
 		return list;
 	}
-
+	//160616 수정
 	public List<DreamVO> getListDream(String num) throws IOException {
 		List<DreamVO> rlist =new ArrayList<DreamVO>();
-		if(num.equals("1")){//새로운 꿈(최근순)
+		if(num.equals("1")||num.equals("0")){//새로운 꿈(최근순)[default]
 			rlist = dreamDao.getAllListDream();
 		}else if(num.equals("2")){//마감임박
-			
-
 			rlist=dreamDao.getAllListDreamOrderByEndDate();
 
 		}else if(num.equals("3")){//최다 후원
@@ -169,15 +165,15 @@ public class DreamServiceImpl implements DreamService {
 			for(int i=0;i<rlist2.size();i++){
 				for(int j=0;j<rlist.size();j++){
 					if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
-						System.out.println(rlist.get(j).getDreamId());
 						break;
 					}
-					System.out.println("j: "+j);
-					System.out.println("rlist.size "+rlist.size());
 					if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
 						tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
 					}
 				}
+			}
+			for(DreamVO dvo:tempList){
+				rlist.add(dvo);
 			}
 		}
 		
@@ -293,5 +289,25 @@ public class DreamServiceImpl implements DreamService {
 		Date date = new Date(year,month,day);
 		long time = date.getTime();
 		return time;
+	}
+	
+	
+	//160616 추가
+	@Override
+	public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category) {
+		List<DreamVO> removeList = new ArrayList<DreamVO>(); 
+		for(DreamVO dvo:dreamList){
+			if(!(dvo.getCategory().equals(category))){
+				removeList.add(dvo);
+			}
+		}
+		for(DreamVO dvo:removeList){
+			dreamList.remove(dvo);
+		}
+		return dreamList;
+	}
+	@Override
+	public int getCategoryCountByCategory(String category) throws IOException {
+		return dreamDao.selectByCategory(category.trim()).size();
 	}
 }
