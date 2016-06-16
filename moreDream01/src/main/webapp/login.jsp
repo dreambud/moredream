@@ -38,10 +38,20 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
+<script type="text/javascript">
+	function loginLoad(){
+		isLogin();
+		var url = '${param.url}';
+		if(url==''){
+			url=document.referrer;
+			document.getElementById("url").value=url;
+		}
+	}
+</script>
 </head>
 <!--/head-->
 
-<body onload="isLogin()">
+<body onload="loginLoad()">
 
 	<jsp:include page="./header.jsp" />
 
@@ -85,7 +95,7 @@
 			    	    		 계정이 없으신가요? <a href="registerMember.jsp"><font color="blue">새 계정 만들기</font><p></a>	
 			    	    	</label>
 			    	    </div>
-			    	    <input type="hidden" name="url" value="${param.url}">
+			    	    <input type="hidden" id="url" name="url" value="${param.url}">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인">
 			    	</fieldset>
 			      	</form>
