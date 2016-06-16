@@ -308,7 +308,8 @@ public class DreamController extends MultiActionController {
 		PaymentVO ppvo = new PaymentVO(0, rvo,
 				((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y",
 				money);
-
+		//System.out.println("TEST : "+rewardId);
+		//dreamService.updateMynusStockByRewardId(rewardId);
 		dreamService.payment(ppvo);
 
 		return new ModelAndView("WEB-INF/result/payment_result");
