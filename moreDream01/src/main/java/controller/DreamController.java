@@ -305,4 +305,17 @@ public class DreamController extends MultiActionController {
 				"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="
 						+ dreamId);
 	}
+	
+	// index 최근 꿈 배너
+	
+	public ModelAndView recentDream(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+	
+		String num = "1";
+	
+		List<DreamVO> dreamList = dreamService.getListDream(num);
+		System.out.println(dreamList);
+		return new ModelAndView("index", "dreamList", dreamList);
+	}
+	
 }
