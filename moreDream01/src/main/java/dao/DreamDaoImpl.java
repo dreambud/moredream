@@ -21,6 +21,35 @@ public class DreamDaoImpl implements DreamDao {
 		this.sqlSession = sqlSession;
 	}
 	
+	//160616
+		// 꿈에 대한 댓글 카운트
+		@Override
+		public int getCountReplyByDreamId(int dreamId) throws IOException {
+			int replyCount = sqlSession.selectOne("dreamSql.getCountReplyByDreamId", dreamId);
+			return replyCount;
+		}
+		
+		//꿈에 대한 업데이트 카운트
+		@Override
+		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
+			int updateDreamCount = sqlSession.selectOne("dreamSql.getCountUpdateDreamByDreamId", dreamId);
+			return updateDreamCount;
+		}
+		
+		
+		// 재고 업데이트
+		@Override
+		public int updatePlusStockByRewardId(int rewardId) throws IOException {
+			int result = sqlSession.update("dreamSql.updatePlusStockByRewardId", rewardId);
+			return result;
+		}
+		@Override
+		public int updateMynusStockByRewardId(int rewardId) throws IOException {
+			int result = sqlSession.update("dreamSql.updateMynusStockByRewardId", rewardId);
+			return result;
+		}
+	
+	
 	// 추가 160614//////////////////////////
 	//수정160615 후원자 가져오기
 		@Override

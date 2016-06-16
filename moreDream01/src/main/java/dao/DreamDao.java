@@ -12,7 +12,21 @@ import model.RewardVO;
 import model.UpdateDreamVO;
 
 public interface DreamDao {
+	
+	//160616
+		// 해당 꿈에 대한 댓글 갯수 카운트
+		public int getCountReplyByDreamId(int dreamId) throws IOException;
+		
+		// 해당 꿈에 대한 업데이트 갯수 카운트
+		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
+		
+		// 보상 재고 업데이트
+		public int updatePlusStockByRewardId(int rewardId) throws IOException;
+		public int updateMynusStockByRewardId(int rewardId) throws IOException;
 
+	
+	
+	
 	//160614
 	//추가 :: getPaymentMemberByDreamId
 	//해당 꿈에 대한 결제 내역의 rewardId, memberId 가져오기(후원자/댓글 적용시 사용)
