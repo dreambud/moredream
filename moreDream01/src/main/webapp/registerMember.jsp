@@ -12,13 +12,13 @@
 	function checkReg() {
 		var f = document.regForm;
 		if (f.email.value == "") {
-			alert("아이디(email)를 입력하세여");
+			alert("아이디(email)를 입력하세요");
 			return;
 		} else if (f.password.value == "") {
-			alert("패스워드를 입력하세여");
+			alert("비밀번호를 입력하세요");
 			return;
 		} else if (checkResult == false) {
-			alert("아이디(email) 중복체크를 하세여");
+			alert("아이디(email) 중복체크를 하세요");
 			email.value = "";
 			email.focus();
 			return;
