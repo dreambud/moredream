@@ -117,7 +117,7 @@
 													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 50%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
 														</div>
 													</c:if>
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
