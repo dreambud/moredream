@@ -86,6 +86,13 @@ public class DreamServiceImpl implements DreamService {
 	@Override
 	public DreamVO getDetailDreamByDreamId(int dreamId) throws IOException {
 		DreamVO vo = dreamDao.getDetailDreamByDreamId(dreamId);
+		
+		StatVO statVO = new StatVO(0, getMoneyByDreamId(dreamId), getCountPaymentByDreamId(dreamId));
+		long nowTime = convert(dreamDao.showNowDate());
+		long endTime = convert(vo.getEndDate());
+		int endDay = (int)((endTime-nowTime)/(60*60*24*1000));
+		statVO.setEndDay(endDay);
+		vo.setStatVO(statVO);
 		return vo;
 	}
 

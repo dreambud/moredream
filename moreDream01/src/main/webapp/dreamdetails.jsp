@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -285,16 +286,16 @@
 				<div class="col-md-3 col-sm-5">
 					<div class="sidebar blog-sidebar">
 						<div class="sidebar-item  recent">
-							<h3>목표 3,000,000원 중 20% 모임</h3>
+							<h3>목표금액 <b>${dreamVO.targetFundView}원</b> 중 <b><fmt:formatNumber value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}" type="percent" pattern="0"/>%</b> 모임</h3>
 							<div class="media">
 								<div class="pull-left"></div>
 								<div class="media-body">
 									<h4>
-										<a href="#">현재 금액 1,000,000</a>
+										<a href="#">현재 금액 ${dreamVO.statVO.totalMoneyView}</a>
 									</h4>
-									<h4>함께하는 Dreamer 12명</h4>
+									<h4>함께하는 Dreamer ${dreamVO.statVO.supporterCnt }명</h4>
 									<h4>
-										<a href="#">남은 시간 22일</a>
+										<a href="#">남은 시간 ${dreamVO.statVO.endDay}일</a>
 									</h4>
 								</div>
 							</div>
@@ -304,17 +305,40 @@
 						</p>
 						<hr>
 						<p>
-							<font size="2">결제는 2016년 6월 29일 자정까지 최소 3,000,000원이 모여야만
+							<font size="2">결제는 ${dreamVO.endDate} 자정까지 최소 ${dreamVO.targetFundView}원이 모여야만
 								다함께 진행됩니다 </font>
 						</p>
 
 						<div class="sidebar-item tag-cloud">
 							<h3>진행률</h3>
-							<div class="progress">
-								<div class="progress-bar progress-bar-striped active"
-									role="progressbar" aria-valuenow="40" aria-valuemin="0"
-									aria-valuemax="100" style="width: 120%">120%</div>
-							</div>
+							<c:choose>
+												<c:when test="${dream.statVO.totalMoney!=0}">
+													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
+														<div class="progress-bar progress-bar-striped active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 100%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
+														<div class="progress-bar progress-bar-striped active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
+														<div class="progress-bar progress-bar-striped active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 30%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														</div>
+													</c:if>
+												</c:when>
+												<c:otherwise>
+													<div class="progress-bar progress-bar-warning active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 100%">0%</div>
+													</div>
+												</c:otherwise>
+												</c:choose>
 						</div>
 						<div class="sidebar-item popular">
 							<h3>Latest Photos</h3>
