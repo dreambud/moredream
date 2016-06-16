@@ -98,7 +98,8 @@ public class DreamController extends MultiActionController {
 		RewardVO defaultReward = new RewardVO(0, pvo, "보상없이 후원하겠습니다.", 0, 50000);
 		rewardList.add(defaultReward);
 		for (int i = 0; i < rewardInfoArr.length; i++) {
-			if((rewardInfoArr.length==1)&&(Integer.parseInt(rewardGuideArr[i])==0)){
+			if ((rewardInfoArr.length == 1)
+					&& (Integer.parseInt(rewardGuideArr[i]) == 0)) {
 				break;
 			}
 			RewardVO rpvo = new RewardVO();
@@ -109,7 +110,7 @@ public class DreamController extends MultiActionController {
 			rpvo.setStock(Integer.parseInt(stockArr[i]));
 			rewardList.add(rpvo);
 		}
-		
+
 		for (RewardVO rvo : rewardList) {
 			dreamService.registerReward(rvo);
 		}
@@ -219,66 +220,89 @@ public class DreamController extends MultiActionController {
 		System.out.println("후원자 :: " + memberList);
 		request.setAttribute("memberList", memberList);
 
-		
 		// 댓글 작성 160615
-				// 후원자 여부 체크
+		// 후원자 여부 체크
 
-				MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
-																			// 가져옴
+		MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
+																	// 가져옴
 
-				if (member != null) { // 로그인 상태
-					System.out.println("MVO : " + member.getMemberId());
+		if (member != null) { // 로그인 상태
+			System.out.println("MVO : " + member.getMemberId());
 
-					boolean is_dreamMaker;
-					for (MemberVO vo : memberList) {
+			boolean is_dreamMaker;
+			for (MemberVO vo : memberList) {
 
-						System.out.println("vo.memberId() : " + vo.getMemberId());
-						if (member.getMemberId() == vo.getMemberId()) {
+				System.out.println("vo.memberId() : " + vo.getMemberId());
+				if (member.getMemberId() == vo.getMemberId()) {
 
-							is_dreamMaker = true;// 후원자 맞음
-							request.setAttribute("is_dreamMaker", is_dreamMaker);// 후원자
-																					// 여부
-																					// 플래그
-																					// 바인딩
-							break;
-						} else {
-							is_dreamMaker = false;// 후원자가 아님
-						}
-						System.out.println(is_dreamMaker);
-					}
+					is_dreamMaker = true;// 후원자 맞음
+					request.setAttribute("is_dreamMaker", is_dreamMaker);// 후원자
+																			// 여부
+																			// 플래그
+																			// 바인딩
+					break;
+				} else {
+					is_dreamMaker = false;// 후원자가 아님
 				}
-				
+				System.out.println(is_dreamMaker);
+			}
+		}
+
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
-	
-	//추가160615
-		// 응원하기 클릭 후 선택할 보상 리스트 가져오기
-		public ModelAndView getRewardByDreamId(HttpServletRequest request, HttpServletResponse response)
-				throws Exception{
-			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-			System.out.println("getRewardByDreamId ::"+dreamId);
-			List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
-			
-			return new ModelAndView("payment", "rewardList", rewardList);
-		}
-		
 
-		// 결제하기
-		public ModelAndView payment(HttpServletRequest request, HttpServletResponse response, 
-				HttpSession session)
-				throws Exception{
-			
-			String[] rId  = request.getParameter("rewardId").split("_");
-			int rewardId = Integer.parseInt(rId[0]);
-			int money = Integer.parseInt(request.getParameter("money"));
-			RewardVO rvo = new RewardVO();
-			rvo.setRewardId(rewardId);
-			session.getAttribute("mvo");
-			PaymentVO ppvo = new PaymentVO(0, rvo, ((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y", money);
-			
-			dreamService.payment(ppvo);
-			
-			
-			return new ModelAndView("WEB-INF/result/payment_result");
-		}
+	// 추가160615
+	// 응원하기 클릭 후 선택할 보상 리스트 가져오기
+	public ModelAndView getRewardByDreamId(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		System.out.println("getRewardByDreamId ::" + dreamId);
+		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
+
+		return new ModelAndView("payment", "rewardList", rewardList);
+	}
+
+	// 결제하기
+	public ModelAndView payment(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+
+		String[] rId = request.getParameter("rewardId").split("_");
+		int rewardId = Integer.parseInt(rId[0]);
+		int money = Integer.parseInt(request.getParameter("money"));
+		RewardVO rvo = new RewardVO();
+		rvo.setRewardId(rewardId);
+		session.getAttribute("mvo");
+		PaymentVO ppvo = new PaymentVO(0, rvo,
+				((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y",
+				money);
+
+		dreamService.payment(ppvo);
+
+		return new ModelAndView("WEB-INF/result/payment_result");
+	}
+
+	// 160616
+	// /댓글 작성 :: writeComment
+
+	public ModelAndView writeComment(HttpServletRequest request,
+			HttpServletResponse response, HttpSession session) throws Exception {
+
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		String content = request.getParameter("content");
+		System.out.println("댓글 작성 dreamId : " + dreamId);
+		System.out.println("컨텐츠 작성 : " + content);
+
+		DreamVO dreamVO = new DreamVO();
+		dreamVO.setDreamId(dreamId);// dreamVO.dreamId
+
+		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");// memberVO.memberId
+
+		ReplyVO replyVO = new ReplyVO(0, dreamVO, memberVO, content, null);
+
+		dreamService.writeComment(replyVO);// 댓글 작성
+
+		return new ModelAndView(
+				"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="
+						+ dreamId);
+	}
 }

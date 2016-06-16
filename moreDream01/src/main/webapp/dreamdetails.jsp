@@ -174,7 +174,7 @@
 												<div align="center">
 													<form action="dream.do">
 														<input type="hidden" name="command"
-															value="writeComment">
+															value="writeReply">
 														<input type="hidden" name="dreamId"
 															value="${dreamVO.dreamId }">
 														<c:choose>
