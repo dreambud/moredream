@@ -45,32 +45,43 @@
 	<jsp:include page="./header.jsp" />
 	<!--/#header-->
 
-	<section id="page-breadcrumb">
-		<div class="vertical-center sun">
-			<div class="container">
+	<section id="shortcodes">
+		<div class="container">
+			<div id="feature-container">
 				<div class="row">
-					<div class="action">
-						<div class="col-sm-12">
-							<div class="container-fluid bg-1 text-center">
-								<c:choose>
-									<c:when
-										test="${sessionScope.mvo.member_newFilename!=null&&sessionScope.mvo.member_newFilename!='-'}">
-										<img
-											src="./upload/member/${sessionScope.mvo.member_newFilename}"
-											class="img-circle">
-										<c:if test="${sessionScope.mvo.name!='-'}">
-											<h3>${sessionScope.mvo.name}</h3>
-										</c:if>
-									</c:when>
-									<c:otherwise>
-										<img src="./upload/member/member_df.jpg" class="img-circle">
-										<c:if test="${sessionScope.mvo.name!='-'}">
-											<h3>${sessionScope.mvo.name}</h3>
-										</c:if>
-									</c:otherwise>
-								</c:choose>
-							</div>
+					<div class="col-md-12">
+						<h2 class="page-header">내 꿈 목록</h2>
+						<div align="center" style="text-align: center;">
+							<table class="table table-striped table-bordered table-hover">
 
+								<caption></caption>
+
+								<thead>
+									<tr>
+										<th style="text-align: center;">#</th>
+										<th style="text-align: center;" colspan='2'>꿈 제목</th>
+										<th style="text-align: center;">마 감 일</th>
+										<th style="text-align: center;">응원현황</th>
+										<th style="text-align: center;">결제상태</th>
+										<th style="text-align: center;">비    고</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="tdAlign">1</td>
+										<td><img alt=""
+											src="./upload/dream/1465541268977_시연용 파일.jpg" width="50px"
+											height="50px"></td>
+										<td><a href="#">꿈 제목</a></td>
+										<td>마감일</td>
+										<td>응원 금액</td>
+										<td><button type="button" class="btn btn-xs btn-success">결제완료</button>
+											<button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
+										<td>-</td>
+									</tr>
+
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
