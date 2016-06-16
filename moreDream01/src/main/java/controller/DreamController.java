@@ -135,7 +135,7 @@ public class DreamController extends MultiActionController {
 	 * return new ModelAndView("index"); }
 	 */
 
-	// 꿈 목록
+	// 꿈 목록 (160616 내용수정)
 	public ModelAndView getAllListDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String num = request.getParameter("filter");
@@ -143,6 +143,10 @@ public class DreamController extends MultiActionController {
 			num = "1";
 		}
 		List<DreamVO> dreamList = dreamService.getListDream(num);
+		List<DreamVO> recentProjects = dreamService.getListDream("1");
+		request.setAttribute("recentProjects", recentProjects);
+		List<DreamVO> popularProjects = dreamService.getListDream("3");
+		request.setAttribute("popularProjects", popularProjects);
 		System.out.println(dreamList);
 		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}

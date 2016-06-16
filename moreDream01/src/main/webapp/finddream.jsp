@@ -176,71 +176,36 @@
 						<div class="sidebar-item categories">
 							<h3>Project Categories</h3>
 							<ul class="nav navbar-stacked">
-								<li><a href="#">Branded<span class="pull-right">(1)</span></a></li>
-								<li class="active"><a href="#">Design<span
-										class="pull-right">(8)</span></a></li>
-								<li><a href="#">Folio<span class="pull-right">(4)</span></a></li>
-								<li><a href="#">Logos<span class="pull-right">(9)</span></a></li>
-								<li><a href="#">Mobile<span class="pull-right">(3)</span></a></li>
-								<li><a href="#">Mockup<span class="pull-right">(4)</span></a></li>
-								<li><a href="#">Php<span class="pull-right">(2)</span></a></li>
-								<li><a href="#">Wordpress<span class="pull-right">(8)</span></a></li>
-							</ul>
+								<li class="active"><a href="#">Total<span class="pull-right">(1)</span></a></li>
+								<li><a href="#">Movie<span class="pull-right">(8)</span></a></li>
+								<li><a href="#">Publish<span class="pull-right">(4)</span></a></li>
+								<li><a href="#">Music<span class="pull-right">(9)</span></a></li>
+								</ul>
 						</div>
 						<div class="sidebar-item  recent">
 							<h3>Recent Projects</h3>
+							<c:forEach items="${requestScope.recentProjects}" var="rp" end="2">
 							<div class="media">
 								<div class="pull-left">
-									<a href="#"><img src="images/portfolio/project1.jpg" alt=""></a>
+									<a href="#"><img src="./upload/dream/${rp.dream_newFilename}" style="width: 52px; height: 52px" alt=""></a>
 								</div>
 								<div class="media-body">
 									<h4>
-										<a href="#">Lorem ipsum dolor sit amet consectetur
-											adipisicing elit,</a>
+										<a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${rp.dreamId}">
+										<font size="3">${rp.titleDream}</font></a>
 									</h4>
-									<p>posted on 07 March 2014</p>
+									<p>Posted. ${rp.end_year}년 ${rp.end_month}월 ${rp.end_day}일</p>
 								</div>
 							</div>
-							<div class="media">
-								<div class="pull-left">
-									<a href="#"><img src="images/portfolio/project2.jpg" alt=""></a>
-								</div>
-								<div class="media-body">
-									<h4>
-										<a href="#">Lorem ipsum dolor sit amet consectetur
-											adipisicing elit,</a>
-									</h4>
-									<p>posted on 07 March 2014</p>
-								</div>
-							</div>
-							<div class="media">
-								<div class="pull-left">
-									<a href="#"><img src="images/portfolio/project3.jpg" alt=""></a>
-								</div>
-								<div class="media-body">
-									<h4>
-										<a href="#">Lorem ipsum dolor sit amet consectetur
-											adipisicing elit,</a>
-									</h4>
-									<p>posted on 07 March 2014</p>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<div class="sidebar-item popular">
 							<h3>Popular Projects</h3>
 							<ul class="gallery">
-								<li><a href="#"><img
-										src="images/portfolio/popular1.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="images/portfolio/popular2.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="images/portfolio/popular3.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="images/portfolio/popular4.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="images/portfolio/popular5.jpg" alt=""></a></li>
-								<li><a href="#"><img
-										src="images/portfolio/popular1.jpg" alt=""></a></li>
+							<c:forEach items="${requestScope.popularProjects}" var="pp" end="5">
+								<li><a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${pp.dreamId}">
+								<img src="./upload/dream/${pp.dream_newFilename}" style="width: 66px; height: 66px" alt=""></a></li>
+							</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -258,6 +223,7 @@
 			location.href = "dream.do?command=getAllListDream&&filter="
 					+ filter;
 		}
+		
 	</script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
