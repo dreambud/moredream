@@ -42,6 +42,20 @@ body, table, div, p {font-family:'Nanum Gothic';}
 		if(f)
 			location.href="./member.do?command=logout"; //Controller에서 기능으로 연결..
 	}
+	
+	function loginCheck(){
+		var flag = ${sessionScope.mvo==null};
+		if(flag){
+			alert('로그인이 필요한 페이지 입니다.');
+			location.replace('login.jsp?url='+location.href);
+		}
+	}
+	function isLogin(){
+		var flag = ${sessionScope.mvo!=null};
+		if(flag){
+			location.replace('index.jsp');
+		}
+	}
 </script>
 
 </head>

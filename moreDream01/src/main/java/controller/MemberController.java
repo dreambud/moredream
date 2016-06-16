@@ -58,13 +58,16 @@ public class MemberController extends MultiActionController {
 		MemberVO rmvo=memberService.login(pmvo);
 		System.out.println("pmvo ::"+pmvo); //확인...
 		System.out.println("rmvo ::"+rmvo); //확인
-		
+		String url = request.getParameter("url");
+		if(url==null||url==""){
+			url = "index.jsp";
+		}
 		if(rmvo != null){
 			//중요!!
 			session.setAttribute("mvo", rmvo);
 			path = "WEB-INF/result/login_ok";
 		}
-		return new ModelAndView(path); //이미 위에서 바인딩은 됬다.
+		return new ModelAndView(path,"url",url); //이미 위에서 바인딩은 됬다.
 	}
 	
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response

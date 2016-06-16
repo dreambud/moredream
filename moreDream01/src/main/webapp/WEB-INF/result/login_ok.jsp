@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center><h2>로그인 결과 페이지 입니다...</h2></center><p>
 <c:choose>
 	<c:when test="${sessionScope.mvo==null }">
 		<script type="text/javascript">
@@ -19,7 +18,7 @@
 	<c:otherwise>
 		<script type="text/javascript">
 			alert("${sessionScope.mvo.email} 님 로그인 성공하셨어여!!");
-			location.href="index.jsp";
+			location.href="${requestScope.url}";
 		</script>
 	</c:otherwise>
 </c:choose>

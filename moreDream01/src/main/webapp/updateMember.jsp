@@ -99,7 +99,7 @@
 </head>
 <!--/head-->
 
-<body>
+<body onload="loginCheck()">
 
 	<jsp:include page="./header.jsp" />
 

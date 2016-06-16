@@ -97,7 +97,7 @@
 </script>
 </head>
 
-<body>
+<body onload="isLogin()">
 
 	<jsp:include page="./header.jsp" />
 	

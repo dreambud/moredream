@@ -41,7 +41,7 @@
 </head>
 <!--/head-->
 
-<body>
+<body onload="isLogin()">
 
 	<jsp:include page="./header.jsp" />
 
@@ -85,7 +85,7 @@
 			    	    		 계정이 없으신가요? <a href="registerMember.jsp"><font color="blue">새 계정 만들기</font><p></a>	
 			    	    	</label>
 			    	    </div>
-			    	    
+			    	    <input type="hidden" name="url" value="${param.url}">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인">
 			    	</fieldset>
 			      	</form>

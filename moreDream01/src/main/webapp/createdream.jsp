@@ -178,10 +178,11 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/ui-darkness/jquery-ui.css">
 </head>
 <!--/head-->
 
-<body>
+<body onload="loginCheck()">
 
 	<jsp:include page="./header.jsp" />
 
