@@ -153,16 +153,21 @@ public class DreamController extends MultiActionController {
 		request.setAttribute("totalCnt", dreamList.size());
 		
 		String category = request.getParameter("category");
-		System.out.println(category);
 		if(category!=null&&!(category.equals(""))&&!(category.equals("none"))){
 			System.out.println("getListFilterByCategory()");
 			dreamList = dreamService.getListFilterByCategory(dreamList,category.trim());
-			
 		}
 		//160617 메소드로 대체
 		this.categoryCountBinding(request);
 		request.setAttribute("category", category);
 		request.setAttribute("filter", filter);
+		String keyword = request.getParameter("keyword");
+		if((keyword!=null)&&!(keyword.equals(""))){
+			dreamList = dreamService.selectByKeyWord(keyword);
+			dreamService.listDetailInsert(dreamList);
+			request.setAttribute("keyword", keyword);
+		}
+		System.out.println(dreamList);
 		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
 
@@ -358,15 +363,6 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("memberpage");
 	}
 
-	//160617 키워드 검색 추가
-	public ModelAndView selectByKeyWord(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		String keyword = request.getParameter("keyword");
-		request.setAttribute("keyword", keyword);
-		List<DreamVO> dreamList =  dreamService.selectByKeyWord(keyword);
-		this.categoryCountBinding(request);
-		return new ModelAndView("./finddream", "dreamList", dreamList);
-	}
 	
 	//160617 키워드별 카운트 바인딩 하는 메소드
 	public void categoryCountBinding(HttpServletRequest request) throws IOException{

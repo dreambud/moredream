@@ -56,6 +56,15 @@ body, table, div, p {font-family:'Nanum Gothic';}
 			location.replace('index.jsp');
 		}
 	}
+	function search(ev){
+		if (window.event) // IE코드
+	        var code = window.event.keyCode;
+	    else // 타브라우저
+	        var code = ev.which;
+		if(code=='13')
+			location.replace('./dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
+		
+	}
 </script>
 
 </head>
@@ -131,15 +140,13 @@ body, table, div, p {font-family:'Nanum Gothic';}
 					</ul>
 				</div>
 				<div class="search">
-					<form role="form">
 						<i class="fa fa-search"></i>
 						<div class="field-toggle">
 							<div class="inner-addon left-addon">
 								<i class="glyphicon glyphicon-search"></i>
-								<input type="text" class="form-control">
+								<input type="text" class="form-control" id="keyword" onkeydown="search()">
 							</div>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>

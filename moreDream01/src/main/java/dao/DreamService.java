@@ -89,6 +89,9 @@ public interface DreamService {
 	public List<DreamVO> getListDream(String num) throws IOException;
 	
 	//160616 추가(카테고리 갯수 가져오기)
-		public int getCategoryCountByCategory(String category) throws IOException;
-		public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
+	public int getCategoryCountByCategory(String category) throws IOException;
+	public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
+
+	//170617 추가(검색시 List 가공처리 메소드)
+	public void listDetailInsert(List<DreamVO> rlist) throws IOException;
 }

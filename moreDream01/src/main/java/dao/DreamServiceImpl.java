@@ -212,10 +212,15 @@ public class DreamServiceImpl implements DreamService {
 			}
 		}
 		
+		this.listDetailInsert(rlist);
+		
+		return rlist;
+	}
+	
+	//160617 메소드 추가
+	public void listDetailInsert(List<DreamVO> rlist) throws IOException{
 		//현재시간 구하기
 		long nowTime = convert(dreamDao.showNowDate());
-		
-		// 추가 :: 160615 꿈 리스트에 후원자수,후원금액,남은기간를 담는 VO 추가
 		for(DreamVO dvo : rlist){
 			int dreamId = dvo.getDreamId();
 			StatVO statVO = new StatVO();
@@ -227,9 +232,8 @@ public class DreamServiceImpl implements DreamService {
 			statVO.setEndDay(endDay);
 			dvo.setStatVO(statVO);
 		}
-		return rlist;
 	}
-
+	
 	@Override
 	public List<PaymentVO> getPaymentHistoryByMemberId(int memberId)
 			throws IOException {

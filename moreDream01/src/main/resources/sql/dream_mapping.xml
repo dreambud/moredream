@@ -81,13 +81,9 @@
 		WHERE dreamId = #{dreamId}
 	</select>
 
-	<!-- 키워드 검색 -->
-	<select id="selectByKeyWord" parameterType="string" resultMap="dreamListRM">
-		select
-		dreamId, memberId, dream_newFilename,
-		titleDream, targetFund,
-		startDate, endDate
-		from dream
+	<!-- 키워드 검색 160617 수정-->
+	<select id="selectByKeyWord" parameterType="string" resultMap="dreamRM">
+		<include refid="select_dreams" />
 		where titleDream like '%'||#{value}||'%'
 		or detailDream like
 		'%'||#{value}||'%'
@@ -443,8 +439,6 @@
 		SELECT * FROM dream WHERE memberId = #{value}
 	</select>
 	<!-- ///////////////////////////////////////////////////////////////////////////// -->
-	
-	
 </mapper>	
 
  
