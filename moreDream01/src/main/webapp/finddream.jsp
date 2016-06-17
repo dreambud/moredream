@@ -229,7 +229,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('none')">Total<span class="pull-right">(${totalCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('none')">Total<span class="pull-right"><span class="badge">${totalCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${(category=='디자인')}">
 									<li class="active">
@@ -237,7 +237,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('디자인')">디자인<span class="pull-right">(${designCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('디자인')">디자인<span class="pull-right"><span class="badge">${designCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${(category=='패션')}">
 									<li class="active">
@@ -245,7 +245,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('패션')">패션<span class="pull-right">(${fashionCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('패션')">패션<span class="pull-right"><span class="badge">${fashionCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${(category=='출판')}">
 									<li class="active">
@@ -253,7 +253,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('출판')">출판<span class="pull-right">(${publishCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('출판')">출판<span class="pull-right"><span class="badge">${publishCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${category=='요리'}">
 									<li class="active">
@@ -261,7 +261,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('요리')">요리<span class="pull-right">(${cookingCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('요리')">요리<span class="pull-right"><span class="badge">${cookingCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${category=='음악'}">
 									<li class="active">
@@ -269,7 +269,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('음악')">음악<span class="pull-right">(${musicCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('음악')">음악<span class="pull-right"><span class="badge">${musicCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${category=='공연'}">
 									<li class="active">
@@ -277,7 +277,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('공연')">공연<span class="pull-right">(${concertCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('공연')">공연<span class="pull-right"><span class="badge">${concertCnt}</span></span></a></li>
 								<c:choose>
 									<c:when test="${category=='영화'}">
 									<li class="active">
@@ -285,7 +285,7 @@
 									<c:otherwise>
 									<li>
 									</c:otherwise>
-								</c:choose><a href="javascript:searchFilter('영화')">영화<span class="pull-right">(${movieCnt})</span></a></li>
+								</c:choose><a href="javascript:searchFilter('영화')">영화<span class="pull-right"><span class="badge">${movieCnt}</span></span></a></li>
 								</ul>
 						</div>
 						<div class="sidebar-item  recent">
