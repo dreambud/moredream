@@ -444,37 +444,7 @@
 	</select>
 	<!-- ///////////////////////////////////////////////////////////////////////////// -->
 	
-	<!-- 160617 -->
-	<!-- ////////////////////////////////////////////////////////////////////////// -->
-	<!-- memberId로 moredream 현황 보기에 필요한 모든 정보를 가져옴니다. -->
-	<resultMap type="myDream" id="myDreamRM">
-		<result property="paymentVO.money" column="money"/>
-		<result property="rewardVO.rewardId" column="rewardId"/>
-		<result property="dreamVO.dreamId" column="dreamId"/>
-		<result property="dreamVO.titleDream" column="titleDream"/>
-		<result property="dreamVO.dream_newFilename" column="dream_newFilename"/>
-		<result property="dreamVO.endDate" column="endDate"/>
-		<result property="rewardVO.rewardInfo" column="rewardInfo"/>
-	</resultMap>
-	<select id="getAllMySupportProject" parameterType="int"
-		resultMap="myDreamRM">
-		SELECT p.money AS money, r.rewardId AS rewardId,
-		d.dreamId AS dreamId, d.titleDream AS titleDream,
-		d.dream_newFilename
-		AS dream_newFilename, TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
-		r.rewardinfo AS rewardInfo
-		FROM payment p, dream d, reward r
-		WHERE
-		p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId =
-		r.dreamId
-	</select>
-
-	<!-- memberId로 Dream정보를 가져옴 -->
-	<select id="getAllMyDreamByMemberId" parameterType="int"
-		resultType="dream">
-		SELECT * FROM dream WHERE memberId = #{value}
-	</select>
-	<!-- ///////////////////////////////////////////////////////////////////////////// -->
+	
 </mapper>	
 
  
