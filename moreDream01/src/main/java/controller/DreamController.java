@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.DreamVO;
 import model.MemberVO;
+import model.MyDreamVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
@@ -43,7 +44,7 @@ public class DreamController extends MultiActionController {
 	// 160615(한천)
 	public ModelAndView requestDream(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session, DreamVO pvo)
-			throws Exception {
+					throws Exception {
 		System.out.println("requestDream GO!!");
 		// DreamVO pvo = new DreamVO(0, null, request.getParameter("category"),
 		// " ", request.getParameter("titleDream"),
@@ -149,13 +150,13 @@ public class DreamController extends MultiActionController {
 		request.setAttribute("popularProjects", popularProjects);
 		System.out.println(dreamList);
 		request.setAttribute("totalCnt", dreamList.size());
-		
+
 		String category = request.getParameter("category");
 		System.out.println(category);
 		if(category!=null&&!(category.equals(""))&&!(category.equals("none"))){
 			System.out.println("getListFilterByCategory()");
 			dreamList = dreamService.getListFilterByCategory(dreamList,category.trim());
-			
+
 		}
 		request.setAttribute("designCnt", dreamService.getCategoryCountByCategory("디자인"));
 		request.setAttribute("fashionCnt", dreamService.getCategoryCountByCategory("패션"));
@@ -165,7 +166,7 @@ public class DreamController extends MultiActionController {
 		request.setAttribute("movieCnt", dreamService.getCategoryCountByCategory("영화"));
 		request.setAttribute("musicCnt", dreamService.getCategoryCountByCategory("음악"));
 		request.setAttribute("category", category);
-		
+
 		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
 
@@ -246,7 +247,7 @@ public class DreamController extends MultiActionController {
 		// 후원자 여부 체크
 
 		MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
-																	// 가져옴
+		// 가져옴
 
 		if (member != null) { // 로그인 상태
 			System.out.println("MVO : " + member.getMemberId());
@@ -259,9 +260,9 @@ public class DreamController extends MultiActionController {
 
 					is_dreamMaker = true;// 후원자 맞음
 					request.setAttribute("is_dreamMaker", is_dreamMaker);// 후원자
-																			// 여부
-																			// 플래그
-																			// 바인딩
+					// 여부
+					// 플래그
+					// 바인딩
 					break;
 				} else {
 					is_dreamMaker = false;// 후원자가 아님
@@ -327,17 +328,37 @@ public class DreamController extends MultiActionController {
 				"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="
 						+ dreamId);
 	}
-	
+
 	// index 최근 꿈 배너
-	
+
 	public ModelAndView recentDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-	
+
 		String num = "1";
-	
+
 		List<DreamVO> dreamList = dreamService.getListDream(num);
 		System.out.println(dreamList);
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
-	
+
+	///////////////////////// 160617 후원한 && 받은 내역 //////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////
+	public ModelAndView myMoreDream(HttpServletRequest request, HttpServletResponse response)
+			throws Exception{
+
+		//////////////////////// 후원한 부분 ///////////////////////////////////////////
+		int memberId = Integer.parseInt(request.getParameter("memberId"));
+		System.out.println(memberId);
+		List<MyDreamVO> myDreamList = dreamService.getAllMySupportProject(memberId);
+		System.out.println(myDreamList);
+		request.setAttribute("myDreamList", myDreamList);
+
+		//////////////////////////////////후원 받은/////////////////////////////////////
+		List<DreamVO> dreamList = dreamService.getAllMyDreamByMemberId(memberId);
+		System.out.println(dreamList);
+		request.setAttribute("dreamList", dreamList);
+
+		return new ModelAndView("memberpage");
+	}
+
 }

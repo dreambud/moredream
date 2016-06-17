@@ -8,85 +8,106 @@ import org.apache.ibatis.session.SqlSession;
 
 import model.DreamVO;
 import model.MemberVO;
+import model.MyDreamVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
 import model.UpdateDreamVO;
 
 public class DreamDaoImpl implements DreamDao {
-	
+
 	private SqlSession sqlSession;
-	
+
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
-	
+
+	//160617
+	//추가 :: getAllMyDreamByMemberId
+	//memberId로 dream 정보 가져오기
+
+	@Override
+	public List<DreamVO> getAllMyDreamByMemberId(int memberId)
+			throws IOException {
+
+		return sqlSession.selectList("dreamSql.getAllMyDreamByMemberId", memberId);
+	}
+
+	// 추가 ::getAllMySupportProject
+	//memberId로 moredream 현황 보기
+	@Override
+	public List<MyDreamVO> getAllMySupportProject(int memberId)
+			throws IOException {
+
+		return sqlSession.selectList("dreamSql.getAllMySupportProject", memberId);
+	}
+
 	//160616
-		// 꿈에 대한 댓글 카운트
-		@Override
-		public int getCountReplyByDreamId(int dreamId) throws IOException {
-			int replyCount = sqlSession.selectOne("dreamSql.getCountReplyByDreamId", dreamId);
-			return replyCount;
-		}
-		
-		//꿈에 대한 업데이트 카운트
-		@Override
-		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
-			int updateDreamCount = sqlSession.selectOne("dreamSql.getCountUpdateDreamByDreamId", dreamId);
-			return updateDreamCount;
-		}
-		
-		
-		// 재고 업데이트
-		@Override
-		public int updatePlusStockByRewardId(int rewardId) throws IOException {
-			int result = sqlSession.update("dreamSql.updatePlusStockByRewardId", rewardId);
-			return result;
-		}
-		@Override
-		public int updateMynusStockByRewardId(int rewardId) throws IOException {
-			int result = sqlSession.update("dreamSql.updateMynusStockByRewardId", rewardId);
-			return result;
-		}
-	
-	
+	// 꿈에 대한 댓글 카운트
+	@Override
+	public int getCountReplyByDreamId(int dreamId) throws IOException {
+		int replyCount = sqlSession.selectOne("dreamSql.getCountReplyByDreamId", dreamId);
+		return replyCount;
+	}
+
+	//꿈에 대한 업데이트 카운트
+	@Override
+	public int getCountUpdateDreamByDreamId(int dreamId) throws IOException {
+		int updateDreamCount = sqlSession.selectOne("dreamSql.getCountUpdateDreamByDreamId", dreamId);
+		return updateDreamCount;
+	}
+
+
+	// 재고 업데이트
+	@Override
+	public int updatePlusStockByRewardId(int rewardId) throws IOException {
+		int result = sqlSession.update("dreamSql.updatePlusStockByRewardId", rewardId);
+		return result;
+	}
+	@Override
+	public int updateMynusStockByRewardId(int rewardId) throws IOException {
+		int result = sqlSession.update("dreamSql.updateMynusStockByRewardId", rewardId);
+		return result;
+	}
+
+
 	// 추가 160614//////////////////////////
 	//수정160615 후원자 가져오기
-		@Override
-		public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException {
-			List<MemberVO> list = sqlSession.selectList("dreamSql.getPaymentMemberByDreamId", dreamId);
-			
-			return list;
-		}
-	
-		@Override
-		public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
-				throws IOException {
-			
-			List<UpdateDreamVO> list = sqlSession.selectList("dreamSql.updateDreamFindByDreamId",dreamId);
-			return list;
-		}
-		@Override
-		public MemberVO getMemberByDream(int dreamId) throws IOException {
-			MemberVO vo = sqlSession.selectOne("dreamSql.getMemberByDream", dreamId);
-			return vo;
-		}
-		@Override
-		public List<ReplyVO> readComment(int dreamId) throws IOException {
-			List<ReplyVO> list = sqlSession.selectList("dreamSql.readComment", dreamId);
-			return list;
-		}
-		////////////////////////////////////////////////////////////////////////////////////////////
-	
+	@Override
+	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException {
+		List<MemberVO> list = sqlSession.selectList("dreamSql.getPaymentMemberByDreamId", dreamId);
+
+		return list;
+	}
+
+	@Override
+	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId)
+			throws IOException {
+
+		List<UpdateDreamVO> list = sqlSession.selectList("dreamSql.updateDreamFindByDreamId",dreamId);
+		return list;
+	}
+	@Override
+	public MemberVO getMemberByDream(int dreamId) throws IOException {
+		MemberVO vo = sqlSession.selectOne("dreamSql.getMemberByDream", dreamId);
+		return vo;
+	}
+	@Override
+	public List<ReplyVO> readComment(int dreamId) throws IOException {
+		List<ReplyVO> list = sqlSession.selectList("dreamSql.readComment", dreamId);
+		return list;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////
+
 	/////추가
 	@Override
 	public List<DreamVO> getAllListDreamForAdmin() throws IOException {
 		List<DreamVO> list = sqlSession.selectList("dreamSql.getAllListDreamForAdmin");
 		return list;
 	}
-	
-	
-	
+
+
+
 	@Override
 	//꿈신청
 	public int requestDream(DreamVO pvo) throws IOException {
@@ -196,8 +217,8 @@ public class DreamDaoImpl implements DreamDao {
 	@Override
 	//내꿈 신청 현황 보기
 	public List<DreamVO> requestStateDream(int memberId) throws IOException {
-	   List<DreamVO> list = sqlSession.selectList("dreamSql.requestStateDream", memberId);
-	   return list;
+		List<DreamVO> list = sqlSession.selectList("dreamSql.requestStateDream", memberId);
+		return list;
 	}
 
 	@Override
@@ -206,7 +227,7 @@ public class DreamDaoImpl implements DreamDao {
 		int result = sqlSession.update("dreamSql.updateDream", pvo);
 		return result;
 	}
-	
+
 	@Override
 	public int writeComment(ReplyVO pvo) throws IOException {
 		int result = sqlSession.insert("dreamSql.writeComment", pvo);
@@ -247,7 +268,7 @@ public class DreamDaoImpl implements DreamDao {
 		List<DreamVO> list = sqlSession.selectList("dreamSql.getAllListDreamOrderByEndDate");
 		return list;
 	}
-	
+
 	//추가 160615 
 	//꿈 후원자 수 보기
 	@Override
@@ -255,6 +276,6 @@ public class DreamDaoImpl implements DreamDao {
 		int count = sqlSession.selectOne("dreamSql.getCountPaymentByDreamId",dreamId);
 		return count;
 	}
-	
+
 
 }

@@ -6,32 +6,42 @@ import java.util.Map;
 
 import model.DreamVO;
 import model.MemberVO;
+import model.MyDreamVO;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
 import model.UpdateDreamVO;
 
 public interface DreamDao {
-	
-	//160616
-		// 해당 꿈에 대한 댓글 갯수 카운트
-		public int getCountReplyByDreamId(int dreamId) throws IOException;
-		
-		// 해당 꿈에 대한 업데이트 갯수 카운트
-		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
-		
-		// 보상 재고 업데이트
-		public int updatePlusStockByRewardId(int rewardId) throws IOException;
-		public int updateMynusStockByRewardId(int rewardId) throws IOException;
 
-	
-	
-	
+	//160617
+	//추가 :: getAllMyDreamByMemberId
+	//memberId로 dream 정보 가져오기
+	public List<DreamVO> getAllMyDreamByMemberId(int memberId) throws IOException;
+
+	// 추가 ::getAllMySupportProject
+	//memberId로 moredream 현황 보기
+	public List<MyDreamVO> getAllMySupportProject(int memberId) throws IOException;
+
+	//160616
+	// 해당 꿈에 대한 댓글 갯수 카운트
+	public int getCountReplyByDreamId(int dreamId) throws IOException;
+
+	// 해당 꿈에 대한 업데이트 갯수 카운트
+	public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
+
+	// 보상 재고 업데이트
+	public int updatePlusStockByRewardId(int rewardId) throws IOException;
+	public int updateMynusStockByRewardId(int rewardId) throws IOException;
+
+
+
+
 	//160614
 	//추가 :: getPaymentMemberByDreamId
 	//해당 꿈에 대한 결제 내역의 rewardId, memberId 가져오기(후원자/댓글 적용시 사용)
 	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException;
-	
+
 	//추가 :: updateDreamFindByDreamId 업데이트 정보 찾기
 	public List<UpdateDreamVO> updateDreamFindByDreamId(int dreamId) throws IOException;
 
@@ -54,8 +64,8 @@ public interface DreamDao {
 
 	//160615 추가 :getCountPaymentByDreamId
 	public int getCountPaymentByDreamId(int dreamId) throws IOException;//꿈 후원자수 보기
-	
-	
+
+
 	//////////////////////////SELECT//////////////////////////
 	public List<DreamVO> selectByCategory(String category) throws IOException;//카테고리별 조회
 	public DreamVO getDetailDreamByDreamId(int dreamId) throws IOException;//꿈 상세보기
