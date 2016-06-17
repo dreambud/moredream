@@ -106,7 +106,7 @@ body, table, div, p {font-family:'Nanum Gothic';}
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="./dream.do?command=getAllListDream ">꿈 찾기</a></li>
-						<li><a href="createdream.jsp ">꿈 꾸기</a></li>
+						<li><a href="createdream_info.jsp ">꿈 꾸기</a></li>
 						<li><a href="# ">도움말</a></li>
 						<c:if test="${sessionScope.mvo.memberCode=='A'}">
 							<li class="dropdown"><a href="#">Admin<i
