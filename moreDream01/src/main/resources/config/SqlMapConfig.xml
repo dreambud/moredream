@@ -16,6 +16,7 @@
 		<typeAlias type="model.PaymentVO" alias="payment" />
 		<typeAlias type="model.UpdateDreamVO" alias="updateDream"/>
 		<typeAlias type="model.ReplyVO" alias="reply"/>
+		<typeAlias type="model.MyDreamVO" alias="myDream" />
 	</typeAliases>
 
 
