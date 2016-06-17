@@ -10,16 +10,8 @@
 window.onload = 
 
 function next(){
-	 if(confirm("결제가 성공하였습니다 ! 다른 꿈을 보고싶으시면 yes  내 꿈 목록으로 보시려면 no 를 눌러주세요 "))
-	 {
-	alert('네를 누르셨습니다');
-	location.href="./dream.do?command=getAllListDream";
-	 }
-	 else
-	 {
-	 alert('아니오를 누르셨습니다');
+	alert("결제가 완료되었습니다.")
 	 location.href="dream.do?command=myMoreDream&&memberId=${sessionScope.mvo.memberId}";
-	 }
 	};
 	</script> 
 
