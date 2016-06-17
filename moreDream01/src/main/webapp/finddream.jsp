@@ -70,22 +70,42 @@
 					<div class="col-sm-3">
      						
      				</div>
-						<ul class="portfolio-filter text-center">
+						<ul class="portfolio-filter text-right" style="margin: 90px 20px 30px 0px;">
 						<li>
 							<select onchange="searchFilter('${category}')" id="filter"
 								class="form-control" class="span3">
-									<option value="0">필터</option>
-									<option value="1">새로운 꿈</option>
-									<option value="2">마감 임박</option>
-									<option value="3">최다 후원</option>
-									<option value="4">최고 후원</option>
+									
+									<c:choose>
+									<c:when test="${requestScope.filter==0}"><option value="0" selected="selected"></c:when>
+									<c:otherwise>
+										<option value="0">
+									</c:otherwise>
+									</c:choose>필터</option>
+									<c:choose>
+									<c:when test="${requestScope.filter==1}"><option value="1" selected="selected"></c:when>
+									<c:otherwise>
+										<option value="1">
+									</c:otherwise>
+									</c:choose>새로운 꿈</option>
+									<c:choose>
+									<c:when test="${requestScope.filter==2}"><option value="2" selected="selected"></c:when>
+									<c:otherwise>
+										<option value="2">
+									</c:otherwise>
+									</c:choose>마감 임박</option>
+									<c:choose>
+									<c:when test="${requestScope.filter==3}"><option value="3" selected="selected"></c:when>
+									<c:otherwise>
+										<option value="3">
+									</c:otherwise>
+									</c:choose>최다 후원</option>
+									<c:choose>
+									<c:when test="${requestScope.filter==4}"><option value="4" selected="selected"></c:when>
+									<c:otherwise>
+										<option value="4">
+									</c:otherwise>
+									</c:choose>최고 후원</option>
 							</select>
-						</li>
-						<li>
-							<div class="inner-addon left-addon">
-							    <i class="glyphicon glyphicon-search"></i>
-							    <input type="text" class="form-control" />
-							</div>
 						</li>
 						</ul>
 						<!--/#dream-filter-->

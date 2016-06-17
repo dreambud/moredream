@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +45,7 @@ public class DreamController extends MultiActionController {
 	// 160615(한천)
 	public ModelAndView requestDream(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session, DreamVO pvo)
-					throws Exception {
+			throws Exception {
 		System.out.println("requestDream GO!!");
 		// DreamVO pvo = new DreamVO(0, null, request.getParameter("category"),
 		// " ", request.getParameter("titleDream"),
@@ -136,37 +137,32 @@ public class DreamController extends MultiActionController {
 	 * return new ModelAndView("index"); }
 	 */
 
-	// 꿈 목록 (160616 내용수정)
+	// 꿈 목록 (160617 내용수정)
 	public ModelAndView getAllListDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String num = request.getParameter("filter");
-		if (num == null) {
-			num = "1";
+		String filter = request.getParameter("filter");
+		if (filter == null) {
+			filter = "1";
 		}
-		List<DreamVO> dreamList = dreamService.getListDream(num);
+		List<DreamVO> dreamList = dreamService.getListDream(filter);
 		List<DreamVO> recentProjects = dreamService.getListDream("1");
 		request.setAttribute("recentProjects", recentProjects);
 		List<DreamVO> popularProjects = dreamService.getListDream("3");
 		request.setAttribute("popularProjects", popularProjects);
 		System.out.println(dreamList);
 		request.setAttribute("totalCnt", dreamList.size());
-
+		
 		String category = request.getParameter("category");
 		System.out.println(category);
 		if(category!=null&&!(category.equals(""))&&!(category.equals("none"))){
 			System.out.println("getListFilterByCategory()");
 			dreamList = dreamService.getListFilterByCategory(dreamList,category.trim());
-
+			
 		}
-		request.setAttribute("designCnt", dreamService.getCategoryCountByCategory("디자인"));
-		request.setAttribute("fashionCnt", dreamService.getCategoryCountByCategory("패션"));
-		request.setAttribute("publishCnt", dreamService.getCategoryCountByCategory("출판"));
-		request.setAttribute("cookingCnt", dreamService.getCategoryCountByCategory("요리"));
-		request.setAttribute("concertCnt", dreamService.getCategoryCountByCategory("공연"));
-		request.setAttribute("movieCnt", dreamService.getCategoryCountByCategory("영화"));
-		request.setAttribute("musicCnt", dreamService.getCategoryCountByCategory("음악"));
+		//160617 메소드로 대체
+		this.categoryCountBinding(request);
 		request.setAttribute("category", category);
-
+		request.setAttribute("filter", filter);
 		return new ModelAndView("./finddream", "dreamList", dreamList);
 	}
 
@@ -247,7 +243,7 @@ public class DreamController extends MultiActionController {
 		// 후원자 여부 체크
 
 		MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
-		// 가져옴
+																	// 가져옴
 
 		if (member != null) { // 로그인 상태
 			System.out.println("MVO : " + member.getMemberId());
@@ -260,9 +256,9 @@ public class DreamController extends MultiActionController {
 
 					is_dreamMaker = true;// 후원자 맞음
 					request.setAttribute("is_dreamMaker", is_dreamMaker);// 후원자
-					// 여부
-					// 플래그
-					// 바인딩
+																			// 여부
+																			// 플래그
+																			// 바인딩
 					break;
 				} else {
 					is_dreamMaker = false;// 후원자가 아님
@@ -328,18 +324,19 @@ public class DreamController extends MultiActionController {
 				"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="
 						+ dreamId);
 	}
-
+	
 	// index 최근 꿈 배너
-
+	
 	public ModelAndView recentDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+	
 		String num = "1";
-
+	
 		List<DreamVO> dreamList = dreamService.getListDream(num);
 		System.out.println(dreamList);
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
+	
 
 	///////////////////////// 160617 후원한 && 받은 내역 //////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////
@@ -361,4 +358,24 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("memberpage");
 	}
 
+	//160617 키워드 검색 추가
+	public ModelAndView selectByKeyWord(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String keyword = request.getParameter("keyword");
+		request.setAttribute("keyword", keyword);
+		List<DreamVO> dreamList =  dreamService.selectByKeyWord(keyword);
+		this.categoryCountBinding(request);
+		return new ModelAndView("./finddream", "dreamList", dreamList);
+	}
+	
+	//160617 키워드별 카운트 바인딩 하는 메소드
+	public void categoryCountBinding(HttpServletRequest request) throws IOException{
+		request.setAttribute("designCnt", dreamService.getCategoryCountByCategory("디자인"));
+		request.setAttribute("fashionCnt", dreamService.getCategoryCountByCategory("패션"));
+		request.setAttribute("publishCnt", dreamService.getCategoryCountByCategory("출판"));
+		request.setAttribute("cookingCnt", dreamService.getCategoryCountByCategory("요리"));
+		request.setAttribute("concertCnt", dreamService.getCategoryCountByCategory("공연"));
+		request.setAttribute("movieCnt", dreamService.getCategoryCountByCategory("영화"));
+		request.setAttribute("musicCnt", dreamService.getCategoryCountByCategory("음악"));
+	}
 }

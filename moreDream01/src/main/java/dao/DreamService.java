@@ -13,28 +13,28 @@ import model.RewardVO;
 import model.UpdateDreamVO;
 
 public interface DreamService {
-
+	
 	//160617
-	//추가 :: getAllMyDreamByMemberId
-	//memberId로 dream 정보 가져오기
-	public List<DreamVO> getAllMyDreamByMemberId(int memberId) throws IOException;
+		//추가 :: getAllMyDreamByMemberId
+		//memberId로 dream 정보 가져오기
+		public List<DreamVO> getAllMyDreamByMemberId(int memberId) throws IOException;
 
-	// 추가 ::getAllMySupportProject
-	//memberId로 moredream 현황 보기
-	public List<MyDreamVO> getAllMySupportProject(int memberId) throws IOException;
+		// 추가 ::getAllMySupportProject
+		//memberId로 moredream 현황 보기
+		public List<MyDreamVO> getAllMySupportProject(int memberId) throws IOException;
 
 	//추가 160616
-	//꿈에 대한 댓글 갯수 카운트
-	public int getCountReplyByDreamId(int dreamId) throws IOException;
-	//꿈에 대한 업데이트 갯수 카운트
-	public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
+		//꿈에 대한 댓글 갯수 카운트
+		public int getCountReplyByDreamId(int dreamId) throws IOException;
+		//꿈에 대한 업데이트 갯수 카운트
+		public int getCountUpdateDreamByDreamId(int dreamId) throws IOException;
 
-	// 보상 재고 업데이트
-	public void updatePlusStockByRewardId(int rewardId) throws IOException;
-	public void updateMynusStockByRewardId(int rewardId) throws IOException;
-
-
-
+		// 보상 재고 업데이트
+		public void updatePlusStockByRewardId(int rewardId) throws IOException;
+		public void updateMynusStockByRewardId(int rewardId) throws IOException;
+	
+	
+	
 	//수정 160615 :: 이름 오타
 	// :: getPaymentMemeberByDreamId 후원자 정보 가져오기
 	public List<MemberVO> getPaymentMemberByDreamId(int dreamId) throws IOException;
@@ -65,7 +65,7 @@ public interface DreamService {
 
 	public List<PaymentVO> getPaymentHistoryByMemberId(int memberId) throws IOException;//결제내역 가져오기
 	public List<DreamVO> cheerUpList(int memberId) throws IOException;//응원 리스트
-
+	
 	public int getCountPaymentByDreamId(int dreamId) throws IOException;//dreamId로 후원자수 확인 
 	public int getMoneyByDreamId(int dreamId) throws IOException;//dreamId로 후원금 확인 
 	public int getAllMoney() throws IOException;//후원금 전체 가져오기 :: 통계시 사용
@@ -87,8 +87,8 @@ public interface DreamService {
 
 	//꿈 리스트 가져오기(필터,전체리스트)
 	public List<DreamVO> getListDream(String num) throws IOException;
-
+	
 	//160616 추가(카테고리 갯수 가져오기)
-	public int getCategoryCountByCategory(String category) throws IOException;
-	public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
+		public int getCategoryCountByCategory(String category) throws IOException;
+		public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
 }
