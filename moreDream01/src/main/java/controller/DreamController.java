@@ -151,18 +151,20 @@ public class DreamController extends MultiActionController {
 		request.setAttribute("popularProjects", popularProjects);
 		System.out.println(dreamList);
 		request.setAttribute("totalCnt", dreamList.size());
-		
+
 		String category = request.getParameter("category");
-		if(category!=null&&!(category.equals(""))&&!(category.equals("none"))){
+		if (category != null && !(category.equals(""))
+				&& !(category.equals("none"))) {
 			System.out.println("getListFilterByCategory()");
-			dreamList = dreamService.getListFilterByCategory(dreamList,category.trim());
+			dreamList = dreamService.getListFilterByCategory(dreamList,
+					category.trim());
 		}
-		//160617 메소드로 대체
+		// 160617 메소드로 대체
 		this.categoryCountBinding(request);
 		request.setAttribute("category", category);
 		request.setAttribute("filter", filter);
 		String keyword = request.getParameter("keyword");
-		if((keyword!=null)&&!(keyword.equals(""))){
+		if ((keyword != null) && !(keyword.equals(""))) {
 			dreamList = dreamService.selectByKeyWord(keyword);
 			dreamService.listDetailInsert(dreamList);
 			request.setAttribute("keyword", keyword);
@@ -272,6 +274,20 @@ public class DreamController extends MultiActionController {
 			}
 		}
 
+		// 160619 추가
+		// 댓글 갯수 카운트
+		int replyCount = dreamService.getCountReplyByDreamId(dreamId);
+		request.setAttribute("replyCount", replyCount);
+
+		// 후원자 카운트
+		int dreamMakerCount = dreamService.getCountPaymentByDreamId(dreamId);
+		request.setAttribute("dreamMakerCount", dreamMakerCount);
+
+		// 업데이트 카운트
+		int updateDreamCount = dreamService
+				.getCountUpdateDreamByDreamId(dreamId);
+		request.setAttribute("updateDreamCount", updateDreamCount);
+
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
 
@@ -329,49 +345,60 @@ public class DreamController extends MultiActionController {
 				"redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="
 						+ dreamId);
 	}
-	
+
 	// index 최근 꿈 배너
-	
+
 	public ModelAndView recentDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-	
+
 		String num = "1";
-	
+
 		List<DreamVO> dreamList = dreamService.getListDream(num);
 		System.out.println(dreamList);
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
-	
 
-	///////////////////////// 160617 후원한 && 받은 내역 //////////////////////////////////////////
-	/////////////////////////////////////////////////////////////////////////////////////////
-	public ModelAndView myMoreDream(HttpServletRequest request, HttpServletResponse response)
-			throws Exception{
+	// /////////////////////// 160617 후원한 && 받은 내역
+	// //////////////////////////////////////////
+	// ///////////////////////////////////////////////////////////////////////////////////////
+	public ModelAndView myMoreDream(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 
-		//////////////////////// 후원한 부분 ///////////////////////////////////////////
+		// ////////////////////// 후원한 부분
+		// ///////////////////////////////////////////
 		int memberId = Integer.parseInt(request.getParameter("memberId"));
 		System.out.println(memberId);
-		List<MyDreamVO> myDreamList = dreamService.getAllMySupportProject(memberId);
+		List<MyDreamVO> myDreamList = dreamService
+				.getAllMySupportProject(memberId);
 		System.out.println(myDreamList);
 		request.setAttribute("myDreamList", myDreamList);
 
-		//////////////////////////////////후원 받은/////////////////////////////////////
-		List<DreamVO> dreamList = dreamService.getAllMyDreamByMemberId(memberId);
+		// ////////////////////////////////후원
+		// 받은/////////////////////////////////////
+		List<DreamVO> dreamList = dreamService
+				.getAllMyDreamByMemberId(memberId);
 		System.out.println(dreamList);
 		request.setAttribute("dreamList", dreamList);
 
 		return new ModelAndView("memberpage");
 	}
 
-	
-	//160617 키워드별 카운트 바인딩 하는 메소드
-	public void categoryCountBinding(HttpServletRequest request) throws IOException{
-		request.setAttribute("designCnt", dreamService.getCategoryCountByCategory("디자인"));
-		request.setAttribute("fashionCnt", dreamService.getCategoryCountByCategory("패션"));
-		request.setAttribute("publishCnt", dreamService.getCategoryCountByCategory("출판"));
-		request.setAttribute("cookingCnt", dreamService.getCategoryCountByCategory("요리"));
-		request.setAttribute("concertCnt", dreamService.getCategoryCountByCategory("공연"));
-		request.setAttribute("movieCnt", dreamService.getCategoryCountByCategory("영화"));
-		request.setAttribute("musicCnt", dreamService.getCategoryCountByCategory("음악"));
+	// 160617 키워드별 카운트 바인딩 하는 메소드
+	public void categoryCountBinding(HttpServletRequest request)
+			throws IOException {
+		request.setAttribute("designCnt",
+				dreamService.getCategoryCountByCategory("디자인"));
+		request.setAttribute("fashionCnt",
+				dreamService.getCategoryCountByCategory("패션"));
+		request.setAttribute("publishCnt",
+				dreamService.getCategoryCountByCategory("출판"));
+		request.setAttribute("cookingCnt",
+				dreamService.getCategoryCountByCategory("요리"));
+		request.setAttribute("concertCnt",
+				dreamService.getCategoryCountByCategory("공연"));
+		request.setAttribute("movieCnt",
+				dreamService.getCategoryCountByCategory("영화"));
+		request.setAttribute("musicCnt",
+				dreamService.getCategoryCountByCategory("음악"));
 	}
 }
