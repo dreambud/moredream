@@ -45,6 +45,23 @@
 	<jsp:include page="./header.jsp" />
 	<!--/#header-->
 
+	<section id="page-breadcrumb">
+		<div class="vertical-center sun">
+			<div class="container">
+				<div class="row">
+					<div class="action">
+						<div class="col-sm-12">
+							<h1 class="title">모아드림 현황보기</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
 	<section id="shortcodes">
 		<div class="container">
 			<div id="feature-container">
@@ -99,7 +116,7 @@
 	<section id="blog" class="padding-top">
 
 		<div class="container">
-			<h2 class="page-header">함께 꾸는 꿈</h2>
+			<h2 class="page-header">내가 진행하고 있는 꿈 목록</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
