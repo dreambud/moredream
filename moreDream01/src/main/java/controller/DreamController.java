@@ -287,7 +287,12 @@ public class DreamController extends MultiActionController {
 		int updateDreamCount = dreamService
 				.getCountUpdateDreamByDreamId(dreamId);
 		request.setAttribute("updateDreamCount", updateDreamCount);
-
+		
+		// 160620 추가
+		// 보상 리스트
+		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
+		request.setAttribute("rewardList", rewardList);
+		
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
 
