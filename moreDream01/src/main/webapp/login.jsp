@@ -100,6 +100,7 @@
 			    	    </div>
 			    	    <input type="hidden" id="url" name="url" value="${param.url}">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인">
+			    		<hr>
 			    		<a href="javascript:facebookLogin();"><img src="images/sign-in-facebook.png" width="100%" height="60%"></a>
 			    	</fieldset>
 			      	</form>
