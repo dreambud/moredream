@@ -151,9 +151,13 @@
 
 							카테고리 선택 <select class="form-control" name="category">
 								<option value="">======선택해주세요======</option>
-								<option value="영화">영화</option>
+								<option value="디자인">디자인</option>
+								<option value="패션">패션</option>
 								<option value="출판">출판</option>
+								<option value="요리">요리</option>
 								<option value="음악">음악</option>
+								<option value="공연">공연</option>
+								<option value="영화">영화</option>
 							</select>
 						</div>
 
