@@ -175,12 +175,12 @@
 												<div align="center">
 													<form action="dream.do">
 														<input type="hidden" name="command"
-															value="writeReply">
+															value="writeComment">
 														<input type="hidden" name="dreamId"
 															value="${dreamVO.dreamId }">
 														<c:choose>
 															<c:when test="${is_dreamMaker==true }">
-																<textarea rows="5" cols=125 name="content"></textarea>
+																<textarea rows="5" cols=110 name="content"></textarea>
 																<div align="right">
 																	<input type="submit" class="btn btn-lm btn-Info"
 																		value="입력하기">
