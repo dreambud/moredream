@@ -89,6 +89,7 @@
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: 50%">0%</div>
 													</div>
+													  <hr>
                         <div class="portfolio-info">
                           <i class="fa fa-heart"></i>모인 금액 ${dl.statVO.totalMoneyView}원<br>
 								<i class="fa fa-users"></i>후원자  ${dl.statVO.supporterCnt}명<br>

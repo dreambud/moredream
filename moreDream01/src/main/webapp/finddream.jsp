@@ -128,9 +128,10 @@
 													</ul>
 												</div>
 											</div>
+											
 											<div class="portfolio-info ">
 												<h2>${dream.titleDream }</h2>
-												&nbsp;
+												  <hr>
 												<div class="progress">
 												<c:choose>
 												<c:when test="${dream.statVO.totalMoney!=0}">
