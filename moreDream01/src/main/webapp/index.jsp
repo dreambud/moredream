@@ -82,6 +82,7 @@
                                 </ul>
                             </div>
                         </div>
+                        <h2>${dl.titleDream }</h2>
                         <hr>
                         <div class="progress">
 													<div class="progress-bar progress-bar-danger active"
