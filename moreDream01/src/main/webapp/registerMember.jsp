@@ -232,12 +232,13 @@
 							<hr>
 							<div class="form-group"><label>페이스북 연동</label>
 								<div class="fb-login-button" data-scope="public_profile,email" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
-								<div id="status"></div>
+								<br><font color="green"><b>* 페이스북 로그인시 자동으로 연동됩니다.<p>
+								* 이후에 이메일 또는 페이스북으로 로그인이 가능합니다.<p></b></font>
 							</div>
 				</div>
 			    <div class="checkbox">
 			    		<label>
-			    	    	 아래 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
+			    	    	 아래 <b>[회원가입]</b> 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
 			    	    </label>
 			    	</div>
 			    	<button type="button" onclick="checkReg()" class="btn btn-lg btn-success btn-block">회원가입</button>
