@@ -1670,6 +1670,12 @@ Blog Default
 	color: #0099AE;
 }
 
+.post-content  .post-author strong {
+	font-weight: 300;
+	font-size: 14px;
+	color: #0099AE;
+}
+
 a.read-more {
 	color: #0099AE;
 	font-weight: 300;
