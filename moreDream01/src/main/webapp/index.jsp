@@ -64,9 +64,8 @@
         <section id="recent-projects" class="recent-projects">
         <div class="container">
             <div class="row">
-                <h1 class="title text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="300ms">Recent Projects</h1>
-                <p class="text-center padding-bottom wow fadeInDown" data-wow-duration="400ms" data-wow-delay="400ms">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                Ut enim ad minim veniam, quis nostrud </p>
+                <h1 class="title text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="300ms">Recently Dream</h1>
+                <p class="text-center padding-bottom wow fadeInDown" data-wow-duration="400ms" data-wow-delay="400ms">가장 최근의 꿈</p>
                 
                 <c:forEach items="${dreamList}" var="dl" end="7">
                 <div class="col-sm-3 col-xs-6 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms" >
@@ -77,15 +76,31 @@
                             </div>
                             <div class="portfolio-view">
                             <ul class="nav nav-pills">
-								<li><a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><i
-																class="fa fa-link"></i></a></li></ul>
+								<li>
+						<a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}">자세히 보기 <i class="fa fa-plus-circle" aria-hidden="true"></i></a></li></ul>
                                 <ul class="nav nav-pills">
-                                    <li><a href="./upload/dream/${dl.dream_newFilename}" data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
                                 </ul>
                             </div>
                         </div>
+                        <hr>
+                        <div class="progress">
+													<div class="progress-bar progress-bar-danger active"
+														role="progressbar" aria-valuenow="40" aria-valuemin="0"
+														aria-valuemax="100" style="width: 50%">0%</div>
+													</div>
                         <div class="portfolio-info">
-                            <h2>${dl.titleDream}</h2>
+                          <i class="fa fa-heart"></i>모인 금액 ${dl.statVO.totalMoneyView}원<br>
+								<i class="fa fa-users"></i>후원자  ${dl.statVO.supporterCnt}명<br>
+								<i class="fa fa-calendar"></i>
+																<c:if test="${dl.statVO.endDay==0}">
+																	<b>오늘 마감!!!</b>
+																</c:if>
+																<c:if test="${dl.statVO.endDay>0}">
+																	앞으로 ${dl.statVO.endDay}일
+																</c:if>
+																<c:if test="${dl.statVO.endDay<0}">
+																	<b>마감!!!</b>
+																</c:if>
                         </div>
                     </div>
                 </div>
