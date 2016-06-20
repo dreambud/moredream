@@ -311,23 +311,23 @@
 						<div class="sidebar-item tag-cloud">
 							<h3>진행률</h3>
 							<c:choose>
-												<c:when test="${dream.statVO.totalMoney!=0}">
-													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
+												<c:when test="${dreamVO.statVO.totalMoney!=0}">
+													<c:if test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=100}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 100%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: 100%"><fmt:formatNumber value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}" type="percent" pattern="0"/>%</div>
 														</div>
 													</c:if>
-													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
+													<c:if test="${(((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=50)&&(((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)<100)}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: ${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"><fmt:formatNumber value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}" type="percent" pattern="0"/>%</div>
 														</div>
 													</c:if>
-													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
+													<c:if test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)<50}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 30%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: 30%"><fmt:formatNumber value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}" type="percent" pattern="0"/>%</div>
 														</div>
 													</c:if>
 												</c:when>
