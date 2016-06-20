@@ -87,7 +87,7 @@
 	<jsp:include page="./header.jsp" />
 	<!--/#header-->
 
-	<section id="coming-soon">
+	<section id="page-breadcrumb">
 		<div class="vertical-center sun">
 			<div class="container">
 				<div class="row">
@@ -101,6 +101,7 @@
 			</div>
 		</div>
 	</section>
+	
 	<!--/#page-breadcrumb-->
 
 	<div class="container">
