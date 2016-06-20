@@ -110,12 +110,76 @@
 		});//keyup
 		});//ready
 		
-	
-		
-	
-	
-	
-	
+</script>
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    if (response.status === 'connected') {
+    	checkLog();
+    } else if (response.status === 'not_authorized') {
+    } else {
+      document.getElementById('status').innerHTML = '페이스북에 로그인 하시면 해당 계정과 연동 처리됩니다.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '950393115078074',
+//     cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+//     status	   : true,
+//     oauth	   : true,
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.6' // use version 2.2
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.async = true;
+    js.src = "//connect.facebook.net/ko_KR/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  var FBtoken = "";
+  function checkLog(){
+	  FB.api('/me',function(response){
+		  document.regForm.facebookId.value=response.id;
+	  });
+  }
 </script>
 </head>
 
@@ -150,31 +214,34 @@
 			    	<form name="regForm" action="member.do" method="post">
 			    	<input type="hidden" name="command" value="registerMember">
 			    	<input type="hidden" name="facebookId" value="${requestScope.facebookId}">
-                    <fieldset>
-			    	  	<div class="form-group"><label>이메일</label>
-			    		    <input class="form-control" placeholder="이메일 주소 입력" id="email" name="email" onkeyup="emailCheck()" type="text">
-			    		    <span id="emailCheckView"></span>
-			    		</div>
-			    		<div class="form-group"><label>비밀번호</label>
-			    			<input class="form-control" placeholder="비밀번호 입력" name="password" id="password" type="password">
-			    			<span id="passswordCheckView"></span>
-			    		</div>
-			    		
-			    	<div class="form-group"><label>비밀번호 확인</label>
-							<input type="password" class="form-control" id="rePassword" name="rePassword"
-							placeholder="비밀번호를  한번 더 입력해주세요" value="">
-					<span id="passwordEqul"></span> 
-					</div>
-				    </div>
-			    		
-			    		
-			    		<div class="checkbox">
-			    	    	<label>
-			    	    		 아래 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
-			    	    	</label>
-			    	    </div>
-			    		<button type="button" onclick="checkReg()" class="btn btn-lg btn-success btn-block">회원가입</button>
-			    	</fieldset>
+	                    <fieldset>
+				    	  	<div class="form-group"><label>이메일</label>
+				    		    <input class="form-control" placeholder="이메일 주소 입력" id="email" name="email" onkeyup="emailCheck()" type="text" value="${requestScope.email }">
+				    		    <span id="emailCheckView"></span>
+				    		</div>
+				    		<div class="form-group"><label>비밀번호</label>
+				    			<input class="form-control" placeholder="비밀번호 입력" name="password" id="password" type="password">
+				    			<span id="passswordCheckView"></span>
+				    		</div>
+				    		
+					    	<div class="form-group"><label>비밀번호 확인</label>
+									<input type="password" class="form-control" id="rePassword" name="rePassword"
+									placeholder="비밀번호를  한번 더 입력해주세요" value="">
+							<span id="passwordEqul"></span> 
+							</div>
+							<hr>
+							<div class="form-group"><label>페이스북 연동</label>
+								<div class="fb-login-button" data-scope="public_profile,email" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
+								<div id="status"></div>
+							</div>
+				</div>
+			    <div class="checkbox">
+			    		<label>
+			    	    	 아래 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
+			    	    </label>
+			    	</div>
+			    	<button type="button" onclick="checkReg()" class="btn btn-lg btn-success btn-block">회원가입</button>
+				    	</fieldset>
 			      	</form>
 			    </div>
 			</div>
