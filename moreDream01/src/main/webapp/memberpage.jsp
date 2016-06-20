@@ -91,7 +91,7 @@
 											<td><img alt=""
 												src="./upload/dream/${my.dreamVO.dream_newFilename}"
 												width="50px" height="50px"></td>
-											<td><a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${my.dreamVO.dreamId}">${my.dreamVO.titleDream}</a></td>
+											<td><a href="#">${my.dreamVO.titleDream}</a></td>
 											<td>${my.dreamVO.endDate}</td>
 											<td>${my.rewardVO.rewardInfo}</td>
 											<td>${my.paymentVO.money}</td>
@@ -124,25 +124,40 @@
 							<div class="col-md-4 col-sm-12 blog-padding-right">
 								<div class="single-blog two-column">
 									<div class="post-thumb">
-										<a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}"><img
+										<a href="blogdetails.html"><img
 											src="./upload/dream/${dream.dream_newFilename}"
 											class="img-responsive" alt="" width="480" height="270"></a>
 									</div>
 									<div class="post-content overflow">
 										<h2 class="post-title bold">
-											<a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">${dream.detailDream}</a>
+											<a href="blogdetails.html">${dream.detailDream}</a>
 										</h2>
 										<h3 class="post-author">
-											<strong>Application Date : ${dream.requestDate}</strong>
+											<a href="#">Posted by micron News</a>
 										</h3>
 										<%-- <p>${dream.detailDream}</p> --%>
 									
 										<c:choose>
+										<c:when test="${dream.confirmRequestDream=='Y'}">
+											<div class="progress">
+											<div class="progress-bar progress-bar-striped active"
+												role="progressbar" aria-valuenow="40" aria-valuemin="0"
+												aria-valuemax="100" style="width: 80%">80%</div>
+										</div>
+										<div class="post-bottom overflow">
+											<ul class="nav navbar-nav post-nav">
+												<li><a href="#"><i class="fa fa-tag"></i>모인 금액
+														12,000,000</a></li>
+												<br>
+												<li><a href="#"><i class="fa fa-heart"></i> 후원자 123</a></li>
+												<br>
+												<li><a href="#"><i class="fa fa-comments"></i> 앞으로
+														13일</a></li>
+											</ul>
+										</div>
+										</c:when>
 										<c:when test="${dream.confirmRequestDream==' '}">
 										<h2>심사중</h2>
-										</c:when>
-										<c:when test="${dream.confirmRequestDream=='Y'}">
-										<h2>승인완료</h2>
 										</c:when>
 										<c:otherwise>
 										<h2>거절되었습니다.</h2>

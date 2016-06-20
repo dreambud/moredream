@@ -109,6 +109,7 @@
 						</li>
 						</ul>
 						<!--/#dream-filter-->
+						
 						<c:forEach items="${dreamList}" var="dream">
 							<c:if test="${dream.confirmRequestDream=='Y'}">
 								<div class="portfolio-items">
@@ -123,12 +124,7 @@
 												</div>
 												<div class="portfolio-view">
 													<ul class="nav nav-pills">
-														<li><a
-															href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId }"><i
-																class="fa fa-link"></i></a></li>
-														<li><a
-															href="./upload/dream/${dream.dream_newFilename}"
-															data-lightbox="example-set"><i class="fa fa-eye"></i></a></li>
+														<li><a href="dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">자세히 보기 <i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -167,13 +163,13 @@
 												
 												<div class="post-bottom overflow">
 													<ul class="nav navbar-nav post-nav">
-														<li><a href="#"><i class="fa fa-tag"></i>모인 금액
-																${dream.statVO.totalMoneyView}</a></li>
+														<li><i class="fa fa-heart"></i>모인 금액
+																${dream.statVO.totalMoneyView}</li>
 														<br>
-														<li><a href="#"><i class="fa fa-heart"></i> 후원자
-																${dream.statVO.supporterCnt }</a></li>
+														<li><i class="fa fa-users"></i> 후원자
+																${dream.statVO.supporterCnt }</li>
 														<br>
-														<li><a href="#"><i class="fa fa-comments"></i>
+														<li><i class="fa fa-calendar"></i>
 																<c:if test="${dream.statVO.endDay==0}">
 																	<font color='red'><b>오늘 마감!!!</b></font>
 																</c:if>
