@@ -14,7 +14,7 @@ public class MemberVO {
 	private String phoneNumber;
 	private String member_newFilename;
 	private String member_orgFilename;
-	
+	private String facebookId;
 	private MultipartFile multipartFile;
 	
 	public MemberVO() {  }//디폴트 생성자
@@ -127,7 +127,12 @@ public class MemberVO {
 				+ ", multipartFile=" + multipartFile + "]";
 	}
 
-	
+	public void setFacebookId(String facebookId) {
+		this.facebookId = facebookId;
+	}
+	public String getFacebookId() {
+		return facebookId;
+	}
 
 	
 	

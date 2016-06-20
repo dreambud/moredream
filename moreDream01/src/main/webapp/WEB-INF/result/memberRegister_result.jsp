@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-${param.email}님 회원가입 OK!!
-<a href="index.jsp">홈으로 가기</a>
+<script>
+	alert(${param.email}+'님 회원가입 OK!!');
+	location.replace="index.jsp";
+</script>
 </body>
 </html>

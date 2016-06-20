@@ -66,5 +66,13 @@ public class MemberServiceImpl implements MemberService {
 		f.delete();// 이게 안돼. 
 		memberDao.deleteFileMember(member_newFilename2);
 	}
-
+	//160620 facebook 연동 로직 추가
+	@Override
+	public MemberVO facebookLogin(String facebookId) {
+		return memberDao.facebookLogin(facebookId);
+	}
+	@Override
+	public void updateFacebookId(MemberVO mvo) {
+		memberDao.updateFacebookId(mvo);
+	}
 }

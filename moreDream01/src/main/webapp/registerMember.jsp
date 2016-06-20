@@ -149,6 +149,7 @@
 			  	<div class="panel-body">
 			    	<form name="regForm" action="member.do" method="post">
 			    	<input type="hidden" name="command" value="registerMember">
+			    	<input type="hidden" name="facebookId" value="${requestScope.facebookId}">
                     <fieldset>
 			    	  	<div class="form-group"><label>이메일</label>
 			    		    <input class="form-control" placeholder="이메일 주소 입력" id="email" name="email" onkeyup="emailCheck()" type="text">

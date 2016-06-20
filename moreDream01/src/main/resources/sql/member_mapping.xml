@@ -78,6 +78,18 @@
 	where member_newFilename=#{value}
 	</update>
 	
+	<!-- 160620 SNS(FACEBOOK)LOGIN 로직 추가 -->
+	<select id="facebookLogin" parameterType="member" resultMap="memberRM">
+		SELECT 
+		memberId, email, password, memberCode, address, name, phoneNumber, member_newFilename, member_orgFilename 
+		FROM member
+		WHERE facebookid=#{value}
+	</select>
+	<update id="updateFacebookId" parameterType="member">
+	UPDATE member set
+	facebookid=#{facebookId} 
+	where memberId=#{memberId}
+	</update>
 </mapper>	
 
  

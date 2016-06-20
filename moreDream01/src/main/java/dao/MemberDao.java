@@ -12,4 +12,6 @@ public interface MemberDao {
 	int deleteMember(int memberId);
 	ArrayList<MemberVO> getMemberList();
 	int deleteFileMember(String member_newFilename2);
+	MemberVO facebookLogin(String facebookId);
+	void updateFacebookId(MemberVO mvo);
 }

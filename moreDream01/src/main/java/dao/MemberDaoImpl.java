@@ -66,5 +66,14 @@ public class MemberDaoImpl implements MemberDao {
 	String member_newFilename = member_newFilename2;
 		return sqlSession.update("memberSql.deleteFileMember", member_newFilename);
 	}
-
+	
+	//160620 facebook 로직 추가
+	@Override
+	public MemberVO facebookLogin(String facebookId) {
+		return sqlSession.selectOne("memberSql.facebookLogin",facebookId);
+	}
+	@Override
+	public void updateFacebookId(MemberVO mvo) {
+		sqlSession.update("memberSql.updateFacebookId",mvo);
+	}
 }

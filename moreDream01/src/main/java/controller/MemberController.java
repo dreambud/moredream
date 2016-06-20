@@ -37,6 +37,7 @@ public class MemberController extends MultiActionController {
 	){
 		
 	memberService.registerMember(pmvo);
+	memberService.updateFacebookId(pmvo);//facebook 연동 로직 추가
 	return new ModelAndView("WEB-INF/result/memberRegister_result","email",pmvo.getEmail());
 	}
 	
@@ -171,6 +172,18 @@ public class MemberController extends MultiActionController {
 	return new ModelAndView("JsonView");
 	}
 	
-	
+	public ModelAndView facebookLogin(HttpServletRequest request, HttpServletResponse response){
+		String facebookId = request.getParameter("facebookId");
+		String path="registerMember";
+		MemberVO rmvo = memberService.facebookLogin(facebookId);
+		if(rmvo==null){
+			request.setAttribute("email",request.getParameter("email"));
+			request.setAttribute("facebookId", facebookId);
+		}else{
+			path="WEB-INF/result/login_ok";
+			request.getSession().setAttribute("mvo", rmvo);
+		}
+		return new ModelAndView(path,"url","index.jsp");
+	}
 	
 }

@@ -23,7 +23,7 @@
 <link href="css/responsive.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+<script type="text/javascript" src="js/sns_login_facebook.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -46,6 +46,9 @@
 			url=document.referrer;
 			document.getElementById("url").value=url;
 		}
+	}
+	function facebookLogin(){
+		FB.login(FaceBookApp.statusChangeCallback, FaceBookApp.FBScopes);		
 	}
 </script>
 </head>
@@ -97,6 +100,7 @@
 			    	    </div>
 			    	    <input type="hidden" id="url" name="url" value="${param.url}">
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="로그인">
+			    		<a href="javascript:facebookLogin();"><img src="images/sign-in-facebook.png" width="100%" height="60%"></a>
 			    	</fieldset>
 			      	</form>
 			    </div>
