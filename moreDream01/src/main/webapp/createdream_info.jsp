@@ -82,8 +82,8 @@ $(document).ready(function() {
 	
 	<br><br>
 	<div class="row">
-		<div class="col-xs-6 col-sm-4"></div>
-  		<div class="col-xs-6 col-sm-4"  style="border-style:groove;  border-color:#C8C8FF;">
+		<div class="col-xs-2 col-sm-4"></div>
+  		<div class="col-xs-9 col-sm-6"  style="border-style:groove;  border-color:#C8C8FF;">
   		<br>
   			<h2 align="center"><strong>꿈 개설 신청 안내</strong></h2>
   		<br>
@@ -134,7 +134,7 @@ $(document).ready(function() {
     </div>
     
   		</div>
-  		<div class="col-xs-6 col-sm-4"></div>
+  		<div class="col-xs-1 col-sm-4"></div>
 	
 	</div>
 
