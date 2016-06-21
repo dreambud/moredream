@@ -94,7 +94,7 @@ h1 {
 }
 
 h2 {
-	font-size: 24px;
+	font-size: 20px;
 	color: #686868;
 }
 
@@ -1128,7 +1128,8 @@ ul.elements li>i {
 }
 
 .portfolio-info h2 {
-	font-size: 18px;
+	text-align:center;
+	font-size: 14px;	
 	margin: 15px 0 0;
 }
 
