@@ -8,9 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-	alert(${param.email}+'님 회원가입 OK!!');
-	location.replace="index.jsp";
+<script type="text/javascript">
+	alert("${param.email} 님 회원가입 OK!!");
+	location.replace="./index.jsp";
 </script>
 </body>
 </html>
