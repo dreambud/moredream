@@ -372,6 +372,9 @@ public class DreamController extends MultiActionController {
 		// ////////////////////// 후원한 부분
 		// ///////////////////////////////////////////
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+		if(mvo==null){
+			return new ModelAndView("login");
+		}
 	    int memberId = mvo.getMemberId();
 		System.out.println(memberId);
 		List<MyDreamVO> myDreamList = dreamService
