@@ -65,8 +65,8 @@ public class DreamDaoImpl implements DreamDao {
 		return result;
 	}
 	@Override
-	public int updateMynusStockByRewardId(int rewardId) throws IOException {
-		int result = sqlSession.update("dreamSql.updateMynusStockByRewardId", rewardId);
+	public int updateMinusStockByRewardId(int rewardId) throws IOException {
+		int result = sqlSession.update("dreamSql.updateMinusStockByRewardId", rewardId);
 		return result;
 	}
 
@@ -195,8 +195,8 @@ public class DreamDaoImpl implements DreamDao {
 
 	@Override
 	//응원취소 :: 결제 취소 
-	public int deletePaymentByPaymentId(int paymentId) throws IOException {
-		int result = sqlSession.delete("dreamSql.deletePaymentByPaymentId", paymentId);
+	public int cancelPaymentByPaymentId(int paymentId) throws IOException {
+		int result = sqlSession.delete("dreamSql.cancelPaymentByPaymentId", paymentId);
 		return result;
 	}
 

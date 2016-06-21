@@ -32,7 +32,7 @@ public interface DreamDao {
 
 	// 보상 재고 업데이트
 	public int updatePlusStockByRewardId(int rewardId) throws IOException;
-	public int updateMynusStockByRewardId(int rewardId) throws IOException;
+	public int updateMinusStockByRewardId(int rewardId) throws IOException;
 
 
 
@@ -78,7 +78,7 @@ public interface DreamDao {
 	public List<Integer> getMoneyByDreamId(int dreamId) throws IOException;//dreamId로 후원금 확인 
 	public List<Integer> getAllMoney() throws IOException;//후원금 전체 가져오기 :: 통계시 사용
 
-	public int deletePaymentByPaymentId(int paymentId) throws IOException;//응원취소 :: 결제 취소 
+	public int cancelPaymentByPaymentId(int paymentId) throws IOException;//응원취소 :: 결제 취소 
 	public int payment(PaymentVO pvo) throws IOException; //결제하기(응원하기)
 
 	public List<RewardVO> getRewardByDreamId(int dreamId) throws IOException;//꿈에 대한 보상 가져오기

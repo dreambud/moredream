@@ -126,7 +126,7 @@ body, table, div, p {font-family:'Nanum Gothic';}
 							<li class="dropdown"><a href="#">${mvo.email}님 환영합니다.<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
 									<li><a href="updateMember.jsp">회원 정보 수정</a></li>
-									<li><a href="dream.do?command=myMoreDream&&memberId=${sessionScope.mvo.memberId}">모아드림 현황 보기</a></li>
+									<li><a href="dream.do?command=myMoreDream">모아드림 현황 보기</a></li>
 								</ul>
 							</li>
 							

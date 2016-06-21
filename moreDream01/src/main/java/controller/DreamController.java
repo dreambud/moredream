@@ -293,8 +293,6 @@ public class DreamController extends MultiActionController {
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 		request.setAttribute("rewardList", rewardList);
 		
-		// 160621 추가
-		// 업데이트 뷰
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
 
@@ -369,11 +367,12 @@ public class DreamController extends MultiActionController {
 	// //////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////
 	public ModelAndView myMoreDream(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+			HttpServletResponse response,HttpSession session) throws Exception {
 
 		// ////////////////////// 후원한 부분
 		// ///////////////////////////////////////////
-		int memberId = Integer.parseInt(request.getParameter("memberId"));
+		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
+	    int memberId = mvo.getMemberId();
 		System.out.println(memberId);
 		List<MyDreamVO> myDreamList = dreamService
 				.getAllMySupportProject(memberId);
@@ -445,5 +444,17 @@ public class DreamController extends MultiActionController {
 		vo.setDreamVO(dreamVO);
 		dreamService.updateDream(vo);
 		return new ModelAndView("dream.do?command=getDetailDreamByDreamId", "dreamId", dreamVO.getDreamId());
+	}
+		
+	public ModelAndView cancelPayment(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+		MemberVO pmvo =(MemberVO)session.getAttribute("mvo");
+		if(pmvo==null){
+			return new ModelAndView("index");
+		}
+		int paymentId = Integer.parseInt(request.getParameter("paymentId"));
+		int rewardId=  Integer.parseInt(request.getParameter("rewardId"));
+		dreamService.cancelPaymentByPaymentId(paymentId);
+		dreamService.updatePlusStockByRewardId(rewardId);
+		return new ModelAndView("redirect:/dream.do?command=myMoreDream");
 	}
 }

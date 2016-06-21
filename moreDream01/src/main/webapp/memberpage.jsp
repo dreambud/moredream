@@ -38,6 +38,15 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png">
+	<script type="text/javascript">
+		function payCancel(rewardId,paymentId){
+			if(confirm("결제를 취소하시겠습니까?")){
+				location.href='dream.do?command=cancelPayment&&paymentId='+paymentId+'&&rewardId='+rewardId;
+			}else{
+				
+			}
+		}
+	</script>
 </head>
 <!--/head-->
 
@@ -95,9 +104,27 @@
 											<td>${my.dreamVO.endDate}</td>
 											<td>${my.rewardVO.rewardInfo}</td>
 											<td>${my.paymentVO.money}</td>
-											<td><button type="button" class="btn btn-xs btn-success">결제완료</button>
-												<button type="button" class="btn btn-xs btn-danger">결제취소</button></td>
-											<td>-</td>
+											<td>
+											<c:choose>
+											<c:when test="${my.paymentVO.paymentState=='Y'}">
+												<button type="button" class="btn btn-xs btn-success">결제완료</button>
+											</c:when>
+											<c:otherwise>
+												<button type="button" class="btn btn-xs btn-danger">결제취소</button>
+											</c:otherwise>
+											</c:choose>
+												
+											</td>
+											<td>
+											<c:choose>
+											<c:when test="${my.paymentVO.paymentState=='Y' && my.dreamVO.statVO.endDay>0}">
+												<button type="button" class="btn btn-xs btn-danger" onclick="payCancel('${my.rewardVO.rewardId}','${my.paymentVO.paymentId }');">취소</button>
+											</c:when>
+											<c:otherwise>
+												-
+											</c:otherwise>
+											</c:choose>
+											</td>
 										</tr>
 									</c:forEach>
 

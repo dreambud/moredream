@@ -164,10 +164,11 @@
 		WHERE paymentState='Y'
 	</select>
 
+	<!-- 160621 결제 취소 쿼리문 변경 -->
 	<!-- 응원취소 :: 결제 취소 -->
-	<delete id="deletePaymentByPaymentId" parameterType="int">
-		DELETE FROM
-		payment WHERE paymentId = #{value}
+	<delete id="cancelPaymentByPaymentId" parameterType="int">
+		UPDATE payment SET   
+		paymentState='N' WHERE paymentId = #{value}
 	</delete>
 
 	<!-- 결제하기(응원하기) -->
@@ -404,14 +405,16 @@
 	<update id="updatePlusStockByRewardId" parameterType="int">
 		Update reward set stock =stock+1 WHERE rewardId = #{value}
 	</update>
-	<update id="updateMynusStockByRewardId" parameterType="int">
+	<update id="updateMinusStockByRewardId" parameterType="int">
 		Update reward set stock =stock-1 WHERE rewardId = #{value}
 	</update>
 	
-	<!-- 160617 -->
+	<!-- 160621 myDreamRM,getAllMySupportProject 수정 -->
 	<!-- ////////////////////////////////////////////////////////////////////////// -->
 	<!-- memberId로 moredream 현황 보기에 필요한 모든 정보를 가져옴니다. -->
 	<resultMap type="myDream" id="myDreamRM">
+		<result property="paymentVO.paymentState" column="paymentState"/>
+		<result property="paymentVO.paymentId" column="paymentId"/>
 		<result property="paymentVO.money" column="money"/>
 		<result property="rewardVO.rewardId" column="rewardId"/>
 		<result property="dreamVO.dreamId" column="dreamId"/>
@@ -426,7 +429,7 @@
 		d.dreamId AS dreamId, d.titleDream AS titleDream,
 		d.dream_newFilename
 		AS dream_newFilename, TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
-		r.rewardinfo AS rewardInfo
+		r.rewardinfo AS rewardInfo,p.paymentId AS paymentId, p.paymentState AS paymentState
 		FROM payment p, dream d, reward r
 		WHERE
 		p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId =
