@@ -78,11 +78,13 @@
 									<b>${dreamVO.titleDream}</b>
 								</h2>
 							
-								<form name="tx_editor_form" id="tx_editor_form"
-									accept-charset="utf-8">
-									<input type="hidden" name="command"
-									id="update_detailDream">
-									<c:set var="dreamVO" value="${dreamVO}" scope="request"/>
+							
+							    <form name="frm" action="./dream.do" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="command" value="updateDream">
+								<c:set var="dreamVO" value="${dreamVO}" scope="request"/>
+								<input type="hidden" name="update_detailDream" id="update_detailDream">
+								<form name="tx_editor_form" id="tx_editor_form"	accept-charset="utf-8">
+													
 									<!-- 에디터 컨테이너 시작 -->
 									<div id="tx_trex_container" class="tx-editor-container">
 										<!-- 사이드바 -->
@@ -583,7 +585,7 @@
 									<!-- 에디터 컨테이너 끝 -->
 								</form>
 
-								<script type="text/javascript">
+<script type="text/javascript">
 	var config = {
 		txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
 		txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */

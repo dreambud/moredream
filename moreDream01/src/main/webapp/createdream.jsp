@@ -26,9 +26,7 @@
 <script type="text/javascript">
 	var now = new Date();
 	
-	function create(){
-		
-	}
+
 	function number_chk(ev){		//숫자만 입력가능하게 제어하는 함수
 		var frm = document.reg_frm;
 		if (window.event) // IE코드
@@ -138,7 +136,7 @@
 		</div>
 	</section>
 	<!--/#page-breadcrumb-->
-	<form name="frm" action="./dream.do" method="post" enctype="multipart/form-data" onsubmit="return create();">
+	<form name="frm" action="./dream.do" method="post" enctype="multipart/form-data">
 		<section id="shortcodes">
 			<div class="container">
 				<div id="feature-container">
