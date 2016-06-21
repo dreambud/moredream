@@ -293,6 +293,8 @@ public class DreamController extends MultiActionController {
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 		request.setAttribute("rewardList", rewardList);
 		
+		// 160621 추가
+		// 업데이트 뷰
 		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
 	}
 
@@ -405,5 +407,43 @@ public class DreamController extends MultiActionController {
 				dreamService.getCategoryCountByCategory("영화"));
 		request.setAttribute("musicCnt",
 				dreamService.getCategoryCountByCategory("음악"));
+	}
+	
+	//160621 
+	//updateDream.jsp 로의 경로 설정 및 dreamVO 를 바인딩 하기 위한 메소드 추가\
+	
+	public ModelAndView update_getDetailDreamByDreamId(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		System.out.println("상세보기에서 dreamId ::" + dreamId);
+		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
+		return new ModelAndView("updateDream.jsp", "dreamVO", dreamVO);
+	}
+	//updateDream 등록.
+	public ModelAndView updateDream(HttpServletRequest request,
+			HttpServletResponse response, UpdateDreamVO vo) throws Exception {
+		
+		if(vo.getMultipartFile()!=null){
+			MultipartFile file = vo.getMultipartFile();//업로드한 파일
+			System.out.println("업데이트 드림 업로드된 뉴파일 명 : "+vo.getUpdate_newFilename());
+			System.out.println("vo.getMultipartFile() ::"+vo.getMultipartFile());
+			if(!file.isEmpty()){//파일이 있다.
+				/*
+				 * orgfilename 받아와서 bvo에 주입
+				 * newfilename 방아와서 bvo에 주입
+				 */
+				vo.setUpdate_orgFilename(file.getOriginalFilename());
+				vo.setUpdate_newFilename(System.currentTimeMillis()+"_"+file.getOriginalFilename());
+			
+				File desFile = new File(path+System.currentTimeMillis()+"_"+file.getOriginalFilename());
+				file.transferTo(desFile);
+				}
+			}
+		
+		
+		DreamVO dreamVO = (DreamVO) request.getAttribute("dreamVO");
+		vo.setDreamVO(dreamVO);
+		dreamService.updateDream(vo);
+		return new ModelAndView("dream.do?command=getDetailDreamByDreamId", "dreamId", dreamVO.getDreamId());
 	}
 }
