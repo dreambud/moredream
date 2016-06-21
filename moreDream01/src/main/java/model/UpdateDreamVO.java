@@ -9,6 +9,7 @@ public class UpdateDreamVO {
 	private String update_detailDream;
 	private String update_orgFilename;
 	private String update_newFilename;
+	private String update_writeDate;//업데이트 작성일 추가 160621
 
 	private MultipartFile multipartFile;
 
@@ -31,6 +32,14 @@ public class UpdateDreamVO {
 	public UpdateDreamVO(DreamVO dreamVO, String update_detailDream) {
 		this.dreamVO = dreamVO;
 		this.update_detailDream = update_detailDream;
+	}
+	
+	public String getUpdate_writeDate() {
+		return update_writeDate;
+	}
+
+	public void setUpdate_writeDate(String update_writeDate) {
+		this.update_writeDate = update_writeDate;
 	}
 
 	public DreamVO getDreamVO() {
