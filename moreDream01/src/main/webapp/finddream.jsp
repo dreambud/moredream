@@ -138,39 +138,39 @@
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 100%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: 100%"></div>
 														</div>
 													</c:if>
 													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
 														</div>
 													</c:if>
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 30%"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</div>
+														aria-valuemax="100" style="width: 30%"></div>
 														</div>
 													</c:if>
 												</c:when>
 												<c:otherwise>
 													<div class="progress-bar progress-bar-warning active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 100%">0%</div>
+														aria-valuemax="100" style="width: 100%"></div>
 													</div>
 												</c:otherwise>
 												</c:choose>
 												
 												<div class="post-bottom overflow">
 													<ul class="nav navbar-nav post-nav">
-														<li><i class="fa fa-heart"></i>모인 금액
-																${dream.statVO.totalMoneyView}</li>
+														<li><i class="fa fa-heart"></i>&nbsp; 모인 금액
+																${dream.statVO.totalMoneyView} &nbsp;<span class="label label-primary"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></li>
 														<br>
-														<li><i class="fa fa-users"></i> 후원자
+														<li><i class="fa fa-users"></i>&nbsp; 후원자
 																${dream.statVO.supporterCnt }</li>
 														<br>
-														<li><i class="fa fa-calendar"></i>
+														<li><i class="fa fa-calendar"></i> &nbsp;
 																<c:if test="${dream.statVO.endDay==0}">
 																	<font color='red'><b>오늘 마감!!!</b></font>
 																</c:if>

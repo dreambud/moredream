@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@
                 
                 <c:forEach items="${dreamList}" var="dl" end="7">
                 <div class="col-sm-3 col-xs-6 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms" >
-                    <div class="portfolio-wrapper">   
+                    <div class="portfolio-info ">   
                         <div class="portfolio-single">
                             <div class="portfolio-thumb" style="border: solid 1px;">
                                 <img src="./upload/dream/${dl.dream_newFilename}" style="width: 261px; height: 269px" class="img-responsive" alt="">
@@ -85,15 +86,17 @@
                         <h2>${dl.titleDream }</h2>
                         <hr>
                         <div class="progress">
-													<div class="progress-bar progress-bar-danger active"
+													<div class="progress-bar progress-bar-primary active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 50%">0%</div>
+														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
 													</div>
 													  <hr>
                         <div class="portfolio-info">
-                          <i class="fa fa-heart"></i>모인 금액 ${dl.statVO.totalMoneyView}원<br>
-								<i class="fa fa-users"></i>후원자  ${dl.statVO.supporterCnt}명<br>
-								<i class="fa fa-calendar"></i>
+                          <i class="fa fa-heart"></i>&nbsp;모인 금액 ${dl.statVO.totalMoneyView}원 
+<span class="label label-primary">&nbsp;<fmt:formatNumber value="${(dl.statVO.totalMoney/dl.targetFund)*100}" type="percent" pattern="0"/>%</span>
+<br>
+								<i class="fa fa-users"></i>&nbsp;후원자  ${dl.statVO.supporterCnt}명<br>
+								<i class="fa fa-calendar"></i>&nbsp;
 																<c:if test="${dl.statVO.endDay==0}">
 																	<b>오늘 마감!!!</b>
 																</c:if>

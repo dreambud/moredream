@@ -994,7 +994,7 @@ h3.top-zero {
 }
 
 .progress-bar {
-	line-height: 10px;
+	line-height: 3px;
 	box-shadow: none;
 	-webkit-box-shadow: none;	
 }
