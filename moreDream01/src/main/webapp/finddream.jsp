@@ -129,8 +129,17 @@
 												</div>
 											</div>
 											
-											<div class="portfolio-info ">
-												<h2>${dream.titleDream }</h2>
+											<div class="portfolio-info">
+												<h2>
+												<c:choose>
+												<c:when test="${dream.titleDream.length()<19}">
+													${dream.titleDream}
+												</c:when>
+												<c:otherwise>
+													${dream.titleDream.substring(0,19)}..
+												</c:otherwise>
+												</c:choose>
+												</h2>
 												  <hr>
 												<div class="progress">
 												<c:choose>

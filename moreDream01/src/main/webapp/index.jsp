@@ -83,7 +83,16 @@
                                 </ul>
                             </div>
                         </div>
-                        <h2>${dl.titleDream }</h2>
+                        <h2>
+                        <c:choose>
+							<c:when test="${dl.titleDream.length()<19}">
+								${dl.titleDream}
+							</c:when>
+							<c:otherwise>
+								${dl.titleDream.substring(0,19)}..
+							</c:otherwise>
+						</c:choose>
+						</h2>
                         <hr>
                         <div class="progress">
 													<div class="progress-bar progress-bar-primary active"
