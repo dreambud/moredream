@@ -88,7 +88,7 @@
                         <div class="progress">
 													<div class="progress-bar progress-bar-primary active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
+														aria-valuemax="100" style="width: ${(dl.statVO.totalMoney/dl.targetFund)*100}%"></div>
 													</div>
 													  <hr>
                         <div class="portfolio-info">
