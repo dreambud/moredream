@@ -61,6 +61,14 @@ public class PaymentVO {
 				+ ", memberId=" + memberId + ", paymentState=" + paymentState
 				+ ", money=" + money + "]";
 	}
+	public String getMoneyView(){
+		StringBuffer stringBuffer = new StringBuffer(String.valueOf(money));
+		System.out.println(stringBuffer.length());
+		for(int i=stringBuffer.length()-3;i>0;i=i-3){
+			stringBuffer.insert(i, ',');
+		}
+		return stringBuffer.toString();
+	}
 	
 	
 	
