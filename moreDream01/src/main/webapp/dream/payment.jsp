@@ -45,24 +45,21 @@
 
 <script type="text/javascript">
 	function number_chk(ev) { //숫자만 입력가능하게 제어하는 함수
-		var frm = document.reg_frm;
 		if (window.event) // IE코드
 			var code = window.event.keyCode;
-		else
-			// 타브라우저
+		else			  // 타브라우저
 			var code = ev.which;
 		// 숫자허용 PASS항목
 		if ((code >= 48 && code <= 57) || // 숫자열 0 ~ 9 : 48 ~ 57  
 		(code >= 96 && code <= 105) || //키패드 0 ~ 9 : 96 ~ 105
-		code <= 32 || //BackSpace
+		code < 32 || //BackSpace
 		code == 46 || //Delete
 		code == 37 || //좌 화살표
 		code == 39 || //우 화살표
 		code == 35 || //End 키
-		code == 36 //Home 키
+		code == 36  //Home 키
 		) {
 			window.event.returnValue = true;
-
 			return;
 		}
 		if (window.event)
@@ -70,23 +67,6 @@
 		else
 			Ev.preventDefault();
 	}
-	
-	
-
-	/* $(document).ready(function() {
-		$('#paymen').click(function(i) {
-			alert(i);
-			var input_money = document.frm.money[0].value;
-			var rewardGuide = document.frm.rewardId[0].value;
-			var v = rewardGuide.split("_");
-			if (input_money < v[1]) {
-				alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
-			} else {
-				return false;
-			}
-			return false;
-		});//click
-	});//ready */
 </script>
 <body>
 
@@ -115,7 +95,7 @@
 			<div class="col-md-4 col-sm-6">
 				<c:choose>
 					<c:when test="${sessionScope.mvo!=null}">
-						<form action="${initParam.root }dream.do" name="frm" id="frm" method="post">
+						<form name="frm" id="frm" method="post">
 							<c:forEach items="${rewardList}" var="rl" varStatus="count">
 
 								<div>
@@ -135,7 +115,7 @@
 												class="form-control" /> 
 											<span class="input-group-btn">
 												<button	type="submit" id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
-													class="btn btn-large btn-primary" onclick="javascript:pay('${count.count-1}');">결제하기
+													class="btn btn-large btn-primary" onclick="javascript:pay('${count.count-1}','${rewardList.size()}');">결제하기
 													</button>
 											</span>
 
@@ -171,24 +151,31 @@
 		</div>
 	</div>
 <script type="text/javascript">
-function pay(i){
-	if(i==0){
-		var input_money = document.frm.input_money.value;
-		var rewardGuide = document.frm.reward.value;
-	}else{
-		var input_money = document.frm.input_money[i].value;
-		var rewardGuide = document.frm.reward[i].value;
-	}
+	function pay(i,index){
+		if(index==1){
+			var input_money = document.frm.input_money;
+			var rewardGuide = document.frm.reward.value;
+		}else{
+			var input_money = document.frm.input_money[i];
+			var rewardGuide = document.frm.reward[i].value;
+		}
 		var v = rewardGuide.split("_");
-		if (input_money < v[1]) {
+		if (input_money.value==""||input_money.value=="0"){
+			alert("0 또는 공백을 입력할 수 없습니다.");
+			input_money.focus();
+			return false;
+		}
+		if (input_money.value < v[1]) {
 			alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
-			document.frm.money[i].focus();
+			input_money.focus();
 			return false;
 		} 
 		document.frm.rewardId.value = v[0];
-		document.frm.money.value = input_money;
+		document.frm.money.value = input_money.value;
+		document.frm.action="${initParam.root}dream.do";
+		document.frm.submit();
 		return true;
-}
+	}
 </script>
 	<jsp:include page="../common/footer.jsp" />
 	<!--/#footer-->
