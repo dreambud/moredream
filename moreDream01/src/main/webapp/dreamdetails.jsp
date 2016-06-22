@@ -299,7 +299,16 @@
 									</h4>
 									<h4>함께하는 Dreamer ${dreamVO.statVO.supporterCnt }명</h4>
 									<h4>
-										<a href="#">남은 시간 ${dreamVO.statVO.endDay}일</a>
+										<c:choose>
+											<c:when test="${dreamVO.statVO.endDay==0}">
+												오늘이 마감일 입니다!
+											</c:when>
+											<c:when test="${dreamVO.statVO.endDay<0}">
+											</c:when>
+											<c:otherwise>
+												<a href="#">남은 시간 ${dreamVO.statVO.endDay}일</a>
+											</c:otherwise>
+										</c:choose>
 									</h4>
 								</div>
 							</div>
@@ -307,7 +316,10 @@
 						<p align="center">
 						<c:choose>
 							<c:when test="${is_dreamMaker==true }">
-								당신은 이미 후원 하셨습니다!
+								당신은 이미 후원 하셨습니다! > <a href="dream.do?command=myMoreDream">후원내역 보기</a>
+							</c:when>
+							<c:when test="${dreamVO.statVO.endDay<0}">
+								<b>해당 꿈은 마감되었습니다...</b>
 							</c:when>
 							<c:otherwise>
 							<a href="dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button
@@ -327,18 +339,17 @@
 
 						<div class="sidebar-item tag-cloud">
 							<h3>진행률</h3>
-							<c:choose>
-								<c:when test="${dreamVO.statVO.totalMoney!=0}">
-									<c:if
-										test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=100}">
-										<div class="progress-bar progress-bar-striped active"
-											role="progressbar" aria-valuenow="40" aria-valuemin="0"
-											aria-valuemax="100" style="width: 100%">
-											<fmt:formatNumber
-												value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"
-												type="percent" pattern="0" />
-											%
-										</div>
+						<c:choose>
+							<c:when test="${dreamVO.statVO.totalMoney!=0}">
+								<c:if
+									test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=100}">
+									<div class="progress-bar progress-bar-striped active"
+										role="progressbar" aria-valuenow="40" aria-valuemin="0"
+										aria-valuemax="100" style="width: 100%">
+										<fmt:formatNumber
+											value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"
+											type="percent" pattern="0" />%
+									</div>
 						</div>
 						</c:if>
 						<c:if
@@ -367,10 +378,10 @@
 				</div>
 				</c:if>
 				</c:when>
-				<c:otherwise>
-					<div class="progress-bar progress-bar-warning active"
-						role="progressbar" aria-valuenow="40" aria-valuemin="0"
-						aria-valuemax="100" style="width: 100%">0%</div>
+			<c:otherwise>
+			<div class="progress-bar progress-bar-warning active"
+				role="progressbar" aria-valuenow="40" aria-valuemin="0"
+				aria-valuemax="100" style="width: 100%">0%</div>
 			</div>
 			</c:otherwise>
 			</c:choose>
