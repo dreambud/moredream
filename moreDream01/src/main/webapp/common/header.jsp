@@ -37,6 +37,34 @@ body, table, div, p {font-family:'Nanum Gothic';}
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 <script type="text/javascript">
+	function logout(){
+		var f=confirm("로그아웃 하시겠습니까?");
+		if(f)
+			location.href="${initParam.root}member.do?command=logout"; //Controller에서 기능으로 연결..
+	}
+
+	function loginCheck(){
+		var flag = ${sessionScope.mvo==null};
+		if(flag){
+			alert('로그인이 필요한 페이지 입니다.');
+			location.replace('${initParam.root}member/login.jsp?url='+location.href);
+		}
+	}
+	function isLogin(){
+		var flag = ${sessionScope.mvo!=null};
+		if(flag){
+			location.replace('${initParam.root}index.jsp');
+		}
+	}
+	function search(ev){
+		if (window.event) // IE코드
+			var code = window.event.keyCode;
+		else // 타브라우저
+			var code = ev.which;
+		if(code=='13')
+			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
+		
+	}
     var FaceBookApp = {
         	FBScopes: {scope: 'public_profile,email'},
         	accessToken: '',
