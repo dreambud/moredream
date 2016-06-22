@@ -116,10 +116,10 @@
 			var titleCheckView = document.getElementById("titleCheckView");
 
 			if (titleDream.value.length > 15) {
-				titleCheckView.innerHTML = "<font color='red'> 타이틀은 15자 이하로 가능합니다.</font>";
+				titleCheckView.innerHTML = "<font color='red'> 꿈 제목은 15자 이하로 가능합니다.</font>";
 				return;
 			}
-			$('#titleCheckView').html("("+remain+"/15)");	
+			$('#titleCheckView').html(" ("+remain+"/15)");	
 		});
 	});
 	function inputDetail() {
@@ -141,6 +141,11 @@
 			}
 			else if(document.frm.titleDream.value==""){
 				alert('꿈 제목을 입력해주세요.');
+				document.frm.titleDream.focus();
+				return false;
+			}
+			else if(document.frm.titleDream.value.length>15){
+				alert('꿈 제목은 15자 이하로 가능합니다.');
 				document.frm.titleDream.focus();
 				return false;
 			}
