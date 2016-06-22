@@ -25,7 +25,7 @@
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-<script type="text/javascript" src="${initParam.root}js/sns_login_facebook.js"></script>
+<%-- <script type="text/javascript" src="${initParam.root}js/sns_login_facebook.js"></script> --%>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>

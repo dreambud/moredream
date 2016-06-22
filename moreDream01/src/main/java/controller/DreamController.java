@@ -373,7 +373,7 @@ public class DreamController extends MultiActionController {
 		// ///////////////////////////////////////////
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if(mvo==null){
-			return new ModelAndView("login");
+			return new ModelAndView("member/login");
 		}
 	    int memberId = mvo.getMemberId();
 		System.out.println(memberId);

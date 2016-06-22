@@ -105,7 +105,7 @@
 											<td><a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${my.dreamVO.dreamId}">${my.dreamVO.titleDream}</a></td>
 											<td>${my.dreamVO.endDate}</td>
 											<td>${my.rewardVO.rewardInfo}</td>
-											<td>${my.paymentVO.money}</td>
+											<td>${my.paymentVO.moneyView}</td>
 											<td>
 											<c:choose>
 											<c:when test="${my.paymentVO.paymentState=='Y'}">
