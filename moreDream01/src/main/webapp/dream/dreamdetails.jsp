@@ -44,6 +44,16 @@
 		hashAddressBar : false
 	});
 </script>
+
+<script type="text/javascript">
+function deleteComment(replyId) {
+	if(confirm("삭제하시겠습니까?")){
+		location.href="${initParam.root}dream.do?command=deleteCommentByReplyId&&replyId="+replyId+"&&dreamId=${dreamVO.dreamId}";
+	}
+}
+</script>
+
+
 </head>
 <!--/head-->
 
@@ -234,7 +244,9 @@
 																				<p>${reply.content}</p>
 																				<ul class="nav navbar-nav post-nav">
 																					<li><a href="#"><i class="fa fa-clock-o"></i>${reply.writeDate}</a></li>
-																					<li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+																					<c:if test="${mvo.memberId==reply.memberVO.memberId}">
+																						<li><a href="#" onclick="deleteComment(${reply.replyId})"><i class="glyphicon glyphicon-remove"></i>삭제하기</a></li>
+																					</c:if>
 																				</ul>
 																			</div>
 																		</div>

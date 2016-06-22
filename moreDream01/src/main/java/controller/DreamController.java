@@ -461,4 +461,14 @@ public class DreamController extends MultiActionController {
 		dreamService.updatePlusStockByRewardId(rewardId);
 		return new ModelAndView("redirect:/dream.do?command=myMoreDream");
 	}
+	
+	//댓글 삭제 160622
+		public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+			int replyId = Integer.parseInt(request.getParameter("replyId"));
+			System.out.println(dreamId +","+replyId);
+			dreamService.deleteCommentByReplyId(replyId);
+
+			return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
+		}
 }
