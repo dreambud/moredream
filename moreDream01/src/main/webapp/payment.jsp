@@ -170,17 +170,22 @@
 	</div>
 <script type="text/javascript">
 function pay(i){
-	var input_money = document.frm.input_money[i].value;
-	var rewardGuide = document.frm.reward[i].value;
-	var v = rewardGuide.split("_");
-	if (input_money < v[1]) {
-		alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
-		document.frm.money[i].focus();
-		return false;
-	} 
-	document.frm.rewardId.value = v[0];
-	document.frm.money.value = input_money;
-	return true;
+	if(i==0){
+		var input_money = document.frm.input_money.value;
+		var rewardGuide = document.frm.reward.value;
+	}else{
+		var input_money = document.frm.input_money[i].value;
+		var rewardGuide = document.frm.reward[i].value;
+	}
+		var v = rewardGuide.split("_");
+		if (input_money < v[1]) {
+			alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
+			document.frm.money[i].focus();
+			return false;
+		} 
+		document.frm.rewardId.value = v[0];
+		document.frm.money.value = input_money;
+		return true;
 }
 </script>
 	<jsp:include page="./footer.jsp" />
