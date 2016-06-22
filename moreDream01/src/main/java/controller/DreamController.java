@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
-import dao.DreamService;
+import service.DreamService;
 
 /*
  * DreamController 주석 추가
