@@ -39,6 +39,9 @@
 		} else if (f.password.value == "") {
 			alert("비밀번호를 입력하세요");
 			return;
+		} else if (f.name.value == "") {
+			alert("이름을 입력하세요");
+			return;
 		} else if (checkResult == false) {
 			alert("아이디(email) 중복체크를 하세요");
 			email.value = "";
@@ -227,6 +230,11 @@
 					    	<div class="form-group"><label>비밀번호 확인</label>
 									<input type="password" class="form-control" id="rePassword" name="rePassword"
 									placeholder="비밀번호를  한번 더 입력해주세요" value="">
+							<span id="passwordEqul"></span> 
+							</div>
+							<div class="form-group"><label>닉네임</label>
+									<input type="text" class="form-control" id="name" name="name"
+									placeholder="닉네임을 입력해주세요" value="">
 							<span id="passwordEqul"></span> 
 							</div>
 							<hr>

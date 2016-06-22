@@ -10,7 +10,10 @@
 <body>
 <script type="text/javascript">
 	alert("${param.email} 님 회원가입 OK!!");
-	location.replace="./index.jsp";
+	if('${requestScope.facebookFail!=""}'){
+		alert('${requestScope.facebookFail}');
+	}
+	location.replace("./index.jsp");
 </script>
 </body>
 </html>

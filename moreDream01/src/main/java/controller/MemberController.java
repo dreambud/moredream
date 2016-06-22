@@ -37,7 +37,11 @@ public class MemberController extends MultiActionController {
 	){
 		
 	memberService.registerMember(pmvo);
-	memberService.updateFacebookId(pmvo);//facebook 연동 로직 추가
+	MemberVO rmvo = memberService.facebookLogin(pmvo.getFacebookId());
+	if(rmvo==null)
+		memberService.updateFacebookId(pmvo);//facebook 연동 로직 추가
+	else
+		request.setAttribute("facebookFail", "해당 페이스북 계정은 이미 연동되었습니다.");
 	return new ModelAndView("WEB-INF/result/memberRegister_result","email",pmvo.getEmail());
 	}
 	

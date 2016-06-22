@@ -3,8 +3,8 @@ package service;
 import java.io.File;
 import java.util.ArrayList;
 
-import model.MemberVO;
 import dao.MemberDao;
+import model.MemberVO;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -22,7 +22,6 @@ public class MemberServiceImpl implements MemberService {
 		pmvo.setMember_orgFilename("-");
 		pmvo.setMemberCode("U");
 		pmvo.setMemberId(0);
-		pmvo.setName("-");
 		pmvo.setPhoneNumber("-");
 		memberDao.registerMember(pmvo);
 		

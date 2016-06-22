@@ -23,6 +23,23 @@
 <link href="css/responsive.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<!--[if lt IE 9]>
+	    <script src="js/html5shiv.js"></script>
+	    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/ui-darkness/jquery-ui.css">
+<link rel="stylesheet" href="css/editor.css" type="text/css" charset="utf-8"/>
+<script src="js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	var now = new Date();
 	
@@ -91,28 +108,94 @@
 					"<div class='col-md-3' style='margin: 10px 1px 1px 6px;background: #f1f0f0;padding: 10px 6px 6px 10px;'><textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo' ></textarea><br><input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide' onkeydown='number_chk(event);' style='IME-MODE: disabled'><br>	<input type='text' class='form-control' placeholder='재고' name='stock' onkeydown='number_chk(event);' style='IME-MODE: disabled'></div>");
 		});
 	});
+	function inputDetail() {
+		 Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
+		}
+	 function validForm(editor) {
+			// Place your validation logic here
+			// sample : validate that content exists
+			
+			var validator = new Trex.Validator();
+			var content = editor.getContent();
+			
+			document.getElementById("detailDream").value = content;
+			var rewardInfoArr = document.frm.rewardInfo;
+			if(document.frm.category.value==""){
+				alert('카테고리를 선택해주세요');
+				document.frm.category.focus();
+				return false;
+			}
+			else if(document.frm.titleDream.value==""){
+				alert('꿈 제목을 입력해주세요.');
+				document.frm.titleDream.focus();
+				return false;
+			}
+			if (!validator.exists(content)) {
+				alert('내용을 입력하세요');
+				return false;
+			}
+			else if(document.frm.multipartFile.value==""){
+				alert('파일을 반드시 등록해야합니다.');
+				document.frm.multipartFile.focus();
+				return false;
+			}
+			else if(document.frm.targetFund.value==""||document.frm.targetFund.value=="0"){
+				alert('목표금액을 설정해주세요 ');
+				document.frm.targetFund.focus();
+				return false;
+			}else if(document.frm.targetFund.value<1000){
+				alert('목표금액이 1000원 보다 작습니다. 1000원 이상의 목표금액을 입력하세요.');
+				document.frm.targetFund.focus();
+				return false;
+			}else if(document.frm.startDate.value==""){
+				alert('시작일자를 선택하세요.');
+				document.frm.startDate.focus();
+				return false;
+			}else if(document.frm.endDate.value==""){
+				alert('마감일자를 선택하세요.');
+				document.frm.endDate.focus();
+				return false;
+			}else{
+				if(rewardInfoArr.length==undefined){//보상내역이 한개일때
+					if(document.frm.rewardInfo.value==""){
+						alert('보상정보를 입력하세요.');
+						document.frm.rewardInfo.focus();
+						return false;
+					}else if(document.frm.rewardGuide.value==""){
+						alert('보상 기준액 입력하세요.');
+						document.frm.rewardGuide.focus();
+						return false;
+					}else if(document.frm.stock.value==""){
+						alert('보상 수량 입력하세요.');
+						document.frm.stock.focus();
+						return false;
+					}
+				}else if(rewardInfoArr.length>=2){
+					var rewardGuideArr = document.frm.rewardGuide;
+					var stockArr = document.frm.stock;
+					for(i=0;i<rewardInfoArr.length;i++){
+						if(rewardInfoArr[i].value==""){
+							alert('보상정보를 입력하세요.');
+							rewardInfoArr[i].focus();
+							return false;
+						}else if(rewardGuideArr[i].value==""){
+							alert('보상 기준액 입력하세요.');
+							rewardGuideArr[i].focus();
+							return false;
+						}else if(stockArr[i].value==""){
+							alert('보상 수량 입력하세요.');
+							stockArr[i].focus();
+							return false;
+						}
+					}
+				}
+				document.frm.submit();
+				return true;
+			}
+			
+		}
 </script>
-<!--[if lt IE 9]>
-	    <script src="js/html5shiv.js"></script>
-	    <script src="js/respond.min.js"></script>
-    <![endif]-->
 
-<link rel="shortcut icon" href="images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="images/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/ui-darkness/jquery-ui.css">
-<link rel="stylesheet" href="css/editor.css" type="text/css" charset="utf-8"/>
-<script src="js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-
-
-</script>
 
 </head>
 <!--/head-->
@@ -558,143 +641,7 @@
 		</div>
 		<!-- 에디터 컨테이너 끝 -->
 	</form>
-								
-				<script type="text/javascript">
-	var config = {
-		txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
-		txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
-		txService: 'sample', /* 수정필요없음. */
-		txProject: 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
-		initializedId: "", /* 대부분의 경우에 빈문자열 */
-		wrapper: "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
-		form: 'frm'+"", /* 등록하기 위한 Form 이름 */
-		txIconPath: "images/icon/editor/", /*에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
-		txDecoPath: "images/deco/contents/", /*본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
-		canvas: {
-            exitEditor:{
-                /*
-                desc:'빠져 나오시려면 shift+b를 누르세요.',
-                hotKey: {
-                    shiftKey:true,
-                    keyCode:66
-                },
-                nextElement: document.getElementsByTagName('button')[0]
-                */
-            },
-			styles: {
-				color: "#123456", /* 기본 글자색 */
-				fontFamily: "굴림", /* 기본 글자체 */
-				fontSize: "10pt", /* 기본 글자크기 */
-				backgroundColor: "#fff", /*기본 배경색 */
-				lineHeight: "1.5", /*기본 줄간격 */
-				padding: "8px" /* 위지윅 영역의 여백 */
-			},
-			showGuideArea: false
-		},
-		events: {
-			preventUnload: false
-		},
-		sidebar: {
-			attachbox: {
-				show: true,
-				confirmForDeleteAll: true
-			}
-		},
-		size: {
-			contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
-		}
-	};
 
-	EditorJSLoader.ready(function(Editor) {
-		var editor = new Editor(config);
-	});
-	
-	
-	 function inputDetail() {
-		 Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
-		}
-	 function validForm(editor) {
-			// Place your validation logic here
-
-			// sample : validate that content exists
-			var validator = new Trex.Validator();
-			var content = editor.getContent();
-			if (!validator.exists(content)) {
-				alert('내용을 입력하세요');
-				return false;
-			}
-			
-			document.getElementById("detailDream").value = content;
-			var rewardInfoArr = document.frm.rewardInfo;
-			if(document.frm.category.value==""){
-				alert('카테고리를 선택해주세요');
-				document.frm.category.focus();
-				return false;
-			}
-			else if(document.frm.titleDream.value==""){
-				alert('꿈 제목을 입력해주세요.');
-				document.frm.titleDream.focus();
-				return false;
-			}
-			else if(document.frm.multipartFile.value==""){
-				alert('파일을 반드시 등록해야합니다.');
-				document.frm.multipartFile.focus();
-				return false;
-			}
-			else if(document.frm.targetFund.value==""||document.frm.targetFund.value=="0"){
-				alert('목표금액을 설정해주세요 ');
-				document.frm.targetFund.focus();
-				return false;
-			}else if(document.frm.targetFund.value<1000){
-				alert('목표금액이 1000원 보다 작습니다. 1000원 이상의 목표금액을 입력하세요.');
-				document.frm.targetFund.focus();
-				return false;
-			}else if(document.frm.startDate.value==""){
-				alert('시작일자를 선택하세요.');
-				document.frm.startDate.focus();
-				return false;
-			}else if(document.frm.endDate.value==""){
-				alert('마감일자를 선택하세요.');
-				document.frm.endDate.focus();
-				return false;
-			}else{
-				if(rewardInfoArr.length==undefined){//보상내역이 한개일때
-					if(document.frm.rewardInfo.value==""){
-						alert('보상정보를 입력하세요.');
-						document.frm.rewardInfo.focus();
-						return false;
-					}else if(document.frm.rewardGuide.value==""){
-						alert('보상 기준액 입력하세요.');
-						document.frm.rewardGuide.focus();
-						return false;
-					}else if(document.frm.stock.value==""){
-						alert('보상 수량 입력하세요.');
-						document.frm.stock.focus();
-						return false;
-					}
-				}else if(rewardInfoArr.length>=2){
-					var rewardGuideArr = document.frm.rewardGuide;
-					var stockArr = document.frm.stock;
-					for(i=0;i<=rewardInfoArr.length;i++){
-						if(rewardInfoArr[i].value==""){
-							alert('보상정보를 입력하세요.');
-							rewardInfoArr[i].focus();
-							return false;
-						}else if(rewardGuideArr[i].value==""){
-							alert('보상 기준액 입력하세요.');
-							rewardGuideArr[i].focus();
-							return false;
-						}else if(stockArr[i].value==""){
-							alert('보상 수량 입력하세요.');
-							stockArr[i].focus();
-							return false;
-						}
-					}
-				}
-			}
-			return true;
-		}
-</script>
 								
 								<h3 class="page-header" align="left"><b>첨부 파일</b>  <small> - 꿈에 대한 사진을 올려주세요 !</small></h3>
 								<div align="left">
@@ -748,7 +695,7 @@
 							<h2 class="page-header"></h2>
 							&nbsp;
 							<div align="right">
-								<button type="submit" class="btn btn-lg btn-primary" onclick="javascript:Editor.save()">
+								<button type="button" class="btn btn-lg btn-primary" onclick="inputDetail();">
 									<i class="fa fa-heart"></i> 꿈 신청
 								</button>
 								&nbsp;
@@ -764,7 +711,57 @@
 			</div>
 		</section>
 	</form>
+<script type="text/javascript">
+	var config = {
+		txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
+		txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
+		txService: 'sample', /* 수정필요없음. */
+		txProject: 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
+		initializedId: "", /* 대부분의 경우에 빈문자열 */
+		wrapper: "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
+		form: 'frm'+"", /* 등록하기 위한 Form 이름 */
+		txIconPath: "images/icon/editor/", /*에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
+		txDecoPath: "images/deco/contents/", /*본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
+		canvas: {
+            exitEditor:{
+                /*
+                desc:'빠져 나오시려면 shift+b를 누르세요.',
+                hotKey: {
+                    shiftKey:true,
+                    keyCode:66
+                },
+                nextElement: document.getElementsByTagName('button')[0]
+                */
+            },
+			styles: {
+				color: "#123456", /* 기본 글자색 */
+				fontFamily: "굴림", /* 기본 글자체 */
+				fontSize: "10pt", /* 기본 글자크기 */
+				backgroundColor: "#fff", /*기본 배경색 */
+				lineHeight: "1.5", /*기본 줄간격 */
+				padding: "8px" /* 위지윅 영역의 여백 */
+			},
+			showGuideArea: false
+		},
+		events: {
+			preventUnload: false
+		},
+		sidebar: {
+			attachbox: {
+				show: true,
+				confirmForDeleteAll: true
+			}
+		},
+		size: {
+			contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
+		}
+	};
 
+	EditorJSLoader.ready(function(Editor) {
+		var editor = new Editor(config);
+	});
+	
+</script>
 	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 </body>
