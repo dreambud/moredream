@@ -9,18 +9,25 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Home | Triangle</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/animate.min.css" rel="stylesheet">
 <link href="css/lightbox.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
+<link href="css/responsive.css" rel="stylesheet"> -->
+
+<style type="text/css">
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+ 
+body, table, div, p {font-family:'Nanum Gothic';}
+/* 나눔글꼴 */
+</style>
 
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->
-<link rel="shortcut icon" href="images/ico/favicon.ico">
+<!-- <link rel="shortcut icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -28,12 +35,36 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72"
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
-	href="images/ico/apple-touch-icon-57-precomposed.png">
+	href="images/ico/apple-touch-icon-57-precomposed.png"> -->
+	
     <script type="text/javascript">
 	function logout(){
 		var f=confirm("로그아웃 하시겠습니까?");
 		if(f)
-			location.href="./member.do?command=logout"; //Controller에서 기능으로 연결..
+			location.href="${initParam.root}member.do?command=logout"; //Controller에서 기능으로 연결..
+	}
+	
+	function loginCheck(){
+		var flag = ${sessionScope.mvo==null};
+		if(flag){
+			alert('로그인이 필요한 페이지 입니다.');
+			location.replace('${initParam.root}member/login.jsp?url='+location.href);
+		}
+	}
+	function isLogin(){
+		var flag = ${sessionScope.mvo!=null};
+		if(flag){
+			location.replace('${initParam.root}index.jsp');
+		}
+	}
+	function search(ev){
+		if (window.event) // IE코드
+	        var code = window.event.keyCode;
+	    else // 타브라우저
+	        var code = ev.which;
+		if(code=='13')
+			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
+		
 	}
 </script>
 
@@ -68,46 +99,54 @@
 							class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand" href="index.jsp">
+					<a class="navbar-brand" href="${initParam.root}index.jsp">
 						<h1>MORE DREAM</h1>
 					</a>
 
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="./dream.do?command=getAllListDream ">꿈 찾기</a></li>
-						<li><a href="createdream.jsp ">꿈 꾸기</a></li>
+						<li><a href="${initParam.root}dream.do?command=getAllListDream ">꿈 찾기</a></li>
+						<li><a href="${initParam.root}dream/createdream_info.jsp ">꿈 꾸기</a></li>
 						<li><a href="# ">도움말</a></li>
 						<c:if test="${sessionScope.mvo.memberCode=='A'}">
 							<li class="dropdown"><a href="#">Admin<i
 									class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-									<li><a href="member.do?command=getMemberList">회원 관리</a></li>
-									<li><a href="dream.do?command=getAllListDreamForAdmin">꿈
+									<li><a href="${initParam.root}member.do?command=getMemberList">회원 관리</a></li>
+									<li><a href="${initParam.root}dream.do?command=getAllListDreamForAdmin">꿈
 											관리</a></li>
 								</ul></li>
 						</c:if>
 						<c:choose>
 							<c:when test="${sessionScope.mvo==null}">
-								<li><a href="login.jsp">로그인</a></li>
-								<li><a href="registerMember.jsp">회원 가입</a></li>
+								<li><a href="${initParam.root}member/login.jsp">로그인</a></li>
+								<li><a href="${initParam.root}member/registerMember.jsp">회원 가입</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a>${mvo.email }님 환영합니다.</a></li>
-								<li><a href="updateMember.jsp">회원정보 관리</a></li>
-								<li><a href="javascript:logout()">로그아웃</a></li>
+							<li class="dropdown"><a href="#">${mvo.name}님 환영합니다.<i class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="${initParam.root}member/updateMember.jsp">회원 정보 수정</a></li>
+									<li><a href="${initParam.root}dream.do?command=myMoreDream">모아드림 현황 보기</a></li>
+								</ul>
+							</li>
+							
+							<li>
+								<a href="javascript:logout()">로그아웃</a>
+							</li>
+							
 							</c:otherwise>
 						</c:choose>
 					</ul>
 				</div>
 				<div class="search">
-					<form role="form">
 						<i class="fa fa-search"></i>
 						<div class="field-toggle">
-							<input type="text" class="search-form" autocomplete="off"
-								placeholder="	깨진다...">
+							<div class="inner-addon left-addon">
+								<i class="glyphicon glyphicon-search"></i>
+								<input type="text" class="form-control" id="keyword" onkeydown="search()">
+							</div>
 						</div>
-					</form>
 				</div>
 			</div>
 		</div>

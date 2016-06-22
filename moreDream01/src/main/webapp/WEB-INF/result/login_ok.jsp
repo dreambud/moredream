@@ -12,7 +12,7 @@
 	<c:when test="${sessionScope.mvo==null }">
 		<script type="text/javascript">
 			alert("로그인 부터하세여...");
-			location.href="login.jsp";
+			location.href="${initParam.root }login.jsp";
 		</script>
 	</c:when>
 	<c:otherwise>

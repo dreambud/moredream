@@ -170,7 +170,7 @@ public class DreamController extends MultiActionController {
 			request.setAttribute("keyword", keyword);
 		}
 		System.out.println(dreamList);
-		return new ModelAndView("./finddream", "dreamList", dreamList);
+		return new ModelAndView("./dream/finddream", "dreamList", dreamList);
 	}
 
 	// 관리자 꿈 목록 보기
@@ -180,7 +180,7 @@ public class DreamController extends MultiActionController {
 		List<DreamVO> adminDreamList = dreamService.getAllListDreamForAdmin();
 
 		System.out.println(adminDreamList);
-		return new ModelAndView("./admindreampage", "adminDreamList",
+		return new ModelAndView("./admin/admindreampage", "adminDreamList",
 				adminDreamList);
 	}
 
@@ -293,7 +293,7 @@ public class DreamController extends MultiActionController {
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 		request.setAttribute("rewardList", rewardList);
 		
-		return new ModelAndView("dreamdetails", "dreamVO", dreamVO);
+		return new ModelAndView("dream/dreamdetails", "dreamVO", dreamVO);
 	}
 
 	// 추가160615
@@ -304,7 +304,7 @@ public class DreamController extends MultiActionController {
 		System.out.println("getRewardByDreamId ::" + dreamId);
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 
-		return new ModelAndView("payment", "rewardList", rewardList);
+		return new ModelAndView("dream/payment", "rewardList", rewardList);
 	}
 
 	// 결제하기
@@ -389,7 +389,7 @@ public class DreamController extends MultiActionController {
 		System.out.println(dreamList);
 		request.setAttribute("dreamList", dreamList);
 
-		return new ModelAndView("memberpage");
+		return new ModelAndView("member/memberpage");
 	}
 
 	// 160617 키워드별 카운트 바인딩 하는 메소드
@@ -419,8 +419,9 @@ public class DreamController extends MultiActionController {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		System.out.println("상세보기에서 dreamId ::" + dreamId);
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
-		return new ModelAndView("updateDream.jsp", "dreamVO", dreamVO);
+		return new ModelAndView("dream/updateDream.jsp", "dreamVO", dreamVO);
 	}
+	
 	//updateDream 등록.
 	public ModelAndView updateDream(HttpServletRequest request,
 			HttpServletResponse response, UpdateDreamVO vo) throws Exception {

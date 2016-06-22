@@ -9,7 +9,7 @@
 <body>
 	<script type="text/javascript">
 			alert("로그인 실패!!");
-			location.href="login.jsp?url=${requestScope.url}";
+			location.href="${initParam.root }login.jsp?url=${requestScope.url}";
 	</script>
 </body>
 </html>

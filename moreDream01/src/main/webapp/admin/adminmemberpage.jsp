@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->
-
+    
 <!-- <link rel="shortcut icon" href="images/ico/favicon.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144"
 	href="images/ico/apple-touch-icon-144-precomposed.png">
@@ -44,90 +43,72 @@
 <!--/head-->
 
 <body>
-	<jsp:include page="../../common/header.jsp" />
+	<jsp:include page="../common/header.jsp"/>
 	<!--/#header-->
 
-	<section id="page-breadcrumb">
+<section id="page-breadcrumb">
 		<div class="vertical-center sun">
 			<div class="container">
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<h1 class="title" align="center">회원 관리 현황</h1>
+							<h1 class="title" align="center"> 회원 관리 현황</h1>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-
+	
+		
 	<section id="shortcodes">
 		<div class="container">
 			<div id="feature-container">
 				<div class="row">
 					<div class="col-md-12">
-
-						<table class="table table-striped table-bordered table-hover">
-							<c:if test="${sessionScope.mvo.memberCode=='A'}">
-								<caption>
-									<b>회원현황</b>
-								</caption>
-								<thead>
-									<tr>
-										<th>MemberID</th>
-										<th>신청자</th>
-										<th>비밀번호</th>
-										<th>승인</th>
-									</tr>
-								</thead>
-								<tbody>
-
-									<c:forEach items="${list}" var="li">
-										<tr>
-
-
-											<td>${li.memberId}</td>
-											<td><a
-												href="${initParam.root }member.do?command=login&&email=${li.email}&&password=${li.password}">${li.email}</a></td>
-											<form action="${initParam.root }member.do" method="post">
-												<input type="hidden" name="command"
-													value="updateMemberbyAdmin"> <input type="hidden"
-													name="memberId" value="${li.memberId}"> <input
-													type="hidden" name="email" value="${li.email}"> <input
-													type="hidden" name="memberCode" value="${li.memberCode}">
-												<input type="hidden" name="address" value="${li.address}">
-												<input type="hidden" name="name" value="${li.name}">
-												<input type="hidden" name="phoneNumber"
-													value="${li.phoneNumber}">
-												<td><input type="text" name="password"
-													value="${li.password}"></td>
-												<td><button type="submit"
-														class="btn btn-xs btn-success">저장</button>
-											</form>
-											<a
-												href="${initParam.root }member.do?command=deleteMemberbyAdmin&&memberId=${li.memberId}"><button
-													type="button" class="btn btn-xs btn-danger">탈퇴</button>
-												</td> </a>
-										</tr>
-									</c:forEach>
-								</tbody>
-						</table>
-						</c:if>
-
+					
+					<table class="table table-striped table-bordered table-hover">
+        <caption>신청현황</caption>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>신청자</th>
+                <th>비밀번호</th>
+                <th>승인</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><a href="#">123@naver.com</a></td>
+                <td><input type="password"></td>
+               	<td><button type="button" class="btn btn-xs btn-success">저장</button><button type="button" class="btn btn-xs btn-danger">탈퇴</button></td>
+            </tr>
+            <tr>
+               	 <td>2</td>
+                <td><a href="#">123@naver.com</a></td>
+                <td><input type="password"></td>
+               	<td><button type="button" class="btn btn-xs btn-success">저장</button><button type="button" class="btn btn-xs btn-danger">탈퇴</button></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><a href="#">123@naver.com</a></td>
+                <td><input type="password"></td>
+               	<td><button type="button" class="btn btn-xs btn-success">저장</button><button type="button" class="btn btn-xs btn-danger">탈퇴</button></td>
+            </tr>
+        </tbody>
+    </table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 
-
-		<jsp:include page="../../common/footer.jsp" />
+	<jsp:include page="../common/footer.jsp"/>
 	<!--/#footer-->
 
 
 
 </body>
 </html>
-
-

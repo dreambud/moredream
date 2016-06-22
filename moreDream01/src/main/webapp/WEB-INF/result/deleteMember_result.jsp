@@ -9,6 +9,6 @@
 </head>
 <body>
 회원탈퇴 ok <p>
-<a href="index.jsp">홈으로 가기</a>
+<a href="${initParam.root }index.jsp">홈으로 가기</a>
 </body>
 </html>
