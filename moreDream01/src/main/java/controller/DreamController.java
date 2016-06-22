@@ -311,8 +311,7 @@ public class DreamController extends MultiActionController {
 	public ModelAndView payment(HttpServletRequest request,
 			HttpServletResponse response, HttpSession session) throws Exception {
 
-		String[] rId = request.getParameter("rewardId").split("_");
-		int rewardId = Integer.parseInt(rId[0]);
+		int rewardId = Integer.parseInt(request.getParameter("rewardId"));
 		int money = Integer.parseInt(request.getParameter("money"));
 		RewardVO rvo = new RewardVO();
 		rvo.setRewardId(rewardId);

@@ -68,19 +68,23 @@
 		else
 			Ev.preventDefault();
 	}
+	
+	
 
-	$(document).ready(function() {
-		$('#payment').click(function() {
-			var input_money = document.frm.money.value;
-			var rewardGuide = document.frm.rewardId.value;
+	/* $(document).ready(function() {
+		$('#paymen').click(function(i) {
+			alert(i);
+			var input_money = document.frm.money[0].value;
+			var rewardGuide = document.frm.rewardId[0].value;
 			var v = rewardGuide.split("_");
 			if (input_money < v[1]) {
 				alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
 			} else {
-				document.frm.submit();
+				return false;
 			}
+			return false;
 		});//click
-	});//ready
+	});//ready */
 </script>
 <body>
 
@@ -114,7 +118,7 @@
 
 								<div>
 									<div>
-										<%-- <input type="radio" name="rewardId" value="${rl.rewardId}_${rl.rewardGuide}"> 선택 --%>
+<%-- 										<input type="radio" name="rewardId" value="${rl.rewardId}_${rl.rewardGuide}"> 선택 --%>
 									</div>
 									<div>
 										<h3 class="page-header">
@@ -124,12 +128,14 @@
 
 										<div class="input-group">
 
-											<input value="${rl.rewardGuide}" name="money" type="text"
+											<input value="${rl.rewardGuide}" name="input_money" type="text"
 												onkeydown="number_chk(event);" style="IME-MODE: disabled"
-												class="form-control" /> <span class="input-group-btn"><button
-													type="submit" id="payment" name="rewardId"
-													value="${rl.rewardId}_${rl.rewardGuide}"
-													class="btn btn-large btn-primary">결제하기</button></span>
+												class="form-control" /> 
+											<span class="input-group-btn">
+												<button	type="submit" id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
+													class="btn btn-large btn-primary" onclick="javascript:pay('${count.count-1}');">결제하기
+													</button>
+											</span>
 
 										</div>
 										<p>
@@ -149,7 +155,8 @@
 								</div>
 								<hr>
 							</c:forEach>
-
+							<input type="hidden" id="rewardId" name="rewardId">
+							<input type="hidden" id="money" name="money">
 						</form>
 					</c:when>
 					<c:otherwise>
@@ -161,7 +168,21 @@
 
 		</div>
 	</div>
-
+<script type="text/javascript">
+function pay(i){
+	var input_money = document.frm.input_money[i].value;
+	var rewardGuide = document.frm.reward[i].value;
+	var v = rewardGuide.split("_");
+	if (input_money < v[1]) {
+		alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
+		document.frm.money[i].focus();
+		return false;
+	} 
+	document.frm.rewardId.value = v[0];
+	document.frm.money.value = input_money;
+	return true;
+}
+</script>
 	<jsp:include page="./footer.jsp" />
 	<!--/#footer-->
 </body>

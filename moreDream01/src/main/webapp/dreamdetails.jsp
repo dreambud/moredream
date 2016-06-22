@@ -305,16 +305,23 @@
 							</div>
 						</div>
 						<p align="center">
-							<a
-								href="dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button
+						<c:choose>
+							<c:when test="${is_dreamMaker==true }">
+								당신은 이미 후원 하셨습니다!
+							</c:when>
+							<c:otherwise>
+							<a href="dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button
 									type="button" class="btn btn-primary btn-lg">응원하기</button></a>
+							</c:otherwise>
+						</c:choose>
+							
 						</p>
 						<hr>
 						<p>
 							<font size="2"><b>결제는<font color="red">
-										${dreamVO.end_year}년 ${dreamVO.end_month}월 ${dreamVO.end_day}일
-										자정</font>까지 <br> 최소 <font color="red">${dreamVO.targetFundView}원</font>이
-									모여야만 <br> 꿈을 실현할 수 있습니다.
+								${dreamVO.end_year}년 ${dreamVO.end_month}월 ${dreamVO.end_day}일
+								자정</font>까지 <br> 최소 <font color="red">${dreamVO.targetFundView}원</font>이
+							모여야만 <br> 꿈을 실현할 수 있습니다.
 							</b></font>
 						</p>
 
