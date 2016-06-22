@@ -321,6 +321,7 @@ public class DreamController extends MultiActionController {
 				money);
 
 		dreamService.payment(ppvo);
+		dreamService.updateMinusStockByRewardId(rewardId);
 
 		return new ModelAndView("WEB-INF/result/payment_result");
 	}

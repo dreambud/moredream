@@ -185,7 +185,7 @@ function pay(i){
 		} 
 		document.frm.rewardId.value = v[0];
 		document.frm.money.value = input_money;
-		return true;
+		return false;
 }
 </script>
 	<jsp:include page="./footer.jsp" />
