@@ -73,7 +73,7 @@
 
 <body>
 
-	<jsp:include page="./header.jsp" />
+	<jsp:include page="./common/header.jsp" />
 
 	<section id="page-breadcrumb">
 		<div class="vertical-center sun">
@@ -229,7 +229,7 @@
 
 
 
-	<jsp:include page="./footer.jsp" />
+	<jsp:include page="./common/footer.jsp" />
 	<!--/#footer-->
 
 

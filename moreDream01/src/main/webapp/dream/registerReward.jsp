@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Portfolio Three Columns | Triangle</title>
+<title>More Dream</title>
 <script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
 <script type="text/javascript" src="${initParam.root }js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${initParam.root }js/jquery.isotope.min.js"></script>
@@ -40,12 +39,13 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png"> -->
+	
 </head>
 <!--/head-->
 
 <body>
-	<jsp:include page="../../common/header.jsp" />
-	<!--/#header-->
+
+	<jsp:include page="../common/header.jsp" />
 
 	<section id="page-breadcrumb">
 		<div class="vertical-center sun">
@@ -53,81 +53,62 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<h1 class="title" align="center">회원 관리 현황</h1>
+							<h1 class="title">꿈 꾸기</h1>
+							<p>당신의 꿈을 실현시켜보세요 !</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!--/#page-breadcrumb-->
+	<form action="${initParam.root }dream.do" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="command" value="registerReward">
+	<input type="hidden" name="dreamId" value="${dreamId }">
+		<section id="shortcodes">
+			<div class="container">
+				<div id="feature-container">
+					<div class="row">
+						<div class="col-md-12">
+							<h2 class="page-header">보상 등록</h2>
+							<div class="col-md-12">
+								<div align="center">
+									<h2 class="page-header" align="left">보상 내용</h2>
+									<textarea class="form-control" rows="2" name="rewardInfo"></textarea>
 
+									<h2 class="page-header" align="left">보상 기준 금액</h2>
+									<textarea class="form-control" rows="2" name="rewardGuide"></textarea>
 
-	<section id="shortcodes">
-		<div class="container">
-			<div id="feature-container">
-				<div class="row">
-					<div class="col-md-12">
+									<h2 class="page-header" align="left">보상 갯수</h2>
+									<textarea class="form-control" rows="2" name="stock"></textarea>
+								</div>
 
-						<table class="table table-striped table-bordered table-hover">
-							<c:if test="${sessionScope.mvo.memberCode=='A'}">
-								<caption>
-									<b>회원현황</b>
-								</caption>
-								<thead>
-									<tr>
-										<th>MemberID</th>
-										<th>신청자</th>
-										<th>비밀번호</th>
-										<th>승인</th>
-									</tr>
-								</thead>
-								<tbody>
+								<h2 class="page-header"></h2>
+								&nbsp;
+								<div align="right">
+									<button type="submit" class="btn btn-lg btn-primary">
+										<i class="fa fa-heart"></i> 보상 등록
+									</button>
+									&nbsp;
+								</div>
+								&nbsp;
 
-									<c:forEach items="${list}" var="li">
-										<tr>
-
-
-											<td>${li.memberId}</td>
-											<td><a
-												href="${initParam.root }member.do?command=login&&email=${li.email}&&password=${li.password}">${li.email}</a></td>
-											<form action="${initParam.root }member.do" method="post">
-												<input type="hidden" name="command"
-													value="updateMemberbyAdmin"> <input type="hidden"
-													name="memberId" value="${li.memberId}"> <input
-													type="hidden" name="email" value="${li.email}"> <input
-													type="hidden" name="memberCode" value="${li.memberCode}">
-												<input type="hidden" name="address" value="${li.address}">
-												<input type="hidden" name="name" value="${li.name}">
-												<input type="hidden" name="phoneNumber"
-													value="${li.phoneNumber}">
-												<td><input type="text" name="password"
-													value="${li.password}"></td>
-												<td><button type="submit"
-														class="btn btn-xs btn-success">저장</button>
-											</form>
-											<a
-												href="${initParam.root }member.do?command=deleteMemberbyAdmin&&memberId=${li.memberId}"><button
-													type="button" class="btn btn-xs btn-danger">탈퇴</button>
-												</td> </a>
-										</tr>
-									</c:forEach>
-								</tbody>
-						</table>
-						</c:if>
-
+							</div>
+						</div>
 					</div>
 				</div>
+				<!--/#feature-container-->
 			</div>
-		</div>
-	</section>
+		</section>
+	</form>
 
 
-		<jsp:include page="../../common/footer.jsp" />
+
+
+	<jsp:include page="../common/footer.jsp"/>
 	<!--/#footer-->
 
 
 
 </body>
 </html>
-
-

@@ -39,7 +39,7 @@
 <c:choose>
 <c:when test="${dreamList!=null}">
 <body>
-	<jsp:include page="./header.jsp"/>
+	<jsp:include page="./common/header.jsp"/>
 
     <section id="home-slider">
         <div class="container">
@@ -124,7 +124,7 @@
     </section>
     <!--/#recent-projects-->
 
-    <jsp:include page="./footer.jsp"/>
+    <jsp:include page="./common/footer.jsp"/>
 
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

@@ -13,7 +13,7 @@
 	if('${requestScope.facebookFail!=""}'){
 		alert('${requestScope.facebookFail}');
 	}
-	location.replace("./index.jsp");
+	location.replace("${initParam.root }index.jsp");
 </script>
 </body>
 </html>

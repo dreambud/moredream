@@ -9,7 +9,7 @@
 </head>
 <body>
 ${sessionScope.mvo.email} 님 회원정보 수정이 완료 되었습니다.<p>
-<a href="index.jsp">홈으로 가기</a>
+<a href="${initParam.root }index.jsp">홈으로 가기</a>
 
 </body>
 </html>
