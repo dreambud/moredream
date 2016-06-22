@@ -234,8 +234,8 @@ public class DreamDaoImpl implements DreamDao {
 		return result;
 	}
 	@Override
-	public int deleteComment(int memberId) throws IOException {
-		int result = sqlSession.delete("dreamSql.deleteComment", memberId);
+	public int deleteCommentByReplyId(int replyId) throws IOException {
+		int result = sqlSession.delete("dreamSql.deleteCommentByReplyId", replyId);
 		return result;
 	}
 	@Override

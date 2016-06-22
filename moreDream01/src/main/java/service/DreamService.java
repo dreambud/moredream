@@ -82,7 +82,7 @@ public interface DreamService {
 
 	//댓글 작성, 삭제, 알람받기
 	public void writeComment(ReplyVO vo)throws IOException;
-	public int deleteComment(int memberId)throws IOException;
+	public int deleteCommentByReplyId(int replyId)throws IOException;
 	public List<UpdateDreamVO> alarm(int memberId)throws IOException;
 
 	//꿈 리스트 가져오기(필터,전체리스트)

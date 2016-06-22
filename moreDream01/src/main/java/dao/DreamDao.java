@@ -88,7 +88,7 @@ public interface DreamDao {
 
 
 	public int writeComment(ReplyVO pvo) throws IOException;//댓글 작성
-	public int deleteComment(int replyId) throws IOException;//댓글 삭제
+	public int deleteCommentByReplyId(int replyId) throws IOException;//댓글 삭제
 	public List<UpdateDreamVO> alarm(int memberId) throws IOException;//알림
 
 	public List<DreamVO> getAllListDreamOrderByMoney() throws IOException;//필터 최고금액 순

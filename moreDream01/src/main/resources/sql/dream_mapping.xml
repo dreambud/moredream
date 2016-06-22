@@ -333,21 +333,20 @@
 	</insert>
 
 
-	<!-- 댓글 DreamId로 찾아와서 읽기 수정 160615 -->
+	<!-- 댓글 DreamId로 찾아와서 읽기 수정 160615 160622 -->
 	<select id="readComment" parameterType="int" resultType="reply">
-		select m.name AS "memberVO.name", m.member_newFilename AS
-		"memberVO.member_newFilename",
-		r.replyId, r.dreamId, r.memberId, r.content, r.writeDate
+		select m.name AS "memberVO.name", m.member_newFilename AS "memberVO.member_newFilename", m.memberId AS "memberVO.memberId",
+				r.replyId, r.dreamId, r.content, r.writeDate
 		from member m ,(SELECT
-		r.replyId, r.dreamId, r.content, r.writeDate, r.memberId
-		FROM reply r, dream d
-		WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId) r
+						r.replyId, r.dreamId, r.content, r.writeDate, r.memberId
+						FROM reply r, dream d
+						WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId) r
 		WHERE r.memberid=m.memberid
 		ORDER BY replyId DESC
 	</select>
 
-	<!-- 댓글 삭제하기 :: deleteComment -->
-	<delete id="deleteComment" parameterType="int">
+	<!-- 수정 160622 댓글 삭제하기 :: deleteCommentByReplyId -->
+	<delete id="deleteCommentByReplyId" parameterType="int">
 		DELETE
 		FROM reply
 		WHERE

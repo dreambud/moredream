@@ -317,9 +317,9 @@ public class DreamServiceImpl implements DreamService {
 	}
 
 	@Override
-	public int deleteComment(int memberId) throws IOException {
+	public int deleteCommentByReplyId(int replyId) throws IOException {
 
-		return dreamDao.deleteComment(memberId);
+		return dreamDao.deleteCommentByReplyId(replyId);
 	}
 
 	@Override
