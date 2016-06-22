@@ -107,10 +107,10 @@
 											<td>
 											<c:choose>
 											<c:when test="${my.paymentVO.paymentState=='Y'}">
-												<button type="button" class="btn btn-xs btn-success">결제완료</button>
+												<button type="button" class="btn btn-xs btn-success" style="cursor:default;">결제완료</button>
 											</c:when>
 											<c:otherwise>
-												<button type="button" class="btn btn-xs btn-danger">결제취소</button>
+												<button type="button" class="btn btn-xs btn-danger" style="cursor:default;">결제취소</button>
 											</c:otherwise>
 											</c:choose>
 												
