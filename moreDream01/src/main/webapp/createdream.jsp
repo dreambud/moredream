@@ -107,6 +107,20 @@
 			$('#rewardInputDiv').append(
 					"<div class='col-md-3' style='margin: 10px 1px 1px 6px;background: #f1f0f0;padding: 10px 6px 6px 10px;'><textarea class='form-control' rows='5' placeholder='보상 정보' name='rewardInfo' ></textarea><br><input type='text' class='form-control' placeholder='금액 기준' name='rewardGuide' onkeydown='number_chk(event);' style='IME-MODE: disabled'><br>	<input type='text' class='form-control' placeholder='재고' name='stock' onkeydown='number_chk(event);' style='IME-MODE: disabled'></div>");
 		});
+		//title 글자 수
+		$('#titleDream').keyup(function () {
+			var inputLength = $(this).val().length;
+			var remain = 15 - inputLength;
+			
+			var titleDream = document.getElementById("titleDream");
+			var titleCheckView = document.getElementById("titleCheckView");
+
+			if (titleDream.value.length > 15) {
+				titleCheckView.innerHTML = "<font color='red'> 타이틀은 15자 이하로 가능합니다.</font>";
+				return;
+			}
+			$('#titleCheckView').html("("+remain+"/15)");	
+		});
 	});
 	function inputDetail() {
 		 Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
@@ -244,8 +258,8 @@
 
 						<div class="col-md-12">
 							<div align="center">
-								<h2 class="page-header" align="left"><small>꿈에 대한 타이틀을 정해주세요 !</small></h2>
-								<textarea class="form-control" rows="2" name="titleDream"></textarea>
+								<h2 class="page-header" align="left"><small>꿈에 대한 타이틀을 정해주세요 !<span id="titleCheckView"></small></h2>
+								<textarea class="form-control" rows="2" name="titleDream" placeholder="15자 이내로 입력해주세요." id="titleDream" name="titleDream"></textarea>
 
 								<h2 class="page-header" align="left"><b>HOW ?</b> <small> - 꿈은 어떻게 진행되는가요 ?  </small></h2>
 								<input type="hidden" name="detailDream" id="detailDream">
