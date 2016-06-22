@@ -39,7 +39,7 @@ var FaceBookApp = {
     	    	    	var token = FaceBookApp.accessToken;
     	    	    	var memberName = response.name;
     	    	    	var email = response.email;
-    	    	    	location.href='member.do?command=facebookLogin&&facebookId='+id;
+    	    	    	location.href='../member.do?command=facebookLogin&&facebookId='+id+'&&email='+email;
     	    	    	// 실행할 코
 
      	   	});
