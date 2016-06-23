@@ -422,32 +422,38 @@ public class DreamController extends MultiActionController {
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
 		return new ModelAndView("dream/updateDream.jsp", "dreamVO", dreamVO);
 	}
+	
+	//160623 업데이트 등록 수정 완료
 	//updateDream 등록.
 	public ModelAndView updateDream(HttpServletRequest request,
 			HttpServletResponse response, UpdateDreamVO vo) throws Exception {
 		
-		if(vo.getMultipartFile()!=null){
-			MultipartFile file = vo.getMultipartFile();//업로드한 파일
-			System.out.println("업데이트 드림 업로드된 뉴파일 명 : "+vo.getUpdate_newFilename());
-			System.out.println("vo.getMultipartFile() ::"+vo.getMultipartFile());
-			if(!file.isEmpty()){//파일이 있다.
+		
+		MultipartFile updateFile = vo.getMultipartFile();//업로드한 파일
+	/*	if(vo.getMultipartFile()!=null){
+			*/
+			System.out.println("업데이트 드림 업로드된 뉴파일 명 : "+updateFile.getOriginalFilename());
+			if(!updateFile.isEmpty()){//파일이 있다.
 				/*
 				 * orgfilename 받아와서 bvo에 주입
 				 * newfilename 방아와서 bvo에 주입
 				 */
-				vo.setUpdate_orgFilename(file.getOriginalFilename());
-				vo.setUpdate_newFilename(System.currentTimeMillis()+"_"+file.getOriginalFilename());
-			
-				File desFile = new File(path+System.currentTimeMillis()+"_"+file.getOriginalFilename());
-				file.transferTo(desFile);
+				vo.setUpdate_orgFilename(updateFile.getOriginalFilename());
+				vo.setUpdate_newFilename(System.currentTimeMillis()+"_"+updateFile.getOriginalFilename());
+				System.out.println(vo.getUpdate_newFilename()+"//"+vo.getUpdate_orgFilename());
+				File desFilee = new File(path+System.currentTimeMillis()+"_"+updateFile.getOriginalFilename());
+				updateFile.transferTo(desFilee);
 				}
-			}
-		
-		
-		DreamVO dreamVO = (DreamVO) request.getAttribute("dreamVO");
+			/*}*/
+		DreamVO dreamVO = new DreamVO();
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		System.out.println("dreamId ::"+dreamId);
+		dreamVO.setDreamId(dreamId);
+		System.out.println(vo.getUpdate_detailDream());
 		vo.setDreamVO(dreamVO);
+		System.out.println(vo);
 		dreamService.updateDream(vo);
-		return new ModelAndView("dream.do?command=getDetailDreamByDreamId", "dreamId", dreamVO.getDreamId());
+		return new ModelAndView("redirect:/dream.do?command=myMoreDream");
 	}
 		
 	public ModelAndView cancelPayment(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {

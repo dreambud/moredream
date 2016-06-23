@@ -155,6 +155,11 @@ function deleteComment(replyId) {
 																	<div class="post-content overflow">
 																		<p>${updateDream.update_detailDream}</p>
 																	</div>
+																	<!-- 160623 업데이트 날짜 추가 -->
+																	<div class="post-content overflow">
+																		<p>${updateDream.update_writeDate}</p>
+																	</div>
+																	<hr>
 																</c:forEach>
 															</c:when>
 															<c:otherwise>

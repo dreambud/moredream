@@ -214,12 +214,14 @@
 		ORDER BY startDate
 	</select>
 
+	<!-- 160622 update_writeDate 추가 -->
 	<!-- updateDreamListRM -->
 	<resultMap type="updateDream" id="updateDreamListRM">
 		<result property="dreamVO.dreamId" column="dreamId" />
 		<result property="update_detailDream" column="update_detailDream" />
 		<result property="update_orgFilename" column="update_orgFilename" />
 		<result property="update_newFilename" column="update_newFilename" />
+		<result property="update_writeDate" column="update_writeDate"/>
 	</resultMap>
 
 	<!-- 알림받기 :: alarm -->
@@ -306,18 +308,21 @@
 	</select>
 
 	<!-- ////////////////////////// 20160614 ////////////////////////////////////// -->
+	<!-- 160623 날짜 받아오는 부분 추가 -->
 	<select id="updateDreamFindByDreamId" parameterType="int"
 		resultMap="updateDreamListRM">
-		SELECT u.dreamId, u.update_detailDream, u.update_newFilename
-		FROM updateDream u
-		WHERE u.dreamId=${value}
+		SELECT dreamId, update_detailDream, update_newFilename, 
+		TO_char(update_writeDate, 'yyyy-MM-dd') AS update_writeDate
+		FROM updateDream
+		WHERE dreamId=${value}
+		ORDER BY update_writeDate DESC
 	</select>
 
 	<insert id="updateDream" parameterType="updateDream">
 		INSERT INTO updateDream
-		(dreamId, update_detailDream, update_orgFilename, update_newFilename)
+		(dreamId, update_detailDream, update_orgFilename, update_newFilename ,update_writeDate)
 		VALUES (#{dreamVO.dreamId}, #{update_detailDream},
-		#{update_orgFilename}, #{update_newFilename})
+		#{update_orgFilename}, #{update_newFilename},sysdate)
 	</insert>
 
 	<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->

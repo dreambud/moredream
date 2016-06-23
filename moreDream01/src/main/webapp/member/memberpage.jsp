@@ -174,6 +174,13 @@
 										</c:when>
 										<c:when test="${dream.confirmRequestDream=='Y'}">
 										<h2>승인완료</h2>
+										<!-- 160623 업데이트 작성부분 추가 -->
+										<p>
+										<form action="${initParam.root}dream/updateDream.jsp" method="get" >
+										<input type="hidden" name="dreamId" value="${dream.dreamId}">
+										<input type="submit" value="꿈 업데이트 하기">
+										</form>
+										</p>
 										</c:when>
 										<c:otherwise>
 										<h2>거절되었습니다.</h2>
