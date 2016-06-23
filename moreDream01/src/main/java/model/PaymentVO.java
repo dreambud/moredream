@@ -8,6 +8,7 @@ public class PaymentVO {
 	private int memberId;//결제자(후원자)
 	private String paymentState;//Y or N  SQL에서 디폴트로 Y로 지정
 	private int money;//금액
+	private String paymentDate;//결제일 추가 160623
 	
 	
 	public PaymentVO() {	} //디폴트 생성자
@@ -22,6 +23,14 @@ public class PaymentVO {
 		this.money = money;
 	}
 	
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+
 	public int getMoney() {
 		return money;
 	}
