@@ -9,20 +9,28 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>More Dream</title>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="js/lightbox.min.js"></script>
-<script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/lightbox.css" rel="stylesheet">
-<link href="css/animate.min.css" rel="stylesheet">
-<link href="css/main.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet">
+<script type="text/javascript" src="${initParam.root}js/jquery.js"></script>
+<script type="text/javascript" src="${initParam.root}js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${initParam.root}js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="${initParam.root}js/lightbox.min.js"></script>
+<script type="text/javascript" src="${initParam.root}js/wow.min.js"></script>
+<script type="text/javascript" src="${initParam.root}js/main.js"></script>
+<link href="${initParam.root}css/bootstrap.min.css" rel="stylesheet">
+<link href="${initParam.root}css/font-awesome.min.css" rel="stylesheet">
+<link href="${initParam.root}css/lightbox.css" rel="stylesheet">
+<link href="${initParam.root}css/animate.min.css" rel="stylesheet">
+<link href="${initParam.root}css/main.css" rel="stylesheet">
+<link href="${initParam.root}css/responsive.css" rel="stylesheet">
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<!-- /////////////////////////////////////////////////////////////////////////////// -->
+
+
+<link rel="stylesheet" href="${initParam.root}css/editor.css" type="text/css" charset="utf-8"/>
+<script src="${initParam.root}js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
 
 
 <link rel="shortcut icon" href="images/ico/favicon.ico">
@@ -336,9 +344,9 @@
 															<div class="tx-menu-inner"></div>
 															<div class="tx-menu-footer">
 																<img class="tx-menu-confirm"
-																	src="./images/icon/editor/btn_confirm.gif?rv=1.0.1"
+																	src="${initParam.root}images/icon/editor/btn_confirm.gif?rv=1.0.1"
 																	alt="" /> <img class="tx-menu-cancel" hspace="3"
-																	src="./images/icon/editor/btn_cancel.gif?rv=1.0.1"
+																	src="${initParam.root}images/icon/editor/btn_cancel.gif?rv=1.0.1"
 																	alt="" />
 															</div>
 														</div>
@@ -515,7 +523,7 @@
 										<div id="tx_canvas" class="tx-canvas">
 											<div id="tx_loading" class="tx-loading">
 												<div>
-													<img src="images/icon/editor/loading2.png" width="113"
+													<img src="${initParam.root}images/icon/editor/loading2.png" width="113"
 														height="21" align="absmiddle" />
 												</div>
 											</div>
@@ -537,13 +545,13 @@
 										<div id="tx_resizer" class="tx-resize-bar">
 											<div class="tx-resize-bar-bg"></div>
 											<img id="tx_resize_holder"
-												src="images/icon/editor/skin/01/btn_drag01.gif" width="58"
+												src="${initParam.root}images/icon/editor/skin/01/btn_drag01.gif" width="58"
 												height="12" unselectable="on" alt="" />
 										</div>
 										<div class="tx-side-bi" id="tx_side_bi">
 											<div style="text-align: right;">
 												<img hspace="4" height="14" width="78" align="absmiddle"
-													src="images/icon/editor/editor_bi.png" />
+													src="${initParam.root}images/icon/editor/editor_bi.png" />
 											</div>
 										</div>
 										<!-- 편집영역 끝 -->
@@ -555,7 +563,7 @@
 												<div class="tx-attach-box-inner">
 													<div id="tx_attach_preview" class="tx-attach-preview">
 														<p></p>
-														<img src="images/icon/editor/pn_preview.gif" width="147"
+														<img src="${initParam.root}images/icon/editor/pn_preview.gif" width="147"
 															height="108" unselectable="on" />
 													</div>
 													<div class="tx-attach-main">
@@ -590,8 +598,8 @@
 		initializedId: "", /* 대부분의 경우에 빈문자열 */
 		wrapper: "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
 		form: 'frm'+"", /* 등록하기 위한 Form 이름 */
-		txIconPath: "images/icon/editor/", /*에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
-		txDecoPath: "images/deco/contents/", /*본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
+		txIconPath: "${initParam.root}images/icon/editor/", /*에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
+		txDecoPath: "${initParam.root}images/deco/contents/", /*본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
 		canvas: {
             exitEditor:{
                 /*
