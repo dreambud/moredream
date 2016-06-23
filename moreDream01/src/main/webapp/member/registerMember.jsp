@@ -53,7 +53,14 @@
 			alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
 		}else{
 		//자바스크립트에서 바로 폼으로 입력된 값을 url로 전송하는 기능..
-		f.submit();
+		//facebook연동 여부 로직
+			if(document.regForm.facebookId==''&&document.regForm.facebook.checked){
+				checkLoginState();
+			}
+			else if(!document.regForm.facebook.checked){
+				document.regForm.facebookId.value="";
+			}
+			f.submit();
 		}
 	}
 
@@ -106,7 +113,6 @@
 		
 	$(document).ready(function(){
 		$('#rePassword').keyup(function(){
-
 		if($(this).val()!=$('#password').val()){
 		$('#passwordEqul').html("<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
 		}else{
@@ -124,9 +130,7 @@
     if (response.status === 'connected') {
     	checkLog();
     } else if (response.status === 'not_authorized') {
-    } else {
-      document.getElementById('status').innerHTML = '페이스북에 로그인 하시면 해당 계정과 연동 처리됩니다.';
-    }
+    } 
   }
 
   // This function is called when someone finishes with the Login
@@ -183,6 +187,7 @@
   function checkLog(){
 	  FB.api('/me',function(response){
 		  document.regForm.facebookId.value=response.id;
+		  document.regForm.facebook.checked=true;
 	  });
   }
 </script>
@@ -242,8 +247,9 @@
 							<hr>
 							<div class="form-group"><label>페이스북 연동</label>
 								<div class="fb-login-button" data-scope="public_profile,email" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
-								<br><font color="green"><b>* 페이스북 로그인시 자동으로 연동됩니다.<p>
+								<br><font color="green"><b>
 								* 이후에 이메일 또는 페이스북으로 로그인이 가능합니다.<p></b></font>
+								<input type="checkbox" id="facebook" name="facebook" value="연동하기"> 페이스북과 연동하기
 							</div>
 				</div>
 			    <div class="checkbox">
