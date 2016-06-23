@@ -277,7 +277,7 @@ function deleteComment(replyId) {
 																<div class="pull-left">
 																	<img class="media-object"
 																		src="${initParam.root }upload/member/${member.member_newFilename }"
-																		alt="">
+																		alt="" width="80" height="80">
 																</div>
 																<div class="media-body">
 																	<span><i class="fa fa-user"></i> ${member.name}</span>
