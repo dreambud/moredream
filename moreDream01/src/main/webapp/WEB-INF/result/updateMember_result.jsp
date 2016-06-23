@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-${sessionScope.mvo.email} 님 회원정보 수정이 완료 되었습니다.<p>
-<a href="${initParam.root }index.jsp">홈으로 가기</a>
+<script>
+	alert('${sessionScope.mvo.name} 님 회원정보가 수정 완료 되었습니다.');
+	location.replace("${initParam.root }member/updateMember.jsp");
+</script>
 
 </body>
 </html>

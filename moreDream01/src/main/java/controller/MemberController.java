@@ -106,7 +106,9 @@ public class MemberController extends MultiActionController {
 		}
 		request.getParameter("password");
 		System.out.println(pmvo);
+		System.out.println(pmvo.getFacebookId());
 		memberService.updateMember(pmvo);//이 부분에서 디비의 mvo내용이 pmvo로 수정이 일어났다.
+		memberService.updateFacebookId(pmvo);
 		//그걸 다시 세션에 반드시 바인딩 해야한다.
 		request.getSession().setAttribute("mvo", pmvo);
 		//return new ModelAndView("redirect:/updateMember.jsp");
