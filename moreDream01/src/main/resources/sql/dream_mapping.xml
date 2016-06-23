@@ -119,23 +119,26 @@
 	</update>
 
 	<!-- paymentRM -->
+	<!-- 160623 paymentDate 추가 -->
 	<resultMap type="payment" id="paymentRM">
 		<result property="paymentId" column="paymentId" />
 		<result property="rewardVO.rewardId" column="rewardId" />
 		<result property="memberId" column="memberId" />
 		<result property="paymentState" column="paymentState" />
 		<result property="money" column="money" />
+		<result property="paymentDate" column="paymentDate" />
 	</resultMap>
 
-	<!-- 결제 내역 가져오기 -->
+	<!-- 결제 내역 가져오기 160623 paymentDate 추가 -->
 	<select id="getPaymentHistoryByMemberId" parameterType="int"
 		resultMap="paymentRM">
-		SELECT paymentId, rewardId, memberId, paymentState, money
+		SELECT paymentId, rewardId, memberId, paymentState, money, paymentDate
 		FROM payment
 		WHERE memberId = #{value}
 	</select>
 
 	<!-- 결제 내역에서 응원한 꿈 정보 가져오기(응원 현황보기) :: 꿈번호를 받아서 꿈 상세 정보 보기를 돌린다.. -->
+	<!-- 160623 -->
 	<select id="cheerUpList" parameterType="int" resultMap="dreamRM">
 		SELECT
 		dreamId, dream_newFilename, titleDream, TO_char(endDate, 'yyyy-MM-dd')
@@ -171,7 +174,7 @@
 		paymentState='N' WHERE paymentId = #{value}
 	</delete>
 
-	<!-- 결제하기(응원하기) -->
+	<!-- 결제하기(응원하기) 160623 paymentDate 추가 -->
 	<insert id="payment" parameterType="payment">
 		<selectKey keyProperty="paymentId" resultType="int" order="BEFORE">
 			SELECT payment_seq.nextVal FROM dual
@@ -179,9 +182,9 @@
 
 		INSERT
 		INTO payment (paymentId, rewardId, memberId, paymentState,
-		money)
+		money, paymentDate)
 		VALUES(#{paymentId}, #{rewardVO.rewardId}, #{memberId},'Y',
-		#{money})
+		#{money}, sysdate)
 	</insert>
 
 	<!-- 꿈에 대한 보상 가져오기 :: getRewardByDreamId -->
@@ -336,7 +339,7 @@
 	<!-- 댓글 DreamId로 찾아와서 읽기 수정 160615 160622 -->
 	<select id="readComment" parameterType="int" resultType="reply">
 		select m.name AS "memberVO.name", m.member_newFilename AS "memberVO.member_newFilename", m.memberId AS "memberVO.memberId",
-				r.replyId, r.dreamId, r.content, r.writeDate
+				r.replyId, r.dreamId, r.content, To_char(r.writeDate, 'yyyy-MM-dd') AS writeDate
 		from member m ,(SELECT
 						r.replyId, r.dreamId, r.content, r.writeDate, r.memberId
 						FROM reply r, dream d
@@ -415,6 +418,7 @@
 		<result property="paymentVO.paymentState" column="paymentState"/>
 		<result property="paymentVO.paymentId" column="paymentId"/>
 		<result property="paymentVO.money" column="money"/>
+		<result property="paymentVO.paymentDate" column="paymentDate"/><!-- 160623 -->
 		<result property="rewardVO.rewardId" column="rewardId"/>
 		<result property="dreamVO.dreamId" column="dreamId"/>
 		<result property="dreamVO.titleDream" column="titleDream"/>
@@ -422,9 +426,11 @@
 		<result property="dreamVO.endDate" column="endDate"/>
 		<result property="rewardVO.rewardInfo" column="rewardInfo"/>
 	</resultMap>
+	
+	<!-- 모아드림 현황 페이지 -->
 	<select id="getAllMySupportProject" parameterType="int"
 		resultMap="myDreamRM">
-		SELECT p.money AS money, r.rewardId AS rewardId,
+		SELECT p.money AS money, TO_char(p.paymentDate, 'yyyy-MM-dd') AS paymentDate,  r.rewardId AS rewardId,
 		d.dreamId AS dreamId, d.titleDream AS titleDream,
 		d.dream_newFilename
 		AS dream_newFilename, TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,

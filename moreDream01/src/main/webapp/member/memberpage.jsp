@@ -91,6 +91,7 @@
 										<th style="text-align: center;">마 감 일</th>
 										<th style="text-align: center;">보상내용</th>
 										<th style="text-align: center;">후원금액</th>
+										<th style="text-align: center;">결 제 일</th><!-- 160623 -->
 										<th style="text-align: center;">결제상태</th>
 										<th style="text-align: center;">비 고</th>
 									</tr>
@@ -106,6 +107,7 @@
 											<td>${my.dreamVO.endDate}</td>
 											<td>${my.rewardVO.rewardInfo}</td>
 											<td>${my.paymentVO.moneyView}</td>
+											<td>${my.paymentVO.paymentDate }</td>
 											<td>
 											<c:choose>
 											<c:when test="${my.paymentVO.paymentState=='Y'}">
