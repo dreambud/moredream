@@ -154,7 +154,8 @@ body, table, div, p {font-family:'Nanum Gothic';}
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="${initParam.root}dream.do?command=getAllListDream ">꿈 찾기</a></li>
 						<li><a href="${initParam.root}dream/createdream_info.jsp ">꿈 꾸기</a></li>
-						<li><a href="# ">도움말</a></li>
+						<li><a href="${initParam.root }help.jsp">모아드림 소개1</a></li>
+						<li><a href="${initParam.root }help1.jsp">모아드림 소개2</a></li>
 						<c:if test="${sessionScope.mvo.memberCode=='A'}">
 							<li class="dropdown"><a href="#">Admin<i
 									class="fa fa-angle-down"></i></a>
