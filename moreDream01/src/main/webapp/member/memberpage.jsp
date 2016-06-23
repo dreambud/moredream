@@ -161,7 +161,7 @@
 									</div>
 									<div class="post-content overflow">
 										<h2 class="post-title bold">
-											<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">${dream.detailDream}</a>
+											<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">${dream.titleDream}</a>
 										</h2>
 										<h3 class="post-author">
 											<strong>Application Date : ${dream.requestDate}</strong>
@@ -178,7 +178,7 @@
 										<p>
 										<form action="${initParam.root}dream/updateDream.jsp" method="get" >
 										<input type="hidden" name="dreamId" value="${dream.dreamId}">
-										<input type="submit" value="꿈 업데이트 하기">
+										<input type="submit" class="btn btn-primary btn-lg" value="꿈 업데이트 하기">
 										</form>
 										</p>
 										</c:when>
