@@ -45,10 +45,10 @@
 <script src="${initParam.root}js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	var now = new Date();
-	
+	var after7day = new Date(now.getFullYear()+'-'+(now.getMonth()+1)+'-'+(now.getDate()+7));
+	var after1month = new Date(after7day.getFullYear()+'-'+(after7day.getMonth()+2)+'-'+after7day.getDate());
 
 	function number_chk(ev){		//숫자만 입력가능하게 제어하는 함수
-		var frm = document.reg_frm;
 		if (window.event) // IE코드
 	        var code = window.event.keyCode;
 	    else // 타브라우저
@@ -78,7 +78,7 @@
 					dateFormat : "yy-mm-dd",
 					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
 							'8월', '9월', '10월', '11월', '12월' ],
-					minDate : now
+					minDate : after7day
 				});
 	});
 	$(function() {
@@ -87,7 +87,7 @@
 					dateFormat : "yy-mm-dd",
 					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
 							'8월', '9월', '10월', '11월', '12월' ],
-					minDate : now
+					minDate : after1month
 				});
 	});
 	$(document).ready(function(){
@@ -701,20 +701,29 @@
 							<div class="col-md-12">
 
 								<div class="col-md-6">
-									<input id="datePicker1" name="startDate" type="text"
+									<input id="datePicker1" name="startDate" type="text" readonly="readonly" style="cursor:pointer;"
 										class="form-control" placeholder="시작일을 선택해주세요">
 								</div>
 
 
 								<div class="col-md-6">
-									<input id="datePicker2" name="endDate" type="text"
+									<input id="datePicker2" name="endDate" type="text" readonly="readonly" style="cursor:pointer;"
 										class="form-control" placeholder="종료일을 선택해주세요">
+								</div>
+								<div class="col-md-12">
+									<label>
+									<b>
+									<font color="red">
+										> 심사기간은 최대 1주가량 소요 입니다.<p>
+										> 프로젝트는 최소 한달동안 진행해야합니다.<p>
+									</font>
+									</b>
+									</label>
 								</div>
 							</div>
 
 							&nbsp; &nbsp;
 
-							<h2 class="page-header"></h2>
 							&nbsp;
 							<div align="right">
 								<button type="button" class="btn btn-lg btn-primary" onclick="inputDetail();">
