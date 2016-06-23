@@ -188,7 +188,7 @@
 </script>
 </head>
 
-<body onload="isLogin()">
+<body onload="javasciprt:isLogin();emailCheck();">
 
 	<jsp:include page="../common/header.jsp" />
 	

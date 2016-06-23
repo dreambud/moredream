@@ -178,7 +178,7 @@ public class MemberController extends MultiActionController {
 	
 	public ModelAndView facebookLogin(HttpServletRequest request, HttpServletResponse response){
 		String facebookId = request.getParameter("facebookId");
-		String path="registerMember";
+		String path="/member/registerMember";
 		MemberVO rmvo = memberService.facebookLogin(facebookId);
 		if(rmvo==null){
 			request.setAttribute("email",request.getParameter("email"));
