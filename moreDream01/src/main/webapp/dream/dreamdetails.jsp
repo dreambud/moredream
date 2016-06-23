@@ -333,8 +333,15 @@ function deleteComment(replyId) {
 						</div>
 						<p align="center">
 						<c:choose>
+							<c:when test="${mvo.memberId==dreamVO.memberVO.memberId}">
+								<form action="${initParam.root}dream/updateDream.jsp" method="get" >
+								<input type="hidden" name="dreamId" value="${dream.dreamId}">
+								<input type="submit" class="btn btn-primary btn-lg" value="꿈 업데이트 하기">
+								</form>
+							</c:when>
 							<c:when test="${is_dreamMaker==true }">
-								당신은 이미 후원 하셨습니다! > <a href="${initParam.root }dream.do?command=myMoreDream">후원내역 보기</a>
+								당신은 이미 후원 하셨습니다!<br>
+								<a href="${initParam.root }dream.do?command=myMoreDream">> 후원내역 보기</a>
 							</c:when>
 							<c:when test="${dreamVO.statVO.endDay<0}">
 								<b>해당 꿈은 마감되었습니다...</b>
