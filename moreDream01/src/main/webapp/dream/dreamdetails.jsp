@@ -30,7 +30,7 @@
 	href="images/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed"
 	href="images/ico/apple-touch-icon-57-precomposed.png"> -->
-	
+
 <script type="text/javascript">
 	var switchTo5x = true;
 </script>
@@ -84,7 +84,8 @@ function deleteComment(replyId) {
 						<div class="col-md-12 col-sm-12">
 							<div class="single-blog blog-details two-column">
 								<div class="post-thumb" align="center">
-									<img src="${initParam.root }upload/dream/${dreamVO.dream_newFilename}"
+									<img
+										src="${initParam.root }upload/dream/${dreamVO.dream_newFilename}"
 										class="img-responsive" alt="">
 								</div>
 								<div class="post-content overflow">
@@ -114,7 +115,8 @@ function deleteComment(replyId) {
 												<!-- 수정 160614 -->
 												<c:choose>
 													<c:when test="${dreamVO.memberVO.member_newFilename==' ' }">
-														<img src="${initParam.root }upload/member/member_df.jpg" alt="">
+														<img src="${initParam.root }upload/member/member_df.jpg"
+															alt="">
 													</c:when>
 													<c:otherwise>
 														<img alt=""
@@ -163,7 +165,7 @@ function deleteComment(replyId) {
 																</c:forEach>
 															</c:when>
 															<c:otherwise>
-															<hr>
+																<hr>
 																<h3>업데이트 내용이 없습니다.</h3>
 															</c:otherwise>
 														</c:choose>
@@ -176,8 +178,8 @@ function deleteComment(replyId) {
 												<div>
 													<c:choose>
 														<c:when test="${mvo.member_newFilename==null}">
-															<img src="${initParam.root }upload/member/member_df.jpg" alt=""
-																width="50" height="50">
+															<img src="${initParam.root }upload/member/member_df.jpg"
+																alt="" width="50" height="50">
 														</c:when>
 														<c:otherwise>
 															<img alt=""
@@ -231,8 +233,8 @@ function deleteComment(replyId) {
 																					<c:when
 																						test="${reply.memberVO.member_newFilename==null }">
 																						<img class="media-object"
-																							src="${initParam.root }upload/member/member_df.jpg" alt=""
-																							width="80" height="80">
+																							src="${initParam.root }upload/member/member_df.jpg"
+																							alt="" width="80" height="80">
 																					</c:when>
 																					<c:otherwise>
 																						<img class="media-object"
@@ -250,8 +252,11 @@ function deleteComment(replyId) {
 																				<p>${reply.content}</p>
 																				<ul class="nav navbar-nav post-nav">
 																					<li><a href="#"><i class="fa fa-clock-o"></i>${reply.writeDate}</a></li>
-																					<c:if test="${mvo.memberId==reply.memberVO.memberId}">
-																						<li><a href="#" onclick="deleteComment(${reply.replyId})"><i class="glyphicon glyphicon-remove"></i>삭제하기</a></li>
+																					<c:if
+																						test="${mvo.memberId==reply.memberVO.memberId}">
+																						<li><a href="#"
+																							onclick="deleteComment(${reply.replyId})"><i
+																								class="glyphicon glyphicon-remove"></i>삭제하기</a></li>
 																					</c:if>
 																				</ul>
 																			</div>
@@ -262,7 +267,7 @@ function deleteComment(replyId) {
 																</c:forEach>
 															</c:when>
 															<c:otherwise>
-															<hr>
+																<hr>
 																<h3>댓글이 없습니다.</h3>
 															</c:otherwise>
 														</c:choose>
@@ -336,61 +341,68 @@ function deleteComment(replyId) {
 							</div>
 						</div>
 						<p align="center">
-						<c:choose>
-							<c:when test="${mvo.memberId==dreamVO.memberVO.memberId}">
-								<form action="${initParam.root}dream/updateDream.jsp" method="get" >
-								<input type="hidden" name="dreamId" value="${dream.dreamId}">
-								<input type="hidden" name="memberId" value="${dreamVO.memberVO.memberId}">
-								<c:choose>
-											<c:when test="${dreamVO.confirmRequestDream==' ' }">
-												<b>심사중입니다...</b>
-											</c:when>
-											<c:when test="${dreamVO.confirmRequestDream=='N' }">
-												<b>해당 꿈은 거절되었습니다.</b>
-											</c:when>
-											<c:otherwise>
-												<input type="submit" class="btn btn-primary btn-lg"
+							<c:choose>
+								<c:when test="${mvo.memberId==dreamVO.memberVO.memberId}">
+
+									<c:choose>
+										<c:when test="${dreamVO.confirmRequestDream==' ' }">
+											<b>심사중입니다...</b>
+										</c:when>
+										<c:when test="${dreamVO.confirmRequestDream=='N' }">
+											<b>해당 꿈은 거절되었습니다.</b>
+										</c:when>
+										<c:otherwise>
+											<form action="${initParam.root}dream/updateDream.jsp"
+												method="get">
+												<input type="hidden" name="dreamId" value="${dreamVO.dreamId}">
+												<input type="hidden" name="memberId"
+													value="${dreamVO.memberVO.memberId}"> <input
+													type="submit" class="btn btn-primary btn-lg"
 													value="꿈 업데이트 하기">
-											</c:otherwise>
-										</c:choose>
-								</form>
-							</c:when>
-							<c:when test="${is_dreamMaker==true }">
+											</form>
+										</c:otherwise>
+									</c:choose>
+
+								</c:when>
+								<c:when test="${is_dreamMaker==true }">
 								당신은 이미 후원 하셨습니다!<br>
-								<a href="${initParam.root }dream.do?command=myMoreDream">> 후원내역 보기</a>
-							</c:when>
-							<c:when test="${dreamVO.statVO.endDay<0}">
-								<b>해당 꿈은 마감되었습니다...</b>
-							</c:when>
-							<c:otherwise>
-							<a href="${initParam.root }dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button
-									type="button" class="btn btn-primary btn-lg">응원하기</button></a>
-							</c:otherwise>
-						</c:choose>
-							
+									<a href="${initParam.root }dream.do?command=myMoreDream">>
+										후원내역 보기</a>
+								</c:when>
+								<c:when test="${dreamVO.statVO.endDay<0}">
+									<b>해당 꿈은 마감되었습니다...</b>
+								</c:when>
+								<c:otherwise>
+									<a
+										href="${initParam.root }dream.do?command=getRewardByDreamId&&dreamId=${dreamVO.dreamId}"><button
+											type="button" class="btn btn-primary btn-lg">응원하기</button></a>
+								</c:otherwise>
+							</c:choose>
+
 						</p>
 						<hr>
 						<p>
 							<font size="2"><b>결제는<font color="red">
-								${dreamVO.end_year}년 ${dreamVO.end_month}월 ${dreamVO.end_day}일
-								자정</font>까지 <br> 최소 <font color="red">${dreamVO.targetFundView}원</font>이
-							모여야만 <br> 꿈을 실현할 수 있습니다.
+										${dreamVO.end_year}년 ${dreamVO.end_month}월 ${dreamVO.end_day}일
+										자정</font>까지 <br> 최소 <font color="red">${dreamVO.targetFundView}원</font>이
+									모여야만 <br> 꿈을 실현할 수 있습니다.
 							</b></font>
 						</p>
 
 						<div class="sidebar-item tag-cloud">
 							<h3>진행률</h3>
-						<c:choose>
-							<c:when test="${dreamVO.statVO.totalMoney!=0}">
-								<c:if
-									test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=100}">
-									<div class="progress-bar progress-bar-striped active"
-										role="progressbar" aria-valuenow="40" aria-valuemin="0"
-										aria-valuemax="100" style="width: 100%">
-										<fmt:formatNumber
-											value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"
-											type="percent" pattern="0" />%
-									</div>
+							<c:choose>
+								<c:when test="${dreamVO.statVO.totalMoney!=0}">
+									<c:if
+										test="${((dreamVO.statVO.totalMoney/dreamVO.targetFund)*100)>=100}">
+										<div class="progress-bar progress-bar-striped active"
+											role="progressbar" aria-valuenow="40" aria-valuemin="0"
+											aria-valuemax="100" style="width: 100%">
+											<fmt:formatNumber
+												value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"
+												type="percent" pattern="0" />
+											%
+										</div>
 						</div>
 						</c:if>
 						<c:if
@@ -419,10 +431,10 @@ function deleteComment(replyId) {
 				</div>
 				</c:if>
 				</c:when>
-			<c:otherwise>
-			<div class="progress-bar progress-bar-warning active"
-				role="progressbar" aria-valuenow="40" aria-valuemin="0"
-				aria-valuemax="100" style="width: 100%">0%</div>
+				<c:otherwise>
+					<div class="progress-bar progress-bar-warning active"
+						role="progressbar" aria-valuenow="40" aria-valuemin="0"
+						aria-valuemax="100" style="width: 100%">0%</div>
 			</div>
 			</c:otherwise>
 			</c:choose>
@@ -455,18 +467,18 @@ function deleteComment(replyId) {
 		<div class="sidebar-item popular">
 			<h3>Latest Photos</h3>
 			<ul class="gallery">
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular1.jpg"
-						alt=""></a></li>
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular2.jpg"
-						alt=""></a></li>
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular3.jpg"
-						alt=""></a></li>
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular4.jpg"
-						alt=""></a></li>
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular5.jpg"
-						alt=""></a></li>
-				<li><a href="#"><img src="${initParam.root }images/portfolio/popular1.jpg"
-						alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular2.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular3.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular4.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular5.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
 			</ul>
 		</div>
 		</div>
@@ -480,8 +492,10 @@ function deleteComment(replyId) {
 
 
 	<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/lightbox.min.js"></script>
+	<script type="text/javascript"
+		src="${initParam.root }js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${initParam.root }js/lightbox.min.js"></script>
 	<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
 	<script type="text/javascript" src="${initParam.root }js/main.js"></script>
 </body>
