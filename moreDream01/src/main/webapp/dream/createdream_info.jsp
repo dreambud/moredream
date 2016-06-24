@@ -82,9 +82,8 @@ $(document).ready(function() {
 	<!--/#page-breadcrumb-->
 	
 	<br><br>
-	<div class="row">
-		<div class="col-xs-1 col-sm-2"></div>
-  		<div class="col-xs-10 col-sm-6"  style="border-style:groove;  border-color:#C8C8FF;">
+	<div class="row" class="row" style="margin-bottom: 40px;margin-left: 10%;margin-right: 10%;">
+  		<div style="border-style: groove; border-color: #C8C8FF;padding-left: 20px;padding-right: 20px;">
   		<br>
   			<h2 align="center"><strong>꿈 개설 신청 안내</strong></h2>
   		<br>
@@ -134,7 +133,6 @@ $(document).ready(function() {
     </div>
     
   		</div>
-  		<div class="col-xs-1 col-sm-4"></div>
 	
 	</div>
 
