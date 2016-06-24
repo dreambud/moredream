@@ -108,7 +108,7 @@
 											<td>${dream.memberVO.email}</td>
 											<td><img alt=""
 												src="${initParam.root }upload/dream/${dream.dream_newFilename }" width="50px" height="50px" ></td>
-											<td><a href="#">${dream.titleDream }</a></td>
+											<td><a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">${dream.titleDream }</a></td>
 											<td>${dream.requestDate}</td>
 											<td>
 												<c:choose>
