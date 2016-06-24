@@ -340,6 +340,7 @@ function deleteComment(replyId) {
 							<c:when test="${mvo.memberId==dreamVO.memberVO.memberId}">
 								<form action="${initParam.root}dream/updateDream.jsp" method="get" >
 								<input type="hidden" name="dreamId" value="${dream.dreamId}">
+								<input type="hidden" name="memberId" value="${dreamVO.memberVO.memberId}">
 								<input type="submit" class="btn btn-primary btn-lg" value="꿈 업데이트 하기">
 								</form>
 							</c:when>
