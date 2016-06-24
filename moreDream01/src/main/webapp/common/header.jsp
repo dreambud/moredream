@@ -22,7 +22,7 @@
 body, table, div, p {font-family:'Nanum Gothic';}
 /* 나눔글꼴 */
 </style>
-
+<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -113,12 +113,42 @@ body, table, div, p {font-family:'Nanum Gothic';}
     };
     // 초기화 실행
     FaceBookApp.init(document, 'script', 'facebook-jssdk');
+    
+    var xhr;
+
+	function alarm() {
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callbackAlarm;
+		var url = "${initParam.root}dream.do?command=alarm";
+		xhr.open("get", url);
+		setInterval(xhr.send(null), 10000);
+	}
+	alarmView = document.getElementById('alarmView');
+	function callbackAlarm() {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				var jsonData = JSON.parse(xhr.responseText);
+				var list = jsonData.alarmList;
+				$('#alarmView').html("<li><b><h3 align='center'>꿈 업데이트 알림 보기</h3></b></li>");
+				for(i=0;i<list.length;i++){
+					$(function() { 
+						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><div><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></div>"+"<div>&nbsp;&nbsp;<font size='3'>꿈 업데이트 정보가 있습니다.</font><br>"+list[i].update_writeDate+"</div></li>");
+					});
+				}
+			}//if
+		}//if
+	}//callback
     </script>
 </head>
 <!--/head-->
-
+<c:choose>
+<c:when test="${sessionScope.mvo!=null}">
+<body onload="alarm();">
+</c:when>
+<c:otherwise>
 <body>
-
+</c:otherwise>
+</c:choose>
 	<header id="header">
 		<div class="container">
 			<div class="row">
@@ -152,10 +182,15 @@ body, table, div, p {font-family:'Nanum Gothic';}
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown"><a href="#">소개<i
+									class="fa fa-angle-down"></i></a>
+								<ul role="menu" class="sub-menu">
+									<li><a href="${initParam.root }help1.jsp">모아드림 소개1</a></li>
+									<li><a href="${initParam.root }help2.jsp">모아드림 소개2</a></li>
+								</ul>
+						</li>
 						<li><a href="${initParam.root}dream.do?command=getAllListDream ">꿈 찾기</a></li>
 						<li><a href="${initParam.root}dream/createdream_info.jsp ">꿈 꾸기</a></li>
-						<li><a href="${initParam.root }help.jsp">모아드림 소개1</a></li>
-						<li><a href="${initParam.root }help1.jsp">모아드림 소개2</a></li>
 						<c:if test="${sessionScope.mvo.memberCode=='A'}">
 							<li class="dropdown"><a href="#">Admin<i
 									class="fa fa-angle-down"></i></a>
@@ -177,7 +212,10 @@ body, table, div, p {font-family:'Nanum Gothic';}
 									<li><a href="${initParam.root}dream.do?command=myMoreDream">모아드림 현황 보기</a></li>
 								</ul>
 							</li>
-							
+							<li class="dropdown-toggle"><a href="#" onmouseover="javascript:alarm();"><img src="${initParam.root}images/document_icon.png" width="30px"></img></a>
+								<ul role="menu" class="sub-menu" id="alarmView" style='width:400px; left: inherit;right:0'>
+								</ul>
+							</li>
 							<li>
 								<a href="javascript:logout()">로그아웃</a>
 							</li>
