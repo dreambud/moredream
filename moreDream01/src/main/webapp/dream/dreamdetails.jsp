@@ -341,7 +341,18 @@ function deleteComment(replyId) {
 								<form action="${initParam.root}dream/updateDream.jsp" method="get" >
 								<input type="hidden" name="dreamId" value="${dream.dreamId}">
 								<input type="hidden" name="memberId" value="${dreamVO.memberVO.memberId}">
-								<input type="submit" class="btn btn-primary btn-lg" value="꿈 업데이트 하기">
+								<c:choose>
+											<c:when test="${dreamVO.confirmRequestDream==' ' }">
+												<b>심사중입니다...</b>
+											</c:when>
+											<c:when test="${dreamVO.confirmRequestDream=='N' }">
+												<b>해당 꿈은 거절되었습니다.</b>
+											</c:when>
+											<c:otherwise>
+												<input type="submit" class="btn btn-primary btn-lg"
+													value="꿈 업데이트 하기">
+											</c:otherwise>
+										</c:choose>
 								</form>
 							</c:when>
 							<c:when test="${is_dreamMaker==true }">
