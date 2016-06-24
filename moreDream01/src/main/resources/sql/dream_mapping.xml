@@ -436,14 +436,13 @@
 	<select id="getAllMySupportProject" parameterType="int"
 		resultMap="myDreamRM">
 		SELECT p.money AS money, TO_char(p.paymentDate, 'yyyy-MM-dd') AS paymentDate,  r.rewardId AS rewardId,
-		d.dreamId AS dreamId, d.titleDream AS titleDream,
-		d.dream_newFilename
-		AS dream_newFilename, TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
-		r.rewardinfo AS rewardInfo,p.paymentId AS paymentId, p.paymentState AS paymentState
-		FROM payment p, dream d, reward r
-		WHERE
-		p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId =
-		r.dreamId
+				d.dreamId AS dreamId, d.titleDream AS titleDream, d.dream_newFilename AS dream_newFilename, 
+				TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
+				r.rewardinfo AS rewardInfo,p.paymentId AS paymentId, p.paymentState AS paymentState
+				FROM payment p, dream d, reward r
+				WHERE p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId = r.dreamId
+				ORDER BY paymentState DESC, paymentDate DESC
+		
 	</select>
 
 	<!-- memberId로 Dream정보를 가져옴 -->
