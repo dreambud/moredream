@@ -225,13 +225,16 @@
 	</resultMap>
 
 	<!-- 알림받기 :: alarm -->
+	<!-- 160624 수정 -->
 	<select id="alarm" parameterType="int" resultMap="updateDreamListRM">
 		SELECT
-		r.dreamId,update_detailDream,update_orgFilename,update_newFilename
-		FROM updateDream u,(SELECT r.dreamId FROM (SELECT rewardId FROM
-		payment where memberId=#{value}) p, reward r where r.rewardId =
-		p.rewardId) r
-		where u.dreamId = r.dreamId
+		u.dreamId,u.update_detailDream,u.update_orgFilename,u.update_newFilename,u.update_writedate
+		FROM updatedream u,(select r.dreamid FROM 
+		(SELECT rewardid FROM payment 
+		WHERE paymentstate='Y' AND memberid=#{value}) p, 
+		reward r WHERE r.rewardid=p.rewardid) d 
+		WHERE d.dreamid=u.dreamid 
+		ORDER BY update_writedate DESC
 	</select>
 
 

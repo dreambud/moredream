@@ -1,6 +1,7 @@
 package model;
 
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 public class DreamVO {
@@ -153,16 +154,19 @@ public class DreamVO {
 	public void setStatVO(StatVO statVO) {
 		this.statVO = statVO;
 	}
-	//추가160616 가공처리
+	@JsonIgnore
 	public String getEnd_year(){
 		return endDate.substring(0, 4);
 	}
+	@JsonIgnore
 	public String getEnd_month(){
 		return endDate.substring(5, 7);
 	}
+	@JsonIgnore
 	public String getEnd_day(){
 		return endDate.substring(8, 10);
 	}
+	@JsonIgnore
 	public String getTargetFundView(){
 		StringBuffer stringBuffer = new StringBuffer(String.valueOf(targetFund));
 		System.out.println(stringBuffer.length());

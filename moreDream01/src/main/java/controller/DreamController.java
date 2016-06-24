@@ -137,7 +137,7 @@ public class DreamController extends MultiActionController {
 	 * return new ModelAndView("index"); }
 	 */
 
-	// 꿈 목록 (160617 내용수정) // (160624) 내용수정 :: startDate 가 현재 같거나 적을때 리스트 출력
+	 // 꿈 목록 (160617 내용수정) // (160624) 내용수정 :: startDate 가 현재 같거나 적을때 리스트 출력
 	public ModelAndView getAllListDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String filter = request.getParameter("filter");
@@ -148,17 +148,12 @@ public class DreamController extends MultiActionController {
 		List<DreamVO> dreamList = new ArrayList<DreamVO>();
 		long startDate =0;
 		for(int i =0 ; i<dList.size(); i++){
-		startDate = dreamService.convert(dList.get(i).getStartDate());
-		System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
-		if(startDate<=dreamService.showNowDate()){
-			dreamList.add(dList.get(i));
+			startDate = dreamService.convert(dList.get(i).getStartDate());
+			System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
+			if(startDate<=dreamService.showNowDate()){
+				dreamList.add(dList.get(i));
+			}
 		}
-		}
-		
-		
-		
-		
-		
 		List<DreamVO> recentProjects = dreamService.getListDream("1");
 		request.setAttribute("recentProjects", recentProjects);
 		List<DreamVO> popularProjects = dreamService.getListDream("3");
@@ -483,12 +478,18 @@ public class DreamController extends MultiActionController {
 	}
 	
 	//댓글 삭제 160622
-		public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
-			int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-			int replyId = Integer.parseInt(request.getParameter("replyId"));
-			System.out.println(dreamId +","+replyId);
-			dreamService.deleteCommentByReplyId(replyId);
+	public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
+		int replyId = Integer.parseInt(request.getParameter("replyId"));
+		System.out.println(dreamId +","+replyId);
+		dreamService.deleteCommentByReplyId(replyId);
 
-			return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
-		}
+		return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
+	}
+	//160624 alarm추가
+	public ModelAndView alarm(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+		int memberId = ((MemberVO)session.getAttribute("mvo")).getMemberId();
+		List<UpdateDreamVO> list = dreamService.alarm(memberId);
+		return new ModelAndView("JsonView","alarmList",list);
+	}
 }
