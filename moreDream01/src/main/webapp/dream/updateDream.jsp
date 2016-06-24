@@ -30,23 +30,7 @@
 
 <link rel="stylesheet" href="${initParam.root}css/editor.css" type="text/css" charset="utf-8"/>
 <script src="${initParam.root}js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
 
-
-<link rel="shortcut icon" href="images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="images/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/ui-darkness/jquery-ui.css">
-<link rel="stylesheet" href="css/editor.css" type="text/css"
-	charset="utf-8" />
-<script src="js/editor_loader.js" type="text/javascript" charset="utf-8"></script>
 
 </head>
 <!--/head-->
