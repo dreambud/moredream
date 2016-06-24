@@ -10,7 +10,7 @@
 <body>
 <script type="text/javascript">
 	alert("${param.email} 님 회원가입 OK!! 이제 가입하신 아이디로 로그인하세요");
-	location.replace("${initParam.root }/member/login.jsp");
+	location.replace("${initParam.root }/member/login.jsp?url=index.jsp");
 </script>
 </body>
 </html>
