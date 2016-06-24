@@ -9,11 +9,8 @@
 </head>
 <body>
 <script type="text/javascript">
-	alert("${param.email} 님 회원가입 OK!!");
-	if('${requestScope.facebookFail!=""}'){
-		alert('${requestScope.facebookFail}');
-	}
-	location.replace("${initParam.root }index.jsp");
+	alert("${param.email} 님 회원가입 OK!! 이제 가입하신 아이디로 로그인하세요");
+	location.replace("${initParam.root }/member/login.jsp");
 </script>
 </body>
 </html>
