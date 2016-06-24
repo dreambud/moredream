@@ -58,7 +58,7 @@
 		SELECT dreamId, memberId AS "memberVO.memberId", category,
 		dream_newFilename, confirmRequestDream,
 		titleDream, detailDream,
-		requestDate, targetFund,
+		TO_char(requestDate, 'yyyy-MM-dd') AS requestDate, targetFund,
 		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate
 		FROM dream
