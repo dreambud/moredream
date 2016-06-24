@@ -182,11 +182,11 @@ body, table, div, p {font-family:'Nanum Gothic';}
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a href="#">소개<i
+						<li class="dropdown"><a href="#">모아드림 소개<i
 									class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-									<li><a href="${initParam.root }help1.jsp">모아드림 소개1</a></li>
-									<li><a href="${initParam.root }help2.jsp">모아드림 소개2</a></li>
+									<li><a href="${initParam.root }help1.jsp">모아드림 이야기</a></li>
+									<li><a href="${initParam.root }help2.jsp">모아드림 회원서비스</a></li>
 								</ul>
 						</li>
 						<li><a href="${initParam.root}dream.do?command=getAllListDream ">꿈 찾기</a></li>
