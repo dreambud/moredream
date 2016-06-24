@@ -145,7 +145,7 @@ function deleteComment(replyId) {
 												<div class="col-sm-12 col-md-12">
 													<div class="single-blog single-column">
 														<c:choose>
-															<c:when test="${updateDreamList!=null }">
+															<c:when test="${!updateDreamList.isEmpty()}">
 																<c:forEach items="${updateDreamList}" var="updateDream">
 																	<div class="post-thumb">
 																		<img
@@ -163,6 +163,7 @@ function deleteComment(replyId) {
 																</c:forEach>
 															</c:when>
 															<c:otherwise>
+															<hr>
 																<h3>업데이트 내용이 없습니다.</h3>
 															</c:otherwise>
 														</c:choose>
@@ -221,7 +222,7 @@ function deleteComment(replyId) {
 												<div class="response-area">
 													<ul class="media-list">
 														<c:choose>
-															<c:when test="${replyList!=null }">
+															<c:when test="${!replyList.isEmpty()}">
 																<c:forEach items="${replyList}" var="reply">
 																	<li class="media">
 																		<div class="post-comment">
@@ -257,9 +258,11 @@ function deleteComment(replyId) {
 																		</div>
 
 																	</li>
+																	<hr>
 																</c:forEach>
 															</c:when>
 															<c:otherwise>
+															<hr>
 																<h3>댓글이 없습니다.</h3>
 															</c:otherwise>
 														</c:choose>
@@ -272,7 +275,7 @@ function deleteComment(replyId) {
 											<div class="tab-pane fade" id="tab1-item3">
 												<div class="post-comment">
 													<c:choose>
-														<c:when test="${memberList!=null }">
+														<c:when test="${!memberList.isEmpty()}">
 															<c:forEach items="${memberList }" var="member">
 																<div class="pull-left">
 																	<img class="media-object"
@@ -284,11 +287,12 @@ function deleteComment(replyId) {
 																	<p>
 																		<b>${member.name}</b>님이 응원 합니다 !
 																	</p>
+																	<hr>
 																</div>
 															</c:forEach>
 														</c:when>
 														<c:otherwise>
-															<h3>첫번째 후원자가 되어주세요!!</h3>
+															<h3>첫번째 후원자가 되어주실래요 ??</h3>
 														</c:otherwise>
 													</c:choose>
 
