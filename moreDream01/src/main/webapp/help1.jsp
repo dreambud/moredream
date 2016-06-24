@@ -84,11 +84,11 @@
 
 	<!-- 이미지 -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
 		</ol>
 
 		<div class="carousel-inner" role="listbox">
@@ -100,6 +100,9 @@
 			</div>
 			<div class="item">
 				<img src="images/intro/logistics.jpg" alt="Image">
+			</div>
+			<div class="item">
+				<img src="images/intro/moredream.png" alt="Image">
 			</div>
 		</div>
 		<!-- Left and right controls -->
@@ -117,91 +120,29 @@
 	<!-- 모아드림 사이트명 -->
 	<div class="jumbotron text-center"
 		style="background-color: #282c2e; color: #fff">
-		<h1 style="font-size: 36; font-weight: 500;">
-			More <font style="color: #5486da">Dream</font>
-		</h1>
+		<h3 style="color: orange;">
+			<b>작은 돈들이 모여 기적을 만들어내는 모아드림</b>
+		</h3>
+		<br>
+		<h4 style="color: #8C8881;"><b>
+			모아드림은 '모아서 주다' + '꿈을 모으다'가 합쳐진 용어로<br><br>
+			꿈을 모아서 대중들에게 보이다. 또는 꿈의 실현을 주다. 라는<br><br>
+			의미를 가지고 있습니다. 모아드림에서는 크라우드 펀딩을 모델로 하여<br><br>
+			 수요와 공급을 연결할 수 있는 커뮤니티를 만들어가고 있습니다. <br><Br>
+		</b></h4>
+	</div>
+	<div class="jumbotron text-center"
+		style="background-color: #4F575B; color: #fff">
+		<h2 style="color: orange;">
+			<b>
+			모아드림을 만나면
+			당신의 꿈은 현실이 됩니다.<br><br>
+			"Let's More Dream Together!!"<br><br>
+			 "Shall We dream?"</b>
+		</h2>
 	</div>
 
-	<!-- Container (크라우드 펀딩 소개 About Section) -->
-	<div class="jumbotron" id="index1">
-		<h2 style="color: #fff;">Crowd Funding</h2>
-		<ul class="elements">
-			<li class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms"><i class="fa fa-angle-right"></i>
-				'대중으로부터 자금을 모은다.'는 뜻으로 소셜미디어나 인터넷 등의 매체를 활용해 자금을 모으는 투자 방식</li>
-			<li class="wow fadeInUp" data-wow-duration="800ms"
-				data-wow-delay="200ms"><i class="fa fa-angle-right"></i> 자금이 없는
-				예술가나 사회활동가 등이 자신의 창작 프로젝트나 사회공익프로젝트를 인터넷에 공개하고 익명의 다수에게 투자를 받는 방식</li>
-			<li class="wow fadeInUp" data-wow-duration="700ms"
-				data-wow-delay="300ms"><i class="fa fa-angle-right"></i> 목표액과
-				모금기간이 정해져 있고, 기간 내에 목표액을 달성하지 못하면 후원금이 전달되지 않기 때문에 창작자는 물론 후원자들도 적극
-				나서 프로젝트 홍보를 돕는다.</li>
-		</ul>
-	</div>
-	<div class="jumbotron" id="index2">
-		<h2 style="color: #fff;">More Dream</h2>
-		<ul class="elements">
-			<li class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms"><i class="fa fa-angle-right"></i> 다양한
-				창조적 문화예술 분야의 꿈을 응원하는 리워드형 크라우드 펀딩(crowd funding)</li>
-			<li class="wow fadeInUp" data-wow-duration="800ms"
-				data-wow-delay="200ms"><i class="fa fa-angle-right"></i> 실현하고
-				싶은 꿈을 꾸는 청년들을 위해 여러 사람들이 후원금을 모아 드리는 매개 사이트입니다.</li>
-			<li class="wow fadeInUp" data-wow-duration="700ms"
-				data-wow-delay="300ms"><i class="fa fa-angle-right"></i> 자신이 가진
-				재능으로 이루고 싶은 꿈에 대한 프로젝트를 기획/홍보하여 후원을 진행해<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				그 꿈을 이룰수 있는 자금 마련을 중계 및 관리 해드립니다.</li>
-		</ul>
-	</div>
-
-	<div class="jumbotron" id="index3">
-		<h2 style="color: #fff;">꿈 꾸기</h2>
-		<ul class="elements">
-			<li class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms"><i class="fa fa-angle-right"></i> 프로젝트
-				등록</li>
-			<li class="wow fadeInUp" data-wow-duration="800ms"
-				data-wow-delay="200ms"><i class="fa fa-angle-right"></i> 실현하고
-				싶은 꿈을 꾸는 사람들을 위해 여러 사람들이 후원금을 모아 주는 것</li>
-			<li class="wow fadeInUp" data-wow-duration="700ms"
-				data-wow-delay="300ms"><i class="fa fa-angle-right"></i> 자신이 가진
-				재능으로 이루고 싶은 꿈에 대한 프로젝트를 기획/홍보하여 후원을 진행해<br /> 그 꿈을 이룰수 있는 자금 마련을 중계
-				및 관리 해주는 것</li>
-		</ul>
-	</div>
-
-	<div class="jumbotron" id="index4">
-		<h2 style="color: #fff;">꿈 응원하기</h2>
-		<ul class="elements">
-			<li class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms"><i class="fa fa-angle-right"></i> 프로젝트
-				등록</li>
-			<li class="wow fadeInUp" data-wow-duration="800ms"
-				data-wow-delay="200ms"><i class="fa fa-angle-right"></i> 실현하고
-				싶은 꿈을 꾸는 사람들을 위해 여러 사람들이 후원금을 모아 주는 것</li>
-			<li class="wow fadeInUp" data-wow-duration="700ms"
-				data-wow-delay="300ms"><i class="fa fa-angle-right"></i> 자신이 가진
-				재능으로 이루고 싶은 꿈에 대한 프로젝트를 기획/홍보하여 후원을 진행해<br /> 그 꿈을 이룰수 있는 자금 마련을 중계
-				및 관리 해주는 것</li>
-		</ul>
-	</div>
-
-	<div class="jumbotron" id="index5">
-		<h2 style="color: #fff;">계정 설정</h2>
-		<ul class="elements">
-			<li class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms"><i class="fa fa-angle-right"></i> 로그인 하신
-				후, 상단의 프로필에서 내 정보 수정-계정 설정에서 변경하실 수 있습니다 사이트 상단 오른쪽 부분에 ~님 환영합니다를
-				마우스를 가져다대시면 회원정보수정이 로그인 하신 후, 상단의 프로필에서 내 정보 수정-계정 설정에서 변경하실 수 있습니다.</li>
-			<li class="wow fadeInUp" data-wow-duration="800ms"
-				data-wow-delay="200ms"><i class="fa fa-angle-right"></i> 먼저 로그인
-				하신 후, 내 정보 수정-공개/알림 설정에서 설정할 수 있습니다.</li>
-			<li class="wow fadeInUp" data-wow-duration="700ms"
-				data-wow-delay="300ms"><i class="fa fa-angle-right"></i> 자신이 가진
-				재능으로 이루고 싶은 꿈에 대한 프로젝트를 기획/홍보하여 후원을 진행해<br /> 그 꿈을 이룰수 있는 자금 마련을 중계
-				및 관리 해주는 것</li>
-		</ul>
-	</div>
+	
 	
 	<jsp:include page="./common/footer.jsp" />
 	<!--/#footer-->
