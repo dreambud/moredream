@@ -22,7 +22,6 @@
 body, table, div, p {font-family:'Nanum Gothic';}
 /* 나눔글꼴 */
 </style>
-<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
