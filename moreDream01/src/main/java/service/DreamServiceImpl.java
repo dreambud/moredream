@@ -367,4 +367,9 @@ public class DreamServiceImpl implements DreamService {
 		int endDay = (int)((endTime-nowTime)/(60*60*24*1000));
 		return endDay;
 	}
+	//160624 오늘 날자 구하는 메소드 추가
+	@Override
+	public long showNowDate() throws IOException {
+		return convert(dreamDao.showNowDate());
+	}
 }

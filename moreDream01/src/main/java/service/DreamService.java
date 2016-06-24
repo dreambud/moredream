@@ -92,6 +92,9 @@ public interface DreamService {
 	public int getCategoryCountByCategory(String category) throws IOException;
 	public List<DreamVO> getListFilterByCategory(List<DreamVO> dreamList,String category);
 
-	//170617 추가(검색시 List 가공처리 메소드)
+	//160617 추가(검색시 List 가공처리 메소드)
 	public void listDetailInsert(List<DreamVO> rlist) throws IOException;
+	//160624 추가 
+	public long convert(String stringDate);
+	public long showNowDate() throws IOException;//현재시간 보기
 }

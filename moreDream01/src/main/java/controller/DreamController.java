@@ -137,14 +137,28 @@ public class DreamController extends MultiActionController {
 	 * return new ModelAndView("index"); }
 	 */
 
-	// 꿈 목록 (160617 내용수정)
+	// 꿈 목록 (160617 내용수정) // (160624) 내용수정 :: startDate 가 현재 같거나 적을때 리스트 출력
 	public ModelAndView getAllListDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String filter = request.getParameter("filter");
 		if (filter == null) {
 			filter = "1";
 		}
-		List<DreamVO> dreamList = dreamService.getListDream(filter);
+		List<DreamVO> dList = dreamService.getListDream(filter);
+		List<DreamVO> dreamList = new ArrayList<DreamVO>();
+		long startDate =0;
+		for(int i =0 ; i<dList.size(); i++){
+		startDate = dreamService.convert(dList.get(i).getStartDate());
+		System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
+		if(startDate<=dreamService.showNowDate()){
+			dreamList.add(dList.get(i));
+		}
+		}
+		
+		
+		
+		
+		
 		List<DreamVO> recentProjects = dreamService.getListDream("1");
 		request.setAttribute("recentProjects", recentProjects);
 		List<DreamVO> popularProjects = dreamService.getListDream("3");
