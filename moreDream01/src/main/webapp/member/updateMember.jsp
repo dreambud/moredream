@@ -292,7 +292,7 @@
 												src="${initParam.root }upload/member/${sessionScope.mvo.member_newFilename}"
 												width="100" height="100">
 											&nbsp;&nbsp;&nbsp;
-											<button onclick="srartRequest()" class="btn btn-mg btn-danger"style="vertical-align: bottom;" ><b>프로필 사진 삭제</b></button>
+											<input onclick="startRequest()" class="btn btn-mg btn-danger" style="vertical-align: bottom;" value="프로필 사진 삭제" >
 											<input type="hidden" name="member_newFilename"
 												value="${sessionScope.mvo.member_newFilename}">
 											<input type="hidden" name="member_orgFilename"
