@@ -50,7 +50,7 @@
 					·
 					<a href="#">Faq</a>
 					·
-					<a href="#">Contact</a>
+					<a href="${initParam.root}contact.jsp">Contact</a>
 				</p>
 
 				<p class="footer-company-name">Company Name &copy; 2015</p>

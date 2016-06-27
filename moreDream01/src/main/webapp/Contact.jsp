@@ -11,47 +11,59 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
       body {
-       background-image: url( "${initParam.root}images/contact/contact_bg.png");
+       background-color: #292C2F;
+      }
+      #moreDreamFooterLogo {
+      	margin-top: 30px;
       }
 </style>
 </head>
+<jsp:include page="./common/header.jsp"/>
 <body>
-<div id="top">
-<div class="col-sm-3 col-xs-1" style="p"></div>
-<div id="moreDreamLogo" class="col-sm-6 col-xs-10" > 
-<img src="${initParam.root}images/contact/moreDreamLogo.png" class="img-responsive">
-</div>
-<div class="col-sm-3 col-xs-1"></div>
+<div id="moreDreamLogo" class="col-sm-12" align="center">
+      <img src="${initParam.root}images/contact/moreDreamLogo.png"
+         class="img-responsive">
+         <br><br>
 </div>
 
-<div id="mid">
-<div class="col-sm-1 col-xs-1"></div>
-<div class="col-sm-1 col-xs-1" id="sw">
-<img src="${initParam.root}images/contact/sw.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1" id="jy">
-<img src="${initParam.root}images/contact/jy.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1" id="bm">
-<img src="${initParam.root}images/contact/bm.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1" id="ks">
-<img src="${initParam.root}images/contact/ks.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1" id="hr">
-<img src="${initParam.root}images/contact/hr.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1" id="hc">
-<img src="${initParam.root}images/contact/hc.png" class="img-responsive">
-</div>
-<div class="col-sm-1 col-xs-1"></div>
+<div class="col-sm-12" align="center">
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/sw.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">이승우<br>lazfasia@nate.com</font><br>
+</span>
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/jy.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">한준영<br>zerosxz@naver.com</font><br>
+</span>
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/bm.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">김보민<br>kbm0072@naver.com</font><br>
+</span>
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/ks.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">안균석<br>ting_sp@naver.com</font><br>
+</span>
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/hr.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">이하림<br>dbtmxlsk211@gmail.com</font><br>
+</span>
+<span class="col-sm-2">
+<img src="${initParam.root}images/contact/hc.png" class="img-responsive" height="250" width="250">
+<br>
+<font size="5" color="white">박한천<br>hanchon1@gmail.com</font><br>
+</span>
+
 </div>
 
-<div id="down">
-<div class="col-sm-3 col-xs-1"></div>
-<div id="moreDreamFooterLogo">
-<img src="">
+<div class="col-sm-12" id="moreDreamFooterLogo" align="center" style="margin-right: 10px">
+<br><br>
+<img src="${initParam.root}images/contact/contact_foot_bg.png" width="1650" class="img-responsive">
 </div>
-<div class="col-sm-3 col-xs-1" class="col-sm-6 col-xs-10"></div>
-</div>
+</body>
+<jsp:include page="./common/footer.jsp"/>
 </html>
