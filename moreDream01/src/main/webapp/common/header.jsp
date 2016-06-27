@@ -125,30 +125,32 @@
 				</ul>
 				 </c:if>
 				<ul class="[ nav navbar-nav navbar-right ]">
-					<li><a href="${initParam.root}dream/createdream_info.jsp" class="[ animate ]">꿈 만들기</a></li>
 					<li><a href="${initParam.root}dream.do?command=getAllListDream" class="[ animate ]">꿈 둘러보기</a></li>
-					<li><a href="${initParam.root }help.jsp" class="[ animate ]">도움말1</a></li>
-					<li><a href="${initParam.root }help1.jsp" class="[ animate ]">도움말2</a></li>
-					
-				<c:choose>
-				<c:when test="${sessionScope.mvo==null}">
-					<li><a class="animate" href="${initParam.root}member/registerMember.jsp">회원 가입</a></li>
-					<li><a class="animate" href="${initParam.root}member/login.jsp">로그인</a></li>
-				</c:when>
-				<c:otherwise>
-					<li>
-						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">${mvo.name}<span class="[ caret ]"></span></a>
-						<ul class="[ dropdown-menu ]" role="menu">
-							<li><a href="${initParam.root}member/updateMember.jsp" class="[ animate ]">회원정보 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
-							<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
-						</ul>
+					<li><a href="${initParam.root}dream/createdream_info.jsp" class="[ animate ]">꿈 만들기</a></li>
+					<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">모아드림 소개</a>
+							<ul class="[ dropdown-menu ]" role="menu">
+								<li><a href="${initParam.root }help1.jsp" class="[ animate ]">모아드림 이야기</a></li>
+								<li><a href="${initParam.root }help2.jsp" class="[ animate ]">모아드림 회원 서비스</a></li>
+							</ul>
 					</li>
-					
-					
-					
-					<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
+				<c:choose>
+					<c:when test="${sessionScope.mvo==null}">
+						<li><a class="animate" href="${initParam.root}member/registerMember.jsp">회원 가입</a></li>
+						<li><a class="animate" href="${initParam.root}member/login.jsp">로그인</a></li>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">${mvo.name}<span class="[ caret ]"></span></a>
+							<ul class="[ dropdown-menu ]" role="menu">
+								<li><a href="${initParam.root}member/updateMember.jsp" class="[ animate ]">회원정보 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
+							</ul>
+						</li>
+						
+						<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
 					</c:otherwise>
-						</c:choose>
+				</c:choose>
+				
 					<li class="[ visible-xs ]">
 						<form action="#" method="GET" role="search">
 							<div class="[ input-group ]">
