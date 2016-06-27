@@ -29,32 +29,32 @@
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/sw.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">이승우<br>lazfasia@nate.com</font><br>
+<font size="4" color="white">이승우<br>lazfasia@nate.com</font><br>
 </span>
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/jy.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">한준영<br>zerosxz@naver.com</font><br>
+<font size="4" color="white">한준영<br>zerosxz@naver.com</font><br>
 </span>
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/bm.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">김보민<br>kbm0072@naver.com</font><br>
+<font size="4" color="white">김보민<br>kbm0072@naver.com</font><br>
 </span>
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/ks.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">안균석<br>ting_sp@naver.com</font><br>
+<font size="4" color="white">안균석<br>ting_sp@naver.com</font><br>
 </span>
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/hr.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">이하림<br>dbtmxlsk211@gmail.com</font><br>
+<font size="4" color="white">이하림<br>dbtmxlsk211@gmail.com</font><br>
 </span>
 <span class="col-sm-2">
 <img src="${initParam.root}images/contact/hc.png" class="img-responsive" height="250" width="250">
 <br>
-<font size="5" color="white">박한천<br>hanchon1@gmail.com</font><br>
+<font size="4" color="white">박한천<br>hanchon1@gmail.com</font><br>
 </span>
 
 </div>
