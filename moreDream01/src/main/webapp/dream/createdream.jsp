@@ -232,7 +232,7 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<h1 class="title">꿈 꾸기</h1>
+							<hr width="25%"><h1 class="title">꿈 만들기</h1><hr width="25%">
 							<p>당신의 꿈을 실현시켜보세요 !</p>
 						</div>
 					</div>
@@ -690,6 +690,7 @@
 									<input type="text" class="form-control" placeholder="재고" name="stock" onkeydown="number_chk(event);" style='IME-MODE: disabled'>
 								</div>
 							</div>
+							&nbsp;
 							<span class="col-md-12" id="plusBtnDiv">
 									<button type="button" class="btn btn-default btn-lg" id="plusBtn">
 										<span class="glyphicon glyphicon-plus" aria-hidden="true" style="width:20px;height:20px"></span>
@@ -711,13 +712,10 @@
 										class="form-control" placeholder="종료일을 선택해주세요">
 								</div>
 								<div class="col-md-12">
-									<label>
-									<b>
-									<font color="red">
-										> 심사기간은 최대 1주가량 소요 입니다.<p>
-										> 프로젝트는 최소 한달동안 진행해야합니다.<p>
-									</font>
-									</b>
+									<label class="label label-default">
+									
+										심사기간은 최대 1주내 이루어집니다.
+										프로젝트는 최소 기간은 30일 입니다.
 									</label>
 								</div>
 							</div>

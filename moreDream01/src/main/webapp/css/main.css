@@ -1,6 +1,12 @@
+#plusBtnDiv{
+	text-align: center;
+}
 
 
 
+.container-main{
+	padding-bottom: 40px;
+}
 
 
 .info i{
@@ -1160,8 +1166,10 @@ scale
 }
 
 .title {
-	color: #404040;
+	text-align:center;
+	color: #ffffff;
 	font-weight: 300;
+	text-shadow: 2px 2px 2px gray;
 }
 
 .single-features {
@@ -1208,15 +1216,22 @@ scale
 }
 
 #page-breadcrumb {
-	background-image: url(../images/home/tour-bg.png);
-	background-color: #fbfafa;
+	background-color: #60C5B8;
 	background-repeat: repeat-x;
-	height: 130px;
+	height: 200px;
 	background-position: center;
 	display: table;
 	position: static;
 	width: 100%;
 }
+
+#page-breadcrumb p{
+	text-align: center;
+	color: white;
+	font-weight: 300;
+	text-shadow: 2px 2px 2px gray;
+}
+
 
 #team {
 	padding: 85px 0;
