@@ -127,7 +127,7 @@
 				<ul class="[ nav navbar-nav navbar-right ]">
 					<li><a href="${initParam.root}dream.do?command=getAllListDream" class="[ animate ]">꿈 둘러보기</a></li>
 					<li><a href="${initParam.root}dream/createdream_info.jsp" class="[ animate ]">꿈 만들기</a></li>
-					<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">모아드림 소개</a>
+					<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">모아드림 소개<span class="[ caret ]"></span></a>
 							<ul class="[ dropdown-menu ]" role="menu">
 								<li><a href="${initParam.root }help1.jsp" class="[ animate ]">모아드림 이야기</a></li>
 								<li><a href="${initParam.root }help2.jsp" class="[ animate ]">모아드림 회원 서비스</a></li>
