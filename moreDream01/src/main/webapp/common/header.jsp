@@ -116,7 +116,7 @@
 					 <c:if test="${sessionScope.mvo.memberCode=='A'}">
 				<ul class="[ nav navbar-nav navbar-left ]">
 				<li>
-						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">관리자 <span class="[ caret ]"></span></a>
+						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">모아드림 관리<span class="[ caret ]"></span></a>
 						<ul class="[ dropdown-menu ]" role="menu">
 							<li><a href="${initParam.root}member.do?command=getMemberList" class="[ animate ]">회원 관리 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
 							<li><a href="${initParam.root}dream.do?command=getAllListDreamForAdmin" class="[ animate ]">꿈 프로젝트 관리 <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
@@ -140,7 +140,7 @@
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">${mvo.name}<span class="[ caret ]"></span></a>
+							<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">${mvo.name} 님<span class="[ caret ]"></span></a>
 							<ul class="[ dropdown-menu ]" role="menu">
 								<li><a href="${initParam.root}member/updateMember.jsp" class="[ animate ]">회원정보 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
 								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
