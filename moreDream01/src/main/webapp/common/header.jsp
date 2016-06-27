@@ -61,8 +61,16 @@ body, table, div, p {font-family:'Nanum Gothic';}
 		else // 타브라우저
 			var code = ev.which;
 		if(code=='13')
-			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
+			searchKeyword();
 		
+	}
+	function searchKeyword(){
+		if(document.getElementById("keyword").value!=''){
+			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
+		}else{
+			alert('검색어를 입력하세요.');
+			document.getElementById("keyword").focus();
+		}
 	}
     var FaceBookApp = {
         	FBScopes: {scope: 'public_profile,email'},
@@ -223,12 +231,14 @@ body, table, div, p {font-family:'Nanum Gothic';}
 						</c:choose>
 					</ul>
 				</div>
-				<div class="search">
+				<div class="search"  style="height: 0px;">
 						<i class="fa fa-search"></i>
 						<div class="field-toggle">
-							<div class="inner-addon left-addon">
-								<i class="glyphicon glyphicon-search"></i>
+							<div class="left-addon">
 								<input type="text" class="form-control" id="keyword" onkeydown="search()">
+							</div>
+							<div class="right-addon">
+								<i class="glyphicon glyphicon-search" align="right" onclick='searchKeyword();'></i>
 							</div>
 						</div>
 				</div>

@@ -34,6 +34,12 @@
 <!--/head-->
 
 <body>
+<script>
+	if(${dreamList==null})
+	{
+		location.replace("${initParam.root}dream.do?command=getAllListDream");
+	}
+</script>
 	<jsp:include page="../common/header.jsp" />
 	<!--/#header-->
 
@@ -46,6 +52,7 @@
 							<h1 class="title">
 							꿈 찾기
 							<c:choose>
+							<c:when test="${(keyword!=null)}">&nbsp;&nbsp;<font size="4"><b><font color="blue">"${keyword}"</font></b> 에 대한 검색결과 총 <b>${dreamList.size()}</b>건</font></c:when>
 							<c:when test="${(category==null)||(category=='none')||(category=='')}">(전체)</c:when>
 							<c:otherwise>
 								(${category})
@@ -150,16 +157,10 @@
 														aria-valuemax="100" style="width: 100%"></div>
 														</div>
 													</c:if>
-													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=50)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
+													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=0)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
 														<div class="progress-bar progress-bar-striped active"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
-														</div>
-													</c:if>
-													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)<50}">
-														<div class="progress-bar progress-bar-striped active"
-														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 30%"></div>
 														</div>
 													</c:if>
 												</c:when>
@@ -205,7 +206,7 @@
 								등록된 자료가 없습니다.
 							</c:when>
 							<c:otherwise>
-							<ul class="pagination">
+							<!-- <ul class="pagination">
 								<li><a href="#">left</a></li>
 								<li><a href="#">1</a></li>
 								<li><a href="#">2</a></li>
@@ -217,7 +218,7 @@
 								<li><a href="#">8</a></li>
 								<li><a href="#">9</a></li>
 								<li><a href="#">right</a></li>
-							</ul>
+							</ul> -->
 							</c:otherwise>
 							</c:choose>
 						</div>
