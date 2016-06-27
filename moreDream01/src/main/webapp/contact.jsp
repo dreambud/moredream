@@ -10,17 +10,16 @@
 <title>Insert title here</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
-      body {
-       background-color: #292C2F;
-      }
-      #moreDreamFooterLogo {
+         #moreDreamFooterLogo {
       	margin-top: 30px;
       }
 </style>
 </head>
+<body style="background-color: #292C2F">
 <jsp:include page="./common/header.jsp"/>
-<body>
+
 <div id="moreDreamLogo" class="col-sm-12" align="center">
+
       <img src="${initParam.root}images/contact/moreDreamLogo.png"
          class="img-responsive">
          <br><br>
