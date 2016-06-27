@@ -33,7 +33,7 @@
 </head><!--/head-->
 
 <body>
-	<footer class="footer-distributed">
+	<footer class="footer-distributed col-md-12">
 
 			<div class="footer-left">
 

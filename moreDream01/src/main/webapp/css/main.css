@@ -1,3 +1,413 @@
+
+
+
+
+
+.info i{
+	color: #60C5B8;
+}
+
+/* 20160624 메인 캐러셀  */
+
+
+body{
+	margin-top: 52px; 
+}
+
+.jumbotron{
+	
+	background-color:#343B4A ;
+	text-align: center;
+	height: 400px
+	
+}
+.jumbotron h1{
+	
+	color: white;
+	
+}
+
+.jumbotron p{
+	
+	color: white;
+	
+}
+
+/* 20160624 점보트론  */
+
+.frame{
+	margin-top: 50px; 
+	padding-top:10px;
+    background-size:cover;
+    background-color: #429CA1;
+    height:430px;
+  	text-align: center;
+}
+
+
+.frame h1 {
+    color: #FFFFFF;
+    font-size: 30px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 0;
+}
+.frame h2 {
+    font-size: 25px;
+   
+}
+
+
+
+.fill{width:100%;height:350px;background-position:center;background-size:cover;
+}
+
+	
+	
+/* HeroUnit 20160623 */
+
+
+
+
+
+.col-item
+{
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    background: #FFF;
+}
+.col-item .photo img
+{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.col-item .info
+{
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    margin-top: 1px;
+}
+
+.col-item:hover .info {
+    background-color: #F5F5DC;
+}
+.col-item .price
+{
+    /*width: 50%;*/
+    float: left;
+    margin-top: 5px;
+}
+
+.col-item .price h5
+{
+    line-height: 20px;
+    margin: 0;
+}
+
+.price-text-color
+{
+    color: #60C5B8;
+}
+
+.col-item .info .rating
+{
+    color: #777;
+}
+
+.col-item .rating
+{
+    /*width: 50%;*/
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+
+.col-item .separator
+{
+    border-top: 1px solid #E1E1E1;
+}
+
+.clear-left
+{
+    clear: left;
+}
+
+.col-item .separator p
+{
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.col-item .separator p i
+{
+    margin-right: 5px;
+}
+.col-item .btn-add
+{
+    width: 50%;
+    float: left;
+}
+
+.col-item .btn-add
+{
+    border-right: 1px solid #E1E1E1;
+}
+
+.col-item .btn-details
+{
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+.controls
+{
+    margin-top: 20px;
+}
+[data-slide="prev"]
+{
+    margin-right: 10px;
+}
+ /* Carousel 20160622 */
+
+
+/* main */
+.animate {
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-bootsnipp {
+	background-color: white;
+	border-color: #22ACC1;
+	border-radius: 0px;
+	margin-bottom: 0px;
+	z-index: 100;
+	width: auto;
+}
+
+.navbar-bootsnipp:nth-of-type(2) {
+	border-top-width: 1px;
+	z-index: 50
+}
+
+.navbar-bootsnipp.affix-top {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+
+.navbar-bootsnipp.affix {
+	top: 0px;
+	width: 100%;
+}
+
+.navbar-bootsnipp .navbar-toggle .icon-bar {
+	background-color: #60C5B8 ;
+}
+
+.navbar-bootsnipp .navbar-brand {
+	color: #60C5B8 ;
+	font-weight: 900;
+	letter-spacing: 2px;
+}
+
+.navbar-bootsnipp .navbar-nav>li>a {
+	border: 0px solid #D56550 ;
+	color: #60C5B8;
+	font-size:small;
+	font-style:normal;
+	padding: 15px 14px;
+}
+
+.navbar-bootsnipp .navbar-nav>li>form>.input-group>input,
+	.navbar-bootsnipp .navbar-nav>li>form>.input-group>.input-group-btn>.btn
+	{
+	border-radius: 0px;
+}
+
+.navbar-bootsnipp .navbar-nav>li:not (.disabled ).open>a,
+	.navbar-bootsnipp .navbar-nav>li:not (.disabled ).active>a,
+	.navbar-bootsnipp .navbar-nav>li:not (.disabled ) >a:hover,
+	.navbar-bootsnipp .navbar-nav>li:not (.disabled ) >a:focus {
+	border-left-width: 5px;
+	color: #60C5B8 ;
+	padding-left: 10px;
+}
+
+.navbar-bootsnipp .navbar-nav>li.disabled>a {
+	color: rgb(200, 200, 200);
+}
+
+.navbar-bootsnipp .navbar-nav>li>.dropdown-menu {
+	border-radius: 0;
+	margin-right: -1px;
+	min-width: 220px;
+	padding: 0px;
+}
+
+.navbar-bootsnipp .navbar-nav>li:not (.dropdown-right ) >.dropdown-menu
+	{
+	left: 0px;
+	margin-left: -1px;
+	right: auto;
+}
+
+.navbar-bootsnipp .navbar-nav>li>.dropdown-menu>li>a {
+	border-left: 1px solid #22ACC1 ;
+	color: bl;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 10px 20px;
+	white-space: nowrap;
+}
+
+.navbar-bootsnipp .navbar-nav>li>.dropdown-menu>li.active>a,
+	.navbar-bootsnipp .navbar-nav>li>.dropdown-menu>li>a:hover,
+	.navbar-bootsnipp .navbar-nav>li>.dropdown-menu>li>a:focus {
+	background-color: #60C5B8;
+	border-left-width: 5px;
+	padding-left: 15px;
+}
+
+.navbar .bootsnipp-profile>a {
+	padding-bottom: 9px;
+	padding-top: 9px;
+}
+
+.navbar .bootsnipp-profile>a>img {
+	border-radius: 50%;
+	width: 32px;
+}
+
+.navbar .bootsnipp-profile>.dropdown-menu {
+	width: 320px;
+}
+
+.navbar .bootsnipp-profile>.dropdown-menu>li>.row {
+	padding: 5px 15px;
+}
+
+.navbar .bootsnipp-profile>.dropdown-menu>li>.row img {
+	width: 100%;
+}
+
+.navbar-bootsnipp .bootsnipp-search {
+	display: none;
+}
+
+.navbar-bootsnipp .bootsnipp-search .form-control {
+	background-color: #60C5B8 ;
+	border-radius: 0px;
+	border-width: 0px;
+	font-size: 24px;
+	padding: 30px 0px;
+}
+
+.navbar-bootsnipp .bootsnipp-search .form-control {
+	background-color: #60C5B8 ;
+	border-radius: 0px;
+	border-width: 0px;
+	font-size: 24px;
+	padding: 25px 0px;
+}
+
+.navbar-bootsnipp .bootsnipp-search .form-control:focus {
+	border-color: transparent;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.navbar-bootsnipp .bootsnipp-search .input-group-btn>.btn {
+	padding: 14px 16px;
+	border-radius: 0px;
+}
+
+.navbar-bootsnipp .bootsnipp-search .input-group-btn>.btn.active,
+	.navbar-bootsnipp .bootsnipp-search .input-group-btn>.btn:hover,
+	.navbar-bootsnipp .bootsnipp-search .input-group-btn>.btn:focus {
+	padding: 14px 16px 14px 15px;
+}
+
+.navbar-bootsnipp .bootsnipp-search .input-group-btn>.btn-default {
+	background-color: #60C5B8 ;
+}
+
+.nav-padding {
+	padding-top: 61px;
+}
+
+@media screen and (min-width: 768px) {
+	.navbar-bootsnipp .navbar-brand {
+		font-size: 20px;
+		height: auto;
+		padding: 15px 5px;
+	}
+	.navbar-bootsnipp .navbar-nav>li>a {
+		font-size: 16px;
+		letter-spacing: 1px;
+	}
+	.navbar-bootsnipp .navbar-nav>li:not (.disabled ).open>a,
+		.navbar-bootsnipp .navbar-nav>li:not (.disabled ).active>a,
+		.navbar-bootsnipp .navbar-nav>li:not (.disabled ) >a:hover,
+		.navbar-bootsnipp .navbar-nav>li:not (.disabled ) >a:focus {
+		border-bottom-width: 5px;
+		border-left-width: 0px;
+		padding-bottom: 10px;
+		padding-left: 14px;
+	}
+	.navbar-bootsnipp .navbar-nav>li.disabled>a {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.navbar-bootsnipp .bootsnipp-search {
+		background-color: #60C5B8 ;
+		display: block;
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		-webkit-transform: rotateX(-90deg);
+		-moz-transform: rotateX(-90deg);
+		-o-transform: rotateX(-90deg);
+		-ms-transform: rotateX(-90deg);
+		transform: rotateX(-90deg);
+		-webkit-transform-origin: 0 0 0;
+		-moz-transform-origin: 0 0 0;
+		-o-transform-origin: 0 0 0;
+		-ms-transform-origin: 0 0 0;
+		transform-origin: 0 0 0;
+		visibility: hidden;
+	}
+	.navbar-bootsnipp .bootsnipp-search.open {
+		-webkit-transform: rotateX(0deg);
+		-moz-transform: rotateX(0deg);
+		-o-transform: rotateX(0deg);
+		-ms-transform: rotateX(0deg);
+		transform: rotateX(0deg);
+		visibility: visible;
+	}
+	.navbar-bootsnipp .bootsnipp-search>.container {
+		padding: 0px;
+	}
+	
+	
+/* nav bar 20160622 - 0409 */	
+
+
+
+
+
+
+
 /*
   Theme Name: Triangle
   Theme Uri: http://www.themeum.com
@@ -1000,7 +1410,7 @@ h3.top-zero {
 }
 
 .progress-bar.progress-bar-primary {
-	background: #00aeef;
+	background: #60C5B8;
 }
 
 /*************************

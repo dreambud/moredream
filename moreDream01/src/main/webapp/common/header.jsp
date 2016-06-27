@@ -1,40 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Home | Triangle</title>
-<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.min.css" rel="stylesheet">
-<link href="css/animate.min.css" rel="stylesheet">
-<link href="css/lightbox.css" rel="stylesheet">
-<link href="css/main.css" rel="stylesheet">
-<link href="css/responsive.css" rel="stylesheet"> -->
+<meta charset="UTF-8">
+<title>Insert title here</title>
 
-<style type="text/css">
-@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
- 
-body, table, div, p {font-family:'Nanum Gothic';}
-/* 나눔글꼴 */
-</style>
-<!--[if lt IE 9]>
-	    <script src="js/html5shiv.js"></script>
-	    <script src="js/respond.min.js"></script>
-    <![endif]-->
-<!-- <link rel="shortcut icon" href="images/ico/favicon.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144"
-	href="images/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114"
-	href="images/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"
-	href="images/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"
-	href="images/ico/apple-touch-icon-57-precomposed.png"> -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
 <script type="text/javascript">
 	function logout(){
 		var f=confirm("로그아웃 하시겠습니까?");
@@ -61,16 +41,8 @@ body, table, div, p {font-family:'Nanum Gothic';}
 		else // 타브라우저
 			var code = ev.which;
 		if(code=='13')
-			searchKeyword();
-		
-	}
-	function searchKeyword(){
-		if(document.getElementById("keyword").value!=''){
 			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
-		}else{
-			alert('검색어를 입력하세요.');
-			document.getElementById("keyword").focus();
-		}
+		
 	}
     var FaceBookApp = {
         	FBScopes: {scope: 'public_profile,email'},
@@ -120,131 +92,91 @@ body, table, div, p {font-family:'Nanum Gothic';}
     };
     // 초기화 실행
     FaceBookApp.init(document, 'script', 'facebook-jssdk');
-    
-    var xhr;
-
-	function alarm() {
-		xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = callbackAlarm;
-		var url = "${initParam.root}dream.do?command=alarm";
-		xhr.open("get", url);
-		setInterval(xhr.send(null), 10000);
-	}
-	alarmView = document.getElementById('alarmView');
-	function callbackAlarm() {
-		if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-				var jsonData = JSON.parse(xhr.responseText);
-				var list = jsonData.alarmList;
-				$('#alarmView').html("<li><b><h3 align='center'>꿈 업데이트 알림 보기</h3></b></li>");
-				for(i=0;i<list.length;i++){
-					$(function() { 
-						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><div><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></div>"+"<div>&nbsp;&nbsp;<font size='3'>꿈 업데이트 정보가 있습니다.</font><br>"+list[i].update_writeDate+"</div></li>");
-					});
-				}
-			}//if
-		}//if
-	}//callback
     </script>
 </head>
-<!--/head-->
-<c:choose>
-<c:when test="${sessionScope.mvo!=null}">
-<body onload="alarm();">
-</c:when>
-<c:otherwise>
 <body>
-</c:otherwise>
-</c:choose>
-	<header id="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 overflow">
-					<div class="social-icons pull-right">
-						<ul class="nav nav-pills">
-							<li><a href=""><i class="fa fa-facebook"></i></a></li>
-							<li><a href=""><i class="fa fa-twitter"></i></a></li>
-							<li><a href=""><i class="fa fa-google-plus"></i></a></li>
-							<li><a href=""><i class="fa fa-dribbble"></i></a></li>
-							<li><a href=""><i class="fa fa-linkedin"></i></a></li>
+
+<nav class="[ navbar navbar-fixed-top ][ navbar-bootsnipp animate ] " role="navigation">
+    	<div class="[ container ]">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="[ navbar-header]">
+				<button type="button" class="[ navbar-toggle ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="[ sr-only ]">Toggle navigation</span>
+					<span class="[ icon-bar ]"></span>
+					<span class="[ icon-bar ]"></span>
+					<span class="[ icon-bar ]"></span>
+				</button>
+				<div class="[ animbrand ]">
+					<a class="[ navbar-brand ][ animate ]" href="#">MOREDREAM<i class="fa fa-leaf" aria-hidden="true"></i></a>
+				</div>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="[ collapse navbar-collapse ]" id="bs-example-navbar-collapse-1">
+					<%-- <c:if test="${sessionScope.mvo.memberCode=='A'}"> --%>
+				<ul class="[ nav navbar-nav navbar-left ]">
+				<li>
+						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">관리자 <span class="[ caret ]"></span></a>
+						<ul class="[ dropdown-menu ]" role="menu">
+							<li><a href="${initParam.root}member.do?command=getMemberList" class="[ animate ]">회원 관리 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+							<li><a href="${initParam.root}dream.do?command=getAllListDreamForAdmin" class="[ animate ]">꿈 프로젝트 관리 <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
 						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="navbar navbar-inverse" role="banner">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-
-					<a class="navbar-brand" href="${initParam.root}index.jsp">
-						<h1>MORE DREAM</h1>
-					</a>
-
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown"><a href="#">모아드림 소개<i
-									class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									<li><a href="${initParam.root }help1.jsp">모아드림 이야기</a></li>
-									<li><a href="${initParam.root }help2.jsp">모아드림 회원서비스</a></li>
-								</ul>
-						</li>
-						<li><a href="${initParam.root}dream.do?command=getAllListDream ">꿈 찾기</a></li>
-						<li><a href="${initParam.root}dream/createdream_info.jsp ">꿈 꾸기</a></li>
-						<c:if test="${sessionScope.mvo.memberCode=='A'}">
-							<li class="dropdown"><a href="#">Admin<i
-									class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									<li><a href="${initParam.root}member.do?command=getMemberList">회원 관리</a></li>
-									<li><a href="${initParam.root}dream.do?command=getAllListDreamForAdmin">꿈
-											관리</a></li>
-								</ul></li>
-						</c:if>
-						<c:choose>
-							<c:when test="${sessionScope.mvo==null}">
-								<li><a href="${initParam.root}member/login.jsp">로그인</a></li>
-								<li><a href="${initParam.root}member/registerMember.jsp">회원 가입</a></li>
-							</c:when>
-							<c:otherwise>
-							<li class="dropdown"><a href="#">${mvo.name}님 환영합니다.<i class="fa fa-angle-down"></i></a>
-								<ul role="menu" class="sub-menu">
-									<li><a href="${initParam.root}member/updateMember.jsp">회원 정보 수정</a></li>
-									<li><a href="${initParam.root}dream.do?command=myMoreDream">모아드림 현황 보기</a></li>
-								</ul>
-							</li>
-							<li class="dropdown-toggle"><a href="#" onmouseover="javascript:alarm();"><img src="${initParam.root}images/document_icon.png" width="30px"></img></a>
-								<ul role="menu" class="sub-menu" id="alarmView" style='width:400px; left: inherit;right:0'>
-								</ul>
-							</li>
-							<li>
-								<a href="javascript:logout()">로그아웃</a>
-							</li>
-							
-							</c:otherwise>
+				</li>
+				</ul>
+				<%-- </c:if> --%>
+				<ul class="[ nav navbar-nav navbar-right ]">
+					<li><a href="${initParam.root}dream/createdream_info.jsp" class="[ animate ]">꿈 만들기</a></li>
+					<li><a href="${initParam.root}dream.do?command=getAllListDream" class="[ animate ]">꿈 둘러보기</a></li>
+					<li><a href="${initParam.root }help.jsp" class="[ animate ]">도움말1</a></li>
+					<li><a href="${initParam.root }help1.jsp" class="[ animate ]">도움말2</a></li>
+					
+				<c:choose>
+				<c:when test="${sessionScope.mvo==null}">
+					<li><a class="animate" href="${initParam.root}member/registerMember.jsp">회원 가입</a></li>
+					<li><a class="animate" href="${initParam.root}member/login.jsp">로그인</a></li>
+				</c:when>
+				<c:otherwise>
+					<li>
+						<a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">>${mvo.name}<span class="[ caret ]"></span></a>
+						<ul class="[ dropdown-menu ]" role="menu">
+							<li><a href="${initParam.root}member/updateMember.jsp" class="[ animate ]">회원정보 <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+							<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
+						</ul>
+					</li>
+					
+					
+					
+					<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
+					</c:otherwise>
 						</c:choose>
-					</ul>
-				</div>
-				<div class="search"  style="height: 0px;">
-						<i class="fa fa-search"></i>
-						<div class="field-toggle">
-							<div class="left-addon">
-								<input type="text" class="form-control" id="keyword" onkeydown="search()">
+					<li class="[ visible-xs ]">
+						<form action="#" method="GET" role="search">
+							<div class="[ input-group ]">
+								<input type="text" class="[ form-control ]" name="q" placeholder="검색어를 입력하세요">
+								<span class="[ input-group-btn ]">
+									<button class="[ btn btn-primary ]" type="submit"><span class="[ glyphicon glyphicon-search ]"></span></button>
+									<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
+								</span>
 							</div>
-							<div class="right-addon">
-								<i class="glyphicon glyphicon-search" align="right" onclick='searchKeyword();'></i>
-							</div>
-						</div>
-				</div>
+						</form>
+					</li>
+                    <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
+				</ul>
 			</div>
 		</div>
-	</header>
-	<!--/#header-->
+		
+		<div class="[ bootsnipp-search animate ]">
+			<div class="[ container ]">
+				<form action="#" method="post" role="search">
+					<div class="[ input-group ]">
+						<input type="text" class="[ form-control ]" name="q" placeholder="검색어를 입력하세요">
+						<span class="[ input-group-btn ]">
+							<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
