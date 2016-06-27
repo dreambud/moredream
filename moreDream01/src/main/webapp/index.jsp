@@ -18,6 +18,12 @@
 <link href="css/responsive.css" rel="stylesheet">
 <link href="css/footer-distributed-with-address-and-phones.css" rel="stylesheet">
 
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/lightbox.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -35,7 +41,7 @@
 
 <script type="text/javascript">
 	function recentDream() {
-		location.href = "dream.do?command=recentDream"
+		location.href = "dream.do?command=recentDream";
 	}
 </script>
 </head>
@@ -43,7 +49,6 @@
 <c:choose>
 	<c:when test="${dreamList!=null}">
 		<body>
-			<%@ include file="./common/header.jsp"%>
 			<jsp:include page="./common/header.jsp" />
 
 			<section>
@@ -51,14 +56,11 @@
 					data-ride="carousel">
 					
 					<ol class="carousel-indicators">
-						<li data-target="#carousel-example1" data-slide-to="0"
-							class="active"></li>
+						<li data-target="#carousel-example1" data-slide-to="0" class="active"></li>
 						<li data-target="#carousel-example1" data-slide-to="1"></li>
 						<li data-target="#carousel-example1" data-slide-to="2"></li>
 					</ol>	
-
 					<div class="carousel-inner">
-					
 					<c:forEach items="${dreamList}" var="dl" begin="6" end="6">
 						<div class="item active">
 							<a href="#"><img
@@ -73,7 +75,6 @@
 							</div>
 						</div>
 						</c:forEach>
-						
 						<c:forEach items="${dreamList}" var="dl" begin="7" end="8">
 						<div class="item">
 							<a href="#"><img
@@ -88,10 +89,6 @@
 							</div>
 						</div>
 						</c:forEach>
-						
-						
-						
-						
 					</div>
 				</div>
 			</section>
@@ -103,16 +100,12 @@
 					<br>
 					<p>모아드림은 특별히 차별화된 플랫폼의 기능들을 통해 자신의 꿈을 기획 , 제작 , 운영 , 소통 하며 자금을
 						모금할 수 있는 공간입니다 .</p>
-						&nbsp;
 					<p>
 					
 						<a class="btn btn-default btn-lg" href="#" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 					</p>
 				</div>
 			</section>
-			
-			
-			
 			
 
 <section>
@@ -284,11 +277,7 @@
 
 		<jsp:include page="./common/footer.jsp" />
 
-			<script type="text/javascript" src="js/jquery.js"></script>
-			<script type="text/javascript" src="js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="js/lightbox.min.js"></script>
-			<script type="text/javascript" src="js/wow.min.js"></script>
-			<script type="text/javascript" src="js/main.js"></script>
+			
 		</body>
 	</c:when>
 	<c:otherwise>

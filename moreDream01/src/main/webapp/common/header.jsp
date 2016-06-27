@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script> -->
 
 <script type="text/javascript">
 	function logout(){
