@@ -34,17 +34,10 @@
 <script type="text/javascript">
 	var switchTo5x = true;
 </script>
-<script type="text/javascript"
-	src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">
-	stLight.options({
-		publisher : "7e8eb33b-fbe0-4915-9b93-09490e3d10df",
-		doNotHash : false,
-		doNotCopy : false,
-		hashAddressBar : false
-	});
-</script>
 
+
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "a28ee41f-ddd0-4113-8038-9298e00fc12c", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
 <script type="text/javascript">
 function deleteComment(replyId) {
 	if(confirm("삭제하시겠습니까?")){
@@ -57,7 +50,9 @@ function deleteComment(replyId) {
 </head>
 <!--/head-->
 
+
 <body>
+    
 	<jsp:include page="../common/header.jsp" />
 
 	<section id="page-breadcrumb">
@@ -103,11 +98,9 @@ function deleteComment(replyId) {
 										</ul>
 									</div> -->
 									<div class="blog-share">
-										<span class='st_facebook_hcount'></span> <span
-											class='st_twitter_hcount'></span> <span
-											class='st_linkedin_hcount'></span> <span
-											class='st_pinterest_hcount'></span> <span
-											class='st_email_hcount'></span>
+									<input type="hidden" name="shortUrl" id="shortUrl">
+										<span class='st_facebook_hcount' displayText='Facebook'></span>
+										<span class='st_twitter_hcount' displayText='Tweet'></span>
 									</div>
 									<div class="author-profile padding">
 										<div class="row">
@@ -489,8 +482,7 @@ function deleteComment(replyId) {
 	<!--/#blog-->
 
 	<jsp:include page="../common/footer.jsp" />
-
-
+	</body>
 	<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
 	<script type="text/javascript"
 		src="${initParam.root }js/bootstrap.min.js"></script>
@@ -498,5 +490,5 @@ function deleteComment(replyId) {
 		src="${initParam.root }js/lightbox.min.js"></script>
 	<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
 	<script type="text/javascript" src="${initParam.root }js/main.js"></script>
-</body>
+
 </html>
