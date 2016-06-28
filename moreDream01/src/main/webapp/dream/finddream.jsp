@@ -41,6 +41,7 @@
 	}
 </script>
 	<jsp:include page="../common/header.jsp" />
+	
 	<!--/#header-->
 
 	<section id="page-breadcrumb">
@@ -49,8 +50,10 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<h1 class="title">
-							꿈 찾기
+							<hr width="25%"><h1 class="title">
+							꿈 둘러보기
+							</h1><hr width="25%">
+							<p>
 							<c:choose>
 							<c:when test="${(keyword!=null)}">&nbsp;&nbsp;<font size="4"><b><font color="blue">"${keyword}"</font></b> 에 대한 검색결과 총 <b>${dreamList.size()}</b>건</font></c:when>
 							<c:when test="${(category==null)||(category=='none')||(category=='')}">(전체)</c:when>
@@ -58,7 +61,7 @@
 								(${category})
 							</c:otherwise>
 							</c:choose>
-							</h1>
+							
 							<p></p>
 						</div>
 					</div>
@@ -69,9 +72,9 @@
 	<!--/#page-breadcrumb-->
 
 
-	<section id="projects">
+	<section id="projects1">
 		<div class="container">
-			<div class="row">
+			<div class="row" id="finddream">
 				<div class="col-md-9 col-sm-8">
 					<div class="row">
 					<div class="col-sm-3">
@@ -125,13 +128,13 @@
 										<div class="portfolio-wrapper">
 											<div class="portfolio-single">
 												<div class="portfolio-thumb">
+												<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">
 													<img src="${initParam.root}upload/dream/${dream.dream_newFilename}"
-														width="200px" height="250px" class="img-responsive" alt=""
-														style="height: 270px">
+														width="200px" height="250px" class="img-responsive img-rounded" alt=""
+														style="height: 270px"></a>
 												</div>
-												<div class="portfolio-view">
+												<div class="portfolio-view"> 
 													<ul class="nav nav-pills">
-														<li><a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">자세히 보기 <i class="fa fa-plus-circle" aria-hidden="true"></i></a></li>
 													</ul>
 												</div>
 											</div>
@@ -140,32 +143,35 @@
 												<h2>
 												<c:choose>
 												<c:when test="${dream.titleDream.length()<19}">
-													${dream.titleDream}
+													<${dream.titleDream}>
 												</c:when>
 												<c:otherwise>
-													${dream.titleDream.substring(0,19)}..
+													<${dream.titleDream.substring(0,19)}..>
 												</c:otherwise>
 												</c:choose>
 												</h2>
-												  <hr>
+												
+												<h5 align="center">
+														<b>누구</b>의 <b>어떤 꿈 프로젝트</b>
+													</h5>
 												<div class="progress">
 												<c:choose>
 												<c:when test="${dream.statVO.totalMoney!=0}">
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
-														<div class="progress-bar progress-bar-striped active"
+														<div class="progress-bar progress-bar-primary"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: 100%"></div>
 														</div>
 													</c:if>
 													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=0)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
-														<div class="progress-bar progress-bar-striped active"
+														<div class="progress-bar progress-bar-primary"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
 														</div>
 													</c:if>
 												</c:when>
 												<c:otherwise>
-													<div class="progress-bar progress-bar-warning active"
+													<div class="progress-bar progress-bar-warning"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: 100%"></div>
 													</div>
@@ -173,24 +179,19 @@
 												</c:choose>
 												
 												<div class="post-bottom overflow">
-													<ul class="nav navbar-nav post-nav">
-														<li><i class="fa fa-heart"></i>&nbsp; 모인 금액
-																${dream.statVO.totalMoneyView} &nbsp;<span class="label label-primary"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></li>
-														<br>
-														<li><i class="fa fa-users"></i>&nbsp; 후원자
-																${dream.statVO.supporterCnt }</li>
-														<br>
-														<li><i class="fa fa-calendar"></i> &nbsp;
+														<p>모인 금액
+																${dream.statVO.totalMoneyView} &nbsp;<span class="label label-primary"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></p>
+														<p><i class="fa fa-calendar"></i> &nbsp;
 																<c:if test="${dream.statVO.endDay==0}">
-																	<font color='red'><b>오늘 마감!!!</b></font>
+																	<font color='red'><b>오늘 마감</b></font>
 																</c:if>
 																<c:if test="${dream.statVO.endDay>0}">
-																	앞으로 ${dream.statVO.endDay}일</a></li>
+																	앞으로 ${dream.statVO.endDay}일</a>
 																</c:if>
 																<c:if test="${dream.statVO.endDay<0}">
-																	<font color='red'><b>마감!!!</b></font></a></li>
+																	<font color='red'><b>마감</b></font>
 																</c:if>
-													</ul>
+													</p>
 												</div>
 											</div>
 										</div>
@@ -223,7 +224,7 @@
 							</c:choose>
 						</div>
 				</div>
-				<div class="col-md-3 col-sm-4 padding-top">
+				<div class="col-md-3 col-sm-4 padding-top hidden-xs">
 					<div class="sidebar portfolio-sidebar">
 						<div class="sidebar-item categories">
 							<h3>Project Categories</h3>

@@ -83,7 +83,7 @@ $(document).ready(function() {
 	
 	<br><br>
 	<div class="row" class="row" style="margin-bottom: 40px;margin-left: 10%;margin-right: 10%;">
-  		<div style="border-style: groove; border-color: #C8C8FF;padding-left: 20px;padding-right: 20px;">
+  		<div style="border-style: groove; border-color: #22ACC1;padding-left: 20px;padding-right: 20px;">
   		<br>
   			<h2 align="center"><strong>꿈 개설 신청 안내</strong></h2>
   		<br>

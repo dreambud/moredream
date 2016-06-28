@@ -1,3 +1,12 @@
+#finddream{
+	background-color: #f5f5f5;
+	
+}
+
+#projects1{
+	background-color: #f5f5f5;
+}
+
 #plusBtnDiv{
 	text-align: center;
 }
@@ -405,7 +414,7 @@ body{
 		padding: 0px;
 	}
 	
-	
+}	
 /* nav bar 20160622 - 0409 */	
 
 
@@ -1488,14 +1497,41 @@ ul.elements li>i {
 }
 
 .portfolio-thumb img {
-	width: 100%;
+	
+-webkit-transform:scale(0.8); /*Webkit: Scale down image to 0.8x original size*/
+-moz-transform:scale(0.8); /*Mozilla scale version*/
+-o-transform:scale(0.8); /*Opera scale version*/
+-webkit-transition-duration: 0.5s; /*Webkit: Animation duration*/
+-moz-transition-duration: 0.5s; /*Mozilla duration version*/
+-o-transition-duration: 0.5s; /*Opera duration version*/
+opacity: 0.7; /*initial opacity of images*/
+margin: 0 10px 5px 0; /*margin between images*/
+width: 100%;
+
+
 }
+
+.portfolio-thumb img:hover{
+-webkit-transform:scale(1.009); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.009); /*Mozilla scale version*/
+-o-transform:scale(1.009); /*Opera scale version*/
+box-shadow:0px 0px 30px gray; /*CSS3 shadow: 30px blurred shadow all around image*/
+-webkit-box-shadow:0px 0px 30px gray; /*Safari shadow version*/
+-moz-box-shadow:0px 0px 30px gray; /*Mozilla shadow version*/
+opacity: 1;
+}
+	}
+	
+/* 20160628 이미지 호버 추가  */
 
 .portfolio-single:hover .portfolio-view {
 	display: block;
 	-webkit-animation: fadeInUp 400ms;
 	animation: fadeInUp 400ms;
 }
+
+
+	
 
 #portfolio .row {
 	margin-left: -10px;
@@ -1507,9 +1543,11 @@ ul.elements li>i {
 	position: absolute;
 	top: 0;
 	height: 100%;
-	background: #92A8D1;
+	background: #60C5B8;
 	width: 100%;
 	text-align: center;
+	
+	
 }
 
 .portfolio-view .nav-pills {
@@ -1540,9 +1578,9 @@ ul.elements li>i {
 }
 
 .portfolio-view .nav-pills li a:hover {
-	color: #702340;
+	color: black;
 	
-	border-color: #702340;
+	border-color: #60C5B8;
 	-webkit-transition: all 0.9s ease;
 	transition: all 0.9s ease;
 }
@@ -1550,12 +1588,30 @@ ul.elements li>i {
 .portfolio-info {
 	overflow: hidden;
 	margin-bottom: 30px;
+	padding-bottom: 10px;
+	border: solid 2px #ccc;	
+	background-color: white;
+	border-radius:20px bottom;
+	box-shadow:10px 10px #ccc;
+	/* border-bottom-right-radius: 3em;
+	border-bottom-left-radius: 3em; */
+	
+	
+}
+
+.portfolio-wrapper{
+	background-color: #60C5B8;
+	border-radius:20px;
+	box-shadow:10px 10px #ccc;
+	
 }
 
 .portfolio-info h2 {
 	text-align:center;
-	font-size: 14px;	
+	font-size: 15px;
+	text-shadow:black;	
 	margin: 15px 0 0;
+	color: #000000;
 }
 
 .portfolio-filter {
@@ -1570,7 +1626,7 @@ ul.elements li>i {
 
 .portfolio-filter li a {
 	border-radius: 0;
-	color: #686868;
+	color: #60C5B8;
 	font-size: 18px;
 	font-weight: 300;
 	padding: 0 25px;
@@ -1679,9 +1735,9 @@ ul.elements li>i {
 Portfolio with right sidebar
 *****************************/
 .sidebar h3 {
-	color: #404040;
+	color: #60C5B8;
 	margin-top: 0;
-	border-bottom: 3px solid #ececec;
+	border-bottom: 3px solid #22ACC1 ;
 	margin-bottom: 6px;
 	padding-bottom: 8px;
 }
@@ -2112,11 +2168,12 @@ a.read-more:hover {
 }
 
 .post-bottom {
-	border-top: 1px solid #eeeeee;
-	padding-top: 10px;
-	margin-top: 20px;
 	margin: 20px -20px 0;
-	padding: 20px 20px 0;
+	
+}
+
+.post-bottom p{
+	text-align: center;
 }
 
 /*****************************
