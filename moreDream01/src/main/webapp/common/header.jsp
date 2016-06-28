@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>header</title>
 
 <!-- <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
@@ -92,6 +92,31 @@
     };
     // 초기화 실행
     FaceBookApp.init(document, 'script', 'facebook-jssdk');
+    
+    var xhr;
+
+	function alarm() {
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = callbackAlarm;
+		var url = "${initParam.root}dream.do?command=alarm";
+		xhr.open("get", url);
+		setInterval(xhr.send(null), 10000);
+	}
+	alarmView = document.getElementById('alarmView');
+	function callbackAlarm() {
+		if (xhr.readyState == 4) {
+			if (xhr.status == 200) {
+				var jsonData = JSON.parse(xhr.responseText);
+				var list = jsonData.alarmList;
+				$('#alarmView').html("<li><b><h3 align='center'>꿈 업데이트 알림 보기</h3></b></li>");
+				for(i=0;i<list.length;i++){
+					$(function() { 
+						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><div><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></div>"+"<div>&nbsp;&nbsp;<font size='3'>꿈 업데이트 정보가 있습니다.</font><br>"+list[i].update_writeDate+"</div></li>");
+					});
+				}
+			}//if
+		}//if
+	}//callback
     </script>
 </head>
 <body>
@@ -146,7 +171,10 @@
 								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
 							</ul>
 						</li>
-						
+						<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" onmouseover="javascript:alarm();"><img src="${initParam.root}images/document_icon.png" width="30px"></img></a>
+								<ul class="[ dropdown-menu ]" role="menu" style="border-radius:5%;overflow-y:auto;min-width: 520px;max-height:300px;" id="alarmView" style='width:400px; left: inherit;right:0'>
+								</ul>
+							</li>
 						<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
 					</c:otherwise>
 				</c:choose>
