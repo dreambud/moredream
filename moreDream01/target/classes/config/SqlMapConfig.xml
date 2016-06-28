@@ -16,6 +16,7 @@
 		<typeAlias type="model.PaymentVO" alias="payment" />
 		<typeAlias type="model.UpdateDreamVO" alias="updateDream"/>
 		<typeAlias type="model.ReplyVO" alias="reply"/>
+		<typeAlias type="model.MyDreamVO" alias="myDream" />
 	</typeAliases>
 
 
@@ -34,6 +35,7 @@
 	<mappers>
 		<mapper resource="sql/member_mapping.xml" />
 		<mapper resource="sql/dream_mapping.xml" />
+		<mapper resource="sql/prize_mapping.xml" />
 	</mappers>
 </configuration>
 

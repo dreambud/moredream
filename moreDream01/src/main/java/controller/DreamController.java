@@ -329,10 +329,10 @@ public class DreamController extends MultiActionController {
 				((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y",
 				money);
 
-		dreamService.payment(ppvo);
+		int bonus = dreamService.payment(ppvo);
 		dreamService.updateMinusStockByRewardId(rewardId);
 
-		return new ModelAndView("WEB-INF/result/payment_result");
+		return new ModelAndView("WEB-INF/result/payment_result","bonus",bonus);
 	}
 
 	// 160616

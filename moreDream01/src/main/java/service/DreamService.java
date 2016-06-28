@@ -71,7 +71,7 @@ public interface DreamService {
 	public int getAllMoney() throws IOException;//후원금 전체 가져오기 :: 통계시 사용
 
 	public void cancelPaymentByPaymentId(int paymentId) throws IOException;//응원취소 :: 결제 취소 
-	public void payment(PaymentVO vo) throws IOException; //결제하기(응원하기)
+	public int payment(PaymentVO vo) throws IOException; //결제하기(응원하기)
 
 	public List<RewardVO> getRewardByDreamId(int dreamId) throws IOException;//꿈에 대한 보상 가져오기
 	public List<DreamVO> requestStateDream(int memberId) throws IOException;//내꿈 신청 현황 보기

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="prizeSql">
+	<resultMap type="payment" id="paymentRM">
+		<result property="paymentId" column="paymentId" />
+		<result property="rewardVO.rewardId" column="rewardId" />
+		<result property="memberId" column="memberId" />
+		<result property="paymentState" column="paymentState" />
+		<result property="money" column="money" />
+		<result property="paymentDate" column="paymentDate" />
+	</resultMap>
+	
+<select id="findPaymentVOByPaymentId" parameterType="int" resultMap="paymentRM">
+SELECT
+paymentId, rewardId, memberId, paymentState, money
+FROM payment
+WHERE paymentId = #{value}
+</select>
+
+<update id="setBonusMoneyByPaymentId" parameterType="payment">
+UPDATE payment SET
+money = #{money}
+WHERE paymentId = #{paymentId}
+</update>
+
+</mapper>	

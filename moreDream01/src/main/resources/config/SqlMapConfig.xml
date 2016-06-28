@@ -35,6 +35,7 @@
 	<mappers>
 		<mapper resource="sql/member_mapping.xml" />
 		<mapper resource="sql/dream_mapping.xml" />
+		<mapper resource="sql/prize_mapping.xml" />
 	</mappers>
 </configuration>
 

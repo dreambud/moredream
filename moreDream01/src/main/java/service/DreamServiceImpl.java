@@ -285,8 +285,10 @@ public class DreamServiceImpl implements DreamService {
 	}
 
 	@Override
-	public void payment(PaymentVO vo) throws IOException {
+	public int payment(PaymentVO vo) throws IOException {
 		dreamDao.payment(vo);
+		int bonus = 0;
+		return bonus;
 	}
 
 	@Override
