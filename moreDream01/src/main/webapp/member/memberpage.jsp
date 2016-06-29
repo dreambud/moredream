@@ -86,14 +86,15 @@
 
 								<thead>
 									<tr>
-										<th style="text-align: center;">#</th>
-										<th style="text-align: center;" colspan='2'>꿈 제목</th>
-										<th style="text-align: center;">마 감 일</th>
-										<th style="text-align: center;">보상내용</th>
-										<th style="text-align: center;">후원금액</th>
-										<th style="text-align: center;">결 제 일</th><!-- 160623 -->
-										<th style="text-align: center;">결제상태</th>
-										<th style="text-align: center;">비 고</th>
+										<th style="text-align: center; width: 3%;">#</th>
+			                            <th style="text-align: center; width: 20%;" colspan='2'>꿈 제목</th>
+			                            <th style="text-align: center; width: 7%;">마 감 일</th>
+			                            <th style="text-align: center; width: 30%;">보상내용</th>
+			                            <th style="text-align: center; width: 7%;">후원금액</th>
+			                            <th style="text-align: center; width: 7%;">결 제 일</th>
+			                            <!-- 160623 -->
+			                            <th style="text-align: center; width: 5%">결제상태</th>
+			                            <th style="text-align: center; width: 5%;">비 고</th>
 									</tr>
 								</thead>
 								<tbody>
