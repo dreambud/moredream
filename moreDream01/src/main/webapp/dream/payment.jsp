@@ -114,7 +114,7 @@
 												onkeydown="number_chk(event);" style="IME-MODE: disabled"
 												class="form-control" /> 
 											<span class="input-group-btn">
-												<button	type="submit" id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
+												<button	type="button" id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
 													class="btn btn-large btn-primary" onclick="javascript:pay('${count.count-1}','${rewardList.size()}');">결제하기
 													</button>
 											</span>
