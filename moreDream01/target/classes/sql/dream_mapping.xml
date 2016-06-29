@@ -58,7 +58,7 @@
 		SELECT dreamId, memberId AS "memberVO.memberId", category,
 		dream_newFilename, confirmRequestDream,
 		titleDream, detailDream,
-		requestDate, targetFund,
+		TO_char(requestDate, 'yyyy-MM-dd') AS requestDate, targetFund,
 		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate
 		FROM dream
@@ -69,10 +69,10 @@
 		SELECT sysdate FROM dual
 	</select>
 
-	<!-- 카테고리별 검색 -->
+	<!-- 카테고리별 검색 --><!-- 160616 조건문 추가 -->
 	<select id="selectByCategory" parameterType="string" resultMap="dreamListRM">
 		<include refid="select_dreams" />
-		WHERE category = #{value}
+		WHERE category = #{value} AND confirmrequestdream='Y'
 	</select>
 
 	<!-- dream 상세보기 -->
@@ -81,13 +81,9 @@
 		WHERE dreamId = #{dreamId}
 	</select>
 
-	<!-- 키워드 검색 -->
-	<select id="selectByKeyWord" parameterType="string" resultMap="dreamListRM">
-		select
-		dreamId, memberId, dream_newFilename,
-		titleDream, targetFund,
-		startDate, endDate
-		from dream
+	<!-- 키워드 검색 160617 수정-->
+	<select id="selectByKeyWord" parameterType="string" resultMap="dreamRM">
+		<include refid="select_dreams" />
 		where titleDream like '%'||#{value}||'%'
 		or detailDream like
 		'%'||#{value}||'%'
@@ -123,23 +119,26 @@
 	</update>
 
 	<!-- paymentRM -->
+	<!-- 160623 paymentDate 추가 -->
 	<resultMap type="payment" id="paymentRM">
 		<result property="paymentId" column="paymentId" />
 		<result property="rewardVO.rewardId" column="rewardId" />
 		<result property="memberId" column="memberId" />
 		<result property="paymentState" column="paymentState" />
 		<result property="money" column="money" />
+		<result property="paymentDate" column="paymentDate" />
 	</resultMap>
 
-	<!-- 결제 내역 가져오기 -->
+	<!-- 결제 내역 가져오기 160623 paymentDate 추가 -->
 	<select id="getPaymentHistoryByMemberId" parameterType="int"
 		resultMap="paymentRM">
-		SELECT paymentId, rewardId, memberId, paymentState, money
+		SELECT paymentId, rewardId, memberId, paymentState, money, paymentDate
 		FROM payment
 		WHERE memberId = #{value}
 	</select>
 
 	<!-- 결제 내역에서 응원한 꿈 정보 가져오기(응원 현황보기) :: 꿈번호를 받아서 꿈 상세 정보 보기를 돌린다.. -->
+	<!-- 160623 -->
 	<select id="cheerUpList" parameterType="int" resultMap="dreamRM">
 		SELECT
 		dreamId, dream_newFilename, titleDream, TO_char(endDate, 'yyyy-MM-dd')
@@ -151,7 +150,7 @@
 		reward r
 		WHERE r.rewardId = p.rewardId AND p.memberId = #{value})
 	</select>
-
+	<!-- 160615 수정 -->
 	<!-- dreamId로 후원금 확인 -->
 	<select id="getMoneyByDreamId" parameterType="int" resultType="int">
 		SELECT money
@@ -161,19 +160,21 @@
 		r.dreamId = #{value}
 	</select>
 
+
 	<!-- 후원금 전체 가져오기 :: 통계시 사용 -->
 	<select id="getAllMoney" resultType="int">
 		SELECT money FROM payment
 		WHERE paymentState='Y'
 	</select>
 
+	<!-- 160621 결제 취소 쿼리문 변경 -->
 	<!-- 응원취소 :: 결제 취소 -->
-	<delete id="deletePaymentByPaymentId" parameterType="int">
-		DELETE FROM
-		payment WHERE paymentId = #{value}
+	<delete id="cancelPaymentByPaymentId" parameterType="int">
+		UPDATE payment SET   
+		paymentState='N' WHERE paymentId = #{value}
 	</delete>
 
-	<!-- 결제하기(응원하기) -->
+	<!-- 결제하기(응원하기) 160623 paymentDate 추가 -->
 	<insert id="payment" parameterType="payment">
 		<selectKey keyProperty="paymentId" resultType="int" order="BEFORE">
 			SELECT payment_seq.nextVal FROM dual
@@ -181,9 +182,9 @@
 
 		INSERT
 		INTO payment (paymentId, rewardId, memberId, paymentState,
-		money)
+		money, paymentDate)
 		VALUES(#{paymentId}, #{rewardVO.rewardId}, #{memberId},'Y',
-		#{money})
+		#{money}, sysdate)
 	</insert>
 
 	<!-- 꿈에 대한 보상 가져오기 :: getRewardByDreamId -->
@@ -213,22 +214,27 @@
 		ORDER BY startDate
 	</select>
 
+	<!-- 160622 update_writeDate 추가 -->
 	<!-- updateDreamListRM -->
 	<resultMap type="updateDream" id="updateDreamListRM">
 		<result property="dreamVO.dreamId" column="dreamId" />
 		<result property="update_detailDream" column="update_detailDream" />
 		<result property="update_orgFilename" column="update_orgFilename" />
 		<result property="update_newFilename" column="update_newFilename" />
+		<result property="update_writeDate" column="update_writeDate"/>
 	</resultMap>
 
 	<!-- 알림받기 :: alarm -->
+	<!-- 160624 수정 -->
 	<select id="alarm" parameterType="int" resultMap="updateDreamListRM">
 		SELECT
-		r.dreamId,update_detailDream,update_orgFilename,update_newFilename
-		FROM updateDream u,(SELECT r.dreamId FROM (SELECT rewardId FROM
-		payment where memberId=#{value}) p, reward r where r.rewardId =
-		p.rewardId) r
-		where u.dreamId = r.dreamId
+		u.dreamId,u.update_detailDream,u.update_orgFilename,u.update_newFilename,u.update_writedate
+		FROM updatedream u,(select r.dreamid FROM 
+		(SELECT rewardid FROM payment 
+		WHERE paymentstate='Y' AND memberid=#{value}) p, 
+		reward r WHERE r.rewardid=p.rewardid) d 
+		WHERE d.dreamid=u.dreamid 
+		ORDER BY update_writedate DESC
 	</select>
 
 
@@ -269,10 +275,13 @@
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate from
 		(select dreamid from
 		(select r.dreamid,sum(money) as currmoney from
-		payment p,reward r group
-		by dreamid order by currmoney desc)) p ,
+		payment p,reward r where
+		p.rewardid=r.rewardid and p.paymentstate='Y' group
+		by dreamid order by
+		currmoney desc)) p ,
 		dream d where p.dreamid =
-		d.dreamid and d.confirmrequestdream ='Y'
+		d.dreamid and
+		d.confirmrequestdream ='Y'
 	</select>
 	<!-- 최다 후원자 순 :: getAllListDreamOrderByManyPeople -->
 	<select id="getAllListDreamOrderByManyPeople" resultMap="dreamRM">
@@ -302,18 +311,21 @@
 	</select>
 
 	<!-- ////////////////////////// 20160614 ////////////////////////////////////// -->
+	<!-- 160623 날짜 받아오는 부분 추가 -->
 	<select id="updateDreamFindByDreamId" parameterType="int"
 		resultMap="updateDreamListRM">
-		SELECT u.dreamId, u.update_detailDream, u.update_newFilename
-		FROM updateDream u
-		WHERE u.dreamId=${value}
+		SELECT dreamId, update_detailDream, update_newFilename, 
+		TO_char(update_writeDate, 'yyyy-MM-dd') AS update_writeDate
+		FROM updateDream
+		WHERE dreamId=${value}
+		ORDER BY update_writeDate DESC
 	</select>
 
 	<insert id="updateDream" parameterType="updateDream">
 		INSERT INTO updateDream
-		(dreamId, update_detailDream, update_orgFilename, update_newFilename)
+		(dreamId, update_detailDream, update_orgFilename, update_newFilename ,update_writeDate)
 		VALUES (#{dreamVO.dreamId}, #{update_detailDream},
-		#{update_orgFilename}, #{update_newFilename})
+		#{update_orgFilename}, #{update_newFilename},sysdate)
 	</insert>
 
 	<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -332,16 +344,20 @@
 	</insert>
 
 
-	<!-- 댓글 DreamId로 찾아와서 읽기 -->
+	<!-- 댓글 DreamId로 찾아와서 읽기 수정 160615 160622 -->
 	<select id="readComment" parameterType="int" resultType="reply">
-		SELECT
-		r.dreamId, r.content, r.writeDate, r.memberId
-		FROM reply r, dream d
-		WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId
+		select m.name AS "memberVO.name", m.member_newFilename AS "memberVO.member_newFilename", m.memberId AS "memberVO.memberId",
+				r.replyId, r.dreamId, r.content, To_char(r.writeDate, 'yyyy-MM-dd') AS writeDate
+		from member m ,(SELECT
+						r.replyId, r.dreamId, r.content, r.writeDate, r.memberId
+						FROM reply r, dream d
+						WHERE r.dreamId = #{value} AND r.dreamId = d.dreamId) r
+		WHERE r.memberid=m.memberid
+		ORDER BY replyId DESC
 	</select>
 
-	<!-- 댓글 삭제하기 :: deleteComment -->
-	<delete id="deleteComment" parameterType="int">
+	<!-- 수정 160622 댓글 삭제하기 :: deleteCommentByReplyId -->
+	<delete id="deleteCommentByReplyId" parameterType="int">
 		DELETE
 		FROM reply
 		WHERE
@@ -350,28 +366,94 @@
 
 	<!-- dream의 memberId를 통해 회원 정보 가져오기 -->
 	<select id="getMemberByDream" parameterType="int" resultType="member">
-		SELECT m.memberId, m.email, m.phoneNumber, m.member_newFilename
+		SELECT m.memberId, m.email, m.name, m.phoneNumber, m.member_newFilename
 		FROM
 		member m, dream d
 		WHERE m.memberId = d.memberId AND dreamId = #{value}
 	</select>
 	<!-- ////////////////////////////////////////////////////////////////////////////////// -->
 
-	<!-- 추가 160614 -->
-	<!-- dreamId로 후원자 가져오기 -->
-	<select id="getPaymentMemeberByDreamId" parameterType="int" resultType="int">
-		SELECT memberId
-		FROM (SELECT rewardId FROM reward WHERE dreamId= #{value}) r,
-		(SELECT * FROM payment WHERE paymentState='Y') p
-		WHERE p.rewardId=r.rewardId
+	<!-- 수정 160615 -->
+	<!-- dreamId로 후원자 정보 가져오기 -->
+	<select id="getPaymentMemberByDreamId" parameterType="int"
+		resultType="member">
+		select m.memberid, m.email, m.name, m.member_newfilename
+		from member m,
+		(SELECT memberId FROM (SELECT rewardId FROM reward WHERE dreamId= #{value})
+		r,
+		(SELECT * FROM payment WHERE paymentState='Y') p WHERE
+		p.rewardId=r.rewardId) r
+		where r.memberid = m.memberid
 	</select>
-	<!-- memberId로 member 한명의 정보를 조회 -->
-	<select id="getMemberByMemberId" parameterType="int" resultType="member">
-		SELECT memberId, email, memberCode, address, name, phoneNumber, member_newFilename
-		FROM member
-		WHERE memberId = #{value}
+	<!-- 추가 160615 -->
+	<!-- dreamid로 결재 후원자수 가져오기 -->
+	<select id="getCountPaymentByDreamId" parameterType="int"
+		resultType="int">
+		select count(-1) from
+		(select rewardid from reward where dreamid=#{value}) r,payment p
+		where p.rewardid = r.rewardid and p.paymentstate='Y'
+	</select>
+	<!-- 160616 -->
+	<!-- 해당 꿈에 대한 댓글 갯수 카운트 -->
+	<select id="getCountReplyByDreamId" parameterType="int"
+		resultType="int">
+		SELECT count(-1)
+		from reply
+		WHERE dreamId = #{value}
 	</select>
 
+	<!-- 해당 꿈에 대한 업데이트 갯수 카운트 -->
+	<select id="getCountUpdateDreamByDreamId" parameterType="int"
+		resultType="int">
+		select count(-1)
+		from updateDream
+		WHERE dreamId = #{value}
+	</select>
+
+	<!-- 160616 -->
+	<!-- 보상 재고 업데이트 -->
+	<update id="updatePlusStockByRewardId" parameterType="int">
+		Update reward set stock =stock+1 WHERE rewardId = #{value}
+	</update>
+	<update id="updateMinusStockByRewardId" parameterType="int">
+		Update reward set stock =stock-1 WHERE rewardId = #{value}
+	</update>
+	
+	<!-- 160621 myDreamRM,getAllMySupportProject 수정 -->
+	<!-- ////////////////////////////////////////////////////////////////////////// -->
+	<!-- memberId로 moredream 현황 보기에 필요한 모든 정보를 가져옴니다. -->
+	<resultMap type="myDream" id="myDreamRM">
+		<result property="paymentVO.paymentState" column="paymentState"/>
+		<result property="paymentVO.paymentId" column="paymentId"/>
+		<result property="paymentVO.money" column="money"/>
+		<result property="paymentVO.paymentDate" column="paymentDate"/><!-- 160623 -->
+		<result property="rewardVO.rewardId" column="rewardId"/>
+		<result property="dreamVO.dreamId" column="dreamId"/>
+		<result property="dreamVO.titleDream" column="titleDream"/>
+		<result property="dreamVO.dream_newFilename" column="dream_newFilename"/>
+		<result property="dreamVO.endDate" column="endDate"/>
+		<result property="rewardVO.rewardInfo" column="rewardInfo"/>
+	</resultMap>
+	
+	<!-- 모아드림 현황 페이지 -->
+	<select id="getAllMySupportProject" parameterType="int"
+		resultMap="myDreamRM">
+		SELECT p.money AS money, TO_char(p.paymentDate, 'yyyy-MM-dd') AS paymentDate,  r.rewardId AS rewardId,
+				d.dreamId AS dreamId, d.titleDream AS titleDream, d.dream_newFilename AS dream_newFilename, 
+				TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
+				r.rewardinfo AS rewardInfo,p.paymentId AS paymentId, p.paymentState AS paymentState
+				FROM payment p, dream d, reward r
+				WHERE p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId = r.dreamId
+				ORDER BY paymentState DESC, paymentDate DESC
+		
+	</select>
+
+	<!-- memberId로 Dream정보를 가져옴 -->
+	<select id="getAllMyDreamByMemberId" parameterType="int"
+		resultType="dream">
+		SELECT * FROM dream WHERE memberId = #{value}
+	</select>
+	<!-- ///////////////////////////////////////////////////////////////////////////// -->
 </mapper>	
 
  
