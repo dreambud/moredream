@@ -3211,3 +3211,13 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	    -webkit-animation: fadeIn 400ms;
 	    animation: fadeIn 400ms;
 }
+#alarmView{
+   		border-radius:5%;
+   		overflow-y:scroll;
+   		min-width: 520px;
+   		max-height:300px;
+   		width:400px;
+   		left: inherit;
+   		right:0;
+   		background: gainsboro;
+}

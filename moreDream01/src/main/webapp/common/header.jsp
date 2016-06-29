@@ -108,10 +108,10 @@
 			if (xhr.status == 200) {
 				var jsonData = JSON.parse(xhr.responseText);
 				var list = jsonData.alarmList;
-				$('#alarmView').html("<li><b><h3 align='center'>꿈 업데이트 알림 보기</h3></b></li>");
+				$('#alarmView').html("<li><h3 align='center'><b>꿈 업데이트 알림 보기</b></h3></li>");
 				for(i=0;i<list.length;i++){
 					$(function() { 
-						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><div><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></div>"+"<div>&nbsp;&nbsp;<font size='3'>꿈 업데이트 정보가 있습니다.</font><br>"+list[i].update_writeDate+"</div></li>");
+						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><span style='max-width:50px'><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></span>"+"<span>&nbsp;&nbsp;<font size='3'><b>꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+list[i].update_writeDate+"</span></li>");
 					});
 				}
 			}//if
@@ -172,7 +172,7 @@
 							</ul>
 						</li>
 						<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" onmouseover="javascript:alarm();"><img src="${initParam.root}images/document_icon.png" width="30px"></img></a>
-								<ul class="[ dropdown-menu ]" role="menu" style="border-radius:5%;overflow-y:auto;min-width: 520px;max-height:300px;" id="alarmView" style='width:400px; left: inherit;right:0'>
+								<ul class="[ dropdown-menu ]" role="menu" id="alarmView">
 								</ul>
 							</li>
 						<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
