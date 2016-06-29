@@ -216,12 +216,14 @@
 										<div class="info">	
 											<div class="row">
 												<div class="rating col-md-2 col-sm-2">
-													<img class="img-circle"
+													<!-- <img class="img-circle"
 														src="https://cdn.mirror.wiki/https://attachment.namu.wiki/c0073194_4e005606080d4.jpg"
+														width="50px" height="50px"> -->
+														<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
 														width="50px" height="50px">
 
 												</div>
-												<div class="price col-md-6 col-col-sm-12">
+												<div >
 													<h5>
 														<b> <c:choose>
 																<c:when test="${dl.titleDream.length()<19}">
@@ -233,7 +235,7 @@
 															</c:choose></b>
 													</h5>
 													<h5>
-														<b>누구</b>의 <b>${dl.category} 꿈 프로젝트</b>
+														<b>${dl.memberVO.name }</b>의 <b>${dl.category} 꿈 프로젝트</b>
 													</h5>
 													<h5 class="price-text-color">
 														<label>모인 금액</label>   ${dl.statVO.totalMoneyView} 원

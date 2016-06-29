@@ -9,6 +9,7 @@
 		<result property="dreamId" column="dreamId" />
 		<result property="memberVO.memberId" column="memberId" />
 		<result property="memberVO.name" column="name" />
+		<result property="memberVO.member_newFilename" column="member_newFilename"/>
 		<result property="dream_newFilename" column="dream_newFilename" />
 		<result property="titleDream" column="titleDream" />
 		<result property="targetFund" column="targetFund" />
@@ -56,11 +57,11 @@
 
 	<!-- sql 모듈화 :: dream -->
 	<sql id="select_dreams">
-		SELECT dreamid,memberid,name,category,
+		SELECT dreamid,memberid,name,member_newFilename, category,
 		dream_newFilename,confirmRequestDream,
 		titleDream,detailDream,requestDate,targetFund,
 		startDate,endDate FROM 
-		(SELECT d.dreamId, m.memberId, m.name, d.category,
+		(SELECT d.dreamId, m.memberId, m.name, m.member_newFilename, d.category,
 		d.dream_newFilename, d.confirmRequestDream,
 		d.titleDream, d.detailDream,
 		TO_char(requestDate, 'yyyy-MM-dd') AS requestDate, targetFund,
