@@ -360,18 +360,25 @@ public class DreamController extends MultiActionController {
 						+ dreamId);
 	}
 
-	// index 최근 꿈 배너
+	// index 최근 꿈 배너 (160628 꿈 시작일에 리스트업 되도록 수정)
 
 	public ModelAndView recentDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
 		String num = "1";
-
-		List<DreamVO> dreamList = dreamService.getListDream(num);
+		List<DreamVO> dreamList = new ArrayList<DreamVO>();
+		List<DreamVO> dList = dreamService.getListDream(num);
+		long startDate =0;
+		for(int i =0 ; i<dList.size(); i++){
+			startDate = dreamService.convert(dList.get(i).getStartDate());
+			System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
+			if(startDate<=dreamService.showNowDate()){
+				dreamList.add(dList.get(i));
+			}
+		}
 		System.out.println(dreamList);
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
-
 	// /////////////////////// 160617 후원한 && 받은 내역
 	// //////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////
