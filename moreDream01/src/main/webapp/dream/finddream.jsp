@@ -152,31 +152,23 @@
 												</h2>
 												
 												<h5 align="center">
-														<b>${dream.memberVO.name }</b>의 <b>어떤 꿈 프로젝트</b>
+														<b>${dream.memberVO.name }</b>의 <b>${dream.category } 꿈 프로젝트</b>
 													</h5>
 												<div class="progress">
-												<c:choose>
-												<c:when test="${dream.statVO.totalMoney!=0}">
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
-														<div class="progress-bar progress-bar-primary"
+														<div class="progress-bar progress-bar-danger "
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: 100%"></div>
 														</div>
 													</c:if>
+													
 													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=0)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
 														<div class="progress-bar progress-bar-primary"
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
 														</div>
 													</c:if>
-												</c:when>
-												<c:otherwise>
-													<div class="progress-bar progress-bar-warning"
-														role="progressbar" aria-valuenow="40" aria-valuemin="0"
-														aria-valuemax="100" style="width: 100%"></div>
-													</div>
-												</c:otherwise>
-												</c:choose>
+													
 												
 												<div class="post-bottom overflow">
 														<p>모인 금액
@@ -186,10 +178,20 @@
 																	<font color='red'><b>오늘 마감</b></font>
 																</c:if>
 																<c:if test="${dream.statVO.endDay>0}">
-																	앞으로 ${dream.statVO.endDay}일</a>
+																	앞으로 ${dream.statVO.endDay}일
+																	
+																	<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
+																		<font color='red'><b>HOT</b></font>
+																	</c:if>
+																
 																</c:if>
 																<c:if test="${dream.statVO.endDay<0}">
-																	<font color='red'><b>마감</b></font>
+																	<font color='blue'><b>마감</b></font>
+																	
+																	<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
+																		&
+																		<font color='red'><b>성공</b></font>
+																	</c:if>
 																</c:if>
 													</p>
 												</div>
