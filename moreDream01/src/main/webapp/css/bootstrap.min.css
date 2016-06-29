@@ -4217,7 +4217,8 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 
 .nav-tabs {
-	border-bottom: 1px solid #ddd
+	border-bottom: 1px solid #22ACC1; 
+	
 }
 
 .nav-tabs>li {
@@ -4233,7 +4234,7 @@ select[multiple].input-group-sm>.form-control, select[multiple].input-group-sm>.
 }
 
 .nav-tabs>li>a:hover {
-	border-color: #eee #eee #ddd
+	border-color: 	#eee #eee #ddd
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover

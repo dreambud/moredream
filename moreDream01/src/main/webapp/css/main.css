@@ -1,3 +1,7 @@
+.updatedate{
+	color: #60C5B8;
+}
+
 #finddream{
 	background-color: #f5f5f5;
 	
@@ -33,7 +37,7 @@ body{
 	
 	background-color:#343B4A ;
 	text-align: center;
-	/* height: 400px */
+	height: 400px
 	
 }
 .jumbotron h1{
@@ -484,7 +488,7 @@ html {
 }
 
 a {
-	color: #C03035;
+	color: #000000;
 }
 
 a:hover {
@@ -904,6 +908,8 @@ scale
 	margin-top: 0;
 	margin-bottom: 25px;
 }
+
+
 
 .testimonial .media>.pull-left {
 	margin-right: 25px;
@@ -1428,13 +1434,15 @@ h3.top-zero {
 }
 
 .progress-bar {
-	line-height: 10px;
+	line-height: 20px;
 	box-shadow: none;
 	-webkit-box-shadow: none;	
 }
 
 .progress-bar.progress-bar-primary {
 	background: #60C5B8;
+	box-shadow:4px 4px #ccc;
+	
 }
 
 /*************************
@@ -1737,7 +1745,7 @@ Portfolio with right sidebar
 .sidebar h3 {
 	color: #60C5B8;
 	margin-top: 0;
-	border-bottom: 3px solid #22ACC1 ;
+	border-bottom: 2px solid #22ACC1 ;
 	margin-bottom: 6px;
 	padding-bottom: 8px;
 }
@@ -1745,6 +1753,13 @@ Portfolio with right sidebar
 .sidebar-item {
 	margin-bottom: 48px;
 }
+
+.sidebar-item h3{
+font-size: 17px;
+margin-bottom: 6px;
+}
+
+
 
 .categories .navbar-stacked li {
 	border-bottom: 1px solid #ececec;
@@ -1755,6 +1770,7 @@ Portfolio with right sidebar
 }
 
 .categories .navbar-stacked li a {
+	
 	font-size: 16px;
 	color: #6a6a6a;
 	padding: 8px 0;
@@ -1806,14 +1822,18 @@ Portfolio with right sidebar
 }
 
 .sidebar-item .media {
-	border-bottom: 1px solid #ececec;
+	text-align:center;
+	border: 2px solid #22ACC1;
 	padding-bottom: 10px;
 	padding-top: 21px;
 	margin-top: 0;
+	margin-bottom:15px;
 	transition: all 0.3s ease 0s;
 	-moz-transition: all 0.3s ease 0s;
 	-webkit-transition: all 0.3s ease 0s;
 	-o-transition: all 0.3s ease 0s;
+	box-shadow:10px 10px #ccc;
+	border-radius:20px;
 }
 
 .sidebar-item .media:last-child {
@@ -1822,7 +1842,7 @@ Portfolio with right sidebar
 }
 
 .sidebar-item .media:hover {
-	border-left: 2px solid #0099AE;
+	border-right: 10px solid #0099AE;
 	padding-left: 5px;
 	transition: all 0.3s ease 0s;
 	-moz-transition: all 0.3s ease 0s;
@@ -2018,7 +2038,12 @@ Blog Default
 	overflow: hidden;
 }
 
+.post-thumb img{
+box-shadow:15px 15px #60C5B8 ;
+}
+
 .timeline .post-thumb img {
+
 	width: 100%;
 }
 
@@ -2157,6 +2182,7 @@ Blog Default
 	font-size: 14px;
 	color: #0099AE;
 }
+
 
 a.read-more {
 	color: #0099AE;
@@ -2348,18 +2374,41 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	height: 24px !important;
 }
 
+
+#idbox1{
+	margin-top:80px;
+	padding-top:20px;
+	border-bottom: 1px solid #22ACC1 ;
+	
+}
+
+#idbox1 i{
+	color: #60C5B8;
+}
+
 .author-profile.padding {
+	margin-top:20px;
 	padding-top: 50px;
+	margin-bottom: 20px;
+	border-radius:20px;
+	
+	
 }
 
 .author-profile .col-sm-2 img {
 	width: 100%;
-	border-left: 3px solid #0099AE;
+	border: 3px solid #0099AE;
+	box-shadow:10px 10px #ccc;
+	
+	
 }
 
 .author-profile h3 {
 	margin-top: 0;
-	color: #3a424c;
+	color: #60C5B8 ;
+	text-align: center;
+
+	
 }
 
 .author-profile p {
@@ -2385,12 +2434,17 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 .post-comment {
 	padding-left: 70px;
 	padding-top: 36px;
-	border-top: 1px solid #f1e8dd;
+	
+}
+
+#btnmove{
+	margin-right: 11px;
 }
 
 .post-comment .pull-left img {
 	margin-right: 60px;
-	border-left: 3px solid #0884d5;
+	border-left: 3px solid #22ACC1 ;
+	box-shadow:10px 10px #ccc;
 }
 
 .post-comment .media-body {
@@ -2403,8 +2457,9 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	margin-top: 10px;
 }
 
+
 .post-comment .media-body span i {
-	color: #C03035;
+	color: #60C5B8 ;
 	margin-right: 10px;
 }
 
@@ -3193,31 +3248,4 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	-webkit-box-shadow: 0 0 0 5px rgba(0, 0, 0, .1) inset;
 	border-radius: 100%;
 	margin: 10px 0;
-}
-.endTimer{
-	    position: absolute;
-	    z-index: 0;
-	    top: 30%;
-	    width: 100%;
-	    height: 100%;
-	    left: 0;
-	    right: 0;
-	    font-size: 40px;
-	    text-align: center;
-		display: none;
-}
-.selecterItem:hover .endTimer{
-		display: block;
-	    -webkit-animation: fadeIn 400ms;
-	    animation: fadeIn 400ms;
-}
-#alarmView{
-   		border-radius:5%;
-   		overflow-y:scroll;
-   		min-width: 520px;
-   		max-height:300px;
-   		width:400px;
-   		left: inherit;
-   		right:0;
-   		background: gainsboro;
 }
