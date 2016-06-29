@@ -8,6 +8,7 @@
 	<resultMap type="dream" id="dreamListRM">
 		<result property="dreamId" column="dreamId" />
 		<result property="memberVO.memberId" column="memberId" />
+		<result property="memberVO.name" column="name" />
 		<result property="dream_newFilename" column="dream_newFilename" />
 		<result property="titleDream" column="titleDream" />
 		<result property="targetFund" column="targetFund" />
@@ -55,13 +56,17 @@
 
 	<!-- sql 모듈화 :: dream -->
 	<sql id="select_dreams">
-		SELECT dreamId, memberId AS "memberVO.memberId", category,
-		dream_newFilename, confirmRequestDream,
-		titleDream, detailDream,
+		SELECT dreamid,memberid,name,category,
+		dream_newFilename,confirmRequestDream,
+		titleDream,detailDream,requestDate,targetFund,
+		startDate,endDate FROM 
+		(SELECT d.dreamId, m.memberId, m.name, d.category,
+		d.dream_newFilename, d.confirmRequestDream,
+		d.titleDream, d.detailDream,
 		TO_char(requestDate, 'yyyy-MM-dd') AS requestDate, targetFund,
 		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate
-		FROM dream
+		FROM dream d, member m where d.memberid=m.memberid)
 	</sql>
 
 	<!-- 현재 날짜 가져오기 :: 남은 기간 계산 -->

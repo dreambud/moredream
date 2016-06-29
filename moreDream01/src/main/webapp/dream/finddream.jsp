@@ -152,7 +152,7 @@
 												</h2>
 												
 												<h5 align="center">
-														<b>누구</b>의 <b>어떤 꿈 프로젝트</b>
+														<b>${dream.memberVO.name }</b>의 <b>어떤 꿈 프로젝트</b>
 													</h5>
 												<div class="progress">
 												<c:choose>
