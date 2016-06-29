@@ -142,17 +142,24 @@
 						</form>
 					</c:when>
 					<c:otherwise>
-						<div class="container">
+						<script type="text/javascript">
+								alert("로그인을 해주세요");
+								location.href="${initParam.root}member/login.jsp";
+						</script>
+					
+						<%-- <div class="container">
 							<div class="row">
 								<div class="action">
 									<div align="center">
 										<img alt="" src="${initParam.root }images/error.jpg">
 										<!-- <b>잘못된 접근 입니다.</b> -->
+										
+										
 									</div>
 								</div>
 							</div>
 						</div>
-					
+					 --%>
 					</c:otherwise>
 				</c:choose>
 
