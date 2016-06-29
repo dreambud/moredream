@@ -40,20 +40,20 @@
 				<h3>More<span>DREAM</span></h3>
 
 				<p class="footer-links">
-					<a href="#">Home</a>
+					<a href="${initParam.root }index.jsp">Home</a>
 					·
-					<a href="#">Blog</a>
+					<a href="${initParam.root}dream.do?command=getAllListDream">꿈 둘러보기</a>
 					·
-					<a href="#">Pricing</a>
+					<a href="${initParam.root}dream/createdream_info.jsp">꿈 만들기</a>
+					·<br>
+					<a href="${initParam.root }help1.jsp">모아드림 소개</a>
 					·
-					<a href="#">About</a>
-					·
-					<a href="#">Faq</a>
+					<a href="${initParam.root }help2.jsp">이용안내</a>
 					·
 					<a href="${initParam.root}contact.jsp">Contact</a>
 				</p>
 
-				<p class="footer-company-name">Company Name &copy; 2015</p>
+				<p class="footer-company-name">Company Name &copy; 2016</p>
 			</div>
 
 			<div class="footer-center">
@@ -70,17 +70,25 @@
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:support@company.com">support@company.com</a></p>
+					<p><a href="mailto:moredream@moredream.com">moredream@moredream.com</a></p>
 				</div>
 
 			</div>
 
 			<div class="footer-right">
-
-				<p class="footer-company-about">
-					<span>About the company</span>
-					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				
+				<p class="footer-links">
+					<a href="#">공연</a>
+					·
+					<a href="#">디자인</a>
+					·
+					<a href="#">패션</a>
 				</p>
+				
+				<!-- <p class="footer-company-about">
+					<span>About the MoreDream</span>
+					Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+				</p> -->
 
 				<div class="footer-icons">
 
