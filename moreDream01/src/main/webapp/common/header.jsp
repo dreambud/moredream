@@ -41,8 +41,10 @@
 		else // 타브라우저
 			var code = ev.which;
 		if(code=='13')
-			location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword").value);
-		
+			searchMove();
+	}
+	function searchMove(){
+		location.replace('${initParam.root}dream.do?command=getAllListDream&&keyword='+document.getElementById("keyword1").value+document.getElementById("keyword2").value);
 	}
     var FaceBookApp = {
         	FBScopes: {scope: 'public_profile,email'},
@@ -180,15 +182,13 @@
 				</c:choose>
 				
 					<li class="[ visible-xs ]">
-						<form action="#" method="GET" role="search">
-							<div class="[ input-group ]">
-								<input type="text" class="[ form-control ]" name="q" placeholder="검색어를 입력하세요">
-								<span class="[ input-group-btn ]">
-									<button class="[ btn btn-primary ]" type="submit"><span class="[ glyphicon glyphicon-search ]"></span></button>
-									<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
-								</span>
-							</div>
-						</form>
+						<div class="[ input-group ]">
+							<input type="text" class="[ form-control ]" id="keyword1" placeholder="검색어를 입력하세요.." onkeydown='search();'>
+							<span class="[ input-group-btn ]">
+								<button class="[ btn btn-primary ]" type="button" onclick="searchMove();"><span class="[ glyphicon glyphicon-search ]"></span></button>
+								<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
+							</span>
+						</div>
 					</li>
                     <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
 				</ul>
@@ -197,14 +197,13 @@
 		
 		<div class="[ bootsnipp-search animate ]">
 			<div class="[ container ]">
-				<form action="#" method="post" role="search">
 					<div class="[ input-group ]">
-						<input type="text" class="[ form-control ]" name="q" placeholder="검색어를 입력하세요">
+						<input type="text" class="[ form-control ]" id="keyword2" placeholder="검색어를 입력하세요..." onkeydown='search();'>
 						<span class="[ input-group-btn ]">
+							<button class="[ btn btn-primary ]" type="button" onclick="searchMove();"><span class="[ glyphicon glyphicon-search ]"></span></button>
 							<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
 						</span>
 					</div>
-				</form>
 			</div>
 		</div>
 	</nav>
