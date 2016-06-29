@@ -53,24 +53,24 @@
 					<a href="${initParam.root}contact.jsp">Contact</a>
 				</p>
 
-				<p class="footer-company-name">Company Name &copy; 2016</p>
+				<p class="footer-company-name">More Dream &copy; 2016</p>
 			</div>
 
 			<div class="footer-center">
 
 				<div>
 					<i class="fa fa-map-marker"></i>
-					<p><span>21 Revolution Street</span> Paris, France</p>
+					<p>판교테크노 밸리<span>유스페이트 2B동 한국소프트웨어진흥협회 3강의장</span> </p>
 				</div>
 
 				<div>
 					<i class="fa fa-phone"></i>
-					<p>+1 555 123456</p>
+					<p>+82 1111-1111</p>
 				</div>
 
 				<div>
 					<i class="fa fa-envelope"></i>
-					<p><a href="mailto:moredream@moredream.com">moredream@moredream.com</a></p>
+					<p><a href="mailto:MoreDream@moredream.com">moredream@moredream.com</a></p>
 				</div>
 
 			</div>
