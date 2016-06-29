@@ -142,7 +142,17 @@
 						</form>
 					</c:when>
 					<c:otherwise>
-						<b>잘못된 접근 입니다.</b>
+						<div class="container">
+							<div class="row">
+								<div class="action">
+									<div align="center">
+										<img alt="" src="${initParam.root }images/error.jpg">
+										<!-- <b>잘못된 접근 입니다.</b> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					
 					</c:otherwise>
 				</c:choose>
 
