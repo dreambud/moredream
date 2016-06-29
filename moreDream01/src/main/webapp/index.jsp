@@ -111,14 +111,19 @@
 					
 					<c:forEach items="${dreamList}" var="dl" begin="6" end="6">
 						<div class="item active">
-							<a href="#"><img
-								src="http://tremendouswallpapers.com/wp-content/uploads/2015/08/Los-Angeles-1600%C3%97600-wallpaper.jpg"/></a>
+							<div style="background-color: rgba(140,140,140,0);position:absolute;width:1347px;height:505px;">
+								
+							</div>
+							<a href="#">
+								<img src="${initParam.root}images/bgcloud.jpg" width="1347px" height="505px" style="width:1347px;height:505px;"/>
+							</a>
 							<div class="carousel-caption">
+								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
+								<font color='black'><p>${dl.category}
 								<h3>${dl.titleDream}</h3>
-								<p>${dl.detailDream}</p>
-								<p>${dl.category}</p>
+								</font>
 								<p>
-									<a class="btn btn-default btn-lg" href="#" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
+									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 								</p>
 							</div>
 						</div>
@@ -126,14 +131,19 @@
 						
 						<c:forEach items="${dreamList}" var="dl" begin="7" end="8">
 						<div class="item">
-							<a href="#"><img
-								src="http://tremendouswallpapers.com/wp-content/uploads/2015/08/Los-Angeles-1600%C3%97600-wallpaper.jpg" /></a>
+							<div style="background-color: rgba(140,140,140,0);position:absolute;width:1347px;height:505px;">
+								
+							</div>
+							<a href="#">
+								<img src="${initParam.root}images/bgcloud.jpg" width="1347px" height="505px" style="width:1347px;height:505px;"/>
+							</a>
 							<div class="carousel-caption">
+								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
+								<font color='black'><p>${dl.category}
 								<h3>${dl.titleDream}</h3>
-								<p>${dl.detailDream}</p>
-								<p>${dl.category}</p>
+								</font>
 								<p>
-									<a class="btn btn-default btn-lg" href="#" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
+									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 								</p>
 							</div>
 						</div>
@@ -156,7 +166,7 @@
 						&nbsp;
 					<p>
 					
-						<a class="btn btn-default btn-lg" href="#" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
+						<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 					</p>
 				</div>
 			</section>
