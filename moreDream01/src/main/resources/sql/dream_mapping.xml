@@ -366,7 +366,7 @@
 
 	<!-- dream의 memberId를 통해 회원 정보 가져오기 -->
 	<select id="getMemberByDream" parameterType="int" resultType="member">
-		SELECT m.memberId, m.email, m.phoneNumber, m.member_newFilename
+		SELECT m.memberId, m.email, m.name, m.phoneNumber, m.member_newFilename
 		FROM
 		member m, dream d
 		WHERE m.memberId = d.memberId AND dreamId = #{value}
