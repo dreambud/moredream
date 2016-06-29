@@ -227,7 +227,7 @@
 				<div class="col-md-3 col-sm-4 padding-top hidden-xs">
 					<div class="sidebar portfolio-sidebar">
 						<div class="sidebar-item categories">
-							<h3>Project Categories</h3>
+							<h3>Dream Categories</h3>
 							<input type="hidden" name="category" id="category" value="${requestScope.category}">
 							<ul class="nav navbar-stacked">
 								<c:choose>
@@ -297,24 +297,24 @@
 								</ul>
 						</div>
 						<div class="sidebar-item  recent">
-							<h3>Recent Projects</h3>
+							<h3>Recent Dreams</h3>
 							<c:forEach items="${requestScope.recentProjects}" var="rp" end="2">
-							<div class="media">
+							<div class="media" style="padding-left: 3%; padding-right: 3%">
 								<div class="pull-left">
 									<a href="#"><img src="${initParam.root}upload/dream/${rp.dream_newFilename}" style="width: 52px; height: 52px" alt=""></a>
 								</div>
 								<div class="media-body">
 									<h4>
 										<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${rp.dreamId}">
-										<font size="3">${rp.titleDream}</font></a>
+										<font size="2">${rp.titleDream}</font></a>
 									</h4>
-									<p>Posted. ${rp.end_year}년 ${rp.end_month}월 ${rp.end_day}일</p>
+									<p><b>마감일</b> ${rp.end_year}년 ${rp.end_month}월 ${rp.end_day}일</p>
 								</div>
 							</div>
 							</c:forEach>
 						</div>
 						<div class="sidebar-item popular">
-							<h3>Popular Projects</h3>
+							<h3>Popular Dreams</h3>
 							<ul class="gallery">
 							<c:forEach items="${requestScope.popularProjects}" var="pp" end="5">
 								<li><a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${pp.dreamId}">
