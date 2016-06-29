@@ -361,7 +361,15 @@ public class DreamServiceImpl implements DreamService {
 	}
 	@Override
 	public int getCategoryCountByCategory(String category) throws IOException {
-		return dreamDao.selectByCategory(category.trim()).size();
+		List<DreamVO> dList = dreamDao.selectByCategory(category.trim());
+		int count = 0;
+		for(int i =0 ; i<dList.size(); i++){
+			long startDate = this.convert(dList.get(i).getStartDate());
+			if(startDate<=this.showNowDate()){
+				count+=1;
+			}
+		}
+		return count;
 	}
 	
 	//160621 마감일자 구하는 메소드 추가
