@@ -28,7 +28,6 @@
 
 .jumbotron {
 	font-family: Montserrat, sans-serif;
-	padding-bottom: 100px;
 	margin-bottom: 0px;
 }
 
@@ -86,32 +85,37 @@
 					More <font style="color: #5486da">Dream</font>
 					</h1>
 				</div>
-	
+		<div class="row">
+			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">
 				<div class="jumbotron"
 					style="background-color: #60C5B8;">
-					<img src="${initParam.root }images/aboutus/dreamCnt.png" width="250"
-						height="230" style="float: left; margin-left: 30px;">
-						<h1 class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">신청된 총 꿈 프로젝트 수 <br> <b>${dreamCnt }</b>개</h1>
+					<img src="${initParam.root }images/aboutus/dreamCnt.png" width="150"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">신청된 총 꿈 프로젝트 수 <br><br> <b>${dreamCnt }</b>개</font>
 				</div>
-				
+			</div>	
+			
+			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">
 				<div class="jumbotron"
 					style="background-color: #22ACC1;" >
-					<img src="${initParam.root }images/aboutus/person.png" width="250"
-						height="170" style="float: left; margin-left: 30px;">
-					<h1 class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">총 회원 수 <br> <b>${ memberCnt}</b>명</h1>
+					<img src="${initParam.root }images/aboutus/person.png" width="200"
+						height="130"><br><hr style="color: #fff; width: 50px;"><br>
+					<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">총 회원 수 <br><br> <b>${ memberCnt}</b>명</font>
 				</div>
-					
+			</div>
+			
+			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">	
 				<div class="jumbotron"
 					style="background-color: #60C5B8;" >
-					<img src="${initParam.root }images/aboutus/totalMoney.png" width="250"
-						height="210" style="float: left; margin-left: 30px;">
-						<h1 class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">총 후원 금액 <br> <b>${totalMoney}</b>원</h1>
+					<img src="${initParam.root }images/aboutus/totalMoney.png" width="150"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">총 후원 금액 <br><br> <b>${totalMoney}</b>원</font>
 				</div>
-
-
+			</div>
+	</div>
 
 
 	<jsp:include page="./common/footer.jsp" />
