@@ -73,7 +73,7 @@
 		emailCheckView = document.getElementById("emailCheckView");
 
 		if (email.value.length < 5) {
-			emailCheckView.innerHTML = "<font color='red'>아이디(Email)는 5자 이상!</font>";
+			emailCheckView.innerHTML = "<font color='#FF4606'>아이디(Email)는 5자 이상 작성해주세요</font>";
 			return;
 		}
 
@@ -81,7 +81,7 @@
 		if (exptext.test(document.regForm.email.value) == false) {
 			//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
 
-			emailCheckView.innerHTML = "<font color='pink'>아이디는 이메일 형식이어야 합니다.</font>";
+			emailCheckView.innerHTML = "<font color='#FF4606'>아이디는 이메일 형식이어야 합니다.</font>";
 			return;
 		}
 
@@ -101,10 +101,10 @@
 
 				if (!jsonData.flag) {
 					checkResult = false;
-					emailCheckView.innerHTML = "<font color='red'><b>해당 아이디 사용 불가능</b></font>";
+					emailCheckView.innerHTML = "<font color='#FF4606'><b>이미 존재하는 아이디 입니다.</b></font>";
 				} else {
 					checkResult = true;
-					emailCheckView.innerHTML = "<font color='blue'><b>해당 아이디 사용가능</b></font>";
+					emailCheckView.innerHTML = "<font color='#60C5B8'><b>사용 가능한 아이디 입니다.</b></font>";
 
 				}//else
 			}//if
@@ -114,9 +114,9 @@
 	$(document).ready(function(){
 		$('#rePassword').keyup(function(){
 		if($(this).val()!=$('#password').val()){
-		$('#passwordEqul').html("<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
+		$('#passwordEqul').html("<br><font color='#FF4606'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
 		}else{
-		$('#passwordEqul').html("<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")	
+		$('#passwordEqul').html("<br><font color='#60C5B8'><b>입력하신 비밀번호가 일치 합니다.</b></font>")	
 		};
 		});//keyup
 		});//ready
@@ -245,11 +245,12 @@
 							<span id="passwordEqul"></span> 
 							</div>
 							<hr>
-							<div class="form-group"><label>페이스북 연동</label>
-								<div class="fb-login-button" data-scope="public_profile,email" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
-								<br><font color="green"><b>
-								* 이후에 이메일 또는 페이스북으로 로그인이 가능합니다.<p></b></font>
-								<input type="checkbox" id="facebook" name="facebook" value="연동하기"> 페이스북과 연동하기
+							
+							<div class="form-group" id="facebook"><label><font color="white"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i> 페이스북으로 로그인이 가능합니다</font></label>
+								<p>
+								<input type="checkbox" id="facebook" name="facebook" value="연동하기"> <font color="white">페이스북과 연동하기 </font>
+								
+									<div class="fb-login-button" data-scope="public_profile,email" data-max-rows="1" data-size="medium" data-show-faces="true" data-auto-logout-link="true" onlogin="checkLoginState();"></div>
 							</div>
 				</div>
 			    <div class="checkbox">
@@ -257,7 +258,7 @@
 			    	    	 아래 <b>[회원가입]</b> 버튼을 눌러 <font color="blue">이용약관</font>에 동의 합니다<p>	
 			    	    </label>
 			    	</div>
-			    	<button type="button" onclick="checkReg()" class="btn btn-lg btn-success btn-block">회원가입</button>
+			    	<button type="button" onclick="checkReg()" class="btn btn-lg btn-default btn-block">회원가입</button>
 				    	</fieldset>
 			      	</form>
 			    </div>

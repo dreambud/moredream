@@ -92,46 +92,48 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4 col-sm-6">
+			<div class="col-md-10 col-sm-6">
 				<c:choose>
 					<c:when test="${sessionScope.mvo!=null}">
-						<form name="frm" id="frm" method="post">
+						<form name="frm" id="frm" method="post" class="form-inline">
 							<c:forEach items="${rewardList}" var="rl" varStatus="count">
 
-								<div>
-									<div>
-<%-- 										<input type="radio" name="rewardId" value="${rl.rewardId}_${rl.rewardGuide}"> 선택 --%>
-									</div>
-									<div>
+								<div id="payment">
+									<div class="form-group">
 										<h3 class="page-header">
-											<span>${rl.rewardGuide}</span> <span>원 이상 밀어주시는 분께</span> <span>드리는
-												특전</span>
+											<span>${rl.rewardGuide}</span> <span><strong style="color: black">원 이상 밀어주시는 분께 드리는
+												보상</strong></span>
 										</h3>
 
-										<div class="input-group">
+										<div class="form-group">
 
 											<input value="${rl.rewardGuide}" name="input_money" type="text"
 												onkeydown="number_chk(event);" style="IME-MODE: disabled"
 												class="form-control" /> 
-											<span class="input-group-btn">
-												<button	type="button" id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
-													class="btn btn-large btn-primary" onclick="javascript:pay('${count.count-1}','${rewardList.size()}');">결제하기
-													</button>
-											</span>
-
 										</div>
+											
+											<div class="form-group">
+												<button id="payment" name="reward" value="${rl.rewardId}_${rl.rewardGuide}"
+													class="btn btn-default" onclick="javascript:pay('${count.count-1}','${rewardList.size()}');">결제하기
+												</button>
+											</div>
+										
 										<p>
 
 											<input type="hidden" name="command" value="payment">
-										<p align="center"></p>
+										<p>
 										<span class="label label-primary">더 많이 입력 하실 수있습니다</span>
 										<p>
-										<div>
-											<span class="badge badge-info">보상 내용</span> <span
-												class="label label-info">${rl.rewardInfo}</span>
-											<p>
-												<span class="badge badge-info">재고 수량</span> <span
-													class="label label-info">${rl.stock}</span>
+										<div id="payment-part">
+											<span class="badge badge-info">보상 내용</span> 
+											
+											<p>${rl.rewardInfo}</p>
+										
+											
+											<span class="badge badge-info">재고 수량</span> 
+											
+											<p>${rl.stock}</p>
+											
 										</div>
 									</div>
 								</div>
@@ -163,6 +165,9 @@
 					</c:otherwise>
 				</c:choose>
 
+			</div>
+			
+			<div class="col-md-2 col-xs" id="payment2">
 			</div>
 
 		</div>

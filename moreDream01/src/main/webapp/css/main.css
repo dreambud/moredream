@@ -37,7 +37,7 @@ body{
 	
 	background-color:#343B4A ;
 	text-align: center;
-	/* height: 400px; */
+	height: 400px
 	
 }
 .jumbotron h1{
@@ -2378,12 +2378,17 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 #idbox1{
 	margin-top:80px;
 	padding-top:20px;
-	border-bottom: 1px solid #22ACC1 ;
+	border: 1px solid #22ACC1 ;
 	
 }
 
 #idbox1 i{
 	color: #60C5B8;
+}
+
+#idbox1 p{
+	font-weight: 600;
+	text-shadow: gray;
 }
 
 .author-profile.padding {
@@ -3276,3 +3281,74 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	right:0;
 	background: gainsboro;
 }
+
+
+#facebook {
+	
+	border: #3b5998 solid 2px;
+	text-align: center;
+	background-color: #3b5998;
+	border-radius:20px;
+}
+
+.fb-login-button{
+	
+	text-align: center;
+	background-color: white;
+	border: #afbdd4 solid 2px;
+	margin-bottom:  20px;
+}
+
+#payment{
+	margin-top: 20px;
+	border: #60C5B8 solid 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-shadow:0px 0px #ccc;
+	transition: width .2s ease,
+				height .2s ease,
+				line-height .2s ease,
+				color .2s ease,
+				font-size .2s ease,
+				border .2s ease,
+				box-shadow .4s ease
+				
+}
+
+#payment:hover{
+	border-width: 1px;
+    border-color:#22ACC1;
+    box-shadow:15px 15px #ccc;
+}
+
+#payment button{
+margin-top: -0.6px;
+box-shadow:0px 0px #ccc;
+}
+
+#payment button:hover{
+margin-top: -0.6px;
+box-shadow:0px 0px #ccc;
+}
+
+#payment-part{
+	margin-left: 10px;
+	
+}
+
+#payment-part span{
+	margin-left: -10px;
+}
+
+#payment-part p{
+	padding-top: 2px;
+	margin-bottom: 5px;
+	text-align: inherit;
+	border-radius:5px;
+	text-shadow: gray;
+}
+
+#payment2{
+	background-image: url("images/honey.png");
+}
+
