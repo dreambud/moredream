@@ -370,6 +370,7 @@ function deleteComment(replyId) {
 											<form action="${initParam.root}dream/updateDream.jsp"
 												method="get">
 												<input type="hidden" name="dreamId" value="${dreamVO.dreamId}">
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="hidden" name="memberId"
 													value="${dreamVO.memberVO.memberId}"> <input
 													type="submit" class="btn btn-default btn-lg"
