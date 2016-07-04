@@ -119,7 +119,7 @@
 							</a>
 							<div class="carousel-caption">
 								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category}
+								<font color='black'><p>${dl.category} 프로젝트
 								<h3>${dl.titleDream}</h3>
 								</font>
 								<p>
@@ -139,7 +139,7 @@
 							</a>
 							<div class="carousel-caption">
 								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category}
+								<font color='black'><p>${dl.category} 프로젝트
 								<h3>${dl.titleDream}</h3>
 								</font>
 								<p>
