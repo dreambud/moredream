@@ -17,7 +17,11 @@
 <link href="css/main.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
 <link href="css/footer-distributed-with-address-and-phones.css" rel="stylesheet">
-
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/lightbox.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -93,9 +97,7 @@
 <c:choose>
 	<c:when test="${dreamList!=null}">
 		<body>
-			<%@ include file="./common/header.jsp"%>
 			<jsp:include page="./common/header.jsp" />
-
 			<section>
 				<div id="carousel-example1" class="carousel slide"
 					data-ride="carousel">
@@ -119,7 +121,7 @@
 							</a>
 							<div class="carousel-caption">
 								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category} 프로젝트
+								<font color='black'><p>${dl.category}
 								<h3>${dl.titleDream}</h3>
 								</font>
 								<p>
@@ -139,7 +141,7 @@
 							</a>
 							<div class="carousel-caption">
 								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category} 프로젝트
+								<font color='black'><p>${dl.category}
 								<h3>${dl.titleDream}</h3>
 								</font>
 								<p>
@@ -301,12 +303,6 @@
 			
 
 		<jsp:include page="./common/footer.jsp" />
-
-			<script type="text/javascript" src="js/jquery.js"></script>
-			<script type="text/javascript" src="js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="js/lightbox.min.js"></script>
-			<script type="text/javascript" src="js/wow.min.js"></script>
-			<script type="text/javascript" src="js/main.js"></script>
 		</body>
 	</c:when>
 	<c:otherwise>

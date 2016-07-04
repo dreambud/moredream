@@ -505,6 +505,9 @@ public class DreamController extends MultiActionController {
 	//160624 alarm추가
 	public ModelAndView alarm(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
+		if(session.getAttribute("mvo")==null){
+			return new ModelAndView("JsonView","alarmList",new ArrayList());
+		}
 		int memberId = ((MemberVO)session.getAttribute("mvo")).getMemberId();
 		List<UpdateDreamVO> list = dreamService.alarm(memberId);
 		return new ModelAndView("JsonView","alarmList",list);
