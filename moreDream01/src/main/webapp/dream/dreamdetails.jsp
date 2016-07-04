@@ -66,8 +66,8 @@ function deleteComment(replyId) {
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-							<hr width="25%"><h1 class="title">프로젝트 제목</h1><hr width="25%">
-							<p>누구의 어떤 프로젝트 </p>
+							<hr width="25%"><h1 class="title">${dreamVO.titleDream}</h1><hr width="25%">
+							<p>${dreamVO.memberVO.name}의 ${dreamVO.category}프로젝트 </p>
 						</div>
 					</div>
 				</div>
