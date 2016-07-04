@@ -477,13 +477,15 @@ function deleteComment(replyId) {
 
 
 	<div class="sidebar blog-sidebar">
-		<div class="sidebar-item popular" align="center">
+		<div class="sidebar-item popular">
 			<h3>진행했던 꿈 프로젝트</h3>
 			<ul class="gallery">
 				<c:forEach items="${dreamList}" var="dream">
 					<c:choose>
 						<c:when test="${dreamList.size()==1 }">
-							전에 진행했던 꿈 프로젝트가 없습니다.
+							<div align="center">
+								전에 진행했던 꿈 프로젝트가 없습니다.
+							</div>
 						</c:when>
 						<c:when test="${dream.dream_newFilename!=dreamVO.dream_newFilename }">
 							<li><a href="#"><img
