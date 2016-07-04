@@ -24,6 +24,33 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 
+	//160704
+	//추가 :: getAllDreamCnt
+	@Override
+	public int getAllDreamCnt() throws IOException {
+		int result = dreamDao.getAllDreamCnt();
+		System.out.println("service result :: "+result);
+		return result;
+	}
+	//추가 :: getAllMemberCnt
+	@Override
+	public int getAllMemberCnt() throws IOException {
+		return dreamDao.getAllMemberCnt();
+	}
+	//추가 :: getTotalMoney
+	@Override
+	public String getTotalMoney() throws IOException {
+		int result = dreamDao.getTotalMoney();
+		
+		StringBuffer stringBuffer = new StringBuffer(String.valueOf(result));
+		System.out.println(stringBuffer.length());
+		for(int i=stringBuffer.length()-3;i>0;i=i-3){
+			stringBuffer.insert(i, ',');
+		}
+		return stringBuffer.toString();
+	}	
+	
+	
 	//160617
 	//추가 :: getAllMyDreamByMemberId
 	//memberId로 dream 정보 가져오기

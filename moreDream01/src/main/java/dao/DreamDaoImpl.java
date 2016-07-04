@@ -22,6 +22,29 @@ public class DreamDaoImpl implements DreamDao {
 		this.sqlSession = sqlSession;
 	}
 
+	//160704
+	//추가::getAllDreamCnt
+	@Override
+	public int getAllDreamCnt() throws IOException {
+		int result = sqlSession.selectOne("dreamSql.getAllDreamCnt");
+		System.out.println("Dao result :: "+result);
+		return result;
+	}
+	//추가 :: getAllMemberCnt
+	@Override
+	public int getAllMemberCnt() throws IOException {
+		return sqlSession.selectOne("dreamSql.getAllMemberCnt");
+	}
+	//추가 :: getTotalMoney
+	@Override
+	public int getTotalMoney() throws IOException {
+		return sqlSession.selectOne("dreamSql.getTotalMoney");
+	}
+	
+	
+	
+	
+	
 	//160617
 	//추가 :: getAllMyDreamByMemberId
 	//memberId로 dream 정보 가져오기

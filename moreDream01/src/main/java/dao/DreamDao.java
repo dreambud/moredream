@@ -14,6 +14,14 @@ import model.UpdateDreamVO;
 
 public interface DreamDao {
 
+	//160704
+	//추가 :: getAllDreamCnt
+	public int getAllDreamCnt() throws IOException;
+	//추가 :: getAllMemberCnt
+	public int getAllMemberCnt() throws IOException;
+	//추가 :: getTotalMoney
+	public int getTotalMoney() throws IOException;
+	
 	//160617
 	//추가 :: getAllMyDreamByMemberId
 	//memberId로 dream 정보 가져오기

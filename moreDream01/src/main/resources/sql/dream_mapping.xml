@@ -460,6 +460,17 @@
 		SELECT * FROM dream WHERE memberId = #{value}
 	</select>
 	<!-- ///////////////////////////////////////////////////////////////////////////// -->
+	
+	<!-- 160704 help3 -->
+	<select id="getAllDreamCnt" resultType="int">
+		SELECT count(-1) FROM dream
+	</select>
+	<select id="getAllMemberCnt" resultType="int">
+		SELECT count(-1) FROM member
+	</select>
+	<select id="getTotalMoney" resultType="int">
+		SELECT sum(money) FROM payment
+	</select>
 </mapper>	
 
  

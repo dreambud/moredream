@@ -504,4 +504,22 @@ public class DreamController extends MultiActionController {
 		List<UpdateDreamVO> list = dreamService.alarm(memberId);
 		return new ModelAndView("JsonView","alarmList",list);
 	}
+	
+	//160704
+	public ModelAndView help3(HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+		int dreamCnt=dreamService.getAllDreamCnt();
+		System.out.println(dreamCnt);
+		request.setAttribute("dreamCnt", dreamCnt);
+
+		int memberCnt = dreamService.getAllMemberCnt();
+		System.out.println("memberCnt :: " + memberCnt);
+		request.setAttribute("memberCnt", memberCnt);
+		
+		String totalMoney = dreamService.getTotalMoney();
+		System.out.println("totalMoney :: "+totalMoney);
+		request.setAttribute("totalMoney", totalMoney);
+		
+		return new ModelAndView("help3");
+	}
 }
