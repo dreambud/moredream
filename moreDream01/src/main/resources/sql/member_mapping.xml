@@ -68,6 +68,7 @@
 		SELECT
 		memberId, email, password, memberCode, address, name, phoneNumber, member_newFilename, member_orgFilename
 		FROM member
+		ORDER BY memberId desc
 	</select>
 	
 	
