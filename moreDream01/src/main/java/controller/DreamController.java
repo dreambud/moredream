@@ -303,6 +303,11 @@ public class DreamController extends MultiActionController {
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 		request.setAttribute("rewardList", rewardList);
 		
+		//160704 추가
+		// 과거에 진행했던 프로젝트 목록 가져오기
+		List<DreamVO> dreamList = dreamService.getAllMyDreamByMemberId(dreamVO.getMemberVO().getMemberId());
+		request.setAttribute("dreamList", dreamList);
+		
 		 return new ModelAndView("dream/dreamdetails", "dreamVO", dreamVO);
 	}
 
