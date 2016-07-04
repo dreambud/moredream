@@ -203,8 +203,11 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
+						<hr width="25%">
 							<h1 class="title">회원가입</h1>
+							<hr width="25%">
 							<p>당신의 꿈을 실현시켜보세요 !</p>
+							
 						</div>
 					</div>
 				</div>
