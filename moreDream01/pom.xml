@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>finalProject</groupId>
-	<artifactId>moreDream01</artifactId>
+	<artifactId>moreDream</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>moreDream01 Maven Webapp</name>
+	<name>moreDream Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
@@ -159,8 +159,14 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+	<dependency><!-- json 추가 -->
+	    <groupId>com.googlecode.json-simple</groupId>
+	    <artifactId>json-simple</artifactId>
+	    <version>1.1</version>
+	</dependency>
+		
 	</dependencies>
 	<build>
-		<finalName>moreDream01</finalName>
+		<finalName>moreDream</finalName>
 	</build>
 </project>
