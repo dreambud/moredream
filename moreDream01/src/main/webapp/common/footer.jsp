@@ -76,13 +76,23 @@
 			</div>
 
 			<div class="footer-right">
-				
+			<font style="color: white">Dream Categories</font>
 				<p class="footer-links">
-					<a href="#">공연</a>
+					<a href="${initParam.root}dream.do?command=getAllListDream">전체</a>
 					·
-					<a href="#">디자인</a>
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=디자인">디자인</a>
 					·
-					<a href="#">패션</a>
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=패션">패션</a>
+					·
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=출판">출판</a>
+					·<br>
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=요리">요리</a>
+					·
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=음악">음악</a>
+					·
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=공연">공연</a>
+					·
+					<a href="${initParam.root}dream.do?command=getAllListDream&&category=영화">영화</a>
 				</p>
 				
 				<!-- <p class="footer-company-about">
