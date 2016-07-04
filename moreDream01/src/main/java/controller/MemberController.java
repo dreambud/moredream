@@ -56,7 +56,7 @@ public class MemberController extends MultiActionController {
 	//주의!!..login_ok, login_fail
 	//메소드의 인자값 주의...사용자의 정보를 session에 바인딩 해야 한다..
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response
-			, HttpSession session, MemberVO pmvo)
+			, MemberVO pmvo)
 		throws SQLException{
 		String path = "WEB-INF/result/login_fail";
 		
@@ -69,6 +69,7 @@ public class MemberController extends MultiActionController {
 		}
 		if(rmvo != null){
 			//중요!!
+			HttpSession session = request.getSession();
 			session.setAttribute("mvo", rmvo);
 			path = "WEB-INF/result/login_ok";
 		}
@@ -76,8 +77,9 @@ public class MemberController extends MultiActionController {
 	}
 	
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response
-			, HttpSession session)
+			)
 		throws SQLException{
+		HttpSession session = request.getSession();
 		if(session.getAttribute("mvo") != null)
 			session.invalidate();
 		
@@ -131,9 +133,9 @@ public class MemberController extends MultiActionController {
 	
 	
 	public ModelAndView deleteMember(HttpServletRequest request, HttpServletResponse response
-		, HttpSession session)
+		)
 		throws SQLException{
-		
+		HttpSession session = request.getSession();
 		MemberVO rmvo =(MemberVO) session.getAttribute("mvo");
 		memberService.deleteMember(rmvo.getMemberId());
 		session.invalidate();
@@ -141,8 +143,7 @@ public class MemberController extends MultiActionController {
 		
 	}	
 	
-	public ModelAndView deleteMemberbyAdmin(HttpServletRequest request, HttpServletResponse response
-			, HttpSession session)
+	public ModelAndView deleteMemberbyAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException{
 			
 		
@@ -153,10 +154,9 @@ public class MemberController extends MultiActionController {
 		}	
 	
 	
-	public ModelAndView getMemberList(HttpServletRequest request, HttpServletResponse response
-			, HttpSession session)
+	public ModelAndView getMemberList(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException{
-			
+			HttpSession session = request.getSession();
 			MemberVO rmvo =(MemberVO) session.getAttribute("mvo");
 			List<MemberVO> list = memberService.getMemberList();
 			System.out.println(list);

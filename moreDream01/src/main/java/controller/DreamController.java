@@ -44,7 +44,7 @@ public class DreamController extends MultiActionController {
 	// 꿈 신청
 	// 160615(한천)
 	public ModelAndView requestDream(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session, DreamVO pvo)
+			HttpServletResponse response, DreamVO pvo)
 			throws Exception {
 		System.out.println("requestDream GO!!");
 		// DreamVO pvo = new DreamVO(0, null, request.getParameter("category"),
@@ -79,7 +79,7 @@ public class DreamController extends MultiActionController {
 		}
 
 		System.out.println("꿈 신청 Go");
-
+		HttpSession session = request.getSession();
 		MemberVO rmvo = (MemberVO) session.getAttribute("mvo");
 		pvo.setMemberVO(rmvo);// 세션 값 주입
 
@@ -225,7 +225,7 @@ public class DreamController extends MultiActionController {
 	// 추가 160614
 	// :: getDetailDreamByDreamId - 꿈 상세보기
 	public ModelAndView getDetailDreamByDreamId(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
+			HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		System.out.println("상세보기에서 dreamId ::" + dreamId);
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
@@ -257,7 +257,8 @@ public class DreamController extends MultiActionController {
 
 		// 댓글 작성 160615
 		// 후원자 여부 체크
-
+		
+		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("mvo"); // 세션에 있는 mvo를
 																	// 가져옴
 
@@ -318,12 +319,13 @@ public class DreamController extends MultiActionController {
 
 	// 결제하기
 	public ModelAndView payment(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
+			HttpServletResponse response) throws Exception {
 
 		int rewardId = Integer.parseInt(request.getParameter("rewardId"));
 		int money = Integer.parseInt(request.getParameter("money"));
 		RewardVO rvo = new RewardVO();
 		rvo.setRewardId(rewardId);
+		HttpSession session = request.getSession();
 		session.getAttribute("mvo");
 		PaymentVO ppvo = new PaymentVO(0, rvo,
 				((MemberVO) session.getAttribute("mvo")).getMemberId(), "Y",
@@ -339,7 +341,7 @@ public class DreamController extends MultiActionController {
 	// /댓글 작성 :: writeComment
 
 	public ModelAndView writeComment(HttpServletRequest request,
-			HttpServletResponse response, HttpSession session) throws Exception {
+			HttpServletResponse response) throws Exception {
 
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		String content = request.getParameter("content");
@@ -348,7 +350,7 @@ public class DreamController extends MultiActionController {
 
 		DreamVO dreamVO = new DreamVO();
 		dreamVO.setDreamId(dreamId);// dreamVO.dreamId
-
+		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("mvo");// memberVO.memberId
 
 		ReplyVO replyVO = new ReplyVO(0, dreamVO, memberVO, content, null);
@@ -383,10 +385,11 @@ public class DreamController extends MultiActionController {
 	// //////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////
 	public ModelAndView myMoreDream(HttpServletRequest request,
-			HttpServletResponse response,HttpSession session) throws Exception {
+			HttpServletResponse response) throws Exception {
 
 		// ////////////////////// 후원한 부분
 		// ///////////////////////////////////////////
+		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		if(mvo==null){
 			return new ModelAndView("member/login");
@@ -472,7 +475,8 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("redirect:/dream.do?command=myMoreDream");
 	}
 		
-	public ModelAndView cancelPayment(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+	public ModelAndView cancelPayment(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		MemberVO pmvo =(MemberVO)session.getAttribute("mvo");
 		if(pmvo==null){
 			return new ModelAndView("index");
@@ -485,7 +489,7 @@ public class DreamController extends MultiActionController {
 	}
 	
 	//댓글 삭제 160622
-	public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+	public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		int replyId = Integer.parseInt(request.getParameter("replyId"));
 		System.out.println(dreamId +","+replyId);
@@ -494,7 +498,8 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
 	}
 	//160624 alarm추가
-	public ModelAndView alarm(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws Exception {
+	public ModelAndView alarm(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 		int memberId = ((MemberVO)session.getAttribute("mvo")).getMemberId();
 		List<UpdateDreamVO> list = dreamService.alarm(memberId);
 		return new ModelAndView("JsonView","alarmList",list);
