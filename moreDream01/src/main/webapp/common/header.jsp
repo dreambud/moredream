@@ -14,8 +14,28 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script> -->
+<link rel="stylesheet" href="${initParam.root}css/toastr.min.css">
+<script src="${initParam.root}js/toastr.min.js"></script><!-- toastr 추가 -->
 
 <script type="text/javascript">
+	$(document).ready(function(){
+		toastr.options = {
+				  "closeButton": true,
+				  "debug": false,
+				  "newestOnTop": false,
+				  "progressBar": false,
+				  "positionClass": "toast-bottom-right",
+				  "preventDuplicates": true,
+				  "showDuration": "300",
+				  "hideDuration": "1000",
+				  "timeOut": "5000",
+				  "extendedTimeOut": "1000",
+				  "showEasing": "swing",
+				  "hideEasing": "linear",
+				  "showMethod": "fadeIn",
+				  "hideMethod": "fadeOut"
+				}
+	});
 	function logout(){
 		var f=confirm("로그아웃 하시겠습니까?");
 		if(f)
@@ -88,7 +108,6 @@
         	    	    	var email = response.email;
         	    	    	location.href='${initParam.root}member.do?command=facebookLogin&&facebookId='+id+'&&email='+email;
         	    	    	// 실행할 코
-
          	   	});
         	}
     };
@@ -102,9 +121,21 @@
 		xhr.onreadystatechange = callbackAlarm;
 		var url = "${initParam.root}dream.do?command=alarm";
 		xhr.open("get", url);
-		setInterval(xhr.send(null), 10000);
+		xhr.send(null);
+		setInterval(function(){
+			if('${sessionScope.mvo!=null}'=='true'){//세션이 끊겼을때 처리
+				xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = callbackAlarm;
+				var url = "${initParam.root}dream.do?command=alarm";
+				xhr.open("get", url);
+				xhr.send(null);
+			}
+		},5000);
 	}
 	alarmView = document.getElementById('alarmView');
+	var defaultCount = 1;
+	var flagCount = 0;
+	
 	function callbackAlarm() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
@@ -116,12 +147,33 @@
 						$('#alarmView').append("<hr><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'><li style='margin-left:10px'><span style='max-width:50px'><img src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='50px' height='50px'></span>"+"<span>&nbsp;&nbsp;<font size='3'><b>꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+list[i].update_writeDate+"</span></li>");
 					});
 				}
+				
+				if(flagCount==0){
+					defaultCount=list.length;
+					flagCount=1;
+					$('#badge').html(list.length);
+				}else if(flagCount==1&&defaultCount<list.length){
+				 	toastr.info('업데이트 내역이 있습니다.')
+					defaultCount=list.length;
+					$('#badge').html(list.length);
+				}else if(list.length==0){
+					$('#alarmView').append("<hr><li style='margin-left:10px;text-align:center;'>로그인이 필요합니다.</li>");
+				}
 			}//if
 		}//if
 	}//callback
+	
     </script>
 </head>
+<c:choose>
+<c:when test="${sessionScope.mvo!=null}">
+<body onload="alarm();">
+<%-- <jsp:include page="./alert.jsp" /> --%>
+</c:when>
+<c:otherwise>
 <body>
+</c:otherwise>
+</c:choose>
 
 <nav class="[ navbar navbar-fixed-top ][ navbar-bootsnipp animate ] " role="navigation">
     	<div class="[ container ]">
@@ -174,7 +226,7 @@
 								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
 							</ul>
 						</li>
-						<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown" onmouseover="javascript:alarm();"><img src="${initParam.root}images/document_icon.png" width="30px"></img></a>
+						<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><img src="${initParam.root}images/document_icon.png" width="30px"><span class="badge" id="badge"></span></a>
 								<ul class="[ dropdown-menu ]" role="menu" id="alarmView">
 								</ul>
 							</li>
