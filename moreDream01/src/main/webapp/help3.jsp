@@ -78,26 +78,37 @@
 <body>
 
 	<jsp:include page="./common/header.jsp" />
-
+				
+				<!-- 모아드림 사이트명 -->
+				<div class="jumbotron text-center"
+					style="background-color: #282c2e; color: #fff">
+					<h1 style="font-size: 36; font-weight: 500;">
+					More <font style="color: #5486da">Dream</font>
+					</h1>
+				</div>
+	
 				<div class="jumbotron"
-					style="background-color: #22ACC1;" >
+					style="background-color: #60C5B8;">
 					<img src="${initParam.root }images/aboutus/dreamCnt.png" width="250"
 						height="230" style="float: left; margin-left: 30px;">
-						<h1>신청된 총 꿈 프로젝트 수</h1> <h1><b>${dreamCnt }</b>개</h1>
+						<h1 class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">신청된 총 꿈 프로젝트 수 <br> <b>${dreamCnt }</b>개</h1>
 				</div>
 				
 				<div class="jumbotron"
 					style="background-color: #22ACC1;" >
 					<img src="${initParam.root }images/aboutus/person.png" width="250"
 						height="170" style="float: left; margin-left: 30px;">
-						<h1>총 회원 수</h1> <h1><b>${ memberCnt}</b>명</h1>
+					<h1 class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">총 회원 수 <br> <b>${ memberCnt}</b>명</h1>
 				</div>
 					
 				<div class="jumbotron"
-					style="background-color: #22ACC1;" >
+					style="background-color: #60C5B8;" >
 					<img src="${initParam.root }images/aboutus/totalMoney.png" width="250"
 						height="210" style="float: left; margin-left: 30px;">
-						<h1>총 후원 금액</h1> <h1><b>${totalMoney}</b>원</h1>
+						<h1 class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="100ms">총 후원 금액 <br> <b>${totalMoney}</b>원</h1>
 				</div>
 
 
