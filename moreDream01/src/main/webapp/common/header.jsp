@@ -126,59 +126,69 @@
 		},5000);//5초 간격으로 실행
 	}
 	alarmView = document.getElementById('alarmView');
-	var defaultCount = 1;
-	var flagCount = 0;
-	
+	var defaultCount = 0;	//업데이트시 비교할 변수
+	var flagCount = 0;		//처음시작하는지 비교할 변수 0이면 처음 시작 / 1이면 두번째 이후
+	var updateCount = 0;
 	function callbackAlarm() {
 		if (xhr.readyState == 4) {
 			if (xhr.status == 200) {
 				var jsonData = JSON.parse(xhr.responseText);
 				var list = jsonData.alarmList;
 				if(flagCount==0||(flagCount==1&&defaultCount<list.length)){
-				$('#alarmView').html("<li><h3 align='center'><b><img src='${initParam.root}images/document_icon.png' width='30px'>꿈 업데이트 알림 보기</b></h3></li>").addClass('alarm');
-				for(i=0;i<list.length;i++){
-					$(function() { 
-						$('#alarmView').append(
-							"<hr style='margin:0px'><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'>"+
-							"<li style='padding-left:10px; padding-bottom:10px;padding-top:10px;background:#97b3b3'>"+
-								"<div style='display: -webkit-inline-box;'>"+
-								"<span style='max-width:50px'>"+
-								"<img style='margin-left:5px;border-radius: 20%;' src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='70px' height='70px'></span>"+
-								"<span style='max-width:50px'>"+
-								"<div style='text-align:center'>"+
-								"&nbsp;&nbsp;<font size='3' color='grey'><b>"+list[i].dreamVO.titleDream+"</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-								"</div>"+
-								"<div>"+
-								"&nbsp;&nbsp;<font size='3'><b>꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
-								"</div>"+
-								"<div>&nbsp;&nbsp;"+list[i].update_writeDate+
-								"</div>"+
-								"</span>"+
-								"</div>"+
-							"</li>").addClass('alarm');
-					});
-				}
+					if(list.length==0){
+						$('#alarmView').html("<li>업데이트된 알림이 없습니다.</li>").addClass('alarmnone').css('overflow-y','visible');
+					}else{
+						$('#alarmView').html("");
+					}
+					for(i=0;i<list.length;i++){
+						$(function() { 
+							$('#alarmView').append(
+								"<hr style='margin:0px'><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'>"+
+								"<li style='padding-left:10px; padding-bottom:10px;padding-top:10px;background:#97b3b3'>"+
+									"<div style='display: -webkit-inline-box;'>"+
+									"<span style='max-width:50px'>"+
+									"<img style='margin-left:5px;border-radius: 20%;' src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='70px' height='70px'></span>"+
+									"<span style='max-width:50px'>"+
+									"<div style='text-align:center'>"+
+									"&nbsp;&nbsp;<font size='3' color='grey'><b>"+list[i].dreamVO.titleDream+"</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"</div>"+
+									"<div>"+
+									"&nbsp;&nbsp;<font size='3'><b>꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"</div>"+
+									"<div>&nbsp;&nbsp;"+list[i].update_writeDate+
+									"</div>"+
+									"</span>"+
+									"</div>"+
+								"</li>").addClass('alarm');
+						});
+					}
 
 				}
 				if(flagCount==0){
 					defaultCount=list.length;
 					flagCount=1;
-					$('#badge').html(list.length);
+					updateCount=list.length;
 				}else if(flagCount==1&&defaultCount<list.length){
 					toastr.info('<a href=${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId='+list[0].dreamVO.dreamId+'>업데이트 내역이 있습니다.</a>');
 					defaultCount=list.length;
-					$('#badge').html(list.length);
+					updateCount+=1;
 					var bgm = new Audio('');
 					var bgm_url = '${initParam.root}common/ring.mp3';
 					bgm = new Audio(bgm_url);
 					bgm.play();
-				}else if(list.length==0){
-					$('#alarmView').append("<hr><li style='margin-left:10px;text-align:center;'>로그인이 필요합니다.</li>");
+				}
+				if(updateCount==0){
+					$('#badge').html('');
+				}else{
+					$('#badge').html(updateCount);
 				}
 			}//if
 		}//if
 	}//callback
-	
+	function alarmCountUpdate(){
+		updateCount=0;
+		$('#badge').html('');
+	}
     </script>
 </head>
 <c:choose>
@@ -242,8 +252,13 @@
 								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
 							</ul>
 						</li>
-						<li><a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><img src="${initParam.root}images/document_icon.png" width="30px"><span class="badge" id="badge"></span></a>
-								<ul class="[ dropdown-menu ]" role="menu" id="alarmView">
+						<li><a href="#" onclick="alarmCountUpdate();" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><img src="${initParam.root}images/document_icon.png" width="30px"><span class="badge" id="badge"></span></a>
+								<ul class="[ dropdown-menu ]" role="menu">
+								<div id='alarmTitle' class='alarm'>
+									<li><h3 align='center'><b><img src='${initParam.root}images/document_icon.png' width='30px'>꿈 업데이트 알림 보기</b></h3></li>
+								</div>
+								<div id='alarmView'>
+								</div>
 								</ul>
 							</li>
 						<li><a class="animate" href="javascript:logout()">로그아웃</a></li>
