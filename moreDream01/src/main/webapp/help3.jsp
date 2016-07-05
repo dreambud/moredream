@@ -79,43 +79,58 @@
 	<jsp:include page="./common/header.jsp" />
 				
 				<!-- 모아드림 사이트명 -->
-				<div class="jumbotron text-center"
-					style="background-color: #282c2e; color: #fff; height: 230px;">
-					<h1 style="font-size: 36; font-weight: 500;">
-					More <font style="color: #5486da">Dream</font>
-					</h1>
-				</div>
+		<div class="jumbotron text-center"
+				style="background-color: #282c2e; color: #fff; height: 230px;">
+				<h1 style="font-size: 36; font-weight: 500;">More <font style="color: #5486da">Dream</font></h1>
+		</div>
+		
 		<div class="row">
-			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
+					<div class="jumbotron"
+						style="background-color: #22ACC1;" >
+						<img src="${initParam.root }images/aboutus/person.png" width="200"
+							height="130"><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+					data-wow-delay="100ms">드리머 & 드림메이커 <br><br> <b>${ memberCnt}</b>명</font>
+					</div>
+			</div>
+			
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
 				<div class="jumbotron"
 					style="background-color: #60C5B8;">
 					<img src="${initParam.root }images/aboutus/dreamCnt.png" width="150"
 						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
 						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">신청된 총 꿈 프로젝트 수 <br><br> <b>${dreamCnt }</b>개</font>
+				data-wow-delay="300ms">신청된 꿈 프로젝트 <br><br> <b>${dreamCnt }</b>개</font>
 				</div>
 			</div>	
 			
-			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">	
 				<div class="jumbotron"
 					style="background-color: #22ACC1;" >
-					<img src="${initParam.root }images/aboutus/person.png" width="200"
-						height="130"><br><hr style="color: #fff; width: 50px;"><br>
-					<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">총 회원 수 <br><br> <b>${ memberCnt}</b>명</font>
+					<img src="${initParam.root }images/aboutus/successDream.png" width="250"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="500ms">성공한 꿈 프로젝트<br><br> <b>${successDreamCnt}</b>개</font>
 				</div>
 			</div>
 			
-			<div class="col-sm-4" style="padding-left: 0px;padding-right: 0px">	
+			
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">	
 				<div class="jumbotron"
 					style="background-color: #60C5B8;" >
 					<img src="${initParam.root }images/aboutus/totalMoney.png" width="150"
 						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
 						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
-				data-wow-delay="100ms">총 후원 금액 <br><br> <b>${totalMoney}</b>원</font>
+				data-wow-delay="700ms">후원 금액 <br><br> <b>${totalMoney}</b>원</font>
 				</div>
 			</div>
+			
+			
+			
 	</div>
+	
+
 
 
 	<jsp:include page="./common/footer.jsp" />

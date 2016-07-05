@@ -22,6 +22,13 @@ public class DreamDaoImpl implements DreamDao {
 		this.sqlSession = sqlSession;
 	}
 
+	//160705
+	//추가::getSuccessDream
+	@Override
+	public List<MyDreamVO> getSuccessDream() throws IOException {
+		return sqlSession.selectList("dreamSql.getSuccessDream");
+	}
+	
 	//160704
 	//추가::getAllDreamCnt
 	@Override

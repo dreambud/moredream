@@ -528,6 +528,10 @@ public class DreamController extends MultiActionController {
 		System.out.println("totalMoney :: "+totalMoney);
 		request.setAttribute("totalMoney", totalMoney);
 		
+		int successDreamCnt = dreamService.getSuccessDream();
+		System.out.println("successDreamCnt"+successDreamCnt);
+		request.setAttribute("successDreamCnt", successDreamCnt);
+		
 		return new ModelAndView("help3");
 	}
 }

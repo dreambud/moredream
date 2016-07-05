@@ -14,6 +14,10 @@ import model.UpdateDreamVO;
 
 public interface DreamDao {
 
+	//160705
+	//추가 :: getSuccessDream
+	public List<MyDreamVO> getSuccessDream() throws IOException;
+	
 	//160704
 	//추가 :: getAllDreamCnt
 	public int getAllDreamCnt() throws IOException;

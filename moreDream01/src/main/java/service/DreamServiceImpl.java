@@ -24,6 +24,31 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 
+	//160705
+	//추가
+	@Override
+	public int getSuccessDream() throws IOException {
+		List<MyDreamVO> successDreamList = dreamDao.getSuccessDream();
+		System.out.println("getSuccessDreamList" + successDreamList);
+		
+		
+		for(MyDreamVO vo : successDreamList){
+			
+			DreamVO dreamVO = dreamDao.getDetailDreamByDreamId(vo.getDreamVO().getDreamId());
+			int targetFund = 0;
+			if(vo.getDreamVO().getDreamId()==dreamVO.getDreamId()){
+				targetFund = dreamVO.getTargetFund();
+			}
+			
+			if(targetFund<=vo.getDreamVO().getTargetFund()){//프로젝트 성공!!
+				successDreamList.add(vo);
+			}
+			
+		}
+		
+		return successDreamList.size();//0부터 시작
+	}
+	
 	//160704
 	//추가 :: getAllDreamCnt
 	@Override

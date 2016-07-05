@@ -471,6 +471,15 @@
 	<select id="getTotalMoney" resultType="int">
 		SELECT sum(money) FROM payment
 	</select>
+	
+	<!-- 160705 help3 성공한 프로젝트 -->
+	<select id="getSuccessDream" resultMap="myDreamRM">
+		SELECT r.dreamId, sum(p.money) AS money
+		FROM reward r, payment p 
+		WHERE r.rewardId = p.rewardId AND paymentState='Y' 
+		GROUP BY r.dreamId 
+		order by dreamId
+	</select>
 </mapper>	
 
  
