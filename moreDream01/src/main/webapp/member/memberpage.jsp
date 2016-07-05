@@ -83,7 +83,10 @@
 					<div class="col-md-12">
 						<h2 class="page-header">내 꿈 후원 현황</h2>
 						<div align="center" style="text-align: center;">
-							<table class="table table-striped table-bordered table-hover">
+						
+						<c:choose>
+							<c:when test="${myDreamList.size()!=0 }">
+								<table class="table table-striped table-bordered table-hover">
 
 								<caption></caption>
 
@@ -138,6 +141,12 @@
 
 								</tbody>
 							</table>
+							</c:when>
+							<c:otherwise>
+								<h3 style="margin-top: 2em"><b>후원한 내역이 없습니다.</b></h3>
+							</c:otherwise>
+						</c:choose>
+							
 						</div>
 					</div>
 				</div>
@@ -155,7 +164,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
-						<c:forEach items="${dreamList}" var="dream">
+						<c:choose>
+							<c:when test="${dreamList.size() !=0 }">
+								<c:forEach items="${dreamList}" var="dream">
 							<div class="col-md-4 col-sm-12 blog-padding-right">
 								
 								<div class="single-blog2 two-column">
@@ -196,6 +207,14 @@
 								
 							</div>
 						</c:forEach>
+							</c:when>
+							<c:otherwise>
+							<div align="center" style="margin-bottom: 3em">
+								<h3><b>신청된 꿈 프로젝트가 없습니다.</b></h3>
+							</div>
+								
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
