@@ -173,7 +173,9 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
+						<hr width="25%">
 							<h1 class="title">회원정보 수정</h1>
+							<hr width="25%">
 							<p>당신의 꿈을 실현시켜보세요 !</p>
 						</div>
 					</div>
@@ -344,8 +346,9 @@
 					</div>
 					<p align="center">
 						<button type="button" onclick="frmsubmit()"
-							class="btn btn-mg btn-success"><b>회원정보수정</b></button>
+							class="btn btn-lg btn-default"><b>회원정보수정</b></button>
 					</p>
+					&nbsp;
 					<p align="right"></p>
 				</form>
 			</div>

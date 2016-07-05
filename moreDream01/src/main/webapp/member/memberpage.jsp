@@ -62,7 +62,10 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
+						<hr width="25%">
 							<h1 class="title">모아드림 현황보기</h1>
+							<hr width="25%">
+							<p>나의 꿈 프로젝트</p>
 						</div>
 					</div>
 				</div>
@@ -78,7 +81,7 @@
 			<div id="feature-container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-header">내 꿈 목록</h2>
+						<h2 class="page-header">내 꿈 후원 현황</h2>
 						<div align="center" style="text-align: center;">
 							<table class="table table-striped table-bordered table-hover">
 
@@ -148,13 +151,14 @@
 	<section id="blog" class="padding-top">
 
 		<div class="container">
-			<h2 class="page-header">내가 진행하고 있는 꿈 목록</h2>
+			<h2 class="page-header">나의 꿈 프로젝트</h2>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row">
 						<c:forEach items="${dreamList}" var="dream">
 							<div class="col-md-4 col-sm-12 blog-padding-right">
-								<div class="single-blog two-column">
+								
+								<div class="single-blog2 two-column">
 									<div class="post-thumb">
 										<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}"><img
 											src="${initParam.root}upload/dream/${dream.dream_newFilename}"
@@ -171,15 +175,15 @@
 									
 										<c:choose>
 										<c:when test="${dream.confirmRequestDream==' '}">
-										<h2>심사중</h2>
+										<h2> 꿈 프로젝트가 심사중입니다.</h2>
 										</c:when>
 										<c:when test="${dream.confirmRequestDream=='Y'}">
-										<h2>승인완료</h2>
+										<h2>꿈 프로젝트가 승인되었습니다.</h2>
 										<!-- 160623 업데이트 작성부분 추가 -->
 										<p>
 										<form action="${initParam.root}dream/updateDream.jsp" method="get" >
 										<input type="hidden" name="dreamId" value="${dream.dreamId}">
-										<input type="submit" class="btn btn-primary btn-lg" value="꿈 업데이트 하기">
+										<input type="submit" class="btn btn-default btn-lg" value="꿈 프로젝트 업데이트">
 										</form>
 										</p>
 										</c:when>
@@ -189,6 +193,7 @@
 										</c:choose>
 									</div>
 								</div>
+								
 							</div>
 						</c:forEach>
 					</div>

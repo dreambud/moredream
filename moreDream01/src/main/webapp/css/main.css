@@ -2209,6 +2209,17 @@ Blog with right sidebar
 	padding-bottom: 30px;
 }
 
+.single-blog2 {
+	border: 1px solid #60C5B8;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	margin-bottom: 30px;
+	margin-top: 10px;
+	text-align: center; 
+	box-shadow:4px 4px #ccc;
+	
+}
 .single-blog .post-bottom {
 	border-bottom: 1px solid #eeeeee;
 	padding-top: 10px;
