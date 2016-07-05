@@ -267,9 +267,7 @@ $(document).ready(function(){
                                                                <li><a href="#"><i class="fa fa-clock-o"></i>${reply.writeDate}</a></li>
                                                                <c:if
                                                                   test="${mvo.memberId==reply.memberVO.memberId}">
-                                                                  <li><a href="#"
-                                                                     onclick="deleteComment(${reply.replyId})"><i
-                                                                        class="glyphicon glyphicon-remove"></i>삭제하기</a></li>
+                                                                <li><a href="#" onclick="deleteComment(${reply.replyId})"><i   class="glyphicon glyphicon-remove"></i>삭제하기</a></li>
                                                                </c:if>
                                                             </ul>
                                                          </div>
@@ -484,22 +482,24 @@ $(document).ready(function(){
 
 
 
-		<div class="sidebar-item popular">
-			<h3>Latest Photos</h3>
-			<ul class="gallery">
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular2.jpg" alt=""></a></li>
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular3.jpg" alt=""></a></li>
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular4.jpg" alt=""></a></li>
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular5.jpg" alt=""></a></li>
-				<li><a href="#"><img
-						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
-			</ul>
+     	<div class="sidebar blog-sidebar">
+         	<div class="sidebar-item popular" align="center">
+              <h3>진행했던 꿈 프로젝트</h3>
+				<ul class="gallery">
+                 <c:forEach items="${dreamList}" var="dream">
+                     <c:choose>
+                         <c:when test="${dreamList.size()==1 }">
+                             전에 진행했던 꿈 프로젝트가 없습니다.
+                         </c:when>
+                         <c:when test="${dream.dream_newFilename!=dreamVO.dream_newFilename }">
+                             <li><a href="#"><img
+                                 src="${initParam.root }upload/dream/${dream.dream_newFilename}"></a></li>
+                         </c:when>
+                     </c:choose>
+                 </c:forEach>
+					
+				</ul>
+			</div>
 		</div>
 		</div>
 		</div>
