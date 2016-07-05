@@ -16,13 +16,7 @@
 <link href="${initParam.root }css/animate.min.css" rel="stylesheet">
 <link href="${initParam.root }css/main.css" rel="stylesheet">
 <link href="${initParam.root }css/responsive.css" rel="stylesheet">
-	<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
-	<script type="text/javascript"
-		src="${initParam.root }js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="${initParam.root }js/lightbox.min.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/main.js"></script>
+
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -110,9 +104,8 @@ function deleteComment(replyId) {
 									</div>
 									<div class="author-profile padding">
 										<div class="row">
-											<div class="col-sm-2">
+											<div class="col-sm-2 col-md-2">
 												<!-- 수정 160614 -->
-												<h3>Dreamer<i class="fa fa-leaf" aria-hidden="true"></i></h3>
 												<c:choose>
 													<c:when test="${dreamVO.memberVO.member_newFilename==' ' }">
 														<img src="${initParam.root }upload/member/member_df.jpg"
@@ -124,14 +117,9 @@ function deleteComment(replyId) {
 													</c:otherwise>
 												</c:choose>
 											</div>
-											<div class="col-sm-10" id="idbox1">
-												
-												${dreamVO.memberVO.email}
-												${dreamVO.memberVO.name}
-												<span><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></span>
-												<span><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></span>
-												<span><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></span>
-												<span><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></span>
+											<div class="col-sm-12 col-md-6" id="idbox1">
+												<p id="namebox"><font color="#60C5B8">Dreamer</font> ${dreamVO.memberVO.name} <i class="fa fa-leaf" aria-hidden="true"></i></p> 
+												<p> <i class="fa fa-envelope " aria-hidden="true"></i> ${dreamVO.memberVO.email}</p>
 												
 											</div>
 										</div>
@@ -223,7 +211,7 @@ function deleteComment(replyId) {
                                                    disabled="disabled">후원자만 입력가능합니다.</textarea>
                                                 <div align="right">
                                                    <input type="submit"
-                                                      class="btn btn-lm btn-Info disabled" value="입력하기">
+                                                      class="btn btn-lm btn-default" value="입력하기">
                                                 </div>
                                                 <br>
                                                 <br>
@@ -376,7 +364,6 @@ function deleteComment(replyId) {
 											<form action="${initParam.root}dream/updateDream.jsp"
 												method="get">
 												<input type="hidden" name="dreamId" value="${dreamVO.dreamId}">
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<input type="hidden" name="memberId"
 													value="${dreamVO.memberVO.memberId}"> <input
 													type="submit" class="btn btn-default btn-lg"
@@ -482,27 +469,24 @@ function deleteComment(replyId) {
 		</div>
 
 
-	<div class="sidebar blog-sidebar">
+
 		<div class="sidebar-item popular">
-			<h3>진행했던 꿈 프로젝트</h3>
+			<h3>Latest Photos</h3>
 			<ul class="gallery">
-				<c:forEach items="${dreamList}" var="dream">
-					<c:choose>
-						<c:when test="${dreamList.size()==1 }">
-							<div align="center">
-								전에 진행했던 꿈 프로젝트가 없습니다.
-							</div>
-						</c:when>
-						<c:when test="${dream.dream_newFilename!=dreamVO.dream_newFilename }">
-							<li><a href="#"><img
-								src="${initParam.root }upload/dream/${dream.dream_newFilename}"></a></li>
-						</c:when>
-					</c:choose>
-				</c:forEach>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular2.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular3.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular4.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular5.jpg" alt=""></a></li>
+				<li><a href="#"><img
+						src="${initParam.root }images/portfolio/popular1.jpg" alt=""></a></li>
 			</ul>
 		</div>
-	</div>
-	
 		</div>
 		</div>
 		</div>
@@ -511,5 +495,14 @@ function deleteComment(replyId) {
 	<!--/#blog-->
 
 	<jsp:include page="../common/footer.jsp" />
+
+
+	<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
+	<script type="text/javascript"
+		src="${initParam.root }js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${initParam.root }js/lightbox.min.js"></script>
+	<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
+	<script type="text/javascript" src="${initParam.root }js/main.js"></script>
 </body>
 </html>
