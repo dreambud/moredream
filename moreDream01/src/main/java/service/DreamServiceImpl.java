@@ -28,25 +28,29 @@ public class DreamServiceImpl implements DreamService {
 	//추가
 	@Override
 	public int getSuccessDream() throws IOException {
-		List<MyDreamVO> successDreamList = dreamDao.getSuccessDream();
-		System.out.println("getSuccessDreamList" + successDreamList);
+		List<MyDreamVO> tempList = dreamDao.getSuccessDream();
+		System.out.println("getSuccessDreamList" + tempList);
 		
+		List<MyDreamVO> successDreamList = new ArrayList<MyDreamVO>();
+		int size = 0;
 		
-		for(MyDreamVO vo : successDreamList){
+		for(MyDreamVO vo : tempList){
 			
+			System.out.println("dreamId별 합산 금액 :: " + vo.getPaymentVO().getMoney());
 			DreamVO dreamVO = dreamDao.getDetailDreamByDreamId(vo.getDreamVO().getDreamId());
-			int targetFund = 0;
 			if(vo.getDreamVO().getDreamId()==dreamVO.getDreamId()){
-				targetFund = dreamVO.getTargetFund();
+				
+				System.out.println("targetFund :: "+ dreamVO.getTargetFund());
+				
+				if(dreamVO.getTargetFund()<=vo.getPaymentVO().getMoney()){//프로젝트 성공!!
+					successDreamList.add(vo);
+					System.out.println("successDreamList :: "+successDreamList);
+					size = successDreamList.size();
+				}
 			}
-			
-			if(targetFund<=vo.getDreamVO().getTargetFund()){//프로젝트 성공!!
-				successDreamList.add(vo);
-			}
-			
 		}
 		
-		return successDreamList.size();//0부터 시작
+		return size;
 	}
 	
 	//160704
