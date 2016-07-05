@@ -534,4 +534,34 @@ public class DreamController extends MultiActionController {
 		
 		return new ModelAndView("help3");
 	}
+	//160705
+	// 다른 사람 응원하거나 진행하는 꿈 보기
+	public ModelAndView yourMoreDream(HttpServletRequest request,
+	HttpServletResponse response) throws Exception {
+	///////////////////후원한 부분/////////////////////////////////////
+	int memberId = Integer.parseInt(request.getParameter("memberId"));
+	System.out.println("yourMoreDream::"+memberId);
+	String member_newFilename = request.getParameter("member_newFilename");
+	String name = request.getParameter("name");
+	MemberVO mvo = new MemberVO();
+	mvo.setName(name);
+	mvo.setMember_newFilename(member_newFilename);
+	List<MyDreamVO> myDreamList = dreamService
+	.getAllMySupportProject(memberId);
+	System.out.println(myDreamList);
+	request.setAttribute("myDreamList", myDreamList);
+	// ////////////////////////////////후원 받은(진행하는)/////////////////////////////////////
+	List<DreamVO> dreamList = dreamService
+	.getAllMyDreamByMemberId(memberId);
+	System.out.println(dreamList);
+	request.setAttribute("dreamList", dreamList);
+
+	int countPayment = dreamService.getCountPaymentDreamByMemberId(memberId);
+	request.setAttribute("countPayment", countPayment);
+	int countCreateDream = dreamService.getCountCreateDreamByMemberId(memberId);
+	request.setAttribute("countCreateDream", countCreateDream);
+
+	return new ModelAndView("./dream/findmemberdream","rmvo",mvo);
+	}
+
 }

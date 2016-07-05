@@ -4,7 +4,9 @@ public class MyDreamVO {
 	private DreamVO dreamVO;
 	private RewardVO rewardVO;
 	private PaymentVO paymentVO;
-	
+	//160705 추가
+	private MemberVO memberVO;
+
 	
 	public MyDreamVO() {
 		super();
@@ -40,6 +42,15 @@ public class MyDreamVO {
 	public void setPaymentVO(PaymentVO paymentVO) {
 		this.paymentVO = paymentVO;
 	}
+	//160705
+	public MemberVO getMemberVO() {
+	    return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+	    this.memberVO = memberVO;
+	}
+
 
 	@Override
 	public String toString() {

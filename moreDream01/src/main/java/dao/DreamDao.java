@@ -13,6 +13,13 @@ import model.RewardVO;
 import model.UpdateDreamVO;
 
 public interface DreamDao {
+	
+	//160705
+	//추가 :: getCountPaymentDreamByMemberId
+	public int getCountPaymentDreamByMemberId(int memberId) throws IOException;
+	//추가 :: getCountCreateDreamByMemberId
+	public int getCountCreateDreamByMemberId(int memberId) throws IOException;
+
 
 	//160705
 	//추가 :: getSuccessDream

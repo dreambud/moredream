@@ -15,6 +15,12 @@ import model.UpdateDreamVO;
 public interface DreamService {
 	
 	//160705
+	//추가 :: getCountPaymentDreamByMemberId
+	public int getCountPaymentDreamByMemberId(int memberId) throws IOException;//memberId로 후원 꿈 수 확인 
+	//추가 :: getCountCreateDreamByMemberId
+	public int getCountCreateDreamByMemberId(int memberId) throws IOException;//memberId로 진행 꿈 수 확인
+	
+	//160705
 	//추가 :: getSuccessDream
 	public int getSuccessDream() throws IOException;
 	

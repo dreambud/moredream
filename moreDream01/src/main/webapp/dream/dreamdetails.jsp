@@ -53,6 +53,12 @@ function deleteComment(replyId) {
 }
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
 
 </head>
 <!--/head-->
@@ -298,10 +304,18 @@ function deleteComment(replyId) {
 																</div>
 																<div class="media-body">
 																	<p id="media-padding">
-																		<strong>${member.name}</strong><span>&nbsp;<i class="fa fa-leaf"></i></span> 님이 응원 합니다 !															</p>
+																		<strong><a
+																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${member.memberId}&&member_newFilename=${member.member_newFilename }&&name=${member.name}"
+																			data-toggle="tooltip" data-placement="bottom"
+																			title="${member.name}님의 꿈 보기">${member.name}</a></strong><span>&nbsp;<i
+																			class="fa fa-leaf"></i></span> 님이 응원 합니다 ! <br>
+																		<a
+																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${member.memberId}&&member_newFilename=${member.member_newFilename }&&name=${member.name}"><font
+																			size="2px">${member.name}님의 꿈 더보기</font></a>
+																	</p>
 																	<hr>
 																</div>
-																
+
 															</c:forEach>
 														</c:when>
 														<c:otherwise>

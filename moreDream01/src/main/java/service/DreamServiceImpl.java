@@ -23,6 +23,18 @@ public class DreamServiceImpl implements DreamService {
 	public void setDreamDao(DreamDao dreamDao) {
 		this.dreamDao = dreamDao;
 	}
+	
+	//160705
+	//추가 :: getCountPaymentDreamByMemberId
+	@Override
+	public int getCountPaymentDreamByMemberId(int memberId) throws IOException {
+	return dreamDao.getCountPaymentDreamByMemberId(memberId);
+	}
+	//추가 :: getCountCreateDreamByMemberId//해당 멤버의 진행 꿈 수 보기
+	@Override
+	public int getCountCreateDreamByMemberId(int memberId) throws IOException {
+	return dreamDao.getCountCreateDreamByMemberId(memberId);
+	}
 
 	//160705
 	//추가
@@ -86,8 +98,23 @@ public class DreamServiceImpl implements DreamService {
 	@Override
 	public List<DreamVO> getAllMyDreamByMemberId(int memberId)
 			throws IOException {
-
-		return dreamDao.getAllMyDreamByMemberId(memberId);
+		//160705 추가
+		List<DreamVO> myDreamList = dreamDao.getAllMyDreamByMemberId(memberId);
+		long nowTime = convert(dreamDao.showNowDate());
+		for(DreamVO dvo : myDreamList){
+		List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(dvo.getDreamId());
+		System.out.println("totalMoneyList :: "+ totalMoneyList);
+		StatVO statVO = new StatVO();
+		for(int totalMoney : totalMoneyList){
+		statVO.setTotalMoney(totalMoney);
+		dvo.setStatVO(statVO);
+		}
+		long endTime = convert(dvo.getEndDate());
+		int endDay = getEndDay(nowTime, endTime);
+		statVO.setEndDay(endDay);
+		dvo.setStatVO(statVO);
+		}
+		return myDreamList;
 	}
 
 	// 추가 ::getAllMySupportProject
@@ -97,14 +124,20 @@ public class DreamServiceImpl implements DreamService {
 	public List<MyDreamVO> getAllMySupportProject(int memberId)
 			throws IOException {
 		List<MyDreamVO> rlist = dreamDao.getAllMySupportProject(memberId);
-		
 		long nowTime = convert(dreamDao.showNowDate());
 		for(MyDreamVO mdvo : rlist){
-			long endTime = convert(mdvo.getDreamVO().getEndDate());
-			int endDay = getEndDay(nowTime, endTime);
-			StatVO statVO = new StatVO();
-			statVO.setEndDay(endDay);
-			mdvo.getDreamVO().setStatVO(statVO);
+		//160705 추가
+		List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
+		System.out.println("totalMoneyList :: "+ totalMoneyList);
+		StatVO statVO = new StatVO();
+		for(int totalMoney : totalMoneyList){
+		statVO.setTotalMoney(totalMoney);
+		mdvo.getDreamVO().setStatVO(statVO);
+		}
+		long endTime = convert(mdvo.getDreamVO().getEndDate());
+		int endDay = getEndDay(nowTime, endTime);
+		statVO.setEndDay(endDay);
+		mdvo.getDreamVO().setStatVO(statVO);
 		}
 		return rlist;
 	}

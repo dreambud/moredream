@@ -21,6 +21,21 @@ public class DreamDaoImpl implements DreamDao {
 	public void setSqlSession(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
+	
+	//160705
+	//추가 :: getCountPaymentDreamByMemberId//해당 멤버의 후원 꿈 수 보기
+	@Override
+	public int getCountPaymentDreamByMemberId(int memberId) throws IOException {
+	int count = sqlSession.selectOne("dreamSql.getCountPaymentDreamByMemberId",memberId);
+	return count;
+	}
+	//추가 :: getCountCreateDreamByMemberId//해당 멤버의 진행 꿈 수 보기
+	@Override
+	public int getCountCreateDreamByMemberId(int memberId) throws IOException {
+	int count = sqlSession.selectOne("dreamSql.getCountCreateDreamByMemberId",memberId);
+	return count;
+	}
+
 
 	//160705
 	//추가::getSuccessDream
