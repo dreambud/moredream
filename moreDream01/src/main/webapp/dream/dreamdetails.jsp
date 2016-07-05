@@ -334,13 +334,13 @@ $(document).ready(function(){
 				</div>
 				<div class="col-md-3 col-sm-5">
 					<div class="sidebar blog-sidebar">
-						<div class="sidebar-item  recent" style="margin-bottom: 23px;">
+						<div class="sidebar-item  recent">
 							<h3>
 								목표금액 <b>${dreamVO.targetFundView}원</b> 중 <b><fmt:formatNumber
 										value="${(dreamVO.statVO.totalMoney/dreamVO.targetFund)*100}"
 										type="percent" pattern="0" />%</b> 모임
 							</h3>
-							<div class="media" style="padding-top: 15px;padding-bottom: 10px">
+							<div class="media">
 								<div class="pull-left"></div>
 								<div class="media-body">
 									<h4>
@@ -376,7 +376,7 @@ $(document).ready(function(){
 										</c:when>
 										<c:otherwise>
 											<form action="${initParam.root}dream/updateDream.jsp"
-												method="get" style="text-align: center">
+												method="get">
 												<input type="hidden" name="dreamId" value="${dreamVO.dreamId}">
 												<input type="hidden" name="memberId"
 													value="${dreamVO.memberVO.memberId}"> <input
@@ -466,7 +466,7 @@ $(document).ready(function(){
 
 		<div class="sidebar-item  recent">
 			<c:forEach items="${rewardList}" var="rl" varStatus="count">
-				<div class="media" style="padding-top: 0px">
+				<div class="media">
 					<div class="pull-left">
 						<h3 class="page-header">
 							<a
