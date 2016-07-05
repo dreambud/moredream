@@ -3302,6 +3302,18 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	left: inherit;
 	right:0;
 	background: #ffffff;
+	box-shadow: 2px 2px gray;
+}
+.alarm a:hover{
+	color:#408080;
+	background:black;
+}
+.alarm li{
+	background: #c8fff8;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 

@@ -224,6 +224,7 @@
 	<!-- updateDreamListRM -->
 	<resultMap type="updateDream" id="updateDreamListRM">
 		<result property="dreamVO.dreamId" column="dreamId" />
+		<result property="dreamVO.titleDream" column="titleDream" />
 		<result property="update_detailDream" column="update_detailDream" />
 		<result property="update_orgFilename" column="update_orgFilename" />
 		<result property="update_newFilename" column="update_newFilename" />
@@ -231,15 +232,15 @@
 	</resultMap>
 
 	<!-- 알림받기 :: alarm -->
-	<!-- 160624 수정 -->
+	<!-- 160705 수정 -->
 	<select id="alarm" parameterType="int" resultMap="updateDreamListRM">
 		SELECT
-		u.dreamId,u.update_detailDream,u.update_orgFilename,u.update_newFilename,u.update_writedate
-		FROM updatedream u,(select r.dreamid FROM 
+		u.dreamId,o.titleDream,u.update_detailDream,u.update_orgFilename,u.update_newFilename,u.update_writedate
+		FROM updatedream u,dream o,(select r.dreamid FROM 
 		(SELECT rewardid FROM payment 
 		WHERE paymentstate='Y' AND memberid=#{value}) p, 
 		reward r WHERE r.rewardid=p.rewardid) d 
-		WHERE d.dreamid=u.dreamid 
+		WHERE d.dreamid=u.dreamid and d.dreamid=o.dreamid
 		ORDER BY update_writedate DESC
 	</select>
 
