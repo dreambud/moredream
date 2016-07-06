@@ -339,9 +339,6 @@ $(document).ready(function(){
 																			data-toggle="tooltip" data-placement="bottom"
 																			title="${member.name}님의 꿈 보기">${member.name}</a></strong><span>&nbsp;<i
 																			class="fa fa-leaf"></i></span> 님이 응원 합니다 ! <br>
-																		<a
-																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${member.memberId}&&member_newFilename=${member.member_newFilename }&&name=${member.name}"><font
-																			size="2px">${member.name}님의 꿈 더보기</font></a>
 																	</p>
 																	<hr>
 																</div>
@@ -524,7 +521,7 @@ $(document).ready(function(){
                              전에 진행했던 꿈 프로젝트가 없습니다.
                          </c:when>
                          <c:when test="${dream.dream_newFilename!=dreamVO.dream_newFilename }">
-                             <li><a href="#"><img
+                             <li><a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}"><img
                                  src="${initParam.root }upload/dream/${dream.dream_newFilename}"></a></li>
                          </c:when>
                      </c:choose>
