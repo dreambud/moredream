@@ -163,9 +163,7 @@ public class DreamServiceImpl implements DreamService {
 		map.put("pageNo", pn);
 		
 		List<MyDreamVO> list =  dreamDao.getAllMySupportProject(map);// 조작하기 전 모든 책 정보가 필요하다.
-		System.out.println("Service list :: " + list);
 		int total = dreamDao.getAllMySupportProjectCnt(memberId); 
-		System.out.println("totalProjectCnt :: "+total);
 		
 		PagingBean pb = new PagingBean(total, pn);
 		
@@ -298,9 +296,6 @@ public class DreamServiceImpl implements DreamService {
 			this.addNonePaymentDreamList(rlist);
 		}
 		this.listDetailInsert(rlist);
-		for(DreamVO dvo:rlist){
-			System.out.println(dvo);
-		}
 		
 		return rlist;
 	}
