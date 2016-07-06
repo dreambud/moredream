@@ -17,6 +17,7 @@
 <link href="css/main.css" rel="stylesheet">
 <link href="css/responsive.css" rel="stylesheet">
 <link href="css/footer-distributed-with-address-and-phones.css" rel="stylesheet">
+<link href="css/full-slider.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/lightbox.min.js"></script>
@@ -98,65 +99,81 @@
 	<c:when test="${dreamList!=null}">
 		<body>
 			<jsp:include page="./common/header.jsp" />
-			<section>
-				<div id="carousel-example1" class="carousel slide"
-					data-ride="carousel">
-					
-					<ol class="carousel-indicators">
-						<li data-target="#carousel-example1" data-slide-to="0"
-							class="active"></li>
-						<li data-target="#carousel-example1" data-slide-to="1"></li>
-						<li data-target="#carousel-example1" data-slide-to="2"></li>
-					</ol>	
+			
+			   <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
 
-					<div class="carousel-inner">
-					
-					<c:forEach items="${dreamList}" var="dl" begin="6" end="6">
-						<div class="item active">
-							<div style="background-color: rgba(140,140,140,0);position:absolute;width:1347px;height:505px;">
-								
-							</div>
-							<a href="#">
-								<img src="${initParam.root}images/bgcloud.jpg" width="1347px" height="505px" style="width:1347px;height:505px;"/>
-							</a>
-							<div class="carousel-caption">
-								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category}
-								<h3>${dl.titleDream}</h3>
-								</font>
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+           <c:forEach items="${dreamList}" var="dl" begin="6" end="6">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://wallpapers-and-backgrounds.net/wp-content/uploads/2015/11/mint-green-wallpaper_1.jpg');">
+                
+                
+                </div>
+               
+               
+                <div class="carousel-caption">
+                   <a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
+									&nbsp;<p>
+								<font color="white" size="35px"><h1>${dl.titleDream}</h1></font>
+								<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
+														width="50px" height="50px"> <b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
+								</p>
 								<p>
 									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 								</p>
-							</div>
-						</div>
-						</c:forEach>
-						
-						<c:forEach items="${dreamList}" var="dl" begin="7" end="8">
-						<div class="item">
-							<div style="background-color: rgba(140,140,140,0);position:absolute;width:1347px;height:505px;">
+								&nbsp;
 								
-							</div>
-							<a href="#">
-								<img src="${initParam.root}images/bgcloud.jpg" width="1347px" height="505px" style="width:1347px;height:505px;"/>
-							</a>
-							<div class="carousel-caption">
-								<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
-								<font color='black'><p>${dl.category}
-								<h3>${dl.titleDream}</h3>
-								</font>
+                </div>
+                
+            </div>
+            </c:forEach>
+            
+            <c:forEach items="${dreamList}" var="dl" begin="7" end="9">
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://wallpapers-and-backgrounds.net/wp-content/uploads/2015/11/mint-green-wallpaper_1.jpg');"></div>
+                
+                
+               <div class="carousel-caption">
+                   <a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
+									&nbsp;<p>
+								<font color="white" size="35px"><h1>${dl.titleDream}</h1></font>
+								<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
+														width="50px" height="50px"> <b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
+								</p>
 								<p>
 									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 								</p>
-							</div>
-						</div>
-						</c:forEach>
-						
-						
-						
-						
-					</div>
-				</div>
-			</section>
+								&nbsp;
+								
+                </div>
+                
+            </div>
+            </c:forEach>
+            
+        </div>
+		
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+		
+			
 			<!--/#home-slider-->
 			
 			<section>

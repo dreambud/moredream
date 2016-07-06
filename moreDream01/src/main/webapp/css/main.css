@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+
+
 .updatedate{
 	color: #60C5B8;
 }
@@ -29,9 +35,9 @@
 /* 20160624 메인 캐러셀  */
 
 
-body{
+/* body{
 	margin-top: 52px; 
-}
+} */
 
 .jumbotron{
 	
@@ -476,7 +482,7 @@ body{
 
 body {
 	background: #fff;
-	font-family: 'Lato', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 22px;
@@ -513,10 +519,15 @@ ul {
 	list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Lato', sans-serif;
+h2, h3, h4, h5, h6 {
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 300;
 }
+
+h1{
+font-family:  'Hanna', sans-serif;
+}
+
 
 h1 {
 	color: #686868;
@@ -543,7 +554,7 @@ h3 {
 	font-size: 14px;
 	color: #0099ae;
 	border: 1px solid #0099ae;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 300;
 	padding: 10px 25px;
 }
@@ -934,7 +945,7 @@ scale
 	content: '"';
 	font-size: 40px;
 	color: #ea2c00;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	transform: rotate(180deg);
 	-ms-transform: rotate(180deg); /* IE 9 */
 	-webkit-transform: rotate(180deg); /* Opera, Chrome, and Safari */
@@ -948,7 +959,7 @@ scale
 	content: '"';
 	font-size: 40px;
 	color: #ea2c00;
-	font-family: 'Noto Sans', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 	line-height: 0;
 }
 
@@ -1231,6 +1242,7 @@ scale
 }
 
 #page-breadcrumb {
+	margin-top:50px;
 	background-color: #60C5B8;
 	background-repeat: repeat-x;
 	height: 200px;
@@ -3020,7 +3032,7 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	margin-top: 50px;
 	padding: 25px 53px;
 	text-transform: uppercase;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .btn-error:hover, .btn-error:focus {
