@@ -22,7 +22,9 @@
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/lightbox.min.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/jquery.counterup.min.js"></script> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script> 
+
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -93,6 +95,38 @@
 	    	"<font color='red'>" + secondsRound + "</font>" + sec; */
 	}
 </script>
+
+<script>
+jQuery(document).ready(function( $ ) {
+$('#number1').counterUp({
+delay: 10, // the delay time in ms
+time: 1000 // the speed time in ms
+});
+});
+
+jQuery(document).ready(function( $ ) {
+	$('#number2').counterUp({
+	delay: 10, // the delay time in ms
+	time: 1000 // the speed time in ms
+	});
+	});
+	
+jQuery(document).ready(function( $ ) {
+	$('#number3').counterUp({
+	delay: 10, // the delay time in ms
+	time: 1000 // the speed time in ms
+	});
+	});
+	
+jQuery(document).ready(function( $ ) {
+	$('#number4').counterUp({
+	delay: 10, // the delay time in ms
+	time: 1000 // the speed time in ms
+	});
+	});	
+</script>
+
+
 </head>
 <!--/head-->
 <c:choose>
@@ -108,6 +142,7 @@
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
 
         <!-- Wrapper for Slides -->
@@ -176,7 +211,7 @@
 			
 			<!--/#home-slider-->
 			
-			<section>
+<section>
 				<div class="jumbotron col-xs">
 					<h1>당신의 꿈을 시작하세요</h1>
 					<br>
@@ -185,10 +220,50 @@
 						&nbsp;
 					<p>
 					
-						<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
-					</p>
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
+					<div class="jumbotron"
+						style="background-color: #22ACC1;" >
+						<img src="${initParam.root }images/aboutus/person.png" width="200"
+							height="130"><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+					data-wow-delay="100ms">드리머 & 드림메이커 <br><br> <b><span id="number1">${ memberCnt}</span></b>명</font>
+					</div>
+			</div>
+			
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
+				<div class="jumbotron"
+					style="background-color: #60C5B8;">
+					<img src="${initParam.root }images/aboutus/dreamCnt.png" width="150"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="300ms">신청된 꿈 프로젝트 <br><br> <b><span id="number2">${dreamCnt }</span></b>개</font>
 				</div>
-			</section>
+			</div>	
+			
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">	
+				<div class="jumbotron"
+					style="background-color: #22ACC1;" >
+					<img src="${initParam.root }images/aboutus/successDream.png" width="250"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="500ms">성공한 꿈 프로젝트<br><br> <b><span id="number3">${successDreamCnt}</span></b>개</font>
+				</div>
+			</div>
+			
+			
+			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">	
+				<div class="jumbotron"
+					style="background-color: #60C5B8;" >
+					<img src="${initParam.root }images/aboutus/totalMoney.png" width="150"
+						height="130" ><br><hr style="color: #fff; width: 50px;"><br>
+						<font style="font-size: 2em; color: white;" class="wow fadeInUp" data-wow-duration="900ms"
+				data-wow-delay="700ms">후원 금액 <br><br> <b> <span id="number4">${totalMoney}</span></b>원</font>
+			</div>
+	</div>
+					
+						<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
+				</div>	
+</section>
 			
 			
 			
@@ -317,7 +392,7 @@
 </section>
 	<!-- project -->
 
-			
+
 
 		<jsp:include page="./common/footer.jsp" />
 		</body>
