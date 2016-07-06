@@ -241,6 +241,7 @@ jQuery(document).ready(function( $ ) {
 						모금할 수 있는 공간입니다 .</p>
 						&nbsp;
 					<p>
+					<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 					
 			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
 					<div class="jumbotron"

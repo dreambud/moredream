@@ -128,9 +128,9 @@
 						
 						<c:forEach items="${dreamList}" var="dream">
 							<c:if test="${dream.confirmRequestDream=='Y'}">
+								
 								<div class="portfolio-items">
-									<div
-										class="col-xs-6 col-sm-6 col-md-4 portfolio-item branded logos">
+									<div class=" col-md-4 col-sm-9 portfolio-item branded logos">
 										<div class="portfolio-wrapper">
 											<div class="portfolio-single">
 												<div class="portfolio-thumb">
@@ -139,12 +139,7 @@
 														width="200px" height="250px" class="img-responsive img-rounded" alt=""
 														style="height: 270px"></a>
 												</div>
-												<div class="portfolio-view"> 
-													<ul class="nav nav-pills">
-													</ul>
-												</div>
 											</div>
-											
 											<div class="portfolio-info">
 												<h2>
 												<c:choose>
@@ -160,12 +155,13 @@
 												<h5 align="center">
 														<b>${dream.memberVO.name }</b>의 <b>${dream.category } 꿈 프로젝트</b>
 													</h5>
+												
 												<div class="progress">
 													<c:if test="${((dream.statVO.totalMoney/dream.targetFund)*100)>=100}">
 														<div class="progress-bar progress-bar-danger "
 														role="progressbar" aria-valuenow="40" aria-valuemin="0"
 														aria-valuemax="100" style="width: 100%"></div>
-														</div>
+												</div>
 													</c:if>
 													
 													<c:if test="${(((dream.statVO.totalMoney/dream.targetFund)*100)>=0)&&(((dream.statVO.totalMoney/dream.targetFund)*100)<100)}">
@@ -174,8 +170,6 @@
 														aria-valuemax="100" style="width: ${(dream.statVO.totalMoney/dream.targetFund)*100}%"></div>
 														</div>
 													</c:if>
-													
-												
 												<div class="post-bottom overflow">
 														<p>모인 금액
 																${dream.statVO.totalMoneyView} &nbsp;<span class="label label-primary"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></p>
@@ -207,8 +201,9 @@
 								</div>
 							</c:if>
 						</c:forEach>
-						
 					</div>
+				</div>
+					
 						<div class="portfolio-pagination">
 							<c:choose>
 							<c:when test="${dreamList[0]==null}">
@@ -231,8 +226,8 @@
 							</c:otherwise>
 							</c:choose>
 						</div>
-				</div>
-				<div class="col-md-3 col-sm-4 padding-top hidden-xs">
+				
+				<div class="col-md-3 col-sm-4 padding-top1 hidden-xs">
 					<div class="sidebar portfolio-sidebar">
 						<div class="sidebar-item categories">
 							<h3>Dream Categories</h3>

@@ -211,8 +211,12 @@
 					<span class="[ icon-bar ]"></span>
 					<span class="[ icon-bar ]"></span>
 				</button>
-				<div class="[ animbrand ]">
+				<div class="[ animbrand ] hidden-xs ">
 					<a class="[ navbar-brand ][ animate ]" href="${initParam.root}/index.jsp">MOREDREAM<i class="fa fa-leaf" aria-hidden="true"></i></a>
+				</div>
+				
+				<div class="[ animbrand ] visible-xs ">
+					<a class="[ navbar-brand ][ animate ]" href="${initParam.root}/index.jsp"><i class="fa fa-leaf" aria-hidden="true"></i></a>
 				</div>
 			</div>
 

@@ -1,9 +1,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-
-
-
 .updatedate{
 	color: #60C5B8;
 }
@@ -40,7 +37,7 @@
 } */
 
 .jumbotron{
-	
+	padding-top:-50px;
 	background-color:#343B4A ;
 	text-align: center;
 	height: auto;
@@ -371,9 +368,9 @@
 	padding-top: 61px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 640px) {
 	.navbar-bootsnipp .navbar-brand {
-		font-size: 20px;
+		font-size: 15px;
 		height: auto;
 		padding: 15px 5px;
 	}
@@ -426,7 +423,6 @@
 	
 }	
 /* nav bar 20160622 - 0409 */	
-
 
 
 
