@@ -144,7 +144,7 @@
 
 							<c:if test="${pb.previousPageGroup}">
 								<a href="dream.do?command=myMoreDream&&pageNo=${pb.startPageOfPageGroup-1}">
-								이전으로</a>	
+								 <img alt="" src="${initParam.root }images/member/left_arrow_btn.gif">&nbsp;&nbsp;</a>	
 							</c:if>
 							
 							<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
@@ -162,7 +162,7 @@
 							
 							<c:if test="${requestScope.lvo.pb.nextPageGroup}">
 								<a href="dream.do?command=myMoreDream&&pageNo=${requestScope.lvo.pb.endPageOfPageGroup+1}">
-								다음으로</a>
+								 <img alt="" src="${initParam.root }images/member/right_arrow_btn.gif"></a>
 							</c:if>	
 							
 							</c:when>
