@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import model.DreamVO;
+import model.ListVO;
 import model.MemberVO;
 import model.MyDreamVO;
 import model.PaymentVO;
@@ -43,9 +44,10 @@ public interface DreamService {
 		//memberId로 dream 정보 가져오기
 		public List<DreamVO> getAllMyDreamByMemberId(int memberId) throws IOException;
 
+		//160706
 		// 추가 ::getAllMySupportProject
 		//memberId로 moredream 현황 보기
-		public List<MyDreamVO> getAllMySupportProject(int memberId) throws IOException;
+		public ListVO getAllMySupportProject(String pageNo, int memberId) throws IOException;
 
 	//추가 160616
 		//꿈에 대한 댓글 갯수 카운트

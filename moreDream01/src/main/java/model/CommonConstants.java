@@ -10,5 +10,5 @@ public interface CommonConstants {
 	 * 페이지 그룹 당 페이지 수 
 	 * 페이지가 123 / 456 이렇게 그룹당 세개가 보여질 것
 	 */
-	int PAGEGROUP_NUMBER_PER_PAGE=3;
+	int PAGEGROUP_NUMBER_PER_PAGE=5;
 }

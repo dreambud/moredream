@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.DreamVO;
+import model.ListVO;
 import model.MemberVO;
 import model.MyDreamVO;
 import model.PaymentVO;
@@ -386,7 +387,7 @@ public class DreamController extends MultiActionController {
 		System.out.println(dreamList);
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
-	// /////////////////////// 160617 후원한 && 받은 내역
+	// /////////////////////// 160706 추가 160617 후원한 && 받은 내역
 	// //////////////////////////////////////////
 	// ///////////////////////////////////////////////////////////////////////////////////////
 	public ModelAndView myMoreDream(HttpServletRequest request,
@@ -399,12 +400,16 @@ public class DreamController extends MultiActionController {
 		if(mvo==null){
 			return new ModelAndView("member/login");
 		}
+		
 	    int memberId = mvo.getMemberId();
 		System.out.println(memberId);
-		List<MyDreamVO> myDreamList = dreamService
-				.getAllMySupportProject(memberId);
-		System.out.println(myDreamList);
-		request.setAttribute("myDreamList", myDreamList);
+		
+		String pageNo = request.getParameter("pageNo");
+		ListVO lvo = dreamService
+				.getAllMySupportProject(pageNo, memberId);
+		
+		System.out.println(lvo);
+		request.setAttribute("lvo", lvo);
 
 		// ////////////////////////////////후원
 		// 받은/////////////////////////////////////

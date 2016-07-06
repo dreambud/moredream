@@ -85,7 +85,7 @@
 						<div align="center" style="text-align: center;">
 						
 						<c:choose>
-							<c:when test="${myDreamList.size()!=0 }">
+							<c:when test="${lvo!=null }">
 								<table class="table table-striped table-bordered table-hover">
 
 								<caption></caption>
@@ -104,7 +104,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${myDreamList}" var="my" varStatus="number">
+									<c:forEach items="${lvo.list}" var="my" varStatus="number">
 										<tr>
 											<td class="tdAlign">${number.count}</td>
 											<td><img alt=""
@@ -141,6 +141,32 @@
 
 								</tbody>
 							</table>
+							
+							<c:set var="pb" value="${requestScope.lvo.pb}"></c:set>
+
+							<c:if test="${pb.previousPageGroup}">
+								<a href="dream.do?command=myMoreDream&&pageNo=${pb.startPageOfPageGroup-1}">
+								이전으로</a>	
+							</c:if>
+							
+							<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+	
+								<c:choose>
+									<c:when test="${pb.nowPage!=i}">
+										<a href="dream.do?command=myMoreDream&&pageNo=${i}">${i}</a> 
+									</c:when>
+									<c:otherwise>
+										${i}
+									</c:otherwise>
+								</c:choose>
+								&nbsp;
+							</c:forEach>	
+							
+							<c:if test="${requestScope.lvo.pb.nextPageGroup}">
+								<a href="dream.do?command=myMoreDream&&pageNo=${requestScope.lvo.pb.endPageOfPageGroup+1}">
+								다음으로</a>
+							</c:if>	
+							
 							</c:when>
 							<c:otherwise>
 								<h3 style="margin-top: 2em"><b>후원한 내역이 없습니다.</b></h3>

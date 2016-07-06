@@ -3,12 +3,15 @@ package service;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import model.DreamVO;
+import model.ListVO;
 import model.MemberVO;
 import model.MyDreamVO;
+import model.PagingBean;
 import model.PaymentVO;
 import model.ReplyVO;
 import model.RewardVO;
@@ -143,23 +146,48 @@ public class DreamServiceImpl implements DreamService {
 		return myDreamList;
 	}
 
+	//160706
 	// 추가 ::getAllMySupportProject
 	//memberId로 moredream 현황 보기
 	//160621 수정 //160706 다시 백업
 	@Override
-	public List<MyDreamVO> getAllMySupportProject(int memberId)
+	public ListVO getAllMySupportProject(String pageNo, int memberId)
 			throws IOException {
-		List<MyDreamVO> rlist = dreamDao.getAllMySupportProject(memberId);
+		int pn=1;
+		if(pageNo!=null){
+			pn=Integer.parseInt(pageNo);
+		}
+		System.out.println("Service pn :: "+pn);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("pageNo", pn);
+		
+		List<MyDreamVO> list =  dreamDao.getAllMySupportProject(map);// 조작하기 전 모든 책 정보가 필요하다.
+		System.out.println("Service list :: " + list);
+		int total = dreamDao.getAllMySupportProjectCnt(memberId); 
+		System.out.println("totalProjectCnt :: "+total);
+		
+		PagingBean pb = new PagingBean(total, pn);
 		
 		long nowTime = convert(dreamDao.showNowDate());
-		for(MyDreamVO mdvo : rlist){
-			long endTime = convert(mdvo.getDreamVO().getEndDate());
-			int endDay = getEndDay(nowTime, endTime);
-			StatVO statVO = new StatVO();
-			statVO.setEndDay(endDay);
-			mdvo.getDreamVO().setStatVO(statVO);
+		for(MyDreamVO mdvo : list){
+			
+		//160705 추가
+		List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
+		System.out.println("totalMoneyList :: "+ totalMoneyList);
+		StatVO statVO = new StatVO();
+		for(int totalMoney : totalMoneyList){
+		statVO.setTotalMoney(totalMoney);
+		mdvo.getDreamVO().setStatVO(statVO);
 		}
-		return rlist;
+		long endTime = convert(mdvo.getDreamVO().getEndDate());
+		int endDay = getEndDay(nowTime, endTime);
+		statVO.setEndDay(endDay);
+		mdvo.getDreamVO().setStatVO(statVO);
+		}
+		
+		return new ListVO(list, pb);
 	}
 
 	// 160616

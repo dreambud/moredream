@@ -87,13 +87,20 @@ public class DreamDaoImpl implements DreamDao {
 		return sqlSession.selectList("dreamSql.getAllMyDreamByMemberId", memberId);
 	}
 
+	//160706
 	// 추가 ::getAllMySupportProject
 	//memberId로 moredream 현황 보기
 	@Override
-	public List<MyDreamVO> getAllMySupportProject(int memberId)
+	public List<MyDreamVO> getAllMySupportProject(Map<String, Object> map)
 			throws IOException {
-
-		return sqlSession.selectList("dreamSql.getAllMySupportProject", memberId);
+		System.out.println("Dao map :: "+map);
+		List<MyDreamVO> list =  sqlSession.selectList("dreamSql.getAllMySupportProject", map);
+		System.out.println("Dao list :: "+list);
+		return list;
+	}
+	@Override
+	public int getAllMySupportProjectCnt(int memberId) throws IOException {
+		return sqlSession.selectOne("dreamSql.getAllMySupportProjectCnt", memberId);
 	}
 
 	//160616

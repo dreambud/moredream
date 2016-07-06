@@ -42,9 +42,11 @@ public interface DreamDao {
 	//memberId로 dream 정보 가져오기
 	public List<DreamVO> getAllMyDreamByMemberId(int memberId) throws IOException;
 
+	//160706
 	// 추가 ::getAllMySupportProject
 	//memberId로 moredream 현황 보기
-	public List<MyDreamVO> getAllMySupportProject(int memberId) throws IOException;
+	public List<MyDreamVO> getAllMySupportProject(Map<String, Object> map) throws IOException;
+	public int getAllMySupportProjectCnt(int memberId) throws IOException;
 
 	//160616
 	// 해당 꿈에 대한 댓글 갯수 카운트

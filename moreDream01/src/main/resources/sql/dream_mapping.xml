@@ -448,18 +448,37 @@
       <result property="rewardVO.rewardInfo" column="rewardInfo"/>
    </resultMap>
 
-	
+	<!-- 160706 추가 -->
    <!-- 모아드림 현황 페이지 -->
-   <select id="getAllMySupportProject" parameterType="int"
+   <select id="getAllMySupportProject" parameterType="java.util.Map"
       resultMap="myDreamRM">
-      SELECT m.name, m.member_newFilename, p.money AS money, TO_char(p.paymentDate, 'yyyy-MM-dd') AS paymentDate,  r.rewardId AS rewardId,
-            d.targetFund AS targetFund, d.dreamId AS dreamId, d.titleDream AS titleDream, d.dream_newFilename AS dream_newFilename, TO_char(d.startDate, 'yyyy-MM-dd') AS startDate,
-            d.category AS category, TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
-            r.rewardinfo AS rewardInfo,p.paymentId AS paymentId, p.paymentState AS paymentState
-            FROM payment p, dream d, reward r, member m
-            WHERE m.memberId = d.memberId AND p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId = r.dreamId
-            ORDER BY paymentState DESC, paymentDate DESC
+            SELECT name, member_newFilename, money, paymentDate, 
+		      		rewardId, targetFund, dreamId , titleDream , dream_newFilename, 
+		      		startDate, category , endDate,
+		          	rewardinfo , paymentId , paymentState
+            FROM (SELECT ceil(rownum/5) AS page, name, member_newFilename, money, paymentDate, 
+		      		rewardId, targetFund, dreamId , titleDream , dream_newFilename, 
+		      		startDate, category , endDate,
+		          	rewardinfo , paymentId , paymentState
+            FROM (SELECT m.name AS name, m.member_newFilename AS member_newFilename, p.money AS money, 
+		      			TO_char(p.paymentDate, 'yyyy-MM-dd') AS paymentDate, 
+		      			r.rewardId AS rewardId, d.targetFund AS targetFund, d.dreamId AS dreamId, d.titleDream AS titleDream, 
+		      			d.dream_newFilename AS dream_newFilename, 
+		      			TO_char(d.startDate, 'yyyy-MM-dd') AS startDate, d.category AS category, 
+		            	TO_char(d.endDate, 'yyyy-MM-dd') AS endDate,
+		            	r.rewardinfo AS rewardInfo, p.paymentId AS paymentId, p.paymentState AS paymentState
+						FROM payment p, dream d, reward r, member m
+						WHERE m.memberId = d.memberId AND p.memberId=#{memberId} and r.rewardId = p.rewardId and d.dreamId = r.dreamId
+						ORDER BY paymentState DESC, paymentDate DESC))
+			WHERE page=#{pageNo}
       
+   </select>
+   <!-- 후원현황 총갯수 -->
+   <select id="getAllMySupportProjectCnt" parameterType="int" resultType="int">
+   	SELECT count(-1)
+		FROM payment p, dream d, reward r, member m
+		WHERE m.memberId = d.memberId AND p.memberId=#{value} and r.rewardId = p.rewardId and d.dreamId = r.dreamId
+		ORDER BY paymentState DESC, paymentDate DESC
    </select>
 
 	<!-- memberId로 Dream정보를 가져옴 -->
