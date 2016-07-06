@@ -92,7 +92,6 @@
 
 								<thead>
 									<tr>
-										
 			                            <th style="text-align: center; width: 20%;" colspan='2'>꿈 제목</th>
 			                            <th style="text-align: center; width: 9%;">마 감 일</th>
 			                            <th style="text-align: center; width: 30%;">보상내용</th>
@@ -106,7 +105,6 @@
 								<tbody>
 									<c:forEach items="${lvo.list}" var="my" varStatus="number">
 										<tr>
-											
 											<td><img alt=""
 												src="./upload/dream/${my.dreamVO.dream_newFilename}"
 												width="50px" height="50px"></td>
