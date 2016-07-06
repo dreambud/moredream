@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UpdateDreamVO {
@@ -82,7 +83,24 @@ public class UpdateDreamVO {
 	public void setMultipartFile(MultipartFile multipartFile) {
 		this.multipartFile = multipartFile;
 	}
-
+	public String getYear(){
+		return update_writeDate.substring(0, 4);
+	}
+	public String getMonth(){
+		return update_writeDate.substring(5, 7);
+	}
+	public String getDay(){
+		return update_writeDate.substring(8, 10);
+	}
+	public String getHour(){
+		return update_writeDate.substring(11, 13);
+	}
+	public String getMinutes(){
+		return update_writeDate.substring(14, 16);
+	}
+	public String getSeconds(){
+		return update_writeDate.substring(17, 19);
+	}
 	@Override
 	public String toString() {
 		return "UpdateDreamVO [dreamVO=" + dreamVO + ", update_detailDream="

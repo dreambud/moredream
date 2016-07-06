@@ -150,12 +150,12 @@
 									"<img style='margin-left:5px;border-radius: 20%;' src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='70px' height='70px'></span>"+
 									"<span style='max-width:50px'>"+
 									"<div style='text-align:center'>"+
-									"&nbsp;&nbsp;<font size='3' color='grey'><b>"+list[i].dreamVO.titleDream+"</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"&nbsp;&nbsp;<font size='4' color='grey'><b><"+list[i].dreamVO.titleDream+"></b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 									"</div>"+
 									"<div>"+
-									"&nbsp;&nbsp;<font size='3'><b>꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"&nbsp;&nbsp;<font size='3'><b>- 꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 									"</div>"+
-									"<div>&nbsp;&nbsp;"+list[i].update_writeDate+
+									"<div>&nbsp;&nbsp;"+list[i].year+"년 "+list[i].month+"월 "+list[i].day+"일  "+list[i].hour+"시 "+list[i].minutes+"분 "+list[i].seconds+"초"+
 									"</div>"+
 									"</span>"+
 									"</div>"+
