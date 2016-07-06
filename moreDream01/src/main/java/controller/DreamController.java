@@ -160,9 +160,25 @@ public class DreamController extends MultiActionController {
 		this.categoryCountBinding(request);
 		
 		//finddream.jsp 오른쪽 하단에 들어가는 최근,인기 목록
-		List<DreamVO> recentProjects = dreamService.getListDream("1");
+		List<DreamVO> recentProjectsTemp = dreamService.getListDream("1");
+		List<DreamVO> recentProjects = new ArrayList<DreamVO>();
+		List<DreamVO> popularProjectsTemp = dreamService.getListDream("3");
+		List<DreamVO> popularProjects = new ArrayList<DreamVO>();
+		for(int i =0 ; i<recentProjectsTemp.size(); i++){
+			startDate = dreamService.convert(recentProjectsTemp.get(i).getStartDate());
+			endDate = dreamService.convert(recentProjectsTemp.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
+				recentProjects.add(recentProjectsTemp.get(i));
+			}
+		}
+		for(int i =0 ; i<popularProjectsTemp.size(); i++){
+			startDate = dreamService.convert(popularProjectsTemp.get(i).getStartDate());
+			endDate = dreamService.convert(popularProjectsTemp.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
+				popularProjects.add(popularProjectsTemp.get(i));
+			}
+		}
 		request.setAttribute("recentProjects", recentProjects);
-		List<DreamVO> popularProjects = dreamService.getListDream("3");
 		request.setAttribute("popularProjects", popularProjects);
 		
 		
@@ -187,9 +203,7 @@ public class DreamController extends MultiActionController {
 	public ModelAndView selectByCategory(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String category = request.getParameter("category");
-		System.out.println(category);
 		List<DreamVO> list = dreamService.selectByCategory(category);
-		System.out.println(list);
 		return new ModelAndView("./test/selectByCategory", "list", list);
 	}
 
