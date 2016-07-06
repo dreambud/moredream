@@ -16,7 +16,13 @@
 <link href="${initParam.root }css/animate.min.css" rel="stylesheet">
 <link href="${initParam.root }css/main.css" rel="stylesheet">
 <link href="${initParam.root }css/responsive.css" rel="stylesheet">
-
+<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
+<script type="text/javascript"
+	src="${initParam.root }js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="${initParam.root }js/lightbox.min.js"></script>
+<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
+<script type="text/javascript" src="${initParam.root }js/main.js"></script>
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -513,13 +519,5 @@ $(document).ready(function(){
 
 	<jsp:include page="../common/footer.jsp" />
 
-
-	<script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
-	<script type="text/javascript"
-		src="${initParam.root }js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="${initParam.root }js/lightbox.min.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/wow.min.js"></script>
-	<script type="text/javascript" src="${initParam.root }js/main.js"></script>
 </body>
 </html>

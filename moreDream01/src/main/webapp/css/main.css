@@ -3312,8 +3312,8 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 	background: #c8fff8;
     margin-top: 0px;
     margin-bottom: 0px;
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 1px;
+    padding-top: 1px;
 }
 .alarmnone{
 	margin-left:10px;
