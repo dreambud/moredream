@@ -385,6 +385,26 @@ public class DreamController extends MultiActionController {
 			}
 		}
 		System.out.println(dreamList);
+		
+		
+		//////////////////////////160706 help3추가 ///////////////////////////
+		int dreamCnt=dreamService.getAllDreamCnt();
+		System.out.println(dreamCnt);
+		request.setAttribute("dreamCnt", dreamCnt);
+
+		int memberCnt = dreamService.getAllMemberCnt();
+		System.out.println("memberCnt :: " + memberCnt);
+		request.setAttribute("memberCnt", memberCnt);
+		
+		String totalMoney = dreamService.getTotalMoney();
+		System.out.println("totalMoney :: "+totalMoney);
+		request.setAttribute("totalMoney", totalMoney);
+		
+		int successDreamCnt = dreamService.getSuccessDream();
+		System.out.println("successDreamCnt"+successDreamCnt);
+		request.setAttribute("successDreamCnt", successDreamCnt);
+		
+		
 		return new ModelAndView("index", "dreamList", dreamList);
 	}
 	// /////////////////////// 160706 추가 160617 후원한 && 받은 내역
