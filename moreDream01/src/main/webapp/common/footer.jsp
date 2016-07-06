@@ -37,7 +37,7 @@
 
 			<div class="footer-left">
 
-				<h3>More<span>DREAM</span></h3>
+				<h1>MORE<span>DREAM<i class="fa fa-leaf" aria-hidden="true"></i></span></h1>
 
 				<p class="footer-links">
 					<a href="${initParam.root }index.jsp">Home</a>
