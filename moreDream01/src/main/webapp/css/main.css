@@ -3307,24 +3307,33 @@ span.stMainServices, span.stButton_gradient, .stButton .chicklets {
 
 #alarmView{
 	overflow-y:scroll;
-	min-width: 520px;
+	min-width: 400px;
 	max-height:300px;
 	width:400px;
 	left: inherit;
 	right:0;
 	background: #ffffff;
-	box-shadow: 2px 2px gray;
 }
+
+#alarmView li:hover{
+
+	background: #22ACC1;
+	
+	
+}
+
+
 .alarm a:hover{
 	color:#408080;
 	background:black;
 }
 .alarm li{
-	background: #c8fff8;
+	background: #60C5B8;
     margin-top: 0px;
     margin-bottom: 0px;
     padding-bottom: 1px;
     padding-top: 1px;
+    color: white;
 }
 .alarmnone{
 	margin-left:10px;
