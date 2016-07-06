@@ -120,67 +120,56 @@ public class DreamController extends MultiActionController {
 		return new ModelAndView("redirect:/index.jsp");
 	}
 
-	/*
-	 * //보상 등록 public ModelAndView registerReward(HttpServletRequest
-	 * request,HttpServletResponse response, RewardVO pvo) throws Exception{
-	 * System.out.println("registerReward GO!!");
-	 * System.out.println("RewardVO :: "+pvo);
-	 * 
-	 * DreamVO dreamVO = new DreamVO();
-	 * 
-	 * 
-	 * dreamVO.setDreamId(Integer.parseInt(request.getParameter("dreamId")));
-	 * 
-	 * pvo.setDreamVO(dreamVO);
-	 * 
-	 * dreamService.registerReward(pvo);
-	 * 
-	 * return new ModelAndView("index"); }
-	 */
-
 	 // 꿈 목록 (160617 내용수정) // (160624) 내용수정 :: startDate 가 현재 같거나 적을때 리스트 출력
 	public ModelAndView getAllListDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String filter = request.getParameter("filter");
+		String category = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
 		if (filter == null) {
 			filter = "1";
 		}
 		List<DreamVO> dList = dreamService.getListDream(filter);
-		List<DreamVO> dreamList = new ArrayList<DreamVO>();
+		List<DreamVO> rDreamList = new ArrayList<DreamVO>();
 		long startDate =0;
+		long endDate=0;
+		long nowDate = dreamService.showNowDate();
 		for(int i =0 ; i<dList.size(); i++){
 			startDate = dreamService.convert(dList.get(i).getStartDate());
-			System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
-			if(startDate<=dreamService.showNowDate()){
-				dreamList.add(dList.get(i));
+			endDate = dreamService.convert(dList.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
+				rDreamList.add(dList.get(i));
 			}
 		}
+		request.setAttribute("totalCnt", rDreamList.size());
+		
+		//카테고리가 있으면 해당 카테고리
+		if (category != null && !(category.equals(""))&& !(category.equals("none"))) {
+			//필터 된 DreamList에 category만 뽑아오는 로직
+			rDreamList = dreamService.getListFilterByCategory(rDreamList,category.trim());
+		}
+		
+		//키워드가 있으면 해당 낱말이 들어간 것만 찾아내는 로직
+		if ((keyword != null) && !(keyword.equals(""))) {
+			rDreamList = dreamService.selectByKeyWord(keyword);//새로 List로 받아옴
+			dreamService.listDetailInsert(rDreamList);
+			request.setAttribute("keyword", keyword);
+		}
+		
+		//모든 카테고리 갯수 request에 바인딩
+		this.categoryCountBinding(request);
+		
+		//finddream.jsp 오른쪽 하단에 들어가는 최근,인기 목록
 		List<DreamVO> recentProjects = dreamService.getListDream("1");
 		request.setAttribute("recentProjects", recentProjects);
 		List<DreamVO> popularProjects = dreamService.getListDream("3");
 		request.setAttribute("popularProjects", popularProjects);
-		System.out.println(dreamList);
-		request.setAttribute("totalCnt", dreamList.size());
-
-		String category = request.getParameter("category");
-		if (category != null && !(category.equals(""))
-				&& !(category.equals("none"))) {
-			System.out.println("getListFilterByCategory()");
-			dreamList = dreamService.getListFilterByCategory(dreamList,
-					category.trim());
-		}
-		// 160617 메소드로 대체
-		this.categoryCountBinding(request);
+		
+		
+		//카테고리,필터 바인딩(finddream.jsp에서 다시 쓰기때문에)
 		request.setAttribute("category", category);
 		request.setAttribute("filter", filter);
-		String keyword = request.getParameter("keyword");
-		if ((keyword != null) && !(keyword.equals(""))) {
-			dreamList = dreamService.selectByKeyWord(keyword);
-			dreamService.listDetailInsert(dreamList);
-			request.setAttribute("keyword", keyword);
-		}
-		System.out.println(dreamList);
-		return new ModelAndView("./dream/finddream", "dreamList", dreamList);
+		return new ModelAndView("./dream/finddream", "dreamList", rDreamList);
 	}
 
 	// 관리자 꿈 목록 보기
