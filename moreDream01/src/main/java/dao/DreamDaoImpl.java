@@ -22,6 +22,15 @@ public class DreamDaoImpl implements DreamDao {
 		this.sqlSession = sqlSession;
 	}
 	
+	//160706
+	// 추가 ::getAllYourSupportProject//memberId로 moredream 현황 보기
+		@Override
+		public List<MyDreamVO> getAllYourSupportProject(int memberId)
+				throws IOException {
+
+			return sqlSession.selectList("dreamSql.getAllYourSupportProject", memberId);
+		}
+	
 	//160705
 	//추가 :: getCountPaymentDreamByMemberId//해당 멤버의 후원 꿈 수 보기
 	@Override

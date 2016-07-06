@@ -93,6 +93,8 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 							<i class="fa fa-leaf" aria-hidden="true"></i>&nbsp;&nbsp;${rmvo.name}님의
 							응원 꿈 <strong>${countPayment}</strong>개
 						</h2>
+						<c:choose>
+						<c:when test="${countPayment>0}">
 						<div align="center" style="text-align: center;">
 							<c:forEach items="${myDreamList}" var="dream">
 								<c:if test="${dream.paymentVO.paymentState=='Y'}">
@@ -189,6 +191,13 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 		</div>
 		</div>
 		</div>
+		</c:when>
+			<c:otherwise>
+			<div align="center" style="margin-bottom: 3em">
+								<h3><b>응원한 꿈이 없습니다.</b></h3>
+							</div>
+							</c:otherwise>
+						</c:choose>
 		</div>
 	</section>
 
@@ -197,11 +206,13 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 
 	<section id="blog" class="padding-top">
 		<div class="container">
-			<c:if test="${countCreateDream>0}">
+			
 				<h2 class="page-header">
 					<i class="fa fa-leaf" aria-hidden="true"></i>&nbsp;&nbsp;${rmvo.name}님의
 					진행한 꿈 <strong>${countCreateDream}</strong>개
 				</h2>
+				<c:choose>
+				<c:when test="${countCreateDream>0}">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="row">
@@ -298,7 +309,13 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 		</div>
 		</div>
 		</div>
-		</c:if>
+		</c:when>
+			<c:otherwise>
+			<div align="center" style="margin-bottom: 3em">
+								<h3><b>진행한 꿈이 없습니다.</b></h3>
+							</div>
+							</c:otherwise>
+						</c:choose>
 		</div>
 	</section>
 

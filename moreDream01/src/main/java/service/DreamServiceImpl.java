@@ -24,6 +24,32 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 	
+	//160706
+	// 추가 ::getAllYourSupportProject
+		//memberId로 moredream 현황 보기
+		@Override
+		public List<MyDreamVO> getAllYourSupportProject(int memberId)
+				throws IOException {
+			List<MyDreamVO> rlist = dreamDao.getAllYourSupportProject(memberId);
+			long nowTime = convert(dreamDao.showNowDate());
+			for(MyDreamVO mdvo : rlist){
+			//160705 추가
+			List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
+			System.out.println("totalMoneyList :: "+ totalMoneyList);
+			StatVO statVO = new StatVO();
+			for(int totalMoney : totalMoneyList){
+			statVO.setTotalMoney(totalMoney);
+			mdvo.getDreamVO().setStatVO(statVO);
+			}
+			long endTime = convert(mdvo.getDreamVO().getEndDate());
+			int endDay = getEndDay(nowTime, endTime);
+			statVO.setEndDay(endDay);
+			mdvo.getDreamVO().setStatVO(statVO);
+			}
+			return rlist;
+		}
+	
+	
 	//160705
 	//추가 :: getCountPaymentDreamByMemberId
 	@Override
@@ -119,25 +145,19 @@ public class DreamServiceImpl implements DreamService {
 
 	// 추가 ::getAllMySupportProject
 	//memberId로 moredream 현황 보기
-	//160621 수정
+	//160621 수정 //160706 다시 백업
 	@Override
 	public List<MyDreamVO> getAllMySupportProject(int memberId)
 			throws IOException {
 		List<MyDreamVO> rlist = dreamDao.getAllMySupportProject(memberId);
+		
 		long nowTime = convert(dreamDao.showNowDate());
 		for(MyDreamVO mdvo : rlist){
-		//160705 추가
-		List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
-		System.out.println("totalMoneyList :: "+ totalMoneyList);
-		StatVO statVO = new StatVO();
-		for(int totalMoney : totalMoneyList){
-		statVO.setTotalMoney(totalMoney);
-		mdvo.getDreamVO().setStatVO(statVO);
-		}
-		long endTime = convert(mdvo.getDreamVO().getEndDate());
-		int endDay = getEndDay(nowTime, endTime);
-		statVO.setEndDay(endDay);
-		mdvo.getDreamVO().setStatVO(statVO);
+			long endTime = convert(mdvo.getDreamVO().getEndDate());
+			int endDay = getEndDay(nowTime, endTime);
+			StatVO statVO = new StatVO();
+			statVO.setEndDay(endDay);
+			mdvo.getDreamVO().setStatVO(statVO);
 		}
 		return rlist;
 	}

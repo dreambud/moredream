@@ -547,7 +547,7 @@ public class DreamController extends MultiActionController {
 	mvo.setName(name);
 	mvo.setMember_newFilename(member_newFilename);
 	List<MyDreamVO> myDreamList = dreamService
-	.getAllMySupportProject(memberId);
+	.getAllYourSupportProject(memberId);
 	System.out.println(myDreamList);
 	request.setAttribute("myDreamList", myDreamList);
 	// ////////////////////////////////후원 받은(진행하는)/////////////////////////////////////

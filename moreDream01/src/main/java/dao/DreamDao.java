@@ -14,6 +14,10 @@ import model.UpdateDreamVO;
 
 public interface DreamDao {
 	
+	//160706
+	// 추가 ::getAllYourSupportProject//memberId로 moredream 현황 보기
+	public List<MyDreamVO> getAllYourSupportProject(int memberId) throws IOException;
+	
 	//160705
 	//추가 :: getCountPaymentDreamByMemberId
 	public int getCountPaymentDreamByMemberId(int memberId) throws IOException;
