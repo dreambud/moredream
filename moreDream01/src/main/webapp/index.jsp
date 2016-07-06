@@ -23,7 +23,8 @@
 <script type="text/javascript" src="js/lightbox.min.js"></script>
 <script type="text/javascript" src="js/wow.min.js"></script>
 <script type="text/javascript" src="js/jquery.counterup.min.js"></script> 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script> 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script> 
 
 <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
@@ -100,28 +101,28 @@
 jQuery(document).ready(function( $ ) {
 $('#number1').counterUp({
 delay: 10, // the delay time in ms
-time: 1000 // the speed time in ms
+time: 2000 // the speed time in ms
 });
 });
 
 jQuery(document).ready(function( $ ) {
 	$('#number2').counterUp({
 	delay: 10, // the delay time in ms
-	time: 1000 // the speed time in ms
+	time: 2000 // the speed time in ms
 	});
 	});
 	
 jQuery(document).ready(function( $ ) {
 	$('#number3').counterUp({
 	delay: 10, // the delay time in ms
-	time: 1000 // the speed time in ms
+	time: 2000 // the speed time in ms
 	});
 	});
 	
 jQuery(document).ready(function( $ ) {
 	$('#number4').counterUp({
 	delay: 10, // the delay time in ms
-	time: 1000 // the speed time in ms
+	time: 2000 // the speed time in ms
 	});
 	});	
 </script>
@@ -134,8 +135,9 @@ jQuery(document).ready(function( $ ) {
 		<body>
 			<jsp:include page="./common/header.jsp" />
 			
+			
 			   <!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide">
+    <div id="myCarousel" class="carousel slide">
         <!-- Indicators -->
         
         <ol class="carousel-indicators">
@@ -199,14 +201,14 @@ jQuery(document).ready(function( $ ) {
         </div>
 		
         <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+       <!--  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
             <span class="icon-prev"></span>
         </a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
             <span class="icon-next"></span>
         </a>
-
-    </header>
+ -->
+    </div>
 		
 			
 			<!--/#home-slider-->
