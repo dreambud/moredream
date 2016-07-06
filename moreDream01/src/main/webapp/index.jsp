@@ -284,7 +284,6 @@ jQuery(document).ready(function( $ ) {
 			</div>
 	</div>
 					
-						<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
 				</div>	
 </section>
 			

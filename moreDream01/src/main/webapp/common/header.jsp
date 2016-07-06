@@ -144,16 +144,16 @@
 						$(function() { 
 							$('#alarmView').append(
 								"<hr style='margin:0px'><a href='${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId="+list[i].dreamVO.dreamId+"'>"+
-								"<li style='padding-left:10px; padding-bottom:10px;padding-top:10px;background:#97b3b3'>"+
+								"<li style='padding-left:10px; padding-bottom:10px;padding-top:10px;background:white'>"+
 									"<div style='display: -webkit-inline-box;'>"+
 									"<span style='max-width:50px'>"+
 									"<img style='margin-left:5px;border-radius: 20%;' src='${initParam.root}upload/dream/"+list[i].update_newFilename+"' width='70px' height='70px'></span>"+
 									"<span style='max-width:50px'>"+
 									"<div style='text-align:center'>"+
-									"&nbsp;&nbsp;<font size='4' color='grey'><b><"+list[i].dreamVO.titleDream+"></b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"&nbsp;&nbsp;<font size='4' color='#60C5B8'><"+list[i].dreamVO.titleDream+"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 									"</div>"+
 									"<div>"+
-									"&nbsp;&nbsp;<font size='3'><b>- 꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
+									"&nbsp;&nbsp;<font size='3' color='black'><b>- 꿈 업데이트 정보가 있습니다.</b></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+
 									"</div>"+
 									"<div>&nbsp;&nbsp;"+list[i].year+"년 "+list[i].month+"월 "+list[i].day+"일  "+list[i].hour+"시 "+list[i].minutes+"분 "+list[i].seconds+"초"+
 									"</div>"+
@@ -256,10 +256,10 @@
 								<li><a href="${initParam.root}dream.do?command=myMoreDream" class="[ animate ]">나의 꿈 현황<span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
 							</ul>
 						</li>
-						<li><a href="#" onclick="alarmCountUpdate();" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><img src="${initParam.root}images/document_icon.png" width="30px"><span class="badge" id="badge"></span></a>
+						<li><a href="#" onclick="alarmCountUpdate();" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="badge" id="badge"></span></a>
 								<ul class="[ dropdown-menu ]" role="menu">
 								<div id='alarmTitle' class='alarm'>
-									<li><h3 align='center'><b><img src='${initParam.root}images/document_icon.png' width='30px'>꿈 업데이트 알림 보기</b></h3></li>
+									<li><h3 align='center'><b><i class="fa fa-bell-o" aria-hidden="true"></i> 꿈 업데이트 알림</b></h3></li>
 								</div>
 								<div id='alarmView'>
 								</div>
