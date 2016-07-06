@@ -10,6 +10,12 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Blog Details | Triangle</title>
+
+<style type="text/css">
+	.comments{
+	display: none;
+}
+</style>
 <link href="${initParam.root }css/bootstrap.min.css" rel="stylesheet">
 <link href="${initParam.root }css/font-awesome.min.css" rel="stylesheet">
 <link href="${initParam.root }css/lightbox.css" rel="stylesheet">
@@ -62,8 +68,20 @@ function deleteComment(replyId) {
 <script type="text/javascript">
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
+    
+    $(".comments").slice(0, 5).show(); // select the first ten
+    $("#load").click(function(e){ // click event for load more
+        e.preventDefault();
+        $(".comments:hidden").slice(0, 5).show(); // select next 10 hidden divs and show them
+        if($(".comments:hidden").length == 0){ // check if any hidden divs still exist
+           
+            $('#commentDetailBtn').html("<b>더이상 댓글이 없습니다.</b>");
+        }
+    });
 });
 </script>
+
+
 
 
 </head>
@@ -241,7 +259,7 @@ $(document).ready(function(){
                                           <c:choose>
                                              <c:when test="${!replyList.isEmpty()}">
                                                 <c:forEach items="${replyList}" var="reply">
-                                                   <li class="media">
+                                                   <li class="media comments">
                                                       <div class="post-comment">
                                                          <div class="pull-left">
                                                             <c:choose>
@@ -284,7 +302,12 @@ $(document).ready(function(){
 
                                                    </li>
                                                 </c:forEach>
-                                             </c:when>
+                                                
+                                                	<div id="commentDetailBtn" style="text-align: center; margin-bottom: 30px;">
+														<a href="#" id="load"><input type="submit" value="댓글 더 보기" data-toggle="modal" data-target="#alertModal"
+															class="btn btn-primary btn-lg" style="width: 200px;"></a>
+													</div>	
+											 </c:when>
                                              <c:otherwise>
                                                 <hr>
                                                 <h3>댓글이 없습니다.</h3>
