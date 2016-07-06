@@ -170,23 +170,6 @@ public class DreamServiceImpl implements DreamService {
 		
 		PagingBean pb = new PagingBean(total, pn);
 		
-		long nowTime = convert(dreamDao.showNowDate());
-		for(MyDreamVO mdvo : list){
-			
-		//160705 추가
-		List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
-		System.out.println("totalMoneyList :: "+ totalMoneyList);
-		StatVO statVO = new StatVO();
-		for(int totalMoney : totalMoneyList){
-		statVO.setTotalMoney(totalMoney);
-		mdvo.getDreamVO().setStatVO(statVO);
-		}
-		long endTime = convert(mdvo.getDreamVO().getEndDate());
-		int endDay = getEndDay(nowTime, endTime);
-		statVO.setEndDay(endDay);
-		mdvo.getDreamVO().setStatVO(statVO);
-		}
-		
 		return new ListVO(list, pb);
 	}
 
