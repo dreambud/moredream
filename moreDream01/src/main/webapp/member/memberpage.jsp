@@ -94,10 +94,10 @@
 									<tr>
 										<th style="text-align: center; width: 3%;">#</th>
 			                            <th style="text-align: center; width: 20%;" colspan='2'>꿈 제목</th>
-			                            <th style="text-align: center; width: 7%;">마 감 일</th>
+			                            <th style="text-align: center; width: 9%;">마 감 일</th>
 			                            <th style="text-align: center; width: 30%;">보상내용</th>
 			                            <th style="text-align: center; width: 7%;">후원금액</th>
-			                            <th style="text-align: center; width: 7%;">결 제 일</th>
+			                            <th style="text-align: center; width: 9%;">결 제 일</th>
 			                            <!-- 160623 -->
 			                            <th style="text-align: center; width: 5%">결제상태</th>
 			                            <th style="text-align: center; width: 5%;">비 고</th>
@@ -132,7 +132,7 @@
 												<button type="button" class="btn btn-xs btn-danger" onclick="payCancel('${my.rewardVO.rewardId}','${my.paymentVO.paymentId }');">취소</button>
 											</c:when>
 											<c:otherwise>
-												-
+												<button type="button" class="btn btn-xs btn-info">마감</button>
 											</c:otherwise>
 											</c:choose>
 											</td>
@@ -156,7 +156,7 @@
 										<a href="dream.do?command=myMoreDream&&pageNo=${i}">${i}</a> 
 									</c:when>
 									<c:otherwise>
-										${i}
+										<span class="badge" style='color:#000'>${i}</span>
 									</c:otherwise>
 								</c:choose>
 								&nbsp;
