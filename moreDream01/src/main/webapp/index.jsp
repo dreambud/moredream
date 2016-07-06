@@ -162,8 +162,18 @@ jQuery(document).ready(function( $ ) {
                    <a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
 									&nbsp;<p>
 								<font color="white" size="35px"><h1>${dl.titleDream}</h1></font>
-								<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
-														width="50px" height="50px"> <b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
+								<c:choose>
+									<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
+										<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
+									</c:when>
+									<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+										<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
+									</c:when>
+									<c:otherwise>
+										<img class="img-circle" src="./upload/member/member_df.jpg" width="50px" height="50px">
+									</c:otherwise>
+								</c:choose> 
+								<b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
 								</p>
 								<p>
 									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
@@ -185,8 +195,18 @@ jQuery(document).ready(function( $ ) {
                    <a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}"><img src="${initParam.root}upload/dream/${dl.dream_newFilename}" width="300px" height="300px" style="border-radius:10%;"/></a>
 									&nbsp;<p>
 								<font color="white" size="35px"><h1>${dl.titleDream}</h1></font>
-								<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
-														width="50px" height="50px"> <b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
+								<c:choose>
+									<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
+										<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
+									</c:when>
+									<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+										<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
+									</c:when>
+									<c:otherwise>
+										<img class="img-circle" src="./upload/member/member_df.jpg" width="50px" height="50px">
+									</c:otherwise>
+								</c:choose>
+								<b>${dl.memberVO.name }</b>의 ${dl.category} 프로젝트
 								</p>
 								<p>
 									<a class="btn btn-default btn-lg" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}" role="button">더 보기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
@@ -315,8 +335,17 @@ jQuery(document).ready(function( $ ) {
 													<!-- <img class="img-circle"
 														src="https://cdn.mirror.wiki/https://attachment.namu.wiki/c0073194_4e005606080d4.jpg"
 														width="50px" height="50px"> -->
-														<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"
-														width="50px" height="50px">
+														<c:choose>
+															<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
+																<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
+															</c:when>
+															<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+																<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
+															</c:when>
+															<c:otherwise>
+																<img class="img-circle" src="./upload/member/member_df.jpg" width="50px" height="50px">
+															</c:otherwise>
+														</c:choose>
 
 												</div>
 												<div >
