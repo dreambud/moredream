@@ -113,7 +113,6 @@ public class DreamServiceImpl implements DreamService {
 		int result = dreamDao.getTotalMoney();
 		
 		StringBuffer stringBuffer = new StringBuffer(String.valueOf(result));
-		System.out.println(stringBuffer.length());
 		for(int i=stringBuffer.length()-3;i>0;i=i-3){
 			stringBuffer.insert(i, ',');
 		}
@@ -282,71 +281,47 @@ public class DreamServiceImpl implements DreamService {
 	//160616 수정
 	public List<DreamVO> getListDream(String num) throws IOException {
 		List<DreamVO> rlist =new ArrayList<DreamVO>();
-		if(num.equals("1")||num.equals("0")){//새로운 꿈(최근순)[default]
+		if(num.equals("1")||num.equals("0")){	//새로운 꿈(최근순)[default]
 			rlist = dreamDao.getAllListDream();
-		}else if(num.equals("2")){//마감임박
+			this.listDetailInsert(rlist);
+			
+		}else if(num.equals("2")){				//마감임박
 			rlist=dreamDao.getAllListDreamOrderByEndDate();
-			//160617 추가
-			List<DreamVO> rlist2 = dreamDao.getAllListDream();
-			List<DreamVO> tempList = new ArrayList<DreamVO>();
-			for(int i=0;i<rlist2.size();i++){
-				for(int j=0;j<rlist.size();j++){
-					if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
-						break;
-					}
-					if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
-						tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
-					}
-				}
-			}
-			for(DreamVO dvo:tempList){
-				rlist.add(dvo);
-			}
-		}else if(num.equals("3")){//최다 후원
+			this.addNonePaymentDreamList(rlist);//결재 내역이 없는 꿈을 추가함
+			
+		}else if(num.equals("3")){				//최다 후원
 			rlist = dreamDao.getAllListDreamOrderByManyPeople();
-			List<DreamVO> rlist2 = dreamDao.getAllListDream();
-			List<DreamVO> tempList = new ArrayList<DreamVO>();
-			//결재 내역이 없는 꿈을 추가함
-			for(int i=0;i<rlist2.size();i++){
-				for(int j=0;j<rlist.size();j++){
-					if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
-						System.out.println(rlist.get(j).getDreamId());
-						break;
-					}
-					System.out.println("j: "+j);
-					System.out.println("rlist.size "+rlist.size());
-					if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
-						tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
-					}
-				}
-			}
-			System.out.println("임시 List에 담긴 정보 : "+tempList.size());
-			for(DreamVO dvo : tempList){//임시 공간에 있는 list 덧붙히기
-				rlist.add(dvo);
-			}
-		}else if(num.equals("4")){//최고 후원
+			this.addNonePaymentDreamList(rlist);
+			
+		}else if(num.equals("4")){				//최고 후원
 			rlist= dreamDao.getAllListDreamOrderByMoney();
-			//결재 내역이 없는 꿈을 추가함
-			List<DreamVO> rlist2 = dreamDao.getAllListDream();
-			List<DreamVO> tempList = new ArrayList<DreamVO>();
-			for(int i=0;i<rlist2.size();i++){
-				for(int j=0;j<rlist.size();j++){
-					if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
-						break;
-					}
-					if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
-						tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
-					}
-				}
-			}
-			for(DreamVO dvo:tempList){
-				rlist.add(dvo);
-			}
+			this.addNonePaymentDreamList(rlist);
+		}
+		this.listDetailInsert(rlist);
+		for(DreamVO dvo:rlist){
+			System.out.println(dvo);
 		}
 		
-		this.listDetailInsert(rlist);
-		
 		return rlist;
+	}
+	//160706 결재 내역 없는거 list 추가해주는 로직
+	public void addNonePaymentDreamList(List<DreamVO> rlist) throws IOException{
+		List<DreamVO> rlist2 = dreamDao.getAllListDream();
+		List<DreamVO> tempList = new ArrayList<DreamVO>();
+		//결재 내역이 없는 꿈을 추가함
+		for(int i=0;i<rlist2.size();i++){
+			for(int j=0;j<rlist.size();j++){
+				if(rlist.get(j).getDreamId()==rlist2.get(i).getDreamId()){
+					break;
+				}
+				if(j==rlist.size()-1){//끝까지 돈 결과 결재 내역이 없는 dreamvo라면
+					tempList.add(rlist2.get(i));//임시공간에 덧붙힐 dreamvo 추가
+				}
+			}
+		}
+		for(DreamVO dvo : tempList){//임시 공간에 있는 list 덧붙히기
+			rlist.add(dvo);
+		}
 	}
 	
 	//160617 메소드 추가
@@ -483,9 +458,11 @@ public class DreamServiceImpl implements DreamService {
 	public int getCategoryCountByCategory(String category) throws IOException {
 		List<DreamVO> dList = dreamDao.selectByCategory(category.trim());
 		int count = 0;
+		long nowDate = this.showNowDate();
 		for(int i =0 ; i<dList.size(); i++){
 			long startDate = this.convert(dList.get(i).getStartDate());
-			if(startDate<=this.showNowDate()){
+			long endDate = this.convert(dList.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
 				count+=1;
 			}
 		}

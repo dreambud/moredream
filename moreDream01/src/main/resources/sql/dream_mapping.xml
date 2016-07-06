@@ -273,26 +273,27 @@
 	<!-- 최고금액 순 :: getAllListDreamOrderByMoney -->
 	<select id="getAllListDreamOrderByMoney" resultMap="dreamRM">
 		SELECT
-		d.dreamId, memberId AS "memberVO.memberId", category,
+		d.dreamId, m.memberId, m.name, category,
 		dream_newFilename, confirmRequestDream,
 		titleDream, detailDream,
 		requestDate, targetFund,
 		TO_char(startDate, 'yyyy-MM-dd') AS startDate,
 		TO_char(endDate, 'yyyy-MM-dd') AS endDate from
-		(select dreamid from
+		(select dreamid,currmoney from
 		(select r.dreamid,sum(money) as currmoney from
 		payment p,reward r where
 		p.rewardid=r.rewardid and p.paymentstate='Y' group
 		by dreamid order by
 		currmoney desc)) p ,
-		dream d where p.dreamid =
+		dream d,member m where p.dreamid =
 		d.dreamid and
-		d.confirmrequestdream ='Y'
+		d.confirmrequestdream ='Y' and
+		d.memberid=m.memberid order by currmoney desc
 	</select>
 	<!-- 최다 후원자 순 :: getAllListDreamOrderByManyPeople -->
 	<select id="getAllListDreamOrderByManyPeople" resultMap="dreamRM">
 		select
-		d.dreamId, memberId AS "memberVO.memberId", category,
+		d.dreamId, m.memberId,m.name, category,
 		dream_newFilename, confirmRequestDream,
 		titleDream, detailDream,
 		requestDate, targetFund,
@@ -305,8 +306,9 @@
 		payment where paymentstate='Y' group by rewardid) p
 		where
 		r.rewardid=p.rewardid group by dreamid order by count desc) p
-		,dream d
-		where p.dreamid = d.dreamid and d.confirmrequestdream='Y'
+		,dream d,member m
+		where p.dreamid = d.dreamid and d.confirmrequestdream='Y' and m.memberid = d.memberid
+		order by count desc
 	</select>
 	<!-- 마감 일순 :: getAllListDreamOrderByEndDate -->
 	<select id="getAllListDreamOrderByEndDate" resultMap="dreamRM">
