@@ -76,7 +76,7 @@
 			</div>
 
 			<div class="footer-right">
-			<font style="color: white">Dream Categories</font>
+			<font style="color: #60C5B8 ">Dream Categories</font>
 				<p class="footer-links">
 					<a href="${initParam.root}dream.do?command=getAllListDream">전체</a>
 					·
