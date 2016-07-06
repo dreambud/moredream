@@ -184,20 +184,27 @@
 			var rewardGuide = document.frm.reward[i].value;
 		}
 		var v = rewardGuide.split("_");
-		if (input_money.value==""||input_money.value=="0"){
+		if (input_money.value==" "||input_money.value=="0"){
 			alert("0 또는 공백을 입력할 수 없습니다.");
 			input_money.focus();
 			return false;
 		}
-		if (input_money.value < v[1]) {
+		if (input_money.value < v[1] ) {
 			alert("선택 하신 보상기준 보다 많은 금액을 입력하세요.");
 			input_money.focus();
 			return false;
 		} 
-		document.frm.rewardId.value = v[0];
-		document.frm.money.value = input_money.value;
-		document.frm.action="${initParam.root}dream.do";
-		document.frm.submit();
+		
+		if(confirm(input_money.value+"원을 후원하시겠습니까?")){
+	         document.frm.rewardId.value = v[0];
+	         document.frm.money.value = input_money.value;
+	         document.frm.action="${initParam.root}dream.do";
+	         document.frm.submit();
+	         return true;
+	      }else{
+	         input_money.focus();
+	         return false;
+	      }
 		return true;
 	}
 </script>
