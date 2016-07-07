@@ -162,7 +162,7 @@ public class MemberController extends MultiActionController {
 			String page = request.getParameter("page");
 			ListVO lvo = memberService.getMemberList(page);
 			System.out.println(lvo);
-			return new ModelAndView("WEB-INF/result/getMemberList_result","lvo",lvo);//바인딩은 이미 위에서 했다.
+			return new ModelAndView("admin/adminmemberpage","lvo",lvo);//바인딩은 이미 위에서 했다.
 			
 		}
 	
