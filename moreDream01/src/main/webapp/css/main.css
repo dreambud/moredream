@@ -3417,3 +3417,14 @@ box-shadow:0px 0px #ccc;
 
 /* 결제 페이지 CSS 추가 20160704 */
 
+#pjtbox{
+	border: #60C5B8 solid 1px;
+	border-top:#60C5B8 solid 20px;
+	border-bottom:#60C5B8 solid 15px;
+}
+
+#pjtbox img{
+	margin-top: 20px;
+}
+
+/* 20160707 CSS 수정 */

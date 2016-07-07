@@ -242,7 +242,7 @@ jQuery(document).ready(function( $ ) {
 						&nbsp;
 					<p>
 					<a class="btn btn-default btn-lg" href="${initParam.root}dream/createdream_info.jsp" role="button">꿈 만들기 <i class="fa fa-leaf" aria-hidden="true"></i></a>
-					
+					<br><br><br>
 			<div class="col-sm-3" style="padding-left: 0px;padding-right: 0px">
 					<div class="jumbotron"
 						style="background-color: #22ACC1;" >
@@ -309,12 +309,13 @@ jQuery(document).ready(function( $ ) {
 						<div class="item">
 							<div class="row">
 					</c:if>
-								<div class="col-md-4 col-sm-12">
+								<div class="col-md-4 col-sm-12" >
 								<a class="selecterItem" href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dl.dreamId}">
-									<div class="col-item">
+									
+									<div class="col-item" id="pjtbox">
 										<div class="photo">
 											<div class="endTimer">
-												<h2 style="background-color: rgba(140,140,140,0.4);width: 50%;margin: auto;padding: 20px;border-radius: 20%;"><b>
+												<h2 style="background-color: rgba(96,197,184,0.7);width: 50%;margin: auto;padding: 20px;border-radius: 5%;"><b>
 													<font color="#FFF"><span id="counter${i.count}"></span></font>
 														<script>
 														setInterval(function(){
