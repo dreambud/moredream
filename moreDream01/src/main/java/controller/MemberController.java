@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.ListVO;
 import model.MemberVO;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -158,9 +159,10 @@ public class MemberController extends MultiActionController {
 			throws SQLException{
 			HttpSession session = request.getSession();
 			MemberVO rmvo =(MemberVO) session.getAttribute("mvo");
-			List<MemberVO> list = memberService.getMemberList();
-			System.out.println(list);
-			return new ModelAndView("WEB-INF/result/getMemberList_result","list",list);//바인딩은 이미 위에서 했다.
+			String page = request.getParameter("page");
+			ListVO lvo = memberService.getMemberList(page);
+			System.out.println(lvo);
+			return new ModelAndView("WEB-INF/result/getMemberList_result","lvo",lvo);//바인딩은 이미 위에서 했다.
 			
 		}
 	
