@@ -86,7 +86,7 @@
 
 	<!-- 모아드림 사이트명 -->
 	<div class="jumbotron text-center"
-		style="background-color: #282c2e; color: #fff">
+		style="background-color: #282c2e; color: #fff; margin-top: 50px;">
 		<h1 style="font-size: 36; font-weight: 500;">
 			More <font style="color: #5486da">Dream</font>
 		</h1>
