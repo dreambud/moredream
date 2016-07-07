@@ -304,8 +304,12 @@ $(document).ready(function(){
                                                 </c:forEach>
                                                 
                                                 	<div id="commentDetailBtn" style="text-align: center; margin-bottom: 30px;">
-														<a href="#" id="load"><input type="submit" value="댓글 더 보기" data-toggle="modal" data-target="#alertModal"
-															class="btn btn-primary btn-lg" style="width: 200px;"></a>
+														<a href="#" id="load"><!-- <input type="submit" value="댓글 더 보기" data-toggle="modal" data-target="#alertModal"
+															class="btn btn-primary btn-lg" style="width: 200px;"> -->
+														<button
+											type="button" data-toggle="modal" data-target="#alertModal" class="btn btn-default btn-lg">더보기&nbsp;<i class="fa fa-leaf" aria-hidden="true"></i></button>
+															
+														</a>
 													</div>	
 											 </c:when>
                                              <c:otherwise>
