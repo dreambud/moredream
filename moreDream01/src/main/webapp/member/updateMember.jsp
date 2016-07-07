@@ -66,33 +66,6 @@
 		}
 	}
 
-	$(document)
-			.ready(
-					function() {
-						$('#rePassword')
-								.keyup(
-										function() {
-											if ($(this).val() != $('#password')
-													.val()) {
-												$('#passwordEqul')
-														.html(
-																"<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
-											} else {
-												$('#passwordEqul')
-														.html(
-																"<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")
-											}
-											;
-										});//keyup
-						$('#facebook').change(function() {
-							if (document.frm.facebook.checked) {
-								checkLoginState();
-							} else {
-								document.frm.facebookId.value = "";
-							}
-						});
-					});//ready
-
 	function frmsubmit() {
 		if (document.frm.password.value != document.frm.rePassword.value) {
 			alert("비밀번호가 일치하지 않습니다. 다시 확인해 주세요");
@@ -108,8 +81,6 @@
 		if (confirm("정말 탈퇴 하시겠습니까?"))
 			location.href = "${initParam.root }member.do?command=deleteMember";
 	}
-</script>
-<script>
 	// This is called with the results from from FB.getLoginStatus().
 	function statusChangeCallback(response) {
 		console.log('statusChangeCallback');
@@ -158,6 +129,25 @@
 	function updateFacebookChk() {
 		loginCheck();
 		checkLoginState();
+	}
+	
+	function passwordChk() {
+		if ($('#rePassword').val() != $('#password').val()) {
+			$('#passwordEqul')
+					.html(
+							"<br><font color='red'><b>입력하신 비밀번호가 일치 하지 않습니다.</b></font>")
+		} else {
+			$('#passwordEqul')
+					.html(
+							"<br><font color='blue'><b>입력하신 비밀번호가 일치 합니다.</b></font>")
+		}
+	}
+	function facebookChange(){
+		if (document.frm.facebook.checked) {
+			checkLoginState();
+		} else {
+			document.frm.facebookId.value = "";
+		}
 	}
 </script>
 </head>
@@ -245,7 +235,7 @@
 						<label for="reInputPassword" class="col-sm-2 control-label">비밀번호
 							확인</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="rePassword"
+							<input type="password" class="form-control" id="rePassword" onkeyup="passwordChk();"
 								name="rePassword" placeholder="변경할 비밀번호를  한번 더 입력해주세요" value="">
 							<span id="passwordEqul"></span>
 						</div>
@@ -325,7 +315,7 @@
 											<p>
 									</b></font>
 									<input type="checkbox" id="facebook" name="facebook"
-										value="연동하기"> 페이스북과 연동하기
+										value="연동하기" onchange="facebookChange()"> 페이스북과 연동하기
 							</c:when>
 								<c:otherwise>
 									<input type="hidden" name="facebookId" id="facebookId"
