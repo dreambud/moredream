@@ -202,7 +202,7 @@ $(document).ready(function(){
                                  <div class="tab-pane fade" id="tab1-item2">
                                     <div>
                                        <c:choose>
-											<c:when test="${(mvo.member_newFilename!='-'&&mvo.member_newFilename!=''&&mvo.member_newFilename!=' '&&mvo.member_newFilename!='  ')}">
+											<c:when test="${(mvo.member_newFilename!='-'&&mvo.member_newFilename!=''&&mvo.member_newFilename!=' '&&mvo.member_newFilename!='  ')&&mvo.member_newFilename!=null}">
 												<img src="./upload/member/${mvo.member_newFilename}"width="50px" height="50px">
 											</c:when>
 											<c:when test="${mvo.facebookId!=''&&mvo.facebookId!=null}">
