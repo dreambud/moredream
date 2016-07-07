@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>header</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="${initParam.root }favicon.ico" />
 <link rel="stylesheet" href="${initParam.root}css/toastr.min.css">
 <script src="${initParam.root}js/toastr.min.js"></script>
 
