@@ -127,6 +127,7 @@
 	});
 	function inputDetail() {
 		 Editor.save(); // 이 함수를 호출하여 글을 등록하면 된다.
+		  console.log($('#cma_test').val().replace(/[^0-9]/g, "")); 
 		}
 	 function validForm(editor) {
 			// Place your validation logic here
@@ -272,7 +273,7 @@
 		        return arrNumber[0].split('.')[0];
 		    }
 		}
-	 					
+	 		
 	 
 </script>
 
