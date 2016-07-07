@@ -53,9 +53,7 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
-						<hr width="25%">
 							<h1 class="title" align="center">회원 관리 현황</h1>
-							<hr width="25%">
 						</div>
 					</div>
 				</div>
@@ -85,7 +83,7 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${list}" var="li">
+									<c:forEach items="${lvo.list}" var="li">
 										<tr>
 
 
@@ -116,7 +114,32 @@
 								</tbody>
 						</table>
 						</c:if>
+						<div align="center">
+						<c:set var="pb" value="${requestScope.lvo.pb}"></c:set>
 
+							<c:if test="${pb.previousPageGroup}">
+								<a href="${initParam.root}member.do?command=getMemberList&&page=${pb.startPageOfPageGroup-1}">
+								 <img alt="" src="${initParam.root }images/member/left_arrow_btn.gif">&nbsp;&nbsp;</a>	
+							</c:if>
+							
+							<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+	
+								<c:choose>
+									<c:when test="${pb.nowPage!=i}">
+										<a href="${initParam.root}member.do?command=getMemberList&&page=${i}">${i}</a> 
+									</c:when>
+									<c:otherwise>
+										<span class="badge" style='color:#000'>${i}</span>
+									</c:otherwise>
+								</c:choose>
+								&nbsp;
+							</c:forEach>	
+							
+							<c:if test="${requestScope.lvo.pb.nextPageGroup}">
+								<a href="${initParam.root}member.do?command=getMemberList&&page=${requestScope.lvo.pb.endPageOfPageGroup+1}">
+								 <img alt="" src="${initParam.root}images/member/right_arrow_btn.gif"></a>
+							</c:if>	
+							</div>
 					</div>
 				</div>
 			</div>

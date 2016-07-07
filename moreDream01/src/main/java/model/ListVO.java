@@ -16,21 +16,21 @@ import model.PagingBean;
  * 
  */
 public class ListVO {
-	private List<MyDreamVO> list;
+	private List list;
 	private PagingBean pb;
 	public ListVO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-	public ListVO(List<MyDreamVO> list, PagingBean pb) {
+	public ListVO(List list, PagingBean pb) {
 		super();
 		this.list = list;
 		this.pb = pb;
 	}
-	public List<MyDreamVO> getList() {
+	public List getList() {
 		return list;
 	}
-	public void setList(List<MyDreamVO> list) {
+	public void setList(List list) {
 		this.list = list;
 	}
 	public PagingBean getPb() {

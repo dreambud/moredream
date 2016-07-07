@@ -457,7 +457,7 @@
 		      		rewardId, targetFund, dreamId , titleDream , dream_newFilename, 
 		      		startDate, category , endDate,
 		          	rewardinfo , paymentId , paymentState
-            FROM (SELECT ceil(rownum/5) AS page, name, member_newFilename, money, paymentDate, 
+            FROM (SELECT ceil(rownum/10) AS page, name, member_newFilename, money, paymentDate, 
 		      		rewardId, targetFund, dreamId , titleDream , dream_newFilename, 
 		      		startDate, category , endDate,
 		          	rewardinfo , paymentId , paymentState

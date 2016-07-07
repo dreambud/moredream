@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import dao.MemberDao;
+import model.ListVO;
 import model.MemberVO;
+import model.PagingBean;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -56,10 +58,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<MemberVO> getMemberList() {
-		return memberDao.getMemberList();
+	public ListVO getMemberList(String page) {
+		int pageNo = 1;
+		if(page != null){
+			pageNo = Integer.parseInt(page);
+		}
+		ArrayList list = memberDao.getMemberList(pageNo);
+		int totalPage = memberDao.getAllListCnt();
+		PagingBean pb = new PagingBean(totalPage, pageNo);
+		return  new ListVO(list,pb);
 	}
-
+	
 	@Override
 	public void deleteFileMember(String member_newFilename1,String member_newFilename2) {
 		File f = new File(member_newFilename1);

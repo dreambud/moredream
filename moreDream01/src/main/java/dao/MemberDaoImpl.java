@@ -53,13 +53,20 @@ public class MemberDaoImpl implements MemberDao {
 	public int deleteMember(int memberId) {
 		return sqlSession.update("memberSql.deleteMember",memberId);
 	}
-
+	
+	// 160707 페이징 처리위해 수정
 	@Override
-	public ArrayList<MemberVO> getMemberList() {
-		List<MemberVO> list = sqlSession.selectList("memberSql.getMemberList");
-		
+	public ArrayList<MemberVO> getMemberList(int page) {
+		List<MemberVO> list = sqlSession.selectList("memberSql.getMemberList",page);
 		return (ArrayList<MemberVO>) list ;
 	}
+	
+	@Override
+	public int getAllListCnt() {
+		return sqlSession.selectOne("memberSql.getAllListCnt");
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////
 
 	@Override
 	public int deleteFileMember(String member_newFilename2) {
@@ -76,4 +83,6 @@ public class MemberDaoImpl implements MemberDao {
 	public void updateFacebookId(MemberVO mvo) {
 		sqlSession.update("memberSql.updateFacebookId",mvo);
 	}
+
+	
 }
