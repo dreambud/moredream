@@ -53,6 +53,16 @@
 	function facebookLogin(){
 		FB.login(FaceBookApp.statusChangeCallback, FaceBookApp.FBScopes);		
 	}
+	function siteLogin(){
+		if(document.frm.email.value=='-'){
+			alert('id를 다시 입력하세요(잘못된 접근)');
+			document.frm.email.value='';
+			document.frm.password.value='';
+			document.frm.email.focus;
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <!--/head-->
@@ -89,7 +99,7 @@
 			  	<h2></h2>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form action="${initParam.root}member.do" method="post">
+			    	<form name="frm" action="${initParam.root}member.do" method="post" onsubmit="return siteLogin();">
 			    	<input type="hidden" name="command" value="login">
                     <fieldset>
 			    	  	<div class="form-group"><label>이메일</label>

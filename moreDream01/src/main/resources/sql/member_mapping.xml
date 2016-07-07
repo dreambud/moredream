@@ -59,7 +59,7 @@
 	UPDATE member set
 	email='-', password='-', address='-', name='-', 
 	phoneNumber='-', member_newFilename='-', 
-	member_orgFilename='-', memberCode='D'
+	member_orgFilename='-', memberCode='D',facebookId='-'
 	where memberId=#{memberId}
 	</update>
 	
