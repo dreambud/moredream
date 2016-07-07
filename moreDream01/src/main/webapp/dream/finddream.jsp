@@ -304,7 +304,7 @@
 							<c:forEach items="${requestScope.recentProjects}" var="rp" end="2">
 							<div class="media" style="padding-left: 3%; padding-right: 3%">
 								<div class="pull-left">
-									<a href="#"><img src="${initParam.root}upload/dream/${rp.dream_newFilename}" style="width: 52px; height: 52px" alt=""></a>
+									<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${rp.dreamId}"><img src="${initParam.root}upload/dream/${rp.dream_newFilename}" style="width: 52px; height: 52px" alt=""></a>
 								</div>
 								<div class="media-body">
 									<h4>

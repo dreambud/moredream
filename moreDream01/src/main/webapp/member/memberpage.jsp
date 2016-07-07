@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Portfolio Three Columns | Triangle</title>
+<title>More Dream</title>
 <script type="text/javascript" src="${initParam.root}js/jquery.js"></script>
 <script type="text/javascript" src="${initParam.root}js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${initParam.root}js/jquery.isotope.min.js"></script>
@@ -74,14 +75,92 @@
 	</section>
 
 
-
-
 	<section id="shortcodes">
 		<div class="container">
 			<div id="feature-container">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-header">내 꿈 후원 현황</h2>
+						<h2 class="page-header">내 꿈 후원 현황
+						<!-- 160707 Modal 추가-->
+						<button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
+						<i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;&nbsp;현재 진행 상태</button>
+						</h2>
+						<!-- modal -->
+						<div class="modal fade" id="myModal" role="dialog">
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h3 class="modal-title">
+										<i class="fa fa-tasks" aria-hidden="true"></i>
+										후원하는 총 ${countPayment}개 꿈의 현재 진행 상태</h3>
+									</div>
+									<div class="modal-body">
+									<c:choose>
+									<c:when test="${countPayment>0}">
+												<c:forEach items="${myDreamList}" var="my"
+													varStatus="number">
+													<c:if test="${my.paymentVO.paymentState=='Y'}">
+														<div class="task-info" style="margin-bottom: 5px;">
+																<a
+																	href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${my.dreamVO.dreamId}"><font size="3px"><${my.dreamVO.titleDream}></font></a> 
+																	<span class="label label-primary"><fmt:formatNumber
+																	value="${(my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100}"
+																	type="percent" pattern="0" />%</span> 
+																
+																	<c:if test="${my.dreamVO.statVO.endDay==0}">
+																		<font color='red' size="2px">오늘 마감</font>
+																	</c:if>
+																	<c:if test="${my.dreamVO.statVO.endDay>0}">
+																	<font size="2px">${my.dreamVO.statVO.endDay}일 남음</font>
+																</c:if>
+																	<c:if test="${my.dreamVO.statVO.endDay<0}">
+																		<font color='blue' size="2px">마감</font>
+																		<c:if
+																			test="${((my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100)>=100}">
+																		&
+																		<font color='red' size="2px">성공</font>
+																		</c:if>
+																	</c:if>
+																</div>
+															
+															<div class="progress">
+																<c:if
+																	test="${((my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100)>=100}">
+																	<div class="progress-bar progress-bar-danger "
+																		role="progressbar" aria-valuenow="40"
+																		aria-valuemin="0" aria-valuemax="100"
+																		style="width: 100%"></div>
+
+																</c:if>
+
+																<c:if
+																	test="${(((my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100)>=0)&&(((my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100)<100)}">
+																	<div class="progress-bar progress-bar-primary"
+																		role="progressbar" aria-valuenow="40"
+																		aria-valuemin="0" aria-valuemax="100"
+																		style="width: ${(my.dreamVO.statVO.totalMoney/my.dreamVO.targetFund)*100}%"></div>
+
+																</c:if>
+															</div>
+													</c:if>
+												</c:forEach>
+											</c:when>
+								<c:otherwise>
+									<div align="center" style="margin-bottom: 3em">
+									<h3><b>현재 응원한 꿈이 없습니다.</b></h3>
+									</div>
+								</c:otherwise>
+							</c:choose>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end modal -->
 						<div align="center" style="text-align: center;">
 						
 						<c:choose>
@@ -125,14 +204,12 @@
 												
 											</td>
 											<td>
-											<c:choose>
-											<c:when test="${my.paymentVO.paymentState=='Y' && my.dreamVO.statVO.endDay>0}">
+											<c:if test="${my.paymentVO.paymentState=='Y' && my.dreamVO.statVO.endDay>=0}">
 												<button type="button" class="btn btn-xs btn-danger" onclick="payCancel('${my.rewardVO.rewardId}','${my.paymentVO.paymentId }');">취소</button>
-											</c:when>
-											<c:otherwise>
-												<button type="button" class="btn btn-xs btn-info">마감</button>
-											</c:otherwise>
-											</c:choose>
+											</c:if>
+											<c:if test="${my.paymentVO.paymentState=='Y' && my.dreamVO.statVO.endDay<0}">
+												<button type="button" class="btn btn-xs btn-info" style="cursor:default;">마감</button>
+											</c:if>
 											</td>
 										</tr>
 									</c:forEach>

@@ -442,6 +442,14 @@ public class DreamController extends MultiActionController {
 		
 		System.out.println(lvo);
 		request.setAttribute("lvo", lvo);
+		
+		// 160707 모달을 위한 데이터 추가
+		List<MyDreamVO> myDreamList = dreamService
+				.getAllYourSupportProject(memberId);
+		request.setAttribute("myDreamList", myDreamList);
+		int countPayment = dreamService
+				.getCountPaymentDreamByMemberId(memberId);
+		request.setAttribute("countPayment", countPayment);
 
 		// ////////////////////////////////후원
 		// 받은/////////////////////////////////////

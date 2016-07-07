@@ -27,30 +27,29 @@ public class DreamServiceImpl implements DreamService {
 		this.dreamDao = dreamDao;
 	}
 	
-	//160706
-	// 추가 ::getAllYourSupportProject
-		//memberId로 moredream 현황 보기
-		@Override
-		public List<MyDreamVO> getAllYourSupportProject(int memberId)
-				throws IOException {
-			List<MyDreamVO> rlist = dreamDao.getAllYourSupportProject(memberId);
-			long nowTime = convert(dreamDao.showNowDate());
-			for(MyDreamVO mdvo : rlist){
-			//160705 추가
-			List<Integer> totalMoneyList = dreamDao.getMoneyByDreamId(mdvo.getDreamVO().getDreamId());
-			System.out.println("totalMoneyList :: "+ totalMoneyList);
+
+	// 160707 수정
+	// 추가 ::getAllYourSupportProject//memberId로 moredream 현황 보기
+	@Override
+	public List<MyDreamVO> getAllYourSupportProject(int memberId)
+			throws IOException {
+		List<MyDreamVO> list = dreamDao.getAllYourSupportProject(memberId);
+		System.out.println("list :: " + list);
+		long nowTime = convert(dreamDao.showNowDate());
+		List<MyDreamVO> rlist = new ArrayList<MyDreamVO>();
+		for (MyDreamVO mdvo : list) {
 			StatVO statVO = new StatVO();
-			for(int totalMoney : totalMoneyList){
+			int totalMoney = this.getMoneyByDreamId(mdvo.getDreamVO()
+					.getDreamId());
 			statVO.setTotalMoney(totalMoney);
-			mdvo.getDreamVO().setStatVO(statVO);
-			}
 			long endTime = convert(mdvo.getDreamVO().getEndDate());
 			int endDay = getEndDay(nowTime, endTime);
 			statVO.setEndDay(endDay);
 			mdvo.getDreamVO().setStatVO(statVO);
-			}
-			return rlist;
+			rlist.add(mdvo);
 		}
+		return rlist;
+	}
 	
 	
 	//160705
@@ -145,10 +144,10 @@ public class DreamServiceImpl implements DreamService {
 		return myDreamList;
 	}
 
-	//160706
+	
 	// 추가 ::getAllMySupportProject
 	//memberId로 moredream 현황 보기
-	//160621 수정 //160706 다시 백업
+	//160621 수정 
 	@Override
 	public ListVO getAllMySupportProject(String pageNo, int memberId)
 			throws IOException {
@@ -166,7 +165,15 @@ public class DreamServiceImpl implements DreamService {
 		int total = dreamDao.getAllMySupportProjectCnt(memberId); 
 		
 		PagingBean pb = new PagingBean(total, pn);
-		
+		// 160707 마감표시를 위해 추가
+		long nowTime = convert(dreamDao.showNowDate());
+		for (MyDreamVO mdvo : list) {
+			StatVO statVO = new StatVO();
+			long endTime = convert(mdvo.getDreamVO().getEndDate());
+			int endDay = getEndDay(nowTime, endTime);
+			statVO.setEndDay(endDay);
+			mdvo.getDreamVO().setStatVO(statVO);
+		}
 		return new ListVO(list, pb);
 	}
 
