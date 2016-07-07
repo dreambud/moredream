@@ -67,24 +67,20 @@
 	<!-- 160707 페이징 처리를 위한 수정 -->
 	
 	<select id="getMemberList" resultMap="memberRM" parameterType="string">
-		SELECT memberId, email, password, memberCode, address, name,
+		SELECT memberId, email, password, memberCode, address, name, phoneNumber, member_newFilename, member_orgFilename
+		FROM (SELECT ceil(rownum/10) as page, memberId, email, password, memberCode, address, name,
 		phoneNumber, member_newFilename, member_orgFilename
-		FROM (SELECT
-		ceil(rownum/10) as page, memberId, email, password,
-		memberCode,
-		address, name, phoneNumber,
-		member_newFilename,member_orgFilename
-		FROM
-		member ORDER BY memberId desc)
+		FROM (SELECT memberId, email, password, memberCode, address, 
+				name, phoneNumber, member_newFilename, member_orgFilename
+				FROM member 
+				ORDER BY memberId DESC))
 		WHERE page = #{page}
 	</select>
 	
 	<!-- 160707 페이징 처리를 위한 추가 쿼리 -->
 	<select id="getAllListCnt" resultType="int">
-	SELECT count(-1) FROM member
-	
+		SELECT count(-1) FROM member
 	</select>
-	
 	
 	<!-- 파일삭제 -->
 	<update id="deleteFileMember" parameterType="string">
