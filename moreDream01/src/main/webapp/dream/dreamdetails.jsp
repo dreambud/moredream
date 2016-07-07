@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Blog Details | Triangle</title>
-
+<link rel="shortcut icon" type="image/x-icon" href="${initParam.root }favicon.ico" />
 <style type="text/css">
 	.comments{
 	display: none;
@@ -137,13 +137,14 @@ $(document).ready(function(){
 											<div class="col-sm-2 col-md-2">
 												<!-- 수정 160614 -->
 												<c:choose>
-													<c:when test="${dreamVO.memberVO.member_newFilename==' ' }">
-														<img src="${initParam.root }upload/member/member_df.jpg"
-															class="img-rounded">
+													<c:when test="${(dreamVO.memberVO.member_newFilename!='-'&&dreamVO.memberVO.member_newFilename!=''&&dreamVO.memberVO.member_newFilename!=' '&&dreamVO.memberVO.member_newFilename!='  ')}">
+														<img class="img-rounded" src="./upload/member/${mvo.member_newFilename}">
+													</c:when>
+													<c:when test="${dreamVO.memberVO.facebookId!=''&&dreamVO.memberVO.facebookId!=null}">
+														<img class="img-rounded" src="http://graph.facebook.com/${dreamVO.memberVO.facebookId}/picture?type=large">
 													</c:when>
 													<c:otherwise>
-														<img alt=""
-															src="${initParam.root }upload/member/${dreamVO.memberVO.member_newFilename }" class="img-rounded">
+														<img class="img-rounded" src="./upload/member/member_df.jpg">
 													</c:otherwise>
 												</c:choose>
 											</div>
@@ -201,16 +202,16 @@ $(document).ready(function(){
                                  <div class="tab-pane fade" id="tab1-item2">
                                     <div>
                                        <c:choose>
-                                          <c:when test="${mvo.member_newFilename==null}">
-                                             <img src="${initParam.root }upload/member/member_df.jpg"
-                                                alt="" width="50" height="50">
-                                          </c:when>
-                                          <c:otherwise>
-                                             <img alt=""
-                                                src="${initParam.root }upload/member/${mvo.member_newFilename }"
-                                                width="50" height="50">
-                                          </c:otherwise>
-                                       </c:choose>
+											<c:when test="${(mvo.member_newFilename!='-'&&mvo.member_newFilename!=''&&mvo.member_newFilename!=' '&&mvo.member_newFilename!='  ')}">
+												<img src="./upload/member/${mvo.member_newFilename}"width="50px" height="50px">
+											</c:when>
+											<c:when test="${mvo.facebookId!=''&&mvo.facebookId!=null}">
+												<img src="http://graph.facebook.com/${mvo.facebookId}/picture?type=large"width="50px" height="50px">
+											</c:when>
+											<c:otherwise>
+												<img src="./upload/member/member_df.jpg" width="50px" height="50px">
+											</c:otherwise>
+										</c:choose>
                                        &nbsp;&nbsp;&nbsp;&nbsp; 이름 : <input type="text"
                                           name="name" value="${mvo.name }" disabled="disabled">
                                     </div>
@@ -263,18 +264,16 @@ $(document).ready(function(){
                                                       <div class="post-comment">
                                                          <div class="pull-left">
                                                             <c:choose>
-                                                               <c:when
-                                                                  test="${reply.memberVO.member_newFilename==null }">
-                                                                  <img class="media-object"
-                                                                     src="${initParam.root }upload/member/member_df.jpg"
-                                                                     alt="" width="80" height="80">
-                                                               </c:when>
-                                                               <c:otherwise>
-                                                                  <img class="media-object"
-                                                                     src="${initParam.root }upload/member/${reply.memberVO.member_newFilename}"
-                                                                     alt="" width="80" height="80">
-                                                               </c:otherwise>
-                                                            </c:choose>
+																<c:when test="${(reply.memberVO.member_newFilename!='-'&&reply.memberVO.member_newFilename!=''&&reply.memberVO.member_newFilename!=' '&&reply.memberVO.member_newFilename!='  ')}">
+																	<img class="media-object" src="./upload/member/${reply.memberVO.member_newFilename}"width="80px" height="80px">
+																</c:when>
+																<c:when test="${reply.memberVO.facebookId!=''&&reply.memberVO.facebookId!=null}">
+																	<img class="media-object" src="http://graph.facebook.com/${reply.memberVO.facebookId}/picture?type=large"width="80px" height="80px">
+																</c:when>
+																<c:otherwise>
+																	<img class="media-object" src="./upload/member/member_df.jpg" width="80px" height="80px">
+																</c:otherwise>
+															</c:choose>
 
                                                          </div>
 
@@ -332,9 +331,17 @@ $(document).ready(function(){
 														<c:when test="${!memberList.isEmpty()}">
 															<c:forEach items="${memberList }" var="member">
 																<div class="pull-left">
-																	<img class="media-object"
-																		src="${initParam.root }upload/member/${member.member_newFilename }"
-																		alt="" width="80" height="80">
+																<c:choose>
+															<c:when test="${(member.member_newFilename!='-'&&member.member_newFilename!=''&&member.member_newFilename!=' '&&member.member_newFilename!='  ')}">
+																<img class="media-object" src="./upload/member/${member.member_newFilename}"width="80px" height="80px">
+															</c:when>
+															<c:when test="${member.facebookId!=''&&member.facebookId!=null}">
+																<img class="media-object" src="http://graph.facebook.com/${member.facebookId}/picture?type=large"width="80px" height="80px">
+															</c:when>
+															<c:otherwise>
+																<img class="media-object" src="./upload/member/member_df.jpg" width="80px" height="80px">
+															</c:otherwise>
+														</c:choose>
 																</div>
 																<div class="media-body">
 																	<p id="media-padding">
