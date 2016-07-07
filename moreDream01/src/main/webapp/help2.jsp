@@ -141,7 +141,7 @@
 				<li class="wow fadeInUp" data-wow-duration="900ms"
 					data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 사이트 상단의 꿈 만들기를 클릭하면 사용자의 꿈을 모아드림에 신청하실 수 있습니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="800ms"
-					data-wow-delay="200ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 먼저 굼 신청 안내를 읽으시고 동의를 해주셔야 합니다.</li>
+					data-wow-delay="200ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 먼저 꿈 신청 안내를 읽으시고 동의를 해주셔야 합니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="700ms"
 					data-wow-delay="300ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 모아드림에서 제공하는 신청 양식에 맞춰 작성하여 신청을 완료 합니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="700ms"
