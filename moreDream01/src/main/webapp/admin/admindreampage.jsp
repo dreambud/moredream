@@ -76,7 +76,9 @@
 				<div class="row">
 					<div class="action">
 						<div class="col-sm-12">
+						<hr width="25%">
 							<h1 class="title" align="center">꿈 신청 현황</h1>
+							<hr width="25%">
 						</div>
 					</div>
 				</div>
