@@ -124,10 +124,16 @@ jQuery(document).ready(function( $ ) {
 	<c:when test="${flag==1}">
 		<body>
 			<jsp:include page="./common/header.jsp" />
-			
+	
 			
 			   <!-- Full Page Image Background Carousel Header -->
-    <div id="myCarousel" class="carousel slide col-md-12">
+    
+    
+    <div class="visible-xs" style="padding-top: 40px; text-align: center;">
+    <h2 style="color:#60C5B8; font-weight: 900;">MOREDREAM</h2>
+    </div>
+    
+    <div id="myCarousel" class="carousel slide hidden-xs">
         <!-- Indicators -->
         
         <ol class="carousel-indicators">
