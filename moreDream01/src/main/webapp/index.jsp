@@ -127,7 +127,7 @@ jQuery(document).ready(function( $ ) {
 			
 			
 			   <!-- Full Page Image Background Carousel Header -->
-    <div id="myCarousel" class="carousel slide">
+    <div id="myCarousel" class="carousel slide col-md-12">
         <!-- Indicators -->
         
         <ol class="carousel-indicators">
