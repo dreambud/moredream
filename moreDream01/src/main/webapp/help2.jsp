@@ -72,7 +72,7 @@
 
 @media screen and (max-width: 810px) {
 	#index1, #index2, #index3, #index4, #index5 {
-		margin-left: 150px;
+
 	}
 }
 </style>
@@ -93,8 +93,8 @@
 	</div>
 	
 	<div class="jumbotron" id="index1">
-		<font style="color: #fff;" size="18"><b>꿈 둘러보기</b></font><p><p>
-		<div align="left" style="padding-left: 150px">
+		<font style="color: #fff;" size="14"><b>꿈 둘러보기</b></font><p><p>
+		<div align="left" >
 		<ul class="elements">
 			<li class="wow fadeInUp" data-wow-duration="900ms"
 				data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i>  사이트 상단의 꿈 둘러보기를 클릭하면 모아드림에 게시된 꿈 목록을 보실 수 있습니다.</li>
@@ -107,8 +107,8 @@
 	</div>
 	
 	<div class="jumbotron" id="index2">
-		<font style="color: #fff;" size="18"><b>꿈 상세보기</b></font><p><p>
-		<div align="left" style="padding-left: 150px">
+		<font style="color: #fff;" size="14"><b>꿈 상세보기</b></font><p><p>
+		<div align="left" >
 		<ul class="elements">
 			<li class="wow fadeInUp" data-wow-duration="900ms"
 				data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 꿈에 대한 이미지와 부가 설명 그리고 드리머에 대한 간략한 정보를 보여줍니다.</li>
@@ -121,8 +121,8 @@
 	</div>
 
 	<div class="jumbotron" id="index3">
-			<font style="color: #fff;" size="18"><b>꿈 응원하기</b></font><p><p>
-			<div align="left" style="padding-left: 150px">
+			<font style="color: #fff;" size="14"><b>꿈 응원하기</b></font><p><p>
+			<div align="left" >
 				<ul class="elements">
 					<li class="wow fadeInUp" data-wow-duration="900ms"
 						data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 꿈 상세 페이지에서 오른쪽 배너의 응원하기 버튼을 통해 해당 꿈을 후원하실 수 있습니다.</li>
@@ -135,13 +135,13 @@
 	</div>
 
 	<div class="jumbotron" id="index4">
-		<font style="color: #fff;" size="18"><b>꿈 만들기</b></font><p><p>
-		<div align="left" style="padding-left: 150px">
+		<font style="color: #fff;" size="14"><b>꿈 만들기</b></font><p><p>
+		<div align="left" >
 			<ul class="elements">
 				<li class="wow fadeInUp" data-wow-duration="900ms"
 					data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 사이트 상단의 꿈 만들기를 클릭하면 사용자의 꿈을 모아드림에 신청하실 수 있습니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="800ms"
-					data-wow-delay="200ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 먼저 굼 신청 안내를 읽으시고 동의를 해주셔야 합니다.</li>
+					data-wow-delay="200ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 먼저 꿈 신청 안내를 읽으시고 동의를 해주셔야 합니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="700ms"
 					data-wow-delay="300ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 모아드림에서 제공하는 신청 양식에 맞춰 작성하여 신청을 완료 합니다.</li>
 				<li class="wow fadeInUp" data-wow-duration="700ms"
@@ -152,8 +152,8 @@
 	</div>
 
 	<div class="jumbotron" id="index5">
-		<font style="color: #fff;" size="18"><b>꿈 업데이트</b></font><p><p>
-		<div align="left" style="padding-left: 150px">
+		<font style="color: #fff;" size="14"><b>꿈 업데이트</b></font><p><p>
+		<div align="left" >
 			<ul class="elements">
 				<li class="wow fadeInUp" data-wow-duration="900ms"
 					data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 꿈을 개설한 사용자(드리머)는 해당 꿈의 진행 상황을 계속해서 업데이트 하실 수 있습니다.</li>
@@ -164,8 +164,8 @@
 	</div>
 
 	<div class="jumbotron" id="index6">
-		<font style="color: #fff;" size="18"><b>계정 설정</b></font><p><p>
-		<div align="left" style="padding-left: 150px">
+		<font style="color: #fff;" size="14"><b>계정 설정</b></font><p><p>
+		<div align="left" >
 			<ul class="elements">
 				<li class="wow fadeInUp" data-wow-duration="900ms"
 					data-wow-delay="100ms" style="font-size: 20px"><i class="fa fa-angle-right"></i> 모아드림의 핵심 기능인 꿈 만들기와 꿈 응원하기는 사이트에 회원가입을 하신후 사용가능 합니다.</li>
