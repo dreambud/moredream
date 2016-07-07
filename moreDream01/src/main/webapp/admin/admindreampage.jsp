@@ -104,7 +104,7 @@
 										<th style="text-align:center;">비    고</th>
 									</tr>
 								<tbody>
-									<c:forEach items="${adminDreamList }" var="dream">
+									<c:forEach items="${lvo.list}" var="dream">
 										<tr>
 											<td class="tdAlign">${dream.dreamId}</td>
 											<td>${dream.memberVO.email}</td>
@@ -145,6 +145,35 @@
 
 								</tbody>
 							</table>
+							
+							
+							<div align="center">
+						<c:set var="pb" value="${requestScope.lvo.pb}"></c:set>
+
+							<c:if test="${pb.previousPageGroup}">
+								<a href="${initParam.root}dream.do?command=getAllListDreamForAdmin&&pageNo=${pb.startPageOfPageGroup-1}">
+								 <img alt="" src="${initParam.root }images/member/left_arrow_btn.gif">&nbsp;&nbsp;</a>	
+							</c:if>
+							
+							<c:forEach var="i" begin="${pb.startPageOfPageGroup}" end="${pb.endPageOfPageGroup}">
+	
+								<c:choose>
+									<c:when test="${pb.nowPage!=i}">
+										<a href="${initParam.root}dream.do?command=getAllListDreamForAdmin&&pageNo=${i}">${i}</a> 
+									</c:when>
+									<c:otherwise>
+										<span class="badge" style='color:#000'>${i}</span>
+									</c:otherwise>
+								</c:choose>
+								&nbsp;
+							</c:forEach>	
+							
+							<c:if test="${requestScope.lvo.pb.nextPageGroup}">
+								<a href="${initParam.root}dream.do?command=getAllListDreamForAdmin&&pageNo=${requestScope.lvo.pb.endPageOfPageGroup+1}">
+								 <img alt="" src="${initParam.root}images/member/right_arrow_btn.gif"></a>
+							</c:if>	
+							</div>
+							<br>
 						</div>
 
 					</div>

@@ -257,8 +257,8 @@
 
 
 	<!-- Admin 신청된 꿈 목록 보기 -->
-	<select id="getAllListDreamForAdmin" resultMap="AdminDreamListRM">
-		select
+	<select id="getAllListDreamForAdmin" resultMap="AdminDreamListRM" parameterType="int">
+		<!-- select
 		m.memberid, m.email, d.dreamid,
 		d.DREAM_NEWFILENAME,CONFIRMREQUESTDREAM,TITLEDREAM,TO_char(REQUESTDATE,
 		'yyyy-MM-dd') AS requestDate
@@ -266,7 +266,15 @@
 		by requestdate desc) d
 		where m.memberid=d.memberid
 		order by
-		confirmrequestdream asc
+		confirmrequestdream asc -->
+		
+		SELECT memberId, dreamId, dream_newFilename, confirmRequestDream, titleDream, requestDate
+FROM (SELECT memberId, dreamId, dream_newFilename, confirmRequestDream, titleDream, requestDate, ceil(rownum/10) AS page
+	FROM (select m.memberid, m.email, d.dreamid, d.DREAM_NEWFILENAME,CONFIRMREQUESTDREAM,TITLEDREAM,TO_char(REQUESTDATE, 'yyyy-MM-dd') AS requestDate
+		from member m, (select * from dream order by requestdate desc) d 
+		where m.memberid=d.memberid 
+		order by confirmrequestdream asc))
+WHERE page=#{value}
 	</select>
 
 	<!-- 한천 : 필터 Query 추가 -->

@@ -192,11 +192,10 @@ public class DreamController extends MultiActionController {
 	public ModelAndView getAllListDreamForAdmin(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		List<DreamVO> adminDreamList = dreamService.getAllListDreamForAdmin();
+		String pageNo = request.getParameter("pageNo");
+		ListVO lvo = dreamService.getAllListDreamForAdmin(pageNo);
 
-		System.out.println(adminDreamList);
-		return new ModelAndView("./admin/admindreampage", "adminDreamList",
-                adminDreamList);
+		return new ModelAndView("./admin/admindreampage", "lvo", lvo);
 	}
 
 	// 카테고리 검색

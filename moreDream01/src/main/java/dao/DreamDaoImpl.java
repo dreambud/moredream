@@ -162,8 +162,8 @@ public class DreamDaoImpl implements DreamDao {
 
 	/////추가
 	@Override
-	public List<DreamVO> getAllListDreamForAdmin() throws IOException {
-		List<DreamVO> list = sqlSession.selectList("dreamSql.getAllListDreamForAdmin");
+	public List<DreamVO> getAllListDreamForAdmin(int pageNo) throws IOException {
+		List<DreamVO> list = sqlSession.selectList("dreamSql.getAllListDreamForAdmin", pageNo);
 		return list;
 	}
 

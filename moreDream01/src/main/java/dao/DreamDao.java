@@ -78,7 +78,7 @@ public interface DreamDao {
 
 
 	////추가
-	public List<DreamVO> getAllListDreamForAdmin()throws IOException;//Admin 신청된 꿈 목록 가져오기
+	public List<DreamVO> getAllListDreamForAdmin(int pageNo)throws IOException;//Admin 신청된 꿈 목록 가져오기
 
 	public int requestDream(DreamVO pvo) throws IOException;//꿈신청
 	public int deleteDream(int dreamId) throws IOException; // 꿈삭제

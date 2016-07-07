@@ -224,9 +224,25 @@ public class DreamServiceImpl implements DreamService {
 
 	////추가
 	@Override
-	public List<DreamVO> getAllListDreamForAdmin() throws IOException {
-		List<DreamVO> list = dreamDao.getAllListDreamForAdmin();
-		return list;
+	public ListVO getAllListDreamForAdmin(String pageNo) throws IOException {
+		System.out.println("GetAllListDreamForAdmin GO!!");
+		
+		int pn = 1;
+		if(pageNo != null){
+			pn = Integer.parseInt(pageNo);
+		}
+		List list = dreamDao.getAllListDreamForAdmin(pn);
+		int totalPage = dreamDao.getAllDreamCnt();
+		
+		PagingBean pb = new PagingBean(totalPage, pn);
+		
+		return new ListVO(list,pb);
+		
+		/*
+		ArrayList list = memberDao.getMemberList(pageNo);
+		int totalPage = memberDao.getAllListCnt();
+		PagingBean pb = new PagingBean(totalPage, pageNo);
+		return  new ListVO(list,pb);*/
 	}
 
 

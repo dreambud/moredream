@@ -72,7 +72,7 @@ public interface DreamService {
 	public List<ReplyVO> readComment(int dreamId) throws IOException;
 
 	////추가
-	public List<DreamVO> getAllListDreamForAdmin()throws IOException;//관리자 신청된 꿈 목록
+	public ListVO getAllListDreamForAdmin(String pageNo)throws IOException;//관리자 신청된 꿈 목록
 
 
 	public void requestDream(DreamVO vo) throws IOException;//꿈신청
