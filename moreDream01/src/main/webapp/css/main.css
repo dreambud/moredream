@@ -32,9 +32,9 @@
 /* 20160624 메인 캐러셀  */
 
 
-/* body{
-	margin-top: 52px; 
-} */
+ body{
+	margin-top: -50px; 
+} 
 
 .jumbotron{
 	padding-top:-50px;
