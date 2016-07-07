@@ -293,7 +293,7 @@
 	<!-- 최다 후원자 순 :: getAllListDreamOrderByManyPeople -->
 	<select id="getAllListDreamOrderByManyPeople" resultMap="dreamRM">
 		select
-		d.dreamId, m.memberId,m.name, category,
+		d.dreamId, m.memberId,m.name,m.member_newFilename,m.facebookid, category,
 		dream_newFilename, confirmRequestDream,
 		titleDream, detailDream,
 		requestDate, targetFund,

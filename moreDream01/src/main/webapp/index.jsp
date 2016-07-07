@@ -65,8 +65,9 @@
 		hoursRound=hoursRound+'';
 		minutesRound=minutesRound+'';
 		secondsRound=secondsRound+'';
-		if(daysRound=='0'){
-			daysRound=='Day';
+		daysRound=daysRound+1;
+		if(daysRound==0){
+			daysRound='Day';
 		}
 		if(hoursRound.length==1){
 			hoursRound='0'+hoursRound;
@@ -84,16 +85,6 @@
 	    	hoursRound + ":" + 
 	    	minutesRound + ":" + 
 	    	secondsRound; 
-	    /* document.getElementById("counter"+i).innerHTML = 
-	    	"<font color='red'>"+daysRound+"</font>" + ":" + 
-	    	"<font color='red'>" + hoursRound + "</font>" + ":" + 
-	    	"<font color='red'>" + minutesRound + "</font>" + ":" + 
-	    	"<font color='red'>" + secondsRound + "</font>"; */
-/* 	    document.getElementById("counter"+i).innerHTML = 
-	    	"<font color='red'>"+daysRound+"</font>" + dy + 
-	    	"<font color='red'>" + hoursRound + "</font>" + hr + 
-	    	"<font color='red'>" + minutesRound + "</font>" + min + 
-	    	"<font color='red'>" + secondsRound + "</font>" + sec; */
 	}
 </script>
 
@@ -131,7 +122,7 @@ jQuery(document).ready(function( $ ) {
 </head>
 <!--/head-->
 <c:choose>
-	<c:when test="${dreamList!=null}">
+	<c:when test="${flag==1}">
 		<body>
 			<jsp:include page="./common/header.jsp" />
 			
@@ -149,7 +140,7 @@ jQuery(document).ready(function( $ ) {
 
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
-           <c:forEach items="${dreamList}" var="dl" begin="6" end="6">
+           <c:forEach items="${recentProjects}" var="dl" begin="6" end="6">
             <div class="item active">
                 <!-- Set the first background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('http://wallpapers-and-backgrounds.net/wp-content/uploads/2015/11/mint-green-wallpaper_1.jpg');">
@@ -185,7 +176,7 @@ jQuery(document).ready(function( $ ) {
             </div>
             </c:forEach>
             
-            <c:forEach items="${dreamList}" var="dl" begin="7" end="9">
+            <c:forEach items="${recentProjects}" var="dl" begin="7" end="9">
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('http://wallpapers-and-backgrounds.net/wp-content/uploads/2015/11/mint-green-wallpaper_1.jpg');"></div>
@@ -300,7 +291,7 @@ jQuery(document).ready(function( $ ) {
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" >
 
- 					<c:forEach items="${dreamList}" var="dl" end="5" varStatus="i">
+ 					<c:forEach items="${popularProjects}" var="dl" end="5" varStatus="i">
  					<c:if test="${i.count==1}">
 						<div class="item active">
 							<div class="row">
@@ -333,14 +324,11 @@ jQuery(document).ready(function( $ ) {
 										<div class="info">	
 											<div class="row">
 												<div class="rating col-md-2 col-sm-2">
-													<!-- <img class="img-circle"
-														src="https://cdn.mirror.wiki/https://attachment.namu.wiki/c0073194_4e005606080d4.jpg"
-														width="50px" height="50px"> -->
 														<c:choose>
-															<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
+															<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!=''&&dl.memberVO.member_newFilename!=' '&&dl.memberVO.member_newFilename!='  ')}">
 																<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
 															</c:when>
-															<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+															<c:when test="${dl.memberVO.facebookId!=''&&dl.memberVO.facebookId!=null}">
 																<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
 															</c:when>
 															<c:otherwise>
@@ -400,13 +388,6 @@ jQuery(document).ready(function( $ ) {
 								
 								</c:if>
 						</c:forEach>
-
-						<%-- <div class="item">
-							<div class="row">
-								<c:forEach items="${dreamList}" var="dl" begin="3" end="5" varStatus="i" >
-								</c:forEach>
-							</div>
-						</div> --%>
 
 					<a class="left carousel-control" href="#carousel-example"
 						data-slide="prev"> <span

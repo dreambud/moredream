@@ -376,19 +376,29 @@ public class DreamController extends MultiActionController {
 	public ModelAndView recentDream(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		String num = "1";
-		List<DreamVO> dreamList = new ArrayList<DreamVO>();
-		List<DreamVO> dList = dreamService.getListDream(num);
-		long startDate =0;
-		for(int i =0 ; i<dList.size(); i++){
-			startDate = dreamService.convert(dList.get(i).getStartDate());
-			System.out.println("requestDate ::"+startDate+"||today :: "+dreamService.showNowDate());
-			if(startDate<=dreamService.showNowDate()){
-				dreamList.add(dList.get(i));
+		List<DreamVO> recentProjectsTemp = dreamService.getListDream("1");
+		List<DreamVO> recentProjects = new ArrayList<DreamVO>();
+		List<DreamVO> popularProjectsTemp = dreamService.getListDream("3");
+		List<DreamVO> popularProjects = new ArrayList<DreamVO>();
+		long startDate = 0;
+		long endDate = 0;
+		long nowDate = dreamService.showNowDate();
+		for(int i =0 ; i<recentProjectsTemp.size(); i++){
+			startDate = dreamService.convert(recentProjectsTemp.get(i).getStartDate());
+			endDate = dreamService.convert(recentProjectsTemp.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
+				recentProjects.add(recentProjectsTemp.get(i));
 			}
 		}
-		System.out.println(dreamList);
-		
+		for(int i =0 ; i<popularProjectsTemp.size(); i++){
+			startDate = dreamService.convert(popularProjectsTemp.get(i).getStartDate());
+			endDate = dreamService.convert(popularProjectsTemp.get(i).getEndDate());
+			if(startDate<=nowDate&&nowDate<=endDate){
+				popularProjects.add(popularProjectsTemp.get(i));
+			}
+		}
+		request.setAttribute("recentProjects", recentProjects);
+		request.setAttribute("popularProjects", popularProjects);
 		
 		//////////////////////////160706 help3추가 ///////////////////////////
 		int dreamCnt=dreamService.getAllDreamCnt();
@@ -408,7 +418,7 @@ public class DreamController extends MultiActionController {
 		request.setAttribute("successDreamCnt", successDreamCnt);
 		
 		
-		return new ModelAndView("index", "dreamList", dreamList);
+		return new ModelAndView("index","flag",1);
 	}
 	// /////////////////////// 160706 추가 160617 후원한 && 받은 내역
 	// //////////////////////////////////////////
