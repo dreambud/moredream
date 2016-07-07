@@ -29,6 +29,10 @@
          #moreDreamFooterLogo {
       	margin-top: 30px;
       }
+      
+      body{
+      margin-top: 50px;
+      }
 </style>
 </head>
 <body style="background-color: #292C2F">
