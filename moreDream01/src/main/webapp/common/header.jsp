@@ -240,7 +240,6 @@
 							<ul class="[ dropdown-menu ]" role="menu">
 								<li><a href="${initParam.root }help1.jsp" class="[ animate ]">모아드림 이야기</a></li>
 								<li><a href="${initParam.root }help2.jsp" class="[ animate ]">모아드림 회원 서비스</a></li>
-								<li><a href="${initParam.root }dream.do?command=help3" class="[ animate ]">모아드림 한해 결산</a></li>
 							</ul>
 					</li>
 				<c:choose>

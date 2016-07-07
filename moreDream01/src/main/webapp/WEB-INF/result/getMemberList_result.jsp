@@ -76,7 +76,7 @@
 								<thead>
 									<tr>
 										<th>MemberID</th>
-										<th>신청자</th>
+										<th>이메일</th>
 										<th>비밀번호</th>
 										<th>승인</th>
 									</tr>
