@@ -37,7 +37,7 @@
 
 			<div class="footer-left">
 
-				<h1>MORE<span>DREAM<i class="fa fa-leaf" aria-hidden="true"></i></span></h1>
+				<h1>모아<span>드림 <i class="fa fa-leaf" aria-hidden="true"></i></span></h1>
 
 				<p class="footer-links">
 					<a href="${initParam.root }index.jsp">Home</a>
@@ -53,7 +53,7 @@
 					<a href="${initParam.root}contact.jsp">Contact</a>
 				</p>
 
-				<p class="footer-company-name">More Dream &copy; 2016</p>
+				<p class="footer-company-name">MoreDream &copy; 2016</p>
 			</div>
 
 			<div class="footer-center">
