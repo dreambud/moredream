@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
 
-<title>Insert title here</title>
+<title>More Dream</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/animate.min.css" rel="stylesheet">

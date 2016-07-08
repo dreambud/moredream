@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Blog Details | Triangle</title>
+<title>More Dream</title>
 <link rel="shortcut icon" type="image/x-icon" href="${initParam.root }favicon.ico" />
 <style type="text/css">
 	.comments{

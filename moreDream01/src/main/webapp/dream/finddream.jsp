@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Portfolio Three Columns | Triangle</title>
+<title>More Dream</title>
 <link href="${initParam.root}css/bootstrap.min.css" rel="stylesheet">
 <link href="${initParam.root}css/font-awesome.min.css" rel="stylesheet">
 <link href="${initParam.root}css/lightbox.css" rel="stylesheet">

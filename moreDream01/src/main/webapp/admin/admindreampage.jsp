@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Portfolio Three Columns | Triangle</title>
+<title>More Dream</title>
 <script type="text/javascript" src="${initParam.root }js/jquery.js"></script>
 <script type="text/javascript" src="${initParam.root }js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${initParam.root }js/jquery.isotope.min.js"></script>

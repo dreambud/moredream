@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>More Dream</title>
 </head>
 <body>
 <b>관리자 페이지 입니다.</b><p>

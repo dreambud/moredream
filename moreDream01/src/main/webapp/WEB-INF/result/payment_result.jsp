@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>More Dream</title>
 </head>
 <body>
 <script>
 	alert("결제가 완료되었습니다.");
 	if('${bonus}'=='1'){
-		alert("축하드립니다~! 이벤트로 결제하신 금액의 두 배 금액으로 후원 되었습니다.");
+		alert("축하드립니다~!\n이벤트로 결제하신 금액의 두 배 금액으로 후원 되었습니다.");
 	}
 		location.href="${initParam.root}dream.do?command=myMoreDream&&memberId=${sessionScope.mvo.memberId}";
 </script> 

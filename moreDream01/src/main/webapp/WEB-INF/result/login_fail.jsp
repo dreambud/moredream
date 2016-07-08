@@ -8,7 +8,7 @@
 </head>
 <body>
 	<script type="text/javascript">
-			alert("로그인 실패!!");
+			alert("다시 로그인 해주세요.");
 			location.href="${initParam.root}member/login.jsp?url=${requestScope.url}";
 	</script>
 </body>

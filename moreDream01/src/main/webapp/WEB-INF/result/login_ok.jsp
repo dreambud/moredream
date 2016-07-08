@@ -11,13 +11,13 @@
 <c:choose>
 	<c:when test="${sessionScope.mvo==null }">
 		<script type="text/javascript">
-			alert("로그인 부터하세여...");
+			alert("로그인부터 해주세요.");
 			location.href="${initParam.root }login.jsp";
 		</script>
 	</c:when>
 	<c:otherwise>
 		<script type="text/javascript">
-			alert("${sessionScope.mvo.email} 님 로그인 성공하셨어여!!");
+			alert("${sessionScope.mvo.email} 님 환영합니다.");
 			location.href="${requestScope.url}";
 		</script>
 	</c:otherwise>
