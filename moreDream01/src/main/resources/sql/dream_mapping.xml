@@ -199,11 +199,6 @@
 		where dreamId = #{value}
 	</select>
 
-	<!-- 보상 재고 업데이트 -->
-	<update id="updateStock" parameterType="int">
-
-	</update>
-
 	<!--내꿈 신청 현황 보기 :: requestStateDream -->
 	<select id="requestStateDream" parameterType="int" resultMap="dreamRM">
 		<include refid="select_dreams"></include>
@@ -546,7 +541,9 @@ WHERE page=#{value}
             ORDER BY paymentState DESC, paymentDate DESC
       
    </select>
-	
+	<update id="disableDreamByMemberId" parameterType="int">
+		UPDATE dream SET confirmRequestDream='N' WHERE memberid=${value}
+	</update>
 </mapper>	
 
  

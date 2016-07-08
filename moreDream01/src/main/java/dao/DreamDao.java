@@ -121,4 +121,6 @@ public interface DreamDao {
 	public List<DreamVO> getAllListDreamOrderByEndDate() throws IOException;//필터 마감 일자순
 
 	public String showNowDate() throws IOException;//현재시간 보기
+	
+	public void disableDreamByMemberId(int memberId) throws IOException;//맴버 탈퇴시 dream 비활성화
 }

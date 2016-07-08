@@ -123,4 +123,7 @@ public interface DreamService {
 	//160624 추가 
 	public long convert(String stringDate);
 	public long showNowDate() throws IOException;//현재시간 보기
+	
+	//170708 추가(member탈퇴시 꿈 비활성화)
+	public void disableDreamByMemberId(int memberId)throws IOException;
 }

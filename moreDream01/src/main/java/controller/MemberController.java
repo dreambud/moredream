@@ -138,19 +138,18 @@ public class MemberController extends MultiActionController {
 		throws SQLException{
 		HttpSession session = request.getSession();
 		MemberVO rmvo =(MemberVO) session.getAttribute("mvo");
-		memberService.deleteMember(rmvo.getMemberId());
+		int memberId = rmvo.getMemberId();
+		memberService.deleteMember(memberId);
 		session.invalidate();
-		return new ModelAndView("WEB-INF/result/deleteMember_result");//바인딩은 이미 위에서 했다.
+		return new ModelAndView("redirect:/dream.do?command=disableDreamByMemberId&&memberId="+memberId);//바인딩은 이미 위에서 했다.
 		
 	}	
 	
 	public ModelAndView deleteMemberbyAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException{
-			
-		
-			memberService.deleteMember(Integer.parseInt(request.getParameter("memberId")) );
-			
-			return new ModelAndView("WEB-INF/result/deleteMember_result");//바인딩은 이미 위에서 했다.
+			int memberId = Integer.parseInt(request.getParameter("memberId"));
+			memberService.deleteMember(memberId);
+			return new ModelAndView("redirect:/dream.do?command=disableDreamByMemberId&&memberId="+memberId);//바인딩은 이미 위에서 했다.
 			
 		}	
 	

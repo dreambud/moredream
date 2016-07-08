@@ -337,6 +337,12 @@ public class DreamDaoImpl implements DreamDao {
 		int count = sqlSession.selectOne("dreamSql.getCountPaymentByDreamId",dreamId);
 		return count;
 	}
+	
+	//추가 160708
+	@Override
+	public void disableDreamByMemberId(int memberId) throws IOException {
+		sqlSession.update("dreamSql.disableDreamByMemberId",memberId);
+	}
 
 
 }

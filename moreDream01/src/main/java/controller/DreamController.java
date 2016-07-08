@@ -584,29 +584,35 @@ public class DreamController extends MultiActionController {
 	public ModelAndView yourMoreDream(HttpServletRequest request,
 	HttpServletResponse response) throws Exception {
 	///////////////////후원한 부분/////////////////////////////////////
-	int memberId = Integer.parseInt(request.getParameter("memberId"));
-	System.out.println("yourMoreDream::"+memberId);
-	String member_newFilename = request.getParameter("member_newFilename");
-	String name = request.getParameter("name");
-	MemberVO mvo = new MemberVO();
-	mvo.setName(name);
-	mvo.setMember_newFilename(member_newFilename);
-	List<MyDreamVO> myDreamList = dreamService
-	.getAllYourSupportProject(memberId);
-	System.out.println(myDreamList);
-	request.setAttribute("myDreamList", myDreamList);
-	// ////////////////////////////////후원 받은(진행하는)/////////////////////////////////////
-	List<DreamVO> dreamList = dreamService
-	.getAllMyDreamByMemberId(memberId);
-	System.out.println(dreamList);
-	request.setAttribute("dreamList", dreamList);
-
-	int countPayment = dreamService.getCountPaymentDreamByMemberId(memberId);
-	request.setAttribute("countPayment", countPayment);
-	int countCreateDream = dreamService.getCountCreateDreamByMemberId(memberId);
-	request.setAttribute("countCreateDream", countCreateDream);
-
-	return new ModelAndView("./dream/findmemberdream","rmvo",mvo);
+		int memberId = Integer.parseInt(request.getParameter("memberId"));
+		System.out.println("yourMoreDream::"+memberId);
+		String member_newFilename = request.getParameter("member_newFilename");
+		String name = request.getParameter("name");
+		MemberVO mvo = new MemberVO();
+		mvo.setName(name);
+		mvo.setMember_newFilename(member_newFilename);
+		List<MyDreamVO> myDreamList = dreamService
+		.getAllYourSupportProject(memberId);
+		System.out.println(myDreamList);
+		request.setAttribute("myDreamList", myDreamList);
+		// ////////////////////////////////후원 받은(진행하는)/////////////////////////////////////
+		List<DreamVO> dreamList = dreamService
+		.getAllMyDreamByMemberId(memberId);
+		System.out.println(dreamList);
+		request.setAttribute("dreamList", dreamList);
+	
+		int countPayment = dreamService.getCountPaymentDreamByMemberId(memberId);
+		request.setAttribute("countPayment", countPayment);
+		int countCreateDream = dreamService.getCountCreateDreamByMemberId(memberId);
+		request.setAttribute("countCreateDream", countCreateDream);
+	
+		return new ModelAndView("./dream/findmemberdream","rmvo",mvo);
 	}
-
+	public ModelAndView disableDreamByMemberId(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		int memberId = Integer.parseInt(request.getParameter("memberId"));
+		dreamService.disableDreamByMemberId(memberId);
+		return new ModelAndView("WEB-INF/result/deleteMember_result");//바인딩은 이미 위에서 했다.
+	}
+	
 }

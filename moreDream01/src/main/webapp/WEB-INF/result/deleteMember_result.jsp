@@ -27,8 +27,15 @@
 </head>
 <body>
 <jsp:include page="../../common/header.jsp" />
-<h3 style="margin-top: 2em"><b>회원탈퇴되었습니다.</b></h3>
-<a href="${initParam.root }index.jsp">홈으로 가기</a>
+<script>
+	if('${sessionScope.mvo==null}'=='true'){
+		alert('회원 탈퇴가 완료되었습니다.');
+	}else{
+		alert('회원 탈퇴가 정상적으로 이뤄지지 않았습니다. 다시시도 해주세요.');
+	}
+	location.href="${initParam.root }index.jsp";
+</script>
+
 <jsp:include page="../../common/footer.jsp" />
 </body>
 </html>

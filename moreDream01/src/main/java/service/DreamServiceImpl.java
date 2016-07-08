@@ -497,4 +497,10 @@ public class DreamServiceImpl implements DreamService {
 	public long showNowDate() throws IOException {
 		return convert(dreamDao.showNowDate());
 	}
+
+
+	@Override
+	public void disableDreamByMemberId(int memberId) throws IOException {
+		dreamDao.disableDreamByMemberId(memberId);
+	}
 }
