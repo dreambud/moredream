@@ -155,7 +155,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
+											data-dismiss="modal">닫기</button>
 									</div>
 								</div>
 							</div>
@@ -165,11 +165,12 @@
 						
 						<c:choose>
 							<c:when test="${lvo!=null }">
+								<div class="table-responsive">
 								<table class="table table-striped table-bordered table-hover">
 
 								<caption></caption>
 
-								<thead>
+								<thead >
 									<tr>
 			                            <th style="text-align: center; width: 20%;" colspan='2'>꿈 제목</th>
 			                            <th style="text-align: center; width: 9%;">마 감 일</th>
@@ -216,7 +217,7 @@
 
 								</tbody>
 							</table>
-							
+							</div>
 							<c:set var="pb" value="${requestScope.lvo.pb}"></c:set>
 
 							<c:if test="${pb.previousPageGroup}">
