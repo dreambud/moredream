@@ -138,7 +138,7 @@ $(document).ready(function(){
 												<!-- 수정 160614 -->
 												<c:choose>
 													<c:when test="${(dreamVO.memberVO.member_newFilename!='-'&&dreamVO.memberVO.member_newFilename!=''&&dreamVO.memberVO.member_newFilename!=' '&&dreamVO.memberVO.member_newFilename!='  ')}">
-														<img class="img-rounded" src="./upload/member/${mvo.member_newFilename}">
+														<img class="img-rounded" src="./upload/member/${dreamVO.memberVO.member_newFilename}">
 													</c:when>
 													<c:when test="${dreamVO.memberVO.facebookId!=''&&dreamVO.memberVO.facebookId!=null}">
 														<img class="img-rounded" src="http://graph.facebook.com/${dreamVO.memberVO.facebookId}/picture?type=large">
