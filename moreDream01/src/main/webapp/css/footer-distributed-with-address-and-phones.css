@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
 .footer-distributed{
 	background-color: #292c2f;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -12,7 +14,9 @@
 }
 
 .footer-distributed h1{
+	font-size:50px;
 	color: #60C5B8 ;
+	font-family: 'hanna', sans-serif;
 	
 }
 
