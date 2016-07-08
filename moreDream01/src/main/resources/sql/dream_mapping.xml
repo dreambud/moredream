@@ -503,7 +503,7 @@ WHERE page=#{value}
 		SELECT count(-1) FROM dream
 	</select>
 	<select id="getAllMemberCnt" resultType="int">
-		SELECT count(-1) FROM member
+		SELECT count(-1) FROM member WHERE membercode='U'
 	</select>
 	<select id="getTotalMoney" resultType="int">
 		SELECT sum(money) FROM payment
