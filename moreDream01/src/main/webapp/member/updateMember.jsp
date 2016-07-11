@@ -216,7 +216,7 @@
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">아이디</label>
 						<div class="col-sm-6">
-							<input type="text" name="email" class="form-control"
+							<input type="text"  name="email" class="form-control"
 								readonly="readonly" value="${sessionScope.mvo.email}">
 						</div>
 						<div class="col-sm-4"></div>
@@ -225,7 +225,7 @@
 					<div class="form-group">
 						<label for="inputPassword" class="col-sm-2 control-label">비밀번호</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="password"
+							<input type="password" maxlength="20" class="form-control" id="password"
 								name="password" placeholder="변경할 비밀번호를 입력해주세요"
 								value="${sessionScope.mvo.password}">
 						</div>
@@ -235,7 +235,7 @@
 						<label for="reInputPassword" class="col-sm-2 control-label">비밀번호
 							확인</label>
 						<div class="col-sm-6">
-							<input type="password" class="form-control" id="rePassword" onkeyup="passwordChk();"
+							<input type="password" maxlength="20" class="form-control" id="rePassword" onkeyup="passwordChk();"
 								name="rePassword" placeholder="변경할 비밀번호를  한번 더 입력해주세요" value="">
 							<span id="passwordEqul"></span>
 						</div>
@@ -244,7 +244,7 @@
 					<div class="form-group">
 						<label for="inputPasswordCheck" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name=address
+							<input type="text" maxlength="100" class="form-control" name=address
 								placeholder="주소를 입력해주세요" value="${sessionScope.mvo.address}">
 						</div>
 					</div>
@@ -252,7 +252,7 @@
 					<div class="form-group">
 						<label for="inputPasswordCheck" class="col-sm-2 control-label">이름</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="name"
+							<input type="text" maxlength="50" class="form-control" name="name"
 								placeholder="이름을 입력해주세요" value="${sessionScope.mvo.name}">
 						</div>
 					</div>
@@ -260,7 +260,7 @@
 					<div class="form-group">
 						<label for="inputPhoneNumber" class="col-sm-2 control-label">전화번호</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="phoneNumber"
+							<input type="text" maxlength="13" class="form-control" name="phoneNumber"
 								placeholder="전화번호를 입력해주세요"
 								value="${sessionScope.mvo.phoneNumber}">
 						</div>

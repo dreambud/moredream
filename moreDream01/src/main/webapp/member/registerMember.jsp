@@ -229,21 +229,21 @@
 			    	<input type="hidden" name="facebookId" value="${requestScope.facebookId}">
 	                    <fieldset>
 				    	  	<div class="form-group"><label>이메일</label>
-				    		    <input class="form-control" placeholder="이메일 주소 입력" id="email" name="email" onkeyup="emailCheck()" type="text" value="${requestScope.email }">
+				    		    <input class="form-control" maxlength="50" placeholder="이메일 주소 입력" id="email" name="email" onkeyup="emailCheck()" type="text" value="${requestScope.email }">
 				    		    <span id="emailCheckView"></span>
 				    		</div>
 				    		<div class="form-group"><label>비밀번호</label>
-				    			<input class="form-control" placeholder="비밀번호 입력" name="password" id="password" type="password">
+				    			<input class="form-control" maxlength="20" placeholder="비밀번호 입력" name="password" id="password" type="password">
 				    			<span id="passswordCheckView"></span>
 				    		</div>
 				    		
 					    	<div class="form-group"><label>비밀번호 확인</label>
-									<input type="password" class="form-control" id="rePassword" name="rePassword"
+									<input type="password" maxlength="20" class="form-control" id="rePassword" name="rePassword"
 									placeholder="비밀번호를  한번 더 입력해주세요" value="">
 							<span id="passwordEqul"></span> 
 							</div>
 							<div class="form-group"><label>닉네임</label>
-									<input type="text" class="form-control" id="name" name="name"
+									<input type="text" maxlength="50" class="form-control" id="name" name="name"
 									placeholder="닉네임을 입력해주세요" value="">
 							<span id="passwordEqul"></span> 
 							</div>
