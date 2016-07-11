@@ -47,7 +47,6 @@ public class DreamController extends MultiActionController {
 	public ModelAndView requestDream(HttpServletRequest request,
 			HttpServletResponse response, DreamVO pvo)
 			throws Exception {
-		System.out.println("requestDream GO!!");
 		// DreamVO pvo = new DreamVO(0, null, request.getParameter("category"),
 		// " ", request.getParameter("titleDream"),
 		// request.getParameter("detailDream"), "",
@@ -56,14 +55,9 @@ public class DreamController extends MultiActionController {
 		// 1. 업로드된 파일명을 받아온다.
 		// pvo.setMultipartFile(multipartFile);
 		MultipartFile mFile = pvo.getMultipartFile();
-		System.out.println("MultipartFile :: " + mFile);
 
 		// 2. 업도드된 파일이 있다면..
 		if (!mFile.isEmpty()) {// 비어있지 않다.
-			System.out.println("getOriginalFilename :: "
-					+ mFile.getOriginalFilename());
-			System.out.println("File : Form getName() - " + mFile.getName());
-
 			// 3.
 			String orgfilename = mFile.getOriginalFilename();
 			String newfilename = System.currentTimeMillis() + "_" + orgfilename;
@@ -73,30 +67,17 @@ public class DreamController extends MultiActionController {
 
 			File desFile = new File(path + newfilename);
 			mFile.transferTo(desFile);
-
-			System.out.println("desFile : " + desFile);
-			System.out.println("path L " + path);
-
 		}
 
-		System.out.println("꿈 신청 Go");
 		HttpSession session = request.getSession();
 		MemberVO rmvo = (MemberVO) session.getAttribute("mvo");
 		pvo.setMemberVO(rmvo);// 세션 값 주입
 
-		System.out.println("1" + pvo);
 		dreamService.requestDream(pvo);
-		System.out.println("2" + pvo);
 		String[] rewardInfoArr = request.getParameterValues("rewardInfo");
 		String[] rewardGuideArr = request.getParameterValues("rewardGuide");
 		String[] stockArr = request.getParameterValues("stock");
 
-		for (String rewardInfo : rewardInfoArr)
-			System.out.println("rewardInfo :: " + rewardInfo);
-		for (String rewardGuide : rewardGuideArr)
-			System.out.println("rewardGuide :: " + rewardGuide);
-		for (String stock : stockArr)
-			System.out.println("stock :: " + stock);
 		List<RewardVO> rewardList = new ArrayList<RewardVO>();
 		RewardVO defaultReward = new RewardVO(0, pvo, "보상없이 후원하겠습니다.", 0, 50000);
 		rewardList.add(defaultReward);
@@ -212,8 +193,6 @@ public class DreamController extends MultiActionController {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		String confirmRequestDream = request
 				.getParameter("confirmRequestDream");
-		System.out.println("confirmRequestDream() :: " + dreamId + " "
-				+ confirmRequestDream);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("dreamId", dreamId);
@@ -230,32 +209,22 @@ public class DreamController extends MultiActionController {
 	public ModelAndView getDetailDreamByDreamId(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-		System.out.println("상세보기에서 dreamId ::" + dreamId);
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
 		MemberVO memberVO = dreamService.getMemberByDream(dreamId);
 		dreamVO.setMemberVO(memberVO);
-
-		System.out.println("dreamVO :: " + dreamVO);
-
 		// //////////////////////////////////////////////////////////////////////////////
-		System.out.println("업데이트");
 		List<UpdateDreamVO> updateDreamList = dreamService
 				.updateDreamFindByDreamId(dreamId);
-		System.out.println(updateDreamList);
 		request.setAttribute("updateDreamList", updateDreamList);
 
 		// /////////////////////////////////////////////////////////////////////////////////
-		System.out.println("댓글");
 		List<ReplyVO> replyList = dreamService.readComment(dreamId);
-		System.out.println(replyList);
 		request.setAttribute("replyList", replyList);
 
 		// //////////////////////////////////////////////////////////////////////
 		// 후원자 가져오기 :: getPaymentMemeberByDreamId
-		System.out.println("getPaymentMemeberByDreamId");
 		List<MemberVO> memberList = dreamService
 				.getPaymentMemberByDreamId(dreamId);
-		System.out.println("후원자 :: " + memberList);
 		request.setAttribute("memberList", memberList);
 
 		// 댓글 작성 160615
@@ -266,12 +235,9 @@ public class DreamController extends MultiActionController {
 																	// 가져옴
 
 		if (member != null) { // 로그인 상태
-			System.out.println("MVO : " + member.getMemberId());
-
 			boolean is_dreamMaker;
 			for (MemberVO vo : memberList) {
 
-				System.out.println("vo.memberId() : " + vo.getMemberId());
 				if (member.getMemberId() == vo.getMemberId()) {
 
 					is_dreamMaker = true;// 후원자 맞음
@@ -283,7 +249,6 @@ public class DreamController extends MultiActionController {
 				} else {
 					is_dreamMaker = false;// 후원자가 아님
 				}
-				System.out.println(is_dreamMaker);
 			}
 		}
 
@@ -319,7 +284,6 @@ public class DreamController extends MultiActionController {
 	public ModelAndView getRewardByDreamId(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-		System.out.println("getRewardByDreamId ::" + dreamId);
 		List<RewardVO> rewardList = dreamService.getRewardByDreamId(dreamId);
 
 		return new ModelAndView("dream/payment", "rewardList", rewardList);
@@ -353,8 +317,6 @@ public class DreamController extends MultiActionController {
 
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		String content = request.getParameter("content");
-		System.out.println("댓글 작성 dreamId : " + dreamId);
-		System.out.println("컨텐츠 작성 : " + content);
 
 		DreamVO dreamVO = new DreamVO();
 		dreamVO.setDreamId(dreamId);// dreamVO.dreamId
@@ -401,19 +363,15 @@ public class DreamController extends MultiActionController {
 		
 		//////////////////////////160706 help3추가 ///////////////////////////
 		int dreamCnt=dreamService.getAllDreamCnt();
-		System.out.println(dreamCnt);
 		request.setAttribute("dreamCnt", dreamCnt);
 
 		int memberCnt = dreamService.getAllMemberCnt();
-		System.out.println("memberCnt :: " + memberCnt);
 		request.setAttribute("memberCnt", memberCnt);
 		
 		String totalMoney = dreamService.getTotalMoney();
-		System.out.println("totalMoney :: "+totalMoney);
 		request.setAttribute("totalMoney", totalMoney);
 		
 		int successDreamCnt = dreamService.getSuccessDream();
-		System.out.println("successDreamCnt"+successDreamCnt);
 		request.setAttribute("successDreamCnt", successDreamCnt);
 		
 		
@@ -434,13 +392,11 @@ public class DreamController extends MultiActionController {
 		}
 		
 	    int memberId = mvo.getMemberId();
-		System.out.println(memberId);
 		
 		String pageNo = request.getParameter("pageNo");
 		ListVO lvo = dreamService
 				.getAllMySupportProject(pageNo, memberId);
 		
-		System.out.println(lvo);
 		request.setAttribute("lvo", lvo);
 		
 		// 160707 모달을 위한 데이터 추가
@@ -455,7 +411,6 @@ public class DreamController extends MultiActionController {
 		// 받은/////////////////////////////////////
 		List<DreamVO> dreamList = dreamService
 				.getAllMyDreamByMemberId(memberId);
-		System.out.println(dreamList);
 		request.setAttribute("dreamList", dreamList);
 
 		return new ModelAndView("member/memberpage");
@@ -487,7 +442,6 @@ public class DreamController extends MultiActionController {
 	public ModelAndView update_getDetailDreamByDreamId(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-		System.out.println("상세보기에서 dreamId ::" + dreamId);
 		DreamVO dreamVO = dreamService.getDetailDreamByDreamId(dreamId);
 		return new ModelAndView("dream/updateDream.jsp", "dreamVO", dreamVO);
 	}
@@ -501,7 +455,6 @@ public class DreamController extends MultiActionController {
 		MultipartFile updateFile = vo.getMultipartFile();//업로드한 파일
 	/*	if(vo.getMultipartFile()!=null){
 			*/
-			System.out.println("업데이트 드림 업로드된 뉴파일 명 : "+updateFile.getOriginalFilename());
 			if(!updateFile.isEmpty()){//파일이 있다.
 				/*
 				 * orgfilename 받아와서 bvo에 주입
@@ -509,18 +462,14 @@ public class DreamController extends MultiActionController {
 				 */
 				vo.setUpdate_orgFilename(updateFile.getOriginalFilename());
 				vo.setUpdate_newFilename(System.currentTimeMillis()+"_"+updateFile.getOriginalFilename());
-				System.out.println(vo.getUpdate_newFilename()+"//"+vo.getUpdate_orgFilename());
 				File desFilee = new File(path+System.currentTimeMillis()+"_"+updateFile.getOriginalFilename());
 				updateFile.transferTo(desFilee);
 				}
 			/*}*/
 		DreamVO dreamVO = new DreamVO();
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
-		System.out.println("dreamId ::"+dreamId);
 		dreamVO.setDreamId(dreamId);
-		System.out.println(vo.getUpdate_detailDream());
 		vo.setDreamVO(dreamVO);
-		System.out.println(vo);
 		dreamService.updateDream(vo);
 		return new ModelAndView("redirect:/dream.do?command=myMoreDream");
 	}
@@ -542,7 +491,6 @@ public class DreamController extends MultiActionController {
 	public ModelAndView deleteCommentByReplyId(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		int dreamId = Integer.parseInt(request.getParameter("dreamId"));
 		int replyId = Integer.parseInt(request.getParameter("replyId"));
-		System.out.println(dreamId +","+replyId);
 		dreamService.deleteCommentByReplyId(replyId);
 
 		return new ModelAndView("redirect:/dream.do?command=getDetailDreamByDreamId&&dreamId="+dreamId);
@@ -562,19 +510,15 @@ public class DreamController extends MultiActionController {
 	public ModelAndView help3(HttpServletRequest request,HttpServletResponse response) throws Exception {
 
 		int dreamCnt=dreamService.getAllDreamCnt();
-		System.out.println(dreamCnt);
 		request.setAttribute("dreamCnt", dreamCnt);
 
 		int memberCnt = dreamService.getAllMemberCnt();
-		System.out.println("memberCnt :: " + memberCnt);
 		request.setAttribute("memberCnt", memberCnt);
 		
 		String totalMoney = dreamService.getTotalMoney();
-		System.out.println("totalMoney :: "+totalMoney);
 		request.setAttribute("totalMoney", totalMoney);
 		
 		int successDreamCnt = dreamService.getSuccessDream();
-		System.out.println("successDreamCnt"+successDreamCnt);
 		request.setAttribute("successDreamCnt", successDreamCnt);
 		
 		return new ModelAndView("help3");
@@ -585,7 +529,6 @@ public class DreamController extends MultiActionController {
 	HttpServletResponse response) throws Exception {
 	///////////////////후원한 부분/////////////////////////////////////
 		int memberId = Integer.parseInt(request.getParameter("memberId"));
-		System.out.println("yourMoreDream::"+memberId);
 		String member_newFilename = request.getParameter("member_newFilename");
 		String name = request.getParameter("name");
 		MemberVO mvo = new MemberVO();
@@ -593,12 +536,10 @@ public class DreamController extends MultiActionController {
 		mvo.setMember_newFilename(member_newFilename);
 		List<MyDreamVO> myDreamList = dreamService
 		.getAllYourSupportProject(memberId);
-		System.out.println(myDreamList);
 		request.setAttribute("myDreamList", myDreamList);
 		// ////////////////////////////////후원 받은(진행하는)/////////////////////////////////////
 		List<DreamVO> dreamList = dreamService
 		.getAllMyDreamByMemberId(memberId);
-		System.out.println(dreamList);
 		request.setAttribute("dreamList", dreamList);
 	
 		int countPayment = dreamService.getCountPaymentDreamByMemberId(memberId);

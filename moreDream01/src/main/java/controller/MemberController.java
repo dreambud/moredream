@@ -23,7 +23,6 @@ public class MemberController extends MultiActionController {
 	MemberService memberService;
 
 	public void setMemberService(MemberService memberService) {
-		System.out.println("::"+getClass().getName()+".setMemberService call");
 		this.memberService = memberService;
 	}
 	
@@ -50,7 +49,6 @@ public class MemberController extends MultiActionController {
 	public ModelAndView existEmail(HttpServletRequest request, HttpServletResponse response)
 	throws Exception{
 	boolean	flag = memberService.existEmail(request.getParameter("email"));
-	System.out.println(flag);
 	return new ModelAndView("JsonView","flag",flag);
 	}
 	
@@ -62,8 +60,6 @@ public class MemberController extends MultiActionController {
 		String path = "WEB-INF/result/login_fail";
 		
 		MemberVO rmvo=memberService.login(pmvo);
-		System.out.println("pmvo ::"+pmvo); //확인...
-		System.out.println("rmvo ::"+rmvo); //확인
 		String url = request.getParameter("url");
 		if(url==null||url==""){
 			url = "index.jsp";
@@ -93,8 +89,6 @@ public class MemberController extends MultiActionController {
 		
 		if(pmvo.getMultipartFile()!=null){
 		MultipartFile file = pmvo.getMultipartFile();//업로드한 파일
-		System.out.println("업로드된 뉴파일 명 : "+pmvo.getMember_newFilename());
-		System.out.println("pmvo.getMultipartFile() ::"+pmvo.getMultipartFile());
 		if(!file.isEmpty()){//파일이 있다.
 			/*
 			 * orgfilename 받아와서 bvo에 주입
@@ -108,8 +102,6 @@ public class MemberController extends MultiActionController {
 			}
 		}
 		request.getParameter("password");
-		System.out.println(pmvo);
-		System.out.println(pmvo.getFacebookId());
 		memberService.updateMember(pmvo);//이 부분에서 디비의 mvo내용이 pmvo로 수정이 일어났다.
 		memberService.updateFacebookId(pmvo);
 		//그걸 다시 세션에 반드시 바인딩 해야한다.
@@ -126,7 +118,6 @@ public class MemberController extends MultiActionController {
 			, MemberVO pmvo)
 		throws SQLException{
 		request.getParameter("password");
-		System.out.println(pmvo);
 		memberService.updateMember(pmvo);//이 부분에서 디비의 mvo내용이 pmvo로 수정이 일어났다.
 		return new ModelAndView("WEB-INF/result/updateMember_result");//바인딩은 이미 위에서 했다.
 		
@@ -157,10 +148,8 @@ public class MemberController extends MultiActionController {
 	public ModelAndView getMemberList(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException{
 			HttpSession session = request.getSession();
-			MemberVO rmvo =(MemberVO) session.getAttribute("mvo");
 			String page = request.getParameter("page");
 			ListVO lvo = memberService.getMemberList(page);
-			System.out.println(lvo);
 			return new ModelAndView("admin/adminmemberpage","lvo",lvo);//바인딩은 이미 위에서 했다.
 			
 		}
@@ -168,11 +157,7 @@ public class MemberController extends MultiActionController {
 	public ModelAndView deleteFileMember(HttpServletRequest request, HttpServletResponse response)
 	throws NumberFormatException, Exception{
 	String member_newFilename = request.getParameter("member_newFilename");
-
-		System.out.println("아작스 뚜뚜뚜뚜 콜~ ");
-
 	String member_newFilename1 = path+member_newFilename; // 디렉토리에 있는 파일 지울꺼
-	System.out.println(member_newFilename1);
 	String member_newFilename2 = member_newFilename; // db테이블에 있는 파일 지울꺼
 		memberService.deleteFileMember(member_newFilename1, member_newFilename2);
 	
