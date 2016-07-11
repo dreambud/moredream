@@ -164,9 +164,9 @@
 					<div class="action">
 						<div class="col-sm-12">
 						<hr width="25%">
-							<h1 class="title">회원정보 수정</h1>
+							<h1 class="title">회원정보</h1>
 							<hr width="25%">
-							<p>당신의 꿈을 실현시켜보세요 !</p>
+							<p>개인정보를 등록 및 수정할수 있습니다.</p>
 						</div>
 					</div>
 				</div>
