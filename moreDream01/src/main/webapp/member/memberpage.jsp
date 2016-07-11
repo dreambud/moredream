@@ -273,9 +273,9 @@
 								
 								<div class="single-blog2 two-column">
 									<div class="post-thumb">
-										<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}"><img
-											src="${initParam.root}upload/dream/${dream.dream_newFilename}"
-											class="img-responsive" alt="" width="480" height="270"></a>
+										<a href="${initParam.root}dream.do?command=getDetailDreamByDreamId&&dreamId=${dream.dreamId}">
+										<img src="${initParam.root}upload/dream/${dream.dream_newFilename}"
+											style="width: 350px; height: 260px" class="img-responsive"></a>
 									</div>
 									<div class="post-content overflow">
 										<h2 class="post-title bold">

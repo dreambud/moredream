@@ -172,7 +172,16 @@
 													</c:if>
 												<div class="post-bottom overflow">
 														<p>모인 금액
-																${dream.statVO.totalMoneyView} &nbsp;<span class="label label-primary"><fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></p>
+																${dream.statVO.totalMoneyView} &nbsp;
+																<c:choose>
+																<c:when test="${(dream.statVO.totalMoney/dream.targetFund)*100>=100}">
+																<span class="label label-danger">
+																</c:when>
+																<c:otherwise>
+																<span class="label label-primary">
+																</c:otherwise>
+																</c:choose>
+																<fmt:formatNumber value="${(dream.statVO.totalMoney/dream.targetFund)*100}" type="percent" pattern="0"/>%</span></p>
 														<p><i class="fa fa-calendar"></i> &nbsp;
 																<c:if test="${dream.statVO.endDay==0}">
 																	<font color='red'><b>오늘 마감</b></font>
