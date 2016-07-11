@@ -144,10 +144,10 @@
 												<h2>
 												<c:choose>
 												<c:when test="${dream.titleDream.length()<19}">
-													<${dream.titleDream}>
+													&lt;${dream.titleDream}&gt;
 												</c:when>
 												<c:otherwise>
-													<${dream.titleDream.substring(0,19)}..>
+													&lt;${dream.titleDream.substring(0,19)}..&gt;
 												</c:otherwise>
 												</c:choose>
 												</h2>
