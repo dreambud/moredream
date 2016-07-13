@@ -162,9 +162,9 @@ $(document).ready(function(){
 									<div class="col-md-12">
 										<ul id="tab1" class="nav nav-tabs">
 											<li class="active"><a href="#tab1-item1"
-												data-toggle="tab">업데이트 <span class="label label-default">${updateDreamCount}</span></a></li>
-											<li><a href="#tab1-item2" data-toggle="tab">댓글 <span class="label label-default">${replyCount }</span></a></li>
-											<li><a href="#tab1-item3" data-toggle="tab">후원자 <span class="label label-default">${dreamMakerCount }</span></a></li>
+												data-toggle="tab">Update <span class="label label-default">${updateDreamCount}</span></a></li>
+											<li><a href="#tab1-item2" data-toggle="tab">Comment <span class="label label-default">${replyCount }</span></a></li>
+											<li><a href="#tab1-item3" data-toggle="tab">Dream Maker <span class="label label-default">${dreamMakerCount }</span></a></li>
 										</ul>
 
 										<!-- 업데이트 -->
@@ -242,7 +242,7 @@ $(document).ready(function(){
                                              </c:when>
                                              <c:otherwise>
                                                 <textarea rows="5" cols=125 name="content"
-                                                   disabled="disabled">후원자만 입력가능합니다.</textarea>
+                                                   disabled="disabled">Dream Maker(후원자)만 입력가능합니다.</textarea>
                                                 <div align="right">
                                                    <input type="submit"
                                                       class="btn btn-lm btn-default" value="입력하기">
@@ -260,6 +260,7 @@ $(document).ready(function(){
                                           <c:choose>
                                              <c:when test="${!replyList.isEmpty()}">
                                                 <c:forEach items="${replyList}" var="reply">
+                                                <c:if test="${reply.memberVO.name != '-'}">
                                                    <li class="media comments">
                                                       <div class="post-comment">
                                                          <div class="pull-left">
@@ -281,10 +282,10 @@ $(document).ready(function(){
                                                          <div class="media-body">
                                                             <c:choose>
                                                                <c:when test="${dreamVO.memberVO.memberId==reply.memberVO.memberId }">
-                                                                  <span><i class="fa fa-user"></i><b>작성자</b> ${reply.memberVO.name}</span>
+                                                                  <span><i class="fa fa-user"></i><b style="color: red;">Dreamer</b> ${reply.memberVO.name}</span>
                                                                </c:when>
                                                                <c:otherwise>
-                                                                  <span><i class="fa fa-user"></i><b>후원자</b>  ${reply.memberVO.name}</span>
+                                                                  <span><i class="fa fa-user"></i><b>Dream Maker</b>  ${reply.memberVO.name}</span>
                                                                </c:otherwise>
                                                             </c:choose>
                                                             
@@ -300,6 +301,7 @@ $(document).ready(function(){
                                                       </div>
 
                                                    </li>
+                                                   </c:if>
                                                 </c:forEach>
                                                 
                                                 	<div id="commentDetailBtn" style="text-align: center; margin-bottom: 30px;">
@@ -330,6 +332,7 @@ $(document).ready(function(){
 													<c:choose>
 														<c:when test="${!memberList.isEmpty()}">
 															<c:forEach items="${memberList }" var="member">
+																<c:if test="${member.name != '-'}">
 																<div class="pull-left">
 																<c:choose>
 															<c:when test="${(member.member_newFilename!='-'&&member.member_newFilename!=''&&member.member_newFilename!=' '&&member.member_newFilename!='  ')}">
@@ -353,11 +356,12 @@ $(document).ready(function(){
 																	</p>
 																	<hr>
 																</div>
+																</c:if>
 
 															</c:forEach>
 														</c:when>
 														<c:otherwise>
-															<h3>첫번째 후원자가 되어주실래요 ??</h3>
+															<h3>첫번째 Dream Maker가 되어주실래요 ?</h3>
 														</c:otherwise>
 													</c:choose>
 
@@ -426,9 +430,9 @@ $(document).ready(function(){
 
 								</c:when>
 								<c:when test="${is_dreamMaker==true }">
-								당신은 이미 후원 하셨습니다!<br>
+								당신은 이미 응원 하셨습니다!<br>
 									<a href="${initParam.root }dream.do?command=myMoreDream">>
-										후원내역 보기</a>
+										응원내역 보기</a>
 								</c:when>
 								<c:when test="${dreamVO.statVO.endDay<0}">
 									<b>해당 꿈은 마감되었습니다.</b>
