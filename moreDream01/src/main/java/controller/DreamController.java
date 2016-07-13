@@ -531,9 +531,13 @@ public class DreamController extends MultiActionController {
 		int memberId = Integer.parseInt(request.getParameter("memberId"));
 		String member_newFilename = request.getParameter("member_newFilename");
 		String name = request.getParameter("name");
+		String facebookId = request.getParameter("facebookId");
 		MemberVO mvo = new MemberVO();
 		mvo.setName(name);
 		mvo.setMember_newFilename(member_newFilename);
+		if(facebookId!=null)
+			mvo.setFacebookId(facebookId);
+		
 		List<MyDreamVO> myDreamList = dreamService
 		.getAllYourSupportProject(memberId);
 		request.setAttribute("myDreamList", myDreamList);

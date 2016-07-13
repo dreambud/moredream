@@ -150,7 +150,7 @@ $(document).ready(function(){
 											</div>
 											<div class="col-sm-12 col-md-6" id="idbox1">
 												<p id="namebox"><font color="#60C5B8">Dreamer</font> <a
-																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${dreamVO.memberVO.memberId}&&member_newFilename=${dreamVO.memberVO.member_newFilename }&&name=${dreamVO.memberVO.name}"
+																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${dreamVO.memberVO.memberId}&&facebookId=${dreamVO.memberVO.facebookId}&&member_newFilename=${dreamVO.memberVO.member_newFilename }&&name=${dreamVO.memberVO.name}"
 																			data-toggle="tooltip" data-placement="bottom"
 																			title="${dreamVO.memberVO.name}님의 꿈 보기">${dreamVO.memberVO.name} </a><i class="fa fa-leaf" aria-hidden="true"></i></p> 
 												<p> <i class="fa fa-envelope " aria-hidden="true"></i> ${dreamVO.memberVO.email}</p>
@@ -346,7 +346,7 @@ $(document).ready(function(){
 																<div class="media-body">
 																	<p id="media-padding">
 																		<strong><a
-																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${member.memberId}&&member_newFilename=${member.member_newFilename }&&name=${member.name}"
+																			href="${initParam.root}dream.do?command=yourMoreDream&&memberId=${member.memberId}&&facebookId=${member.facebookId}&&member_newFilename=${member.member_newFilename }&&name=${member.name}"
 																			data-toggle="tooltip" data-placement="bottom"
 																			title="${member.name}님의 꿈 보기">${member.name}</a></strong><span>&nbsp;<i
 																			class="fa fa-leaf"></i></span> 님이 응원 합니다 ! <br>

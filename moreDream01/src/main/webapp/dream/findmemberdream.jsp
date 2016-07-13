@@ -57,9 +57,20 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 					<div class="action">
 						<div class="col-sm-12">
 							<h1 class="title">
-								<img class="img-circle"
+							<c:choose>
+									<c:when test="${(rmvo.member_newFilename!='-'&&rmvo.member_newFilename!='')}">
+										<img class="img-circle" src="${initParam.root }upload/member/${rmvo.member_newFilename}" width="50px" height="50px">
+									</c:when>
+									<c:when test="${rmvo.facebookId!=''&&rmvo.facebookId!=null}">
+										<img class="img-circle" src="http://graph.facebook.com/${rmvo.facebookId}/picture?type=square"width="50px" height="50px">
+									</c:when>
+									<c:otherwise>
+										<img class="img-circle" src="${initParam.root }upload/member/member_df.jpg" width="50px" height="50px">
+									</c:otherwise>
+								</c:choose> 
+								<%-- <img class="img-circle"
 									src="${initParam.root }upload/member/${rmvo.member_newFilename}"
-									width="100px" height="100px">
+									width="100px" height="100px"> --%>
 								<h3 style="color: white; text-align: center">
 									<strong>${rmvo.name}</strong>
 								</h3>
@@ -120,10 +131,32 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 												</div>
 
 												<div class="portfolio-info">
-													<img class="img-circle"
+															<c:choose>
+																<c:when
+																	test="${(dream.memberVO.member_newFilename!='-'&&dream.memberVO.member_newFilename!='')}">
+																	<img class="img-circle"
+																		src="${initParam.root }upload/member/${dream.memberVO.member_newFilename}"
+																		width="50px" height="50px"
+																		style="float: left; margin-top: 1em; margin-left: 30px;">
+																</c:when>
+																<c:when
+																	test="${dream.memberVO.facebookId!=''&&dream.memberVO.facebookId!=null}">
+																	<img class="img-circle"
+																		src="http://graph.facebook.com/${dream.memberVO.facebookId}/picture?type=square"
+																		width="50px" height="50px"
+																		style="float: left; margin-top: 1em; margin-left: 30px;">
+																</c:when>
+																<c:otherwise>
+																	<img class="img-circle"
+																		src="${initParam.root }upload/member/member_df.jpg"
+																		width="50px" height="50px"
+																		style="float: left; margin-top: 1em; margin-left: 30px;">
+																</c:otherwise>
+															</c:choose>
+															<%-- <img class="img-circle"
 														src="./upload/member/${dream.memberVO.member_newFilename}"
 														width="50px" height="50px"
-														style="float: left; margin-top: 1em; margin-left: 30px;">
+														style="float: left; margin-top: 1em; margin-left: 30px;"> --%>
 
 													<h2><${dream.dreamVO.titleDream}></h2>
 													<h5 align="center" style="margin-bottom: 1em">
@@ -240,10 +273,32 @@ href="images/ico/apple-touch-icon-57-precomposed.png"> -->
 												</div>
 
 												<div class="portfolio-info">
-													<img class="img-circle"
+														<c:choose>
+															<c:when
+																test="${(rmvo.member_newFilename!='-'&&rmvo.member_newFilename!='')}">
+																<img class="img-circle"
+																	src="${initParam.root }upload/member/${rmvo.member_newFilename}"
+																	width="50px" height="50px"
+																	style="float: left; margin-top: 1em; margin-left: 30px;">
+															</c:when>
+															<c:when
+																test="${rmvo.facebookId!=''&&rmvo.facebookId!=null}">
+																<img class="img-circle"
+																	src="http://graph.facebook.com/${rmvo.facebookId}/picture?type=square"
+																	width="50px" height="50px"
+																	style="float: left; margin-top: 1em; margin-left: 30px;">
+															</c:when>
+															<c:otherwise>
+																<img class="img-circle"
+																	src="${initParam.root }upload/member/member_df.jpg"
+																	width="50px" height="50px"
+																	style="float: left; margin-top: 1em; margin-left: 30px;">
+															</c:otherwise>
+														</c:choose>
+														<%-- <img class="img-circle"
 														src="${initParam.root }upload/member/${rmvo.member_newFilename}"
 														width="50px" height="50px"
-														style="float: left; margin-top: 1em; margin-left: 30px;">
+														style="float: left; margin-top: 1em; margin-left: 30px;"> --%>
 
 													<h2><${dream.titleDream}></h2>
 

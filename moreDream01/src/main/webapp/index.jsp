@@ -162,7 +162,7 @@ jQuery(document).ready(function( $ ) {
 									<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
 										<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
 									</c:when>
-									<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+									<c:when test="${dl.memberVO.facebookId!=''&&dl.memberVO.facebookId!=null}">
 										<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
 									</c:when>
 									<c:otherwise>
@@ -195,7 +195,7 @@ jQuery(document).ready(function( $ ) {
 									<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!='')}">
 										<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
 									</c:when>
-									<c:when test="${dl.memberVO.facebookId!=''||dl.memberVO.facebookId!=null}">
+									<c:when test="${dl.memberVO.facebookId!=''&&dl.memberVO.facebookId!=null}">
 										<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
 									</c:when>
 									<c:otherwise>
