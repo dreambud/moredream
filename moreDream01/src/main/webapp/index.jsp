@@ -331,27 +331,23 @@ jQuery(document).ready(function( $ ) {
 												<div class="rating col-md-2 col-sm-2">
 														<c:choose>
 															<c:when test="${(dl.memberVO.member_newFilename!='-'&&dl.memberVO.member_newFilename!=''&&dl.memberVO.member_newFilename!=' '&&dl.memberVO.member_newFilename!='  ')}">
-																<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}"width="50px" height="50px">
+																<img class="img-circle" src="./upload/member/${dl.memberVO.member_newFilename}" width="60px" height="60px"
+																		style="float: left; margin-top: 1em; margin-left: 40px;">
 															</c:when>
 															<c:when test="${dl.memberVO.facebookId!=''&&dl.memberVO.facebookId!=null}">
-																<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square"width="50px" height="50px">
+																<img class="img-circle" src="http://graph.facebook.com/${dl.memberVO.facebookId}/picture?type=square" width="60px" height="60px"
+																		style="float: left; margin-top: 1em; margin-left: 40px;">
 															</c:when>
 															<c:otherwise>
-																<img class="img-circle" src="./upload/member/member_df.jpg" width="50px" height="50px">
+																<img class="img-circle" src="./upload/member/member_df.jpg" width="60px" height="60px"
+																		style="float: left; margin-top: 1em; margin-left: 40px;">
 															</c:otherwise>
 														</c:choose>
 
 												</div>
-												<div >
+												<div align="center" style="margin-bottom: 1em">
 													<h5>
-														<b> <c:choose>
-																<c:when test="${dl.titleDream.length()<19}">
-																	${dl.titleDream}
-																</c:when>
-																<c:otherwise>
-																	${dl.titleDream.substring(0,19)}..
-																</c:otherwise>
-															</c:choose></b>
+														<b>&lt;${dl.titleDream}&gt;</b>
 													</h5>
 													<h5>
 														<b>${dl.memberVO.name }</b>의 <b>${dl.category} 꿈 프로젝트</b>
